@@ -80,3 +80,4 @@ deezloader
 zipfile38
 bitlyshortener
 geopy
+validators

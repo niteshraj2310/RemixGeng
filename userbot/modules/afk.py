@@ -74,14 +74,14 @@ async def set_afk(afk_e):
     afk_start = start_1.replace(microsecond=0)
     if string:
         AFKREASON = string
-        await afk_e.edit(f"**Going AFK!**\
+        await afk_e.edit(f"**工   厶 口   卂 山 卂 丫 工 工!**\
         \nReason: `{string}`")
     else:
-        await afk_e.edit("**Going AFK!**")
+        await afk_e.edit("**工   厶 口   卂 山 卂 丫 工 工!**")
     if user.last_name:
-        await afk_e.client(UpdateProfileRequest(first_name=user.first_name, last_name=user.last_name + " [ OFFLINE ]"))
+        await afk_e.client(UpdateProfileRequest(first_name=user.first_name, last_name=user.last_name + " [ 卂 下 长 ]"))
     else:
-        await afk_e.client(UpdateProfileRequest(first_name=user.first_name, last_name=" [ OFFLINE ]"))
+        await afk_e.client(UpdateProfileRequest(first_name=user.first_name, last_name=" [ 卂 下 长 ]"))
     if BOTLOG:
         await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\nYou went AFK!")
     ISAFK = True
@@ -102,7 +102,7 @@ async def type_afk_is_not_true(notafk):
     global afk_end
     user = await bot.get_me()
     last = user.last_name
-    if last and last.endswith(" [ OFFLINE ]"):
+    if last and last.endswith(" [ 卂 下 长 ]"):
         last1 = last[:-12]
     else:
         last1 = ""
@@ -110,7 +110,7 @@ async def type_afk_is_not_true(notafk):
     afk_end = back_alive.replace(microsecond=0)
     if ISAFK:
         ISAFK = False
-        msg = await notafk.respond("**I'm no longer AFK.**")
+        msg = await notafk.respond("**从 乇   工 乙   卄 乇 尺 乇.**")
         time.sleep(3)
         await msg.delete()
         await notafk.client(UpdateProfileRequest(first_name=user.first_name, last_name=last1))
