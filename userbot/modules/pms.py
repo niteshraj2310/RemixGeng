@@ -26,7 +26,10 @@ from userbot.events import register
 
 # ========================= CONSTANTS ============================
 UNAPPROVED_MSG = (
-    "`HeY! Please don't spam. Wait for my master's approval 🙃\nMessage remaining:1 \n\n`")
+    "Bleep blop! This is a bot. Don't fret.\n\n`"
+        "`My master hasn't approved you to PM.`"
+        "`Please wait for my master to look in, he mostly approves PMs.\n\n`"
+        "`As far as I know, he doesn't usually approve retards though.`")
 # =================================================================
 
 NO_PM_LOG_USERS = []
@@ -75,10 +78,11 @@ async def permitpm(event):
                 else:
                     COUNT_PM[event.chat_id] = COUNT_PM[event.chat_id] + 1
 
-                if COUNT_PM[event.chat_id] > 2:
+                if COUNT_PM[event.chat_id] > 5:
                     await event.respond(
                         "`You were spamming my pm dude.`\n"
-                        "`You have been BLOCKED and reported as SPAM now. JUST FUCK OFF 🖕.`"
+                        "`Which I don't like bissh`"
+                        "`I'm gonna  BLOCK and REPORT you SPAM now GTFO😡.`"
                     )
 
                     try:
@@ -190,7 +194,7 @@ async def approvepm(apprvpm):
     try:
         approve(uid)
     except IntegrityError:
-        await apprvpm.edit("`User may already be approved.`")
+        await apprvpm.edit("`This NIBBA may already be approved.`")
         return
 
     await apprvpm.edit(f"[{name0}](tg://user?id={uid}) `approved to PM!`")
