@@ -247,9 +247,9 @@ async def gsearch(q_event):
         page = 1
     search_args = (str(match), int(page))
     gsearch = GoogleSearch()
-    gresults = await gsearch.async_search(*search_args, cache=False)
+    gresults = await gsearch.async_search(*search_args)
     msg = ""
-    for i in range(7):
+    for i in range(10):
         try:
             title = gresults["titles"][i]
             link = gresults["links"][i]
