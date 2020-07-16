@@ -1,8 +1,8 @@
-#credits: mrconfused
+#credits: who need dat dude😂
 from geopy.geocoders import Nominatim
 from telethon.tl import types
 from userbot.events import register
-
+from userbot import CMD_HELP
 
 
 @register(outgoing=True, pattern="^.gps(?: |$)(.*)")
@@ -36,3 +36,13 @@ async def gps(event):
         await event.delete()
     else:
         await event.edit("i coudn't find it")
+      
+CMD_HELP.update({
+
+        "gps": 
+
+        ".gps \
+
+          \nUsage: Search any destination beyond dis universe 😂.\n"
+
+    })    
