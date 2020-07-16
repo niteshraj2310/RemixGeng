@@ -132,11 +132,11 @@ async def amireallyalive(alive):
     """ For .start command, check if the bot is running.  """
     logo = ALIVE_LOGO
     output = (f"丂 丅 口 尸   工 丅   厶 乇 丅   丂 口 从 乇   卄 乇 乚 尸  乃 工 匚 工 \n"
-             f"𝖙𝖊𝖑𝖊𝖙𝖍𝖔𝖓 𝖛𝖊𝖗𝖘𝖎𝖔𝖓: {version.__version__} \n"
-             f"𝖕𝖞𝖙𝖍𝖔𝖓 𝖛𝖊𝖗𝖘𝖎𝖔𝖓: {python_version()} \n"
-             f"𝖇𝖔𝖙 𝖛𝖊𝖗𝖘𝖎𝖔𝖓: Remix {BOT_VER} \n"
+             f"👽𝖙𝖊𝖑𝖊𝖙𝖍𝖔𝖓 𝖛𝖊𝖗𝖘𝖎𝖔𝖓: {version.__version__} \n"
+             f"🐍𝖕𝖞𝖙𝖍𝖔𝖓 𝖛𝖊𝖗𝖘𝖎𝖔𝖓: {python_version()} \n"
+             f"🤖𝖇𝖔𝖙 𝖛𝖊𝖗𝖘𝖎𝖔𝖓: Remix {BOT_VER} \n"
              f"==================================== \n"
-             f"𝖒𝖔𝖎 𝖒𝖆𝖘𝖙𝖊𝖗: {DEFAULTUSER} \n"
+             f"😎𝖒𝖔𝖎 𝖒𝖆𝖘𝖙𝖊𝖗: {DEFAULTUSER} \n"
              f"====================================\n")
     await bot.send_file(alive.chat_id, logo, caption=output)
     await alive.delete()
