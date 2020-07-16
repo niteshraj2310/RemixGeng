@@ -1,5 +1,8 @@
 [![Build Status](https://travis-ci.com/sahyam2019/oub-remix.svg?branch=sql-extended)](https://travis-ci.com/sahyam2019/oub-remix) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/38fee611df7c4312be63a15cad64a50a)](https://www.codacy.com/manual/sahyam2019/oub-remix?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sahyam2019/oub-remix&amp;utm_campaign=Badge_Grade) ![Last Commit](https://img.shields.io/github/last-commit/sahyam2019/oub-remix) ![Contributers](https://img.shields.io/github/contributors/sahyam2019/oub-remix) ![Forks](https://img.shields.io/github/forks/sahyam2019/oub-remix)    
-[![DeepSource](https://static.deepsource.io/deepsource-badge-dark-mini.svg)](https://deepsource.io/gh/niteshraj2310/RemixGeng/?ref=repository-badge)
+
+
+<a href="https://deepsource.io/gh/niteshraj2310/RemixGeng/?ref=repository-badge" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://static.deepsource.io/deepsource-badge-light-mini.svg"></a>
+
 
 # Project 尺 乇 从 工 乂 厶 乇 𠘨 厶
 
