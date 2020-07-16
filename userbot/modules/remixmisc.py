@@ -17,7 +17,6 @@ from datetime import datetime
 from telethon.tl.types import UserStatusEmpty, UserStatusLastMonth, UserStatusLastWeek, UserStatusOffline, UserStatusOnline, UserStatusRecently, ChatBannedRights
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
-from telethon.tl.types import DocumentAttributeVideo
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
 
