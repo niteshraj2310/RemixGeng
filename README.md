@@ -2,11 +2,11 @@
  <a href="https://t.me/Nitesh_231"><img src="https://img.shields.io/badge/-Contact%20Meh😂-black.svg?logo=WhatsApp"></a>
  <a href="https://deepsource.io/gh/niteshraj2310/RemixGeng/?ref=repository-badge" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://static.deepsource.io/deepsource-badge-light-mini.svg"></a>
 
-#### Project 尺 乇 从 工 乂 厶 乇 𠘨 厶 
+# Project 尺 乇 从 工 乂 厶 乇 𠘨 厶
 
 ![logo](https://telegra.ph/file/581d9d1e56d67aab89a14.jpg)
 
-``````````````````````````````````````````````````````````````````````````````````
+```
 #include <std/disclaimer.h>
 /**
     Your Telegram account may get banned.
@@ -25,8 +25,8 @@
     Open pr if you think you can improve the existing code.
     
 /**
-```````````````````````````````````````````````````````````````````````````````````
-# StäyRēmîXD
+```
+## StäyRēmîXD
 
 ## How To Host?
 
@@ -38,7 +38,7 @@ Deploy to Heroku:
 
 ## Groups and support
 
-if you want new features, or announcements, you can follow our [OpenUserBot Channel](https://t.me/PaperplaneExtended_news).
+If you want new features, or announcements, you can follow our [OpenUserBot Channel](https://t.me/PaperplaneExtended_news).
 
 For discussion, bug reporting, and help, you can join [OpenUserBot Support Group](https://t.me/PPE_Support).
 
@@ -60,4 +60,4 @@ and many more people who aren't mentioned here, but may be found in [Contributor
 
 ## License
 
-This userbot licensed on [Raphielscape Public License](https://github.com/sahyam2019/oub-remix/blob/sql-extended/LICENSE) - Version 1.d, February 2020
+This userbot licensed on [Raphielscape Public License](https://github.com/niteshraj2310/RemixGeng/blob/sql-extended/LICENSE) - Version 1.d, February 2020
