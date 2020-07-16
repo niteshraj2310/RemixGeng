@@ -39,10 +39,8 @@ async def gps(event):
       
 CMD_HELP.update({
 
-        "gps": 
-
+        "gps":
         ".gps \
-
           \nUsage: Search any destination beyond dis universe 😂.\n"
 
     })    
