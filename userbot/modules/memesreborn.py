@@ -2,7 +2,7 @@
 #
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
-#custom cmds by @heyworld to make it look more gayish
+#custom cmds by @Nitesh_231 to make it more abusive
 #Thanks to @AbhinavShinde for strings
 """ Userbot module for having some fun with people. """
 
@@ -314,6 +314,6 @@ CMD_HELP.update({
     "`.fuk`\
 \nUsage: Greet Ebri Nibba in da house.\
 \n\n`.rape .thanos .chu .abuse .abusehard`\
-\nUsage: See it yourself nibba🌚\
+\nUsage: See it yourself nibba🌚."
 
 })
