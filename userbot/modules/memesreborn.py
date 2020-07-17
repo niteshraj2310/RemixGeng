@@ -1,4 +1,3 @@
-
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
@@ -212,6 +211,43 @@ async def my_loop(update):
             await update.edit(nmsg)
             time.sleep(0.4)
 
+@register(outgoing=True, pattern="^.nikal$")
+async def whoizme(e):
+    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
+        await e.edit("Nikal")
+        await asyncio.sleep(0.3)
+        await e.edit("lavde")
+        await asyncio.sleep(0.2)
+        await e.edit("pehli")
+        await asyncio.sleep(0.5)
+        await e.edit("fursat")
+        await asyncio.sleep(0.2)
+        await e.edit("me")
+        await asyncio.sleep(0.3)
+        await e.edit("nikal")
+        await asyncio.sleep(0.3)
+        await e.edit("🤬")
+        await asyncio.sleep(0.3)
+        await e.edit("Nikal lavde pehli fursat me nikal 🤬")
+
+@register(outgoing=True, pattern="^.upro$")
+async def whoizme(e):
+    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
+        await e.edit("EVERyBOdy")
+        await asyncio.sleep(0.3)
+        await e.edit("iZ")
+        await asyncio.sleep(0.2)
+        await e.edit("CHuTiya")
+        await asyncio.sleep(0.5)
+        await e.edit("UNtIL ")
+        await asyncio.sleep(0.2)
+        await e.edit("U")
+        await asyncio.sleep(0.3)
+        await e.edit("ArRivE")
+        await asyncio.sleep(0.3)
+        await e.edit("🔥")
+        await asyncio.sleep(0.3)
+        await e.edit("EVERyBOdy iZ PrO UNtIL U ArRivE 🔥")
 
 
 @register(outgoing=True, pattern="^.gtfo$")
