@@ -200,62 +200,6 @@ async def faces(siwis):
     reply_text += " " + choice(IWIS)
     await siwis.edit(reply_text)
 
-@register(outgoing=True, pattern="^.loop")
-async def my_loop(update):
-    """
-    Type:  .loop 2 Hello there. {Msg will change 8 times in 2 loops; This message will really change bruh; msg changed;Ohk}
-    got it? 
-    This is the {1;2;3;4;5}th message, 5th is blank 😅️.
-    """
-
-    msg = gettimemsg(update.text)
-    times = int(msg[1])
-    msg = msg[2]
-    mainmsg = ""
-    encountered = False
-    maxcounters = 0
-    counters = 0
-    count = -1
-    msglist = []
-    
-    for x in msg:
-        if not(encountered):
-            if x is not '{':
-                mainmsg += x
-            else:
-                encountered = True
-                counters = 0
-                count += 1
-                mainmsg += "{" + str(count) + "}"
-                dummylist = []
-                msglist.append(dummylist)
-                msglist[count].append("")
-        else:
-            if (x != '}' and x != ';'):
-                msglist[count][counters] += x
-            elif (x == ';'):
-                counters += 1
-                if(counters > maxcounters):
-                    maxcounters += 1
-                msglist[count].append("")
-            else:
-                encountered = False
-
-
-#    x = "mainmsg = {}\n\nencountered = {}\n\nmaxcounters = {}\n\ncounters = {}\n\ncount = {}\n\nmsglist = {}".format(mainmsg, encountered, maxcounters, counters, count, msglist)
-#    await update.edit(x)
-    for i in range(times):
-        for x in range(maxcounters + 1):
-            nmsg = mainmsg
-            for l in range(count + 1):
-                try:
-                    nmsg = nmsg.replace("{"+ str(l) +"}", msglist[l][x])
-                except IndexError as e:
-                    nmsg = nmsg.replace("{"+ str(l) +"}", "")
-            #print(nmsg)
-            await update.edit(nmsg)
-            time.sleep(0.4)
-
 @register(outgoing=True, pattern="^.nikal$")
 async def whoizme(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
