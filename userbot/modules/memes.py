@@ -39,6 +39,7 @@ from userbot.modules.admin import get_user_from_event
 # ================= CONSTANT =================
 METOOSTR = [
     "Me too thanks",
+    "Haha, Same here BSDK",
     "Haha yes, me too",
     "Same lol",
     "Me irl",
@@ -515,6 +516,8 @@ CHASE_STR = [
 
 HELLOSTR = [
     "Hi !",
+    "Hi Babes Wassup",
+    "Hellmo Ma all Homies",
     "‘Ello, gov'nor!",
     "What’s crackin’?",
     "Howdy, howdy ,howdy!",
@@ -536,7 +539,7 @@ HELLOSTR = [
 ]
 
 PROSTR = [
-    "`You is pro user.`",
+    "`You is pro user kidly GTFO from nubs aera.`",
      "`Pros here -_- Time to Leave`",
      "`Pros everywhere`",
      "`Pro Pro Pro ; What a tragedy`",
