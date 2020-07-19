@@ -255,7 +255,7 @@ CMD_HELP.update({
     "memesreborn":
     "`.fuk`\
 \nUsage: Greet Ebri Nibba in da house.\
-    "`.iwi`\
+\n\n`.iwi`\
 \nUsage: gib text and see magik.\
 \n\n`.rape .thanos .chu .abuse .abusehard`\
 \nUsage: See it yourself nibba🌚."
