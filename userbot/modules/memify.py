@@ -10,7 +10,6 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 import asyncio
 from userbot import (TEMP_DOWNLOAD_DIRECTORY, CMD_HELP, bot)
 from userbot.events import register
-import datetime
 import os
 from telethon.tl.types import (MessageMediaPhoto)
 

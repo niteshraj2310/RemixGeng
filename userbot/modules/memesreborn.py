@@ -8,7 +8,6 @@
 import asyncio
 from random import choice
 from re import sub
-from random import randint
 
 from userbot import CMD_HELP
 from userbot.events import register
