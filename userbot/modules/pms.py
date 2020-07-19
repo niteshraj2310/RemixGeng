@@ -343,7 +343,7 @@ async def startmute(event):
         await event.edit("Unexpected issues or ugly errors may occur!")
         await asyncio.sleep(3)
         private = True
-    if any([x in event.raw_text for x in ("/mute", "!mute")]):
+    if any(x in event.raw_text for x in ("/mute", "!mute")):
         await asyncio.sleep(0.5)
     else:
         reply = await event.get_reply_message()
@@ -386,7 +386,7 @@ async def endmute(event):
         await event.edit("Unexpected issues or ugly errors may occur!")
         await asyncio.sleep(3)
         private = True
-    if any([x in event.raw_text for x in ("/unmute", "!unmute")]):
+    if any(x in event.raw_text for x in ("/unmute", "!unmute")):
         await asyncio.sleep(0.5)
     else:
         reply = await event.get_reply_message()
