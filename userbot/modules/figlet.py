@@ -4,12 +4,9 @@
 # you may not use this file except in compliance with the License.
 #
 
-import asyncio
 import pyfiglet
-from telethon import events, functions
 from userbot import CMD_HELP
 from userbot.events import register
-import sys
  
 @register(outgoing=True, pattern="^.figlet(?: |$)(.*)")
 async def figlet(event):

@@ -5,33 +5,12 @@
 #custom cmds by @Nitesh_231 to make it more abusive
 #Thanks to @AbhinavShinde for strings
 """ Userbot module for having some fun with people. """
-
-from asyncio import sleep
 import asyncio
-from random import choice, getrandbits, randint
+from random import choice
 from re import sub
-from random import randint
-from os import execl
-import time
-from telethon import events
-from userbot import bot
-
-
-
-
-from collections import deque
-
-import requests
-import sys
-import os
-import io
-import html
-
-import json
 
 from userbot import CMD_HELP
 from userbot.events import register
-from userbot.modules.admin import get_user_from_event
 
 # ================= CONSTANT =================
 

@@ -2,11 +2,6 @@
 #originally from xtra-telegram
 #ported by @heyworld
 
-from telethon import events
-import subprocess
-import os
-from telethon.errors import MessageEmptyError, MessageTooLongError, MessageNotModifiedError
-import io
 import asyncio
 import time
 from userbot.events import register 

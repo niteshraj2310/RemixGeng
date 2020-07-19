@@ -8,14 +8,10 @@
 
 from asyncio import sleep
 import asyncio
-import random
 from random import choice, getrandbits, randint
 from re import sub
 from random import randint
-from os import execl
 import time
-from telethon import events, functions
-from userbot import bot
 
 
 
@@ -23,12 +19,6 @@ from userbot import bot
 from collections import deque
 
 import requests
-import sys
-import os
-import io
-import html
-
-import json
 
 from cowpy import cow
 

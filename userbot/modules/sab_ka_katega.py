@@ -2,13 +2,9 @@
 #\nCode by @Hack12R
 #type `.degi` and `.nehi` to see the fun.
 #"""
-import random, re
 #from uniborg.util import admin_cmd
 import asyncio
-from telethon import events
 from userbot.events import register
-from asyncio import sleep
-import time
 from userbot import CMD_HELP
 
 @register(outgoing=True, pattern="^.degi$")

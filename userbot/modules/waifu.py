@@ -1,29 +1,13 @@
 #imported from ppe-remix by @heyworld & @DeletedUser420
 #Based Code by @adekmaulana
 #Improve by @aidilaryanto
-from asyncio import sleep
-from random import choice, getrandbits, randint
 import re
-from re import sub
 import random
-import datetime
-import asyncio
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from os import execl
-import time
-from telethon import events
-from collections import deque
-import requests
-import sys
 import os
-import io
-import html
-import json
-from PIL import ImageEnhance, ImageOps
 
 from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
-from userbot.modules.admin import get_user_from_event
 
 
 EMOJI_PATTERN = re.compile(

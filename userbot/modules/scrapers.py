@@ -16,7 +16,6 @@ import requests
 from os import popen
 from userbot.utils import chrome, options
 import urllib.parse
-import logging
 from bs4 import BeautifulSoup
 import re
 from re import match
@@ -32,22 +31,17 @@ from time import sleep
 from html import unescape
 from re import findall
 from selenium import webdriver
-from selenium.webdriver.support.ui import Select
 from selenium.webdriver.chrome.options import Options
 from urllib.parse import quote_plus
-from urllib.error import HTTPError
-from telethon import events
 from wikipedia import summary
 from wikipedia.exceptions import DisambiguationError, PageError
-from urbandict import define
 from requests import get
 from requests import get, post, exceptions
 from search_engine_parser import GoogleSearch
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googletrans import LANGUAGES, Translator
-from shutil import rmtree
-from gtts import gTTS, gTTSError
+from gtts import gTTS
 from gtts.lang import tts_langs
 from emoji import get_emoji_regexp
 from telethon.tl.types import MessageMediaPhoto
@@ -60,7 +54,7 @@ from asyncio import sleep
 from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRIVER, GOOGLE_CHROME_BIN, bot, REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY, OCR_SPACE_API_KEY, LOGS
 from userbot.events import register
 from telethon.tl.types import DocumentAttributeAudio
-from userbot.utils import progress, humanbytes, time_formatter, chrome, googleimagesdownload
+from userbot.utils import progress, chrome, googleimagesdownload
 import subprocess
 from datetime import datetime
 import asyncurban
