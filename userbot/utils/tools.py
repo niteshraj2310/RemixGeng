@@ -6,22 +6,9 @@
 
 import re
 import hashlib
-import asyncio
-import datetime
-import logging
-import os
-import math
 import os.path
-import sys
-import time
 from typing import Tuple, Union
 from userbot import bot
-
-from telethon import errors
-from telethon.tl import types
-from telethon.utils import get_display_name
-from telethon import events
-from telethon.tl.functions.messages import GetPeerDialogsRequest
 from telethon.tl.functions.channels import GetParticipantRequest
 from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator
 

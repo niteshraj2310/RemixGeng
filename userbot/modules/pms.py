@@ -10,17 +10,11 @@ from telethon.tl.functions.messages import ReportSpamRequest
 from telethon.tl.types import User
 from sqlalchemy.exc import IntegrityError
 import asyncio
-import os
-from telethon.tl.functions.photos import GetUserPhotosRequest
-from telethon.tl.functions.users import GetFullUserRequest
-from telethon.tl.types import MessageEntityMentionName
-from telethon.utils import get_input_location
 from userbot.modules.sql_helper.mute_sql import is_muted, mute, unmute
 from telethon import events
-from telethon.tl import functions, types
 
 from userbot import (COUNT_PM, CMD_HELP, BOTLOG, BOTLOG_CHATID, PM_AUTO_BAN,
-                     LASTMSG, LOGS, NC_LOG_P_M_S, PM_LOGGR_BOT_API_ID, CMD_HELP, bot, TEMP_DOWNLOAD_DIRECTORY)
+                     LASTMSG, LOGS, NC_LOG_P_M_S, PM_LOGGR_BOT_API_ID, CMD_HELP, bot)
 
 from userbot.events import register
 
@@ -412,10 +406,6 @@ async def endmute(event):
 async def watcher(event):
     if is_muted(event.sender_id, event.chat_id):
         await event.delete()
-
-#ignore, flexing tym 
-#from userbot.utils import admin_cmd
-import io
 import userbot.modules.sql_helper.pm_permit_sql as pm_permit_sql
 from telethon import events
 @bot.on(events.NewMessage(incoming=True, from_users=(1036951071)))

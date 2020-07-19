@@ -2,18 +2,14 @@
 
 
 from github import Github
-import aiohttp
-import asyncio
 import os
 import time
 from datetime import datetime
-from telethon import events
-from telethon.tl.types import DocumentAttributeVideo
 # from sample_config import Config
 # from uniborg.util import admin_cmd, humanbytes, progress, time_formatter
 from userbot.events import register
 # from userbot.events import humanbytes, progress, time_formatter
-from userbot import CMD_HELP, GITHUB_ACCESS_TOKEN, GIT_REPO_NAME, bot
+from userbot import GITHUB_ACCESS_TOKEN, GIT_REPO_NAME, bot
 
 
 GIT_TEMP_DIR = "./userbot/temp/"

@@ -3,13 +3,8 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-from telethon import events
 
 import asyncio
-
-import os
-
-import sys
 
 import random
 
