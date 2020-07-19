@@ -6,13 +6,7 @@ import urllib , os
 
 from telethon.tl import functions
 
-from datetime import datetime
-
-from PIL import Image, ImageDraw, ImageFont
-
 import asyncio
-
-from time import sleep
 
 from userbot.events import register 
 

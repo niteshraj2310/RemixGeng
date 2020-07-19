@@ -9,13 +9,8 @@ Userbot module to help you manage a group
 
 from asyncio import sleep
 from os import remove
-import asyncio
-import io
-import re
 import html
-import logging
 import userbot.modules.sql_helper.warns_sql as sql
-from telethon import events, utils
 from userbot.utils.tools import is_admin
 
 from telethon.errors import (BadRequestError, ChatAdminRequiredError,
@@ -27,13 +22,11 @@ from telethon.tl.functions.channels import (EditAdminRequest,
                                             EditBannedRequest,
                                             EditPhotoRequest)
 from telethon.tl.functions.messages import UpdatePinnedMessageRequest
-from telethon.tl.types import (PeerChannel, ChannelParticipantsAdmins,
+from telethon.tl.types import (ChannelParticipantsAdmins,
                                ChatAdminRights, ChatBannedRights,
-                               MessageEntityMentionName, MessageMediaPhoto,
-                               ChannelParticipantsBots)
+                               MessageEntityMentionName, MessageMediaPhoto)
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
-from telethon.tl import types, functions
+from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
 from userbot.events import register
 
 # =================== CONSTANT ===================

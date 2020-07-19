@@ -5,13 +5,10 @@
 #
 # Port From UniBorg to UserBot by keselekpermen69
 
-import asyncio
 import io
 import re
 import userbot.modules.sql_helper.blacklist_sql as sql
-from telethon import events, utils
-from telethon.tl import types, functions
-from userbot import CMD_HELP, bot
+from userbot import CMD_HELP
 from userbot.events import register
 
 
