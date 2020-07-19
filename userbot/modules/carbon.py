@@ -1,5 +1,4 @@
 import os
-import asyncio
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
