@@ -29,15 +29,15 @@ def bruh(name):
 async def _(event):
     if event.fwd_from:
         return
-    link = event.pattern_match.group(1)
+    name = event.pattern_match.group(1)
     chat = "@SpotifyMusicDownloaderBot"
     await event.edit("```Getting Your Music```")
     async with bot.conversation(chat) as conv:
           await asyncio.sleep(2)
-          await event.edit("`Downloading music taking some times,  Stay Tuned.....`")
+          await event.edit("`Downloading Music \nIt may take some time\n   So Stay Tuned.....`")
           try:
               response = conv.wait_event(events.NewMessage(incoming=True,from_users=752979930))
-              await bot.send_message(chat, link)
+              await bot.send_message(chat, name)
               respond = await response
           except YouBlockedUserError:
               await event.reply("```Please unblock @SpotifyMusicDownloaderBot and try again```")
