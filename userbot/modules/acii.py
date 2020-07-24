@@ -13,17 +13,14 @@
 import os
 import time
 from PIL import Image, ImageFont, ImageDraw
-from userge import userge, Message, Config
-from userge.utils import progress, take_screen_shot, runcmd
+from userbot import userbot, Message, Config
+from userbot.utils import progress, take_screen_shot, runcmd
 import numpy as np
 from colour import Color
 import random
+from userbot.events import register
 '''Reply to an Media and see the Magic'''
-@userge.on_cmd("ascii$", about={
-    'header': "Ascii Sticker",
-    'description': "transform on any gif/sticker/image to an Ascii Sticker. ",
-    'usage': " {tr}ascii",
-    'examples': "{tr}ascii as a reply."})
+@register(outgoing=True, pattern="^.asci(?: |$)(.*)")
 async def transform(message: Message):
     replied = message.reply_to_message
     if not replied:
