@@ -33,7 +33,7 @@ async def transform(message: Message):
         return
     if not os.path.isdir(Config.DOWN_PATH):
         os.makedirs(Config.DOWN_PATH)
-    await message.edit(f"<code>Converting Media!...</code>")
+    await message.edit("<code>Converting Media!...</code>")
     c_time = time.time()
 
     dls = await message.client.download_media(
