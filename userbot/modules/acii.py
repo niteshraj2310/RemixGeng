@@ -13,7 +13,7 @@
 import os
 import time
 from PIL import Image, ImageFont, ImageDraw
-from userbot import userbot, Message, Config
+from userbot import bot, Message, Config
 from userbot.utils import progress, take_screen_shot, runcmd
 import numpy as np
 from colour import Color
