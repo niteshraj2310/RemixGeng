@@ -41,7 +41,7 @@ async def transform(message: Message):
         file_name=Config.DOWN_PATH,
         progress=progress,
         progress_args=(
-            "Trying to Posses given content", userge, message, c_time
+            "Trying to Posses given content", message, c_time
         )
     )
     dls_loc = os.path.join(Config.DOWN_PATH, os.path.basename(dls))
