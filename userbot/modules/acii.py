@@ -18,7 +18,6 @@ from userge.utils import progress, take_screen_shot, runcmd
 import numpy as np
 from colour import Color
 import random
-from random import randrange
 '''Reply to an Media and see the Magic'''
 @userge.on_cmd("ascii$", about={
     'header': "Ascii Sticker",
