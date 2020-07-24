@@ -81,6 +81,3 @@ zipfile38
 bitlyshortener
 geopy
 validators
-igramscraper
-numpy
-colour
