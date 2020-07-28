@@ -29,11 +29,14 @@ RAPE_STRINGS = [
      "`Lodu Andha hai kya Yaha tera rape ho raha hai aur tu abhi tak yahi gaand mara raha hai lulz`",
 ] 
 ABUSE_STRINGS = [
-       "`Madharchod`",
+           "`Madharchod`",
 	   "`Gaandu`",
+           "`Randi ka bacha bsdk`",
+           "`MUH Me lega Maderchod 🙂`",
 	   "`Chutiya he rah jaye ga`",
 	   "`Ja be Gaandu`",
 	   "`Ma ka Bharosa madharchod`",
+           "Jyda gand na fulao BSDK`",
 	   "`mml`",
 	   "`You MotherFeker`",
 	   "`Muh Me Lega Bhosdike ?`"
@@ -171,7 +174,7 @@ async def faces(siwis):
     elif textx:
         message = textx.text
     else:
-        await siwis.edit("` IwI no text given! `")
+        await siwis.edit("` IwI no text given,Gib Some text Motherfakaq! `")
         return
 
     reply_text = sub(r"(a|i|u|e|o)", "i", message)
