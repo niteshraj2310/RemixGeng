@@ -516,10 +516,11 @@ async def lang(value):
 
 
 @register(outgoing=True, pattern=r"^\.yt (\d*) *(.*)")
-async def yt_search(video_q):
-    """For .yt command, do a YouTube search from Telegram."""
-    if video_q.pattern_match.group(1) != "":
-        counter = int(video_q.pattern_match.group(1))
+async def yt_search(event):
+    """ For .yt command, do a YouTube search from Telegram. """
+
+    if event.pattern_match.group(1) != "":
+        counter = int(event.pattern_match.group(1))
         if counter > 10:
             counter = int(10)
         if counter <= 0:
@@ -531,6 +532,13 @@ async def yt_search(video_q):
     if not query:
         await video_q.edit("`Enter query to search`")
     await video_q.edit("`Processing...`")
+        counter = int(3)
+
+    query = event.pattern_match.group(2)
+
+    if not query:
+        return await event.edit("`Enter a query to search.`")
+    await event.edit("`Processing...`")
 
     try:
         results = json.loads(
@@ -541,7 +549,11 @@ async def yt_search(video_q):
         return await video_q.edit("`Youtube Search gone retard.\nCan't search this query!`")
 
     output = f"**Search Query:**\n`{query}`\n\n**Results:**\n\n"
+        return await event.edit(
+            "`Youtube Search gone retard.\nCan't search this query!`"
+        )
 
+    output = f"**Search Query:**\n`{query}`\n\n**Results:**\n"
     for i in results["videos"]:
         try:
             title = i["title"]
@@ -554,6 +566,7 @@ async def yt_search(video_q):
             break
 
     await video_q.edit(output, link_preview=False)
+    await event.edit(output, link_preview=False)
 
 
 @register(outgoing=True, pattern=r".rip(audio|video) (.*)")
