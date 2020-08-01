@@ -5,17 +5,10 @@
 #
 # Port From UniBorg to UserBot by MoveAngel
 
-import requests
-import base64
-import json
-import telethon
 from asyncio.exceptions import TimeoutError
-
-from PIL import Image
-from io import BytesIO
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from userbot import bot, CMD_HELP, QUOTES_API_TOKEN
+from userbot import bot, CMD_HELP
 from userbot.events import register
 
 if 1 == 1:

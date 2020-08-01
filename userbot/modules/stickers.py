@@ -8,11 +8,9 @@
 import io
 import math
 import urllib.request
-from os import remove
 from PIL import Image
-import random
 import asyncio
-from telethon.tl.types import DocumentAttributeFilename, MessageMediaPhoto, InputPeerNotifySettings
+from telethon.tl.types import InputPeerNotifySettings
 from telethon.tl.functions.account import UpdateNotifySettingsRequest
 from userbot import bot, CMD_HELP
 from userbot.events import register
