@@ -1,6 +1,6 @@
 # Random RGB Sticklet by @PhycoNinja13b
 # modified by @UniBorg
-# ported to userbot by @heyworld
+# ported to userbot by @heyworld & thanks to @Xcruzhd2 for Fonts
 
 
 
