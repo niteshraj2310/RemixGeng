@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a85304953a4c470390ec777f6931e55d)](https://app.codacy.com/manual/niteshraj2310/RemixGeng?utm_source=github.com&utm_medium=referral&utm_content=niteshraj2310/RemixGeng&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.com/niteshraj2310/RemixGeng.svg?branch=sql-extended)](https://travis-ci.com/niteshraj2310/RemixGeng) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/38fee611df7c4312be63a15cad64a50a)](https://www.codacy.com/manual/sahyam2019/oub-remix?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sahyam2019/oub-remix&amp;utm_campaign=Badge_Grade) ![Last Commit](https://img.shields.io/github/last-commit/niteshraj2310/RemixGeng)
 ![Contributers](https://img.shields.io/github/contributors/sahyam2019/oub-remix)
 ![Forks](https://img.shields.io/github/forks/sahyam2019/oub-remix)    
