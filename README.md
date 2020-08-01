@@ -3,6 +3,8 @@
 ![Forks](https://img.shields.io/github/forks/sahyam2019/oub-remix)    
 <a href="https://t.me/Nitesh_231"><img src="https://img.shields.io/badge/-Contact%20Meh🔥😂-black.svg?logo=WhatsApp"></a> 
 <a href="https://deepsource.io/gh/niteshraj2310/RemixGeng/?ref=repository-badge" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://static.deepsource.io/deepsource-badge-light-mini.svg"></a>
+[![codebeat badge](https://codebeat.co/badges/049f1ac3-dfc2-4ee6-93a3-e40c1569313f)](https://codebeat.co/projects/github-com-niteshraj2310-remixgeng-sql-extended)
+
 
 # Project 尺 乇 从 工 乂 厶 乇 𠘨 厶
 
