@@ -1,16 +1,6 @@
 #imported from catuserbot by @RoyalBoyPriyanshu and @DeletedUser420 also thank @AbhinavShinde
-import random
-from random import choice
-#from unicat.client.util import admin_cmd
-import asyncio
-from asyncio import sleep
-from telethon import events
 from userbot.events import register
-import time
-import requests , os, re
-from re import sub
-from bs4 import BeautifulSoup
-from emoji import get_emoji_regexp
+import requests , re
 from PIL import Image
 from validators.url import url
 
