@@ -30,7 +30,7 @@ async def corona(event):
         await event.edit(f"Corona Virus Info in {country}:\n\n{output_text}")
     except ValueError:
         await event.edit(
-            f"No information found for: {country}!\nCheck your spelling and  again."
+            f"No information found for: {country}!\nCheck your spelling and try again."
         )
 
 
