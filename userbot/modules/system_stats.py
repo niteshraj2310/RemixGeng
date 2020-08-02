@@ -1,4 +1,4 @@
-#Copyright (C) 2019 The Raphielscape Company LLC.
+#Copyright (C) 2020 The Raphielscape Company LLC.
 #
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
@@ -99,7 +99,7 @@ def get_size(bytes, suffix="B"):
     for unit in ["", "K", "M", "G", "T", "P"]:
         if bytes < factor:
             return f"{bytes:.2f}{unit}{suffix}"
-        bytes /= factor            
+        bytes /= factor
 
 
 @register(outgoing=True, pattern="^.botver$")
@@ -201,7 +201,6 @@ async def amireallyalive(alive):
              f"====================================\n")
     await bot.send_file(alive.chat_id, logo, caption=output)
     await alive.delete()
-                         
 
 
 
@@ -242,5 +241,5 @@ CMD_HELP.update({
 \n\n`.db`\
 \nUsage:Shows database related info.\
 \n\n.`.spc`\
-\nUsage:Show system specification."   
-})  
+\nUsage:Show system specification."
+})

