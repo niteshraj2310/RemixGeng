@@ -5,7 +5,6 @@
 #
 # Port to userbot by @MoveAngel
 
-from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot import bot, CMD_HELP
 from userbot.events import register
