@@ -1,4 +1,4 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
+# Copyright (C) 2020 The Raphielscape Company LLC.
 #
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ CHU_STRINGS = [
      "`Taare hai Asmaan me very very bright jaat na jla bskd dekh le apni hight.`",
      "`jindagi ki na toote lari iski lulli hoti nhi khadi`",
      "`Kbhi kbhi meri dil me khyaal ata hai ayse chutiyo ko kon paida kr jata hai😂.`",
-     "`Saawan ka mahina pawan kare shor jake gand mara bskd kahi aur.`", 
+     "`Saawan ka mahina pawan kare shor jake gand mara bskd kahi aur.`",
      "`Dil ke armaa ansuon me beh jaye tum bskd ke chutiye hi reh gye.`",
      "`Ishq Se Tabiyat Ne Zeest Ka Mazaa aya maine is lodu ko randi khane me paya.`",
      "`Mirza galib ki yeh khani hai tu bhosdika hai yeh sab ki jubani hai.`",
@@ -125,9 +125,9 @@ IWIS = [
     "ヽ(~～~ )ノ",
     "┐(~ー~;)┌",
     "┐(-。ー;)┌",
-    r"¯\_(ツ)_/¯",
-    r"¯\_(⊙_ʖ⊙)_/¯",
-    r"¯\_༼ ಥ ‿ ಥ ༽_/¯",
+    "¯\_(ツ)_/¯",
+    "¯\_(⊙_ʖ⊙)_/¯",
+    "¯\_༼ ಥ ‿ ಥ ༽_/¯",
     "乁( ⁰͡  Ĺ̯ ⁰͡ ) ㄏ",
 ]
 
@@ -174,7 +174,7 @@ async def faces(siwis):
     elif textx:
         message = textx.text
     else:
-        await siwis.edit("` IwI no text given,Gib Some text Motherfakaq! `")
+        await siwis.edit("` IwI no text given lamve,Gib Some text Motherfakaq! `")
         return
 
     reply_text = sub(r"(a|i|u|e|o)", "i", message)
@@ -257,7 +257,7 @@ async def fcmd(e):
 CMD_HELP.update({
     "memesreborn":
     "`.fuk`\
-\nUsage: Greet Ebri Nibba in da house.\
+\nUsage: Greet Evrii Nibba in da house.\
 \n\n`.iwi`\
 \nUsage: gib text and see magik.\
 \n\n`.rape .thanos .chu .abuse .abusehard`\
