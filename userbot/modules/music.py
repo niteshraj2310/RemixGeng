@@ -5,7 +5,7 @@
 from telethon import events
 import asyncio
 #from userbot.utils import admin_cmd
-from userbot.events import register 
+from userbot.events import register
 from userbot import bot, CMD_HELP
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 import os
@@ -13,16 +13,16 @@ try:
  import subprocess
 except:
  os.system("pip install instantmusic")
- 
+
 
 
 os.system("rm -rf *.mp3")
 
 
 def bruh(name):
-    
+
     os.system("instantmusic -q -s "+name)
-    
+
 
 
 @register(outgoing=True, pattern="^.spd(?: |$)(.*)")
@@ -99,8 +99,8 @@ async def DeezLoader(Deezlod):
           await bot.send_file(Deezlod.chat_id, song, caption=details.text)
           await Deezlod.client.delete_messages(conv.chat_id,
                                              [msg_start.id, response.id, r.id, msg.id, details.id, song.id])
-          await Deezlod.delete()          
-    
+          await Deezlod.delete()
+
 CMD_HELP.update({
         "music":
         ".spd`<Artist - Song Title>\

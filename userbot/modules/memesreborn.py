@@ -27,7 +27,7 @@ RAPE_STRINGS = [
      "`Don't rape too much bossdk, else problem....`",
      "`Tu sasti rendi hai Sabko pta hai😂`",
      "`Lodu Andha hai kya Yaha tera rape ho raha hai aur tu abhi tak yahi gaand mara raha hai lulz`",
-] 
+]
 ABUSE_STRINGS = [
            "`Madharchod`",
 	   "`Gaandu`",
@@ -67,7 +67,7 @@ FUK_STRINGS = [
    "`Aaisi Londiya Chodiye, L*nd Ka Aapa Khoye, Auro Se Chudi Na Ho, Biwi Wo Hi Hoye`",
    "`Nachoo Bhosdike Nachoo`",
    "`Jinda toh jaat ke baal bhi hai`",
-   "`Sab ko pta tu randi ka baccha hai (its just a joke)`", 
+   "`Sab ko pta tu randi ka baccha hai (its just a joke)`"
 ]
 
 THANOS_STRINGS = [
@@ -125,9 +125,9 @@ IWIS = [
     "ヽ(~～~ )ノ",
     "┐(~ー~;)┌",
     "┐(-。ー;)┌",
-    "¯\_(ツ)_/¯",
-    "¯\_(⊙_ʖ⊙)_/¯",
-    "¯\_༼ ಥ ‿ ಥ ༽_/¯",
+    r"¯\_(ツ)_/¯",
+    r"¯\_(⊙_ʖ⊙)_/¯",
+    r"¯\_༼ ಥ ‿ ಥ ༽_/¯",
     "乁( ⁰͡  Ĺ̯ ⁰͡ ) ㄏ",
 ]
 
@@ -137,28 +137,27 @@ IWIS = [
 async def raping (raped):
     """ Dont Rape Too much -_-"""
     await raped.edit(choice(RAPE_STRINGS))
-        
+
 @register(outgoing=True, pattern="^.fuk$")
 async def chutiya (fuks):
     """ String for fhu only -_-"""
     await fuks.edit(choice(FUK_STRINGS))
-  
+
 @register(outgoing=True, pattern="^.chu$")
 async def chutiya (chus):
     """ String for Chu only -_-"""
     await chus.edit(choice(CHU_STRINGS))
- 			  			  
+
 @register(outgoing=True, pattern="^.thanos$")
 async def thanos (thanos):
     """ String for thanos only -_-"""
-    await thanos.edit(choice(THANOS_STRINGS))
- 			  
+    await thanos.edit(choice(THANOS_STRING))
 @register(outgoing=True, pattern="^.abusehard$")
 async def fuckedd (abusehard):
     """ Dont Use this Too much bsdk -_-"""
     await abusehard.edit(choice(ABUSEHARD_STRING))
- 	
- 			  
+
+
 @register(outgoing=True, pattern="^.abuse$")
 async def abusing (abused):
     """ Dont Abuse Too much bsdk -_-"""
@@ -244,7 +243,7 @@ async def fcmd(e):
             await e.edit("🤦‍♂")
         elif message[-1] == 'f':
             await e.edit("┏━━━┓\n┃┏━━┛\n┃┗━━┓\n┃┏━━┛\n┃┃\n┗┛")
-    
+
         else:
             n= message[-1]
             out = ""
