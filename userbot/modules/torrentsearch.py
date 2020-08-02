@@ -5,7 +5,7 @@ import json
 import os
 import requests
 from bs4 import BeautifulSoup as bs
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 
