@@ -1,7 +1,7 @@
 import random
 import re
 
-from userbot import CMD_HELP, bot
+from userbot import bot
 from userbot.events import register
 
 EMOJI_PATTERN = re.compile(
