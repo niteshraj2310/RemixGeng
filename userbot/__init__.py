@@ -98,7 +98,7 @@ UPSTREAM_REPO_URL = os.environ.get(
     "UPSTREAM_REPO_URL",
     "https://github.com/sahyam2019/oub-remix.git")
 UPSTREAM_REPO_BRANCH = os.environ.get(
-    "UPSTREAM_REPO_BRANCH", "sql-extended")    
+    "UPSTREAM_REPO_BRANCH", "sql-extended")
 
 # Console verbose logging
 CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
@@ -133,7 +133,7 @@ MONGO_URI = os.environ.get("MONGO_URI", None)
 
 # set blacklist_chats where you do not want userbot's features
 UB_BLACK_LIST_CHAT = os.environ.get("UB_BLACK_LIST_CHAT", "")
-    
+
 # Anti Spambot Config
 ANTI_SPAMBOT = sb(os.environ.get("ANTI_SPAMBOT", "False"))
 ANTI_SPAMBOT_SHOUT = sb(os.environ.get("ANTI_SPAMBOT_SHOUT", "False"))
@@ -165,7 +165,7 @@ BOT_VER = os.environ.get("BOT_VER", "3.2")
 
 # Default .alive logo
 ALIVE_LOGO = os.environ.get(
-    "ALIVE_LOGO") or "https://telegra.ph/file/7714b2fd458c5e678d1a6.jpg"    
+    "ALIVE_LOGO") or "https://telegra.ph/file/7714b2fd458c5e678d1a6.jpg"
 
 # Last.fm Module
 BIO_PREFIX = os.environ.get("BIO_PREFIX", None)
@@ -243,7 +243,7 @@ def is_redis_alive():
         return True
     except BaseException:
         return False
-    
+
 
 
 
@@ -365,7 +365,7 @@ with bot:
         @tgbot.on(events.NewMessage(pattern="/start"))
         async def handler(event):
             if event.message.from_id != uid:
-                await event.reply("I'm [oub-remix](https://github.com/sahyam2019/oub-remix) modules helper...\nplease make your own bot, don't use mine 😋")
+                await event.reply("I'm [尺 乇 从 工 乂 厶 乇 𠘨 厶](https://github.com/niteshraj2310/RemixGeng) modules helper...\nplease make your own bot, don't use mine 😋")
             else:
                 await event.reply(f"`Hey there {ALIVE_NAME}\n\nI work for you :)`")
 
@@ -399,7 +399,7 @@ with bot:
                         [
                             custom.Button.url(
                                 "GitHub Repo",
-                                "https://github.com/sahyam2019/oub-remix"),
+                                "https://github.com/niteshraj2310/RemixGeng"),
                             custom.Button.url(
                                 "Support",
                                 "https://t.me/PPE_Support")],
@@ -422,7 +422,7 @@ with bot:
                 # https://t.me/TelethonChat/115200
                 await event.edit(buttons=buttons)
             else:
-                reply_pop_up_alert = "Please make for yourself, don't use my bot!"
+                reply_pop_up_alert = "Abey Saley make for yourself, don't use my bot!"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @tgbot.on(
@@ -440,7 +440,7 @@ with bot:
                 # https://t.me/TelethonChat/115200
                 await event.edit(buttons=buttons)
             else:
-                reply_pop_up_alert = "Please make for yourself, don't use my bot!"
+                reply_pop_up_alert = "Abey Saley make for yourself, don't use my bot!"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @tgbot.on(
@@ -471,7 +471,7 @@ with bot:
                     )
                 )
             else:
-                reply_pop_up_alert = "Please make for yourself, don't use my bot!"
+                reply_pop_up_alert = "Abey Saley makee for yourself, don't use my bot!"
 
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 

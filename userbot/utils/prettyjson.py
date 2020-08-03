@@ -93,7 +93,7 @@ def getsubitems(obj, itemkey, islast, maxlinelength, indent):
             else: # single-line mode
                 totallength = len(subitems)-1   # spaces between items
                 for item in subitems: totallength += len(item)
-                if (totallength <= maxlinelength): 
+                if (totallength <= maxlinelength):
                     str = ""
                     for item in subitems: str += item + " "  # insert space between items, comma is already there
                     subitems = [ str.strip() ]               # wrap concatenated content in a new list
@@ -101,7 +101,7 @@ def getsubitems(obj, itemkey, islast, maxlinelength, indent):
                     is_inline = False
 
 
-        # attempt to render the outer brackets + inner tokens in one line 
+        # attempt to render the outer brackets + inner tokens in one line
         if is_inline:
             item_text = ""
             if len(subitems) > 0: item_text = subitems[0]
@@ -122,7 +122,7 @@ def getsubitems(obj, itemkey, islast, maxlinelength, indent):
 def basictype2str(obj):
     if isinstance (obj, str):
         strobj = "\"" + str(obj) + "\""
-    elif isinstance(obj, bool): 
+    elif isinstance(obj, bool):
         strobj = { True: "true", False: "false" }[obj]
     else:
         strobj = str(obj)
@@ -142,5 +142,5 @@ def indentitems(items, indent, level):
             if level==0 and islast:
                 res += indentstr + item
             else:
-                res += indentstr + item + "\n"            
+                res += indentstr + item + "\n"
     return res
