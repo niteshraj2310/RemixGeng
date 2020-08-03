@@ -7,7 +7,7 @@
 import pyfiglet
 from userbot import CMD_HELP
 from userbot.events import register
- 
+
 @register(outgoing=True, pattern="^.figlet(?: |$)(.*)")
 async def figlet(event):
     if event.fwd_from:
@@ -35,7 +35,7 @@ async def figlet(event):
     await event.delete()
 
 CMD_HELP.update({
-        "figlet": 
+        "figlet":
         ".figlet \
           \nUsage: Enhance ur text to strip line with anvil.\n"
     })
