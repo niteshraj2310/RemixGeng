@@ -1,11 +1,11 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a85304953a4c470390ec777f6931e55d)](https://app.codacy.com/manual/niteshraj2310/RemixGeng?utm_source=github.com&utm_medium=referral&utm_content=niteshraj2310/RemixGeng&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.com/niteshraj2310/RemixGeng.svg?branch=sql-extended)](https://travis-ci.com/niteshraj2310/RemixGeng) ![Last Commit](https://img.shields.io/github/last-commit/niteshraj2310/RemixGeng)
 ![Contributers](https://img.shields.io/github/contributors/sahyam2019/oub-remix)
-![Forks](https://img.shields.io/github/forks/sahyam2019/oub-remix)    
+![Forks](https://img.shields.io/github/forks/sahyam2019/oub-remix) 
 <a href="https://t.me/Nitesh_231"><img src="https://img.shields.io/badge/-Contact%20Meh🔥😂-black.svg?logo=WhatsApp"></a> 
 <a href="https://deepsource.io/gh/niteshraj2310/RemixGeng/?ref=repository-badge" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://static.deepsource.io/deepsource-badge-light-mini.svg"></a>
 [![codebeat badge](https://codebeat.co/badges/049f1ac3-dfc2-4ee6-93a3-e40c1569313f)](https://codebeat.co/projects/github-com-niteshraj2310-remixgeng-sql-extended)
-
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=niteshraj2310/RemixGeng)](https://dependabot.com)
 
 # Project 尺 乇 从 工 乂 厶 乇 𠘨 厶
 
