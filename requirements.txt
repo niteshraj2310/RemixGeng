@@ -28,7 +28,7 @@ REPO_LINK
 heroku3>=3.4.0
 html_telegraph_poster
 jikanpy
-pendulum==2.0.5	
+pendulum==2.1.2	
 httplib2>=0.18.0
 humanize 
 lxml
@@ -48,7 +48,7 @@ requests>=2.18.4
 search-engine-parser>=0.6.1
 speedtest-cli>=2.0.2
 sqlalchemy>=1.2
-telethon==1.15.0 
+telethon==1.16.0 
 telethon-session-sqlalchemy>=0.2.6
 urbandict>=0.5
 wikipedia>=1.4.0
