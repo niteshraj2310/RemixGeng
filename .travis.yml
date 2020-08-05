@@ -8,3 +8,6 @@ script: echo overide build
 # Install the codecov pip dependency
 install:
   - pip install codecov
+  # Push the results back to codecov
+after_success:
+  - codecov
