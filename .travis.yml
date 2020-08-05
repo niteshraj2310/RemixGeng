@@ -5,3 +5,6 @@ python:
 install:
   - pip install -r requirements.txt
 script: echo overide build
+# Install the codecov pip dependency
+install:
+  - pip install codecov
