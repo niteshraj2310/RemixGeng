@@ -1,11 +1,12 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a85304953a4c470390ec777f6931e55d)](https://app.codacy.com/manual/niteshraj2310/RemixGeng?utm_source=github.com&utm_medium=referral&utm_content=niteshraj2310/RemixGeng&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.com/niteshraj2310/RemixGeng.svg?branch=sql-extended)](https://travis-ci.com/niteshraj2310/RemixGeng) ![Last Commit](https://img.shields.io/github/last-commit/niteshraj2310/RemixGeng)
 ![Contributers](https://img.shields.io/github/contributors/sahyam2019/oub-remix)
-![Forks](https://img.shields.io/github/forks/sahyam2019/oub-remix) 
+![Forks](https://img.shields.io/github/forks/sahyam2019/oub-remix)
 <a href="https://t.me/Nitesh_231"><img src="https://img.shields.io/badge/-Contact%20Meh🔥😂-black.svg?logo=WhatsApp"></a> 
+[![Requirements Status](https://requires.io/github/niteshraj2310/RemixGeng/requirements.svg?branch=sql-extended)](https://requires.io/github/niteshraj2310/RemixGeng/requirements/?branch=sql-extended)
 <a href="https://deepsource.io/gh/niteshraj2310/RemixGeng/?ref=repository-badge" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://static.deepsource.io/deepsource-badge-light-mini.svg"></a>
 [![codebeat badge](https://codebeat.co/badges/049f1ac3-dfc2-4ee6-93a3-e40c1569313f)](https://codebeat.co/projects/github-com-niteshraj2310-remixgeng-sql-extended)
-<img src="https://social.badgen.net/dependabot/niteshraj2310/RemixGeng.to?icon=dependabot" alt="Dependabot Badge" />
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=niteshraj2310/RemixGeng)](https://dependabot.com)
 
 # Project 尺 乇 从 工 乂 厶 乇 𠘨 厶
 
@@ -13,7 +14,7 @@
 
 ```
 #include <std/disclaimer.h>
-/**
+/** 
     Your Telegram account may get banned.
     I am not responsible for any improper use of this bot
     This bot is intended for the purpose of having fun with memes,
@@ -50,7 +51,7 @@ For discussion, bug reporting, and help, you can join [OpenUserBot Support Group
 ## How to setup Google Drive
 [![SetGDRIVE](https://telegra.ph/file/fde15d05e4bde3448b01a.png)](https://telegra.ph/How-To-Setup-Google-Drive-04-03)
 
-## Credits
+# Credits
 
 Thanks for all : 
 * [Baalaji maestro (RaphielGang)](https://github.com/RaphielGang) - Telegram-Paperplane
@@ -61,9 +62,10 @@ Thanks for all :
 * [༺αиυвιѕ༻](https://github.com/Dark-Princ3) - X-tra-Telegram
 * [MoveAngel](https://github.com/MoveAngel) - One4uBot
 * [keselekpermen69](https://github.com/keselekpermen69) - UserButt
-* [GengKapak](https://github.com/GengKapak) - DCLXVI
-and many more people who aren't mentioned here, but may be found in [Contributors](https://github.com/sahyam2019/oub-remix/graphs/contributors).
+* [GengKapak](https://github.com/GengKapak) - DCLXVI and many more people who aren't mentioned here, but may be found in [Contributors](https://github.com/sahyam2019/oub-remix/graphs/contributors).
+
+
 
 ## License
 
-This userbot licensed on [Raphielscape Public License](https://github.com/niteshraj2310/RemixGeng/blob/sql-extended/LICENSE) - Version 1.d, February 2020
+This userbot licensed on [Raphielscape Public License](https://github.com/niteshraj2310/RemixGeng/blob/sql-extended/LICENSE.md) - Version 1.d, February 2020
