@@ -110,15 +110,15 @@ async def creator(e):
 @register(outgoing=True, pattern="^.readme$")
 async def reedme(e):
     await e.edit(
-        "Here's something for you to read:\n"
-        "\n[OpenUserBot's README.md file](https://github.com/mkaraniya/OpenUserBot/blob/sql-extended/README.md)"
+        "**Here's something for you to read:**\n"
+        "\n[尺 乇 从 工 乂 厶 乇 𠘨 厶's README.md file](https://github.com/niteshraj2310/RemixGeng/blob/sql-extended/README.md)"
         "\n[Setup Guide - Basic](https://telegra.ph/How-to-host-a-Telegram-Userbot-11-02)"
         "\n[Setup Guide - Google Drive](https://telegra.ph/How-To-Setup-GDrive-11-02)"
         "\n[Setup Guide - LastFM Module](https://telegra.ph/How-to-set-up-LastFM-module-for-Paperplane-userbot-11-02)"
         "\n[Video Tutorial - 576p](https://mega.nz/#!ErwCESbJ!1ZvYAKdTEfb6y1FnqqiLhHH9vZg4UB2QZNYL9fbQ9vs)"
         "\n[Video Tutorial - 1080p](https://mega.nz/#!x3JVhYwR!u7Uj0nvD8_CyyARrdKrFqlZEBFTnSVEiqts36HBMr-o)"
         "\n[Special - Note](https://telegra.ph/Special-Note-11-02)")
-    
+
 
 # Copyright (c) Gegham Zakaryan | 2019
 @register(outgoing=True, pattern="^.repeat (.*)")
@@ -142,7 +142,7 @@ async def repo_is_here(wannasee):
         "Click [here](https://github.com/sahyam2019/oub-remix) to open oub-remix's GitHub page."
     )
 
-    
+
 @register(outgoing=True, pattern="^.myrepo$")
 async def myrepo_is_here(wannaseeme):
     """ For .myrepo command, just returns the repo URL. """
@@ -317,5 +317,5 @@ CMD_HELP.update({
 \n\n`.raw`\
 \nUsage: Get detailed JSON-like formatted data about replied message.\
 \n\n`.reverse`\
-\nUsage: Reply to a pic/sticker to revers-search it on Google Images !!"    
+\nUsage: Reply to a pic/sticker to revers-search it on Google Images !!"
 })
