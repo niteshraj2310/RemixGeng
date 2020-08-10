@@ -1,10 +1,11 @@
 [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/niteshraj2310/RemixGeng)
-
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a85304953a4c470390ec777f6931e55d)](https://app.codacy.com/manual/niteshraj2310/RemixGeng?utm_source=github.com&utm_medium=referral&utm_content=niteshraj2310/RemixGeng&utm_campaign=Badge_Grade_Dashboard)
-[![Build Status](https://travis-ci.com/niteshraj2310/RemixGeng.svg?branch=sql-extended)](https://travis-ci.com/niteshraj2310/RemixGeng) ![Last Commit](https://img.shields.io/github/last-commit/niteshraj2310/RemixGeng)
-![Contributers](https://img.shields.io/github/contributors/sahyam2019/oub-remix)
+[![Build Status](https://travis-ci.com/niteshraj2310/RemixGeng.svg?branch=sql-extended)](https://travis-ci.com/niteshraj2310/RemixGeng)
+<a href="https://github.com/niteshraj2310/RemixGeng/commits/sql-extended"><img src="https://img.shields.io/github/last-commit/niteshraj2310/RemixGeng/sql-extended?label=Last%20Commit&style=flat-square&logo=github&color=Green" alt="Commit" /></a>
+<a href="https://github.com/niteshraj2310/RemixGeng/graphs/contributors"><img src="https://img.shields.io/github/contributors-anon/niteshraj2310/RemixGeng?label=Contributors&style=flat-square&logo=github&color=Orange" alt="Contributors" /></a>
 ![Forks](https://img.shields.io/github/forks/sahyam2019/oub-remix)
-<a href="https://t.me/Nitesh_231"><img src="https://img.shields.io/badge/-Contact%20Meh🔥😂-black.svg?logo=WhatsApp"></a> 
+<a href="https://t.me/Nitesh_231"><img src="https://img.shields.io/badge/-Contact%20Meh🔥😂-black.svg?logo=WhatsApp"> </a>
+<a href="https://github.com/niteshraj2310/RemixGeng/watchers"><img src="https://img.shields.io/github/watchers/niteshraj2310/RemixGeng?label=Watch&style=flat-square&logo=github&color=violet" alt="Watch" /></a>
 [![Requirements Status](https://requires.io/github/niteshraj2310/RemixGeng/requirements.svg?branch=sql-extended)](https://requires.io/github/niteshraj2310/RemixGeng/requirements/?branch=sql-extended)
 <a href="https://deepsource.io/gh/niteshraj2310/RemixGeng/?ref=repository-badge" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://static.deepsource.io/deepsource-badge-light-mini.svg"></a>
 [![codebeat badge](https://codebeat.co/badges/049f1ac3-dfc2-4ee6-93a3-e40c1569313f)](https://codebeat.co/projects/github-com-niteshraj2310-remixgeng-sql-extended)
