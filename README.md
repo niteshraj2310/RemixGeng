@@ -9,7 +9,7 @@
 [![Requirements Status](https://requires.io/github/niteshraj2310/RemixGeng/requirements.svg?branch=sql-extended)](https://requires.io/github/niteshraj2310/RemixGeng/requirements/?branch=sql-extended)
 <a href="https://deepsource.io/gh/niteshraj2310/RemixGeng/?ref=repository-badge" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://static.deepsource.io/deepsource-badge-light-mini.svg"></a>
 [![codebeat badge](https://codebeat.co/badges/049f1ac3-dfc2-4ee6-93a3-e40c1569313f)](https://codebeat.co/projects/github-com-niteshraj2310-remixgeng-sql-extended)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=niteshraj2310/RemixGeng)](https://dependabot.com)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=niteshraj2310/RemixGeng)](https://dependabot.com) [![HitCount](http://hits.dwyl.com/niteshraj2310/RemixGeng.svg)](http://hits.dwyl.com/niteshraj2310/RemixGeng)
 
 # Project 尺 乇 从 工 乂 厶 乇 𠘨 厶
 
