@@ -9,7 +9,7 @@ script: echo override build
 install:
   - pip install codecov
   - pip install coverage
-script:
+  - pip install coverage
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
+  - bash <(curl -s https://codecov.io/bash)
