@@ -7,7 +7,7 @@ install:
   - pip install codecov
   - pip install coverage
 script:
-  - echo override buildbuild
+  - echo override build
   - coverage run -m userbot ttt && coverage report
 after_success:
   - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
