@@ -35,9 +35,9 @@ from urllib.parse import quote_plus
 from wikipedia import summary
 from wikipedia.exceptions import DisambiguationError, PageError
 from requests import get
-from requests import get, post, exceptions
+from requests import post, exceptions
 from search_engine_parser import GoogleSearch
-from googletrans import LANGUAGES, Translator
+from googletrans import LANGUAGES
 from gtts import gTTS
 from gtts.lang import tts_langs
 from emoji import get_emoji_regexp
@@ -48,11 +48,10 @@ from youtube_dl.utils import (DownloadError, ContentTooShortError,
                               ExtractorError, GeoRestrictedError,
                               MaxDownloadsReached, PostProcessingError,
                               UnavailableVideoError, XAttrMetadataError)
-from asyncio import sleep
 from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, CHROME_DRIVER, GOOGLE_CHROME_BIN, bot, REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY, OCR_SPACE_API_KEY, LOGS
 from userbot.events import register
 from telethon.tl.types import DocumentAttributeAudio
-from userbot.utils import progress, chrome, googleimagesdownload
+from userbot.utils import progress, googleimagesdownload
 import subprocess
 from datetime import datetime
 import asyncurban
