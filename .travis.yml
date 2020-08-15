@@ -10,6 +10,6 @@ install:
   - pip install codecov
   - pip install coverage
 script:
-  -coverage run Dockerfile && coverage report
+
 after_success:
   - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
