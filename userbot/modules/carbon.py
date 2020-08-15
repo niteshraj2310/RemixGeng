@@ -3,7 +3,6 @@ from time import sleep
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from urllib.parse import quote_plus
-from asyncio import sleep
 from userbot import CMD_HELP, CHROME_DRIVER, GOOGLE_CHROME_BIN
 from userbot.events import register
 
