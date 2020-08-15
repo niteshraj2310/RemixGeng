@@ -12,7 +12,6 @@ from os import execl
 import sys
 import os
 import io
-import sys
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot, GIT_REPO_NAME, ALIVE_NAME
 from userbot.events import register
 from userbot.utils import time_formatter
@@ -82,7 +81,7 @@ async def killdabot(event):
     # Spin a new instance of bot
     execl(sys.executable, sys.executable, *sys.argv)
     # Shut the existing one down
-    exit()
+    sys.exit()
 
 
 @register(outgoing=True, pattern="^.community$")
