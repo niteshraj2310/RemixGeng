@@ -3,10 +3,10 @@ python:
   - "3.8"
 # command to install dependencies
 install:
-  - pip install -r requirements.txt
+  - pip install -r requirements.txt || "echo override build"
   - pip install codecov
   - pip install coverage
-script: echo overide build
+script:
   - coverage run -m userbot ttt && coverage report
 after_success:
   - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
