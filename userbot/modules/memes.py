@@ -10,7 +10,6 @@ from asyncio import sleep
 import asyncio
 from random import choice, getrandbits, randint
 from re import sub
-from random import randint
 import time
 
 
