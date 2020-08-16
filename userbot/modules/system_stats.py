@@ -127,7 +127,7 @@ def get_size(bytes, suffix="B"):
     for unit in ["", "K", "M", "G", "T", "P"]:
         if bytes < factor:
             return f"{bytes:.2f}{unit}{suffix}"
-        bytes /= factor
+        bytes /= factor            
 
 
 @register(outgoing=True, pattern="^.botver$")
@@ -220,29 +220,15 @@ async def pipcheck(pip):
 async def amireallyalive(alive):
     """ For .start command, check if the bot is running.  """
     logo = ALIVE_LOGO
-<<<<<<< HEAD
+    uptime = await get_readable_time((time.time() - StartTime))
     output = (f"丂 丅 口 尸   工 丅   厶 乇 丅   丂 口 从 乇   卄 乇 乚 尸  乃 工 匚 工 \n"
              f"👽𝖙𝖊𝖑𝖊𝖙𝖍𝖔𝖓 𝖛𝖊𝖗𝖘𝖎𝖔𝖓: {version.__version__} \n"
              f"🐍𝖕𝖞𝖙𝖍𝖔𝖓 𝖛𝖊𝖗𝖘𝖎𝖔𝖓: {python_version()} \n"
              f"🤖𝖇𝖔𝖙 𝖛𝖊𝖗𝖘𝖎𝖔𝖓: Remix {BOT_VER} \n"
              f"==================================== \n"
              f"😎𝖒𝖔𝖎 𝖒𝖆𝖘𝖙𝖊𝖗: {DEFAULTUSER} \n"
-=======
-    uptime = await get_readable_time((time.time() - StartTime))
-    output = (f"`🤖 STATUS: Remix is running ✅`\n"
-             f"`Telethon version`: {version.__version__} \n"
-             f"`Python version🐍`: {python_version()} \n"
-             f"`Bot Version🤘: Remix {BOT_VER}` \n"
-             f"==================================== \n"
-             f"User 👨‍🚀: {DEFAULTUSER} \n"
-             f"Maintainer 🏄‍♂️: @heyworld \n"
              f"Bot Uptime 🕒: {uptime} \n"
->>>>>>> 715c1b71843c0b0718fb72a65a493a21c8d8b970
              f"====================================\n")
-<<<<<<< HEAD
-    await bot.send_file(alive.chat_id, logo, caption=output)
-    await alive.delete()
-=======
     if ALIVE_LOGO:
         try:
             logo = ALIVE_LOGO
@@ -253,14 +239,6 @@ async def amireallyalive(alive):
                              "\nMake sure the link is directed to the logo picture`")
     else:
         await alive.edit(output)
-<<<<<<< HEAD
-        await asyncio.sleep(25)
-        await alive.delete()                
->>>>>>> 1ff88c25cc54106c947d35b901d863a2f200d39b
-
-
-=======
->>>>>>> 715c1b71843c0b0718fb72a65a493a21c8d8b970
 
 @register(outgoing=True, pattern="^.aliveu")
 async def amireallyaliveuser(username):
@@ -299,5 +277,5 @@ CMD_HELP.update({
 \n\n`.db`\
 \nUsage:Shows database related info.\
 \n\n.`.spc`\
-\nUsage:Show system specification."
-})
+\nUsage:Show system specification."   
+})  
