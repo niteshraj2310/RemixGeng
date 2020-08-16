@@ -13,15 +13,43 @@ from os import remove
 from telethon import __version__, version
 import platform
 import sys
+import time
 from datetime import datetime
 import psutil
-import asyncio
-from userbot import CMD_HELP, ALIVE_NAME, BOT_VER, ALIVE_LOGO, bot
+from userbot import CMD_HELP, ALIVE_NAME, BOT_VER, ALIVE_LOGO, bot, StartTime
 from userbot.events import register
 
 # ================= CONSTANT =================
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 # ============================================
+
+async def get_readable_time(seconds: int) -> str:
+    count = 0
+    up_time = ""
+    time_list = []
+    time_suffix_list = ["s", "m", "h", "days"]
+
+    while count < 4:
+        count += 1
+        if count < 3:
+            remainder, result = divmod(seconds, 60)
+        else:
+            remainder, result = divmod(seconds, 24)
+        if seconds == 0 and remainder == 0:
+            break
+        time_list.append(int(result))
+        seconds = int(remainder)
+
+    for x in range(len(time_list)):
+        time_list[x] = str(time_list[x]) + time_suffix_list[x]
+    if len(time_list) == 4:
+        up_time += time_list.pop() + ", "
+
+    time_list.reverse()
+    up_time += ":".join(time_list)
+
+    return up_time
+
 
 
 @register(outgoing=True, pattern="^.sysd$")
@@ -192,12 +220,24 @@ async def pipcheck(pip):
 async def amireallyalive(alive):
     """ For .start command, check if the bot is running.  """
     logo = ALIVE_LOGO
+<<<<<<< HEAD
     output = (f"丂 丅 口 尸   工 丅   厶 乇 丅   丂 口 从 乇   卄 乇 乚 尸  乃 工 匚 工 \n"
              f"👽𝖙𝖊𝖑𝖊𝖙𝖍𝖔𝖓 𝖛𝖊𝖗𝖘𝖎𝖔𝖓: {version.__version__} \n"
              f"🐍𝖕𝖞𝖙𝖍𝖔𝖓 𝖛𝖊𝖗𝖘𝖎𝖔𝖓: {python_version()} \n"
              f"🤖𝖇𝖔𝖙 𝖛𝖊𝖗𝖘𝖎𝖔𝖓: Remix {BOT_VER} \n"
              f"==================================== \n"
              f"😎𝖒𝖔𝖎 𝖒𝖆𝖘𝖙𝖊𝖗: {DEFAULTUSER} \n"
+=======
+    uptime = await get_readable_time((time.time() - StartTime))
+    output = (f"`🤖 STATUS: Remix is running ✅`\n"
+             f"`Telethon version`: {version.__version__} \n"
+             f"`Python version🐍`: {python_version()} \n"
+             f"`Bot Version🤘: Remix {BOT_VER}` \n"
+             f"==================================== \n"
+             f"User 👨‍🚀: {DEFAULTUSER} \n"
+             f"Maintainer 🏄‍♂️: @heyworld \n"
+             f"Bot Uptime 🕒: {uptime} \n"
+>>>>>>> 715c1b71843c0b0718fb72a65a493a21c8d8b970
              f"====================================\n")
 <<<<<<< HEAD
     await bot.send_file(alive.chat_id, logo, caption=output)
@@ -213,11 +253,14 @@ async def amireallyalive(alive):
                              "\nMake sure the link is directed to the logo picture`")
     else:
         await alive.edit(output)
+<<<<<<< HEAD
         await asyncio.sleep(25)
         await alive.delete()                
 >>>>>>> 1ff88c25cc54106c947d35b901d863a2f200d39b
 
 
+=======
+>>>>>>> 715c1b71843c0b0718fb72a65a493a21c8d8b970
 
 @register(outgoing=True, pattern="^.aliveu")
 async def amireallyaliveuser(username):
