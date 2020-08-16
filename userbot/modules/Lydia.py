@@ -11,13 +11,9 @@ import asyncio
 import logging
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
                     level=logging.WARNING)
-
-import asyncio
 from userbot import LYDIA_API_KEY
 from userbot import CMD_HELP
 from userbot.events import register
-from coffeehouse.lydia import LydiaAI
-from coffeehouse.api import API
 
 
 # Non-SQL Mode
