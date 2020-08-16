@@ -3,6 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #inline credit @keselekpermen69
+import sys
 """ Userbot initialization. """
 
 import os
@@ -46,7 +47,7 @@ LOGS = getLogger(__name__)
 if version_info[0] < 3 or version_info[1] < 8:
     LOGS.info("You MUST have a python version of at least 3.8."
               "Multiple features depend on this. Bot quitting.")
-    quit(1)
+    sys.exit(1)
 
 # Check if the config was edited by using the already used variable.
 # Basically, its the 'virginity check' for the config file ;)
@@ -57,7 +58,7 @@ if CONFIG_CHECK:
     LOGS.info(
         "Please remove the line mentioned in the first hashtag from the config.env file"
     )
-    quit(1)
+    sys.exit(1)
 
 # Telegram App KEY and HASH
 API_KEY = os.environ.get("API_KEY", None)
@@ -276,13 +277,13 @@ async def check_botlog_chatid():
         LOGS.info(
             "You must set up the BOTLOG_CHATID variable in the config.env or environment variables, for the private error log storage to work."
         )
-        quit(1)
+        sys.exit(1)
 
     elif not BOTLOG_CHATID and BOTLOG:
         LOGS.info(
             "You must set up the BOTLOG_CHATID variable in the config.env or environment variables, for the userbot logging feature to work."
         )
-        quit(1)
+        sys.exit(1)
 
     elif not BOTLOG or not LOGSPAMMER:
         return
@@ -292,7 +293,7 @@ async def check_botlog_chatid():
         LOGS.info(
             "Your account doesn't have rights to send messages to BOTLOG_CHATID "
             "group. Check if you typed the Chat ID correctly.")
-        quit(1)
+        sys.exit(1)
 
 
 with bot:
@@ -302,7 +303,7 @@ with bot:
         LOGS.info(
             "BOTLOG_CHATID environment variable isn't valid"
             "Please generate proper group id and set.You can ask in @PPE_Support if you need help")
-        quit(1)
+        sys.exit(1)
 
 StartTime = time.time()        
 
@@ -484,4 +485,4 @@ with bot:
             "BOTLOG_CHATID environment variable isn't a "
             "valid entity. Check your environment variables/config.env file."
         )
-        quit(1)
+        sys.exit(1)
