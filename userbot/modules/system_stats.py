@@ -1,4 +1,4 @@
-#Copyright (C) 2020 The Raphielscape Company LLC.
+#Copyright (C) 2019 The Raphielscape Company LLC.
 #
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@ from telethon import __version__, version
 import platform
 import sys
 import time
+import asyncio
 from datetime import datetime
 import psutil
 from userbot import CMD_HELP, ALIVE_NAME, BOT_VER, ALIVE_LOGO, bot, StartTime
@@ -127,7 +128,7 @@ def get_size(bytes, suffix="B"):
     for unit in ["", "K", "M", "G", "T", "P"]:
         if bytes < factor:
             return f"{bytes:.2f}{unit}{suffix}"
-        bytes /= factor            
+        bytes /= factor
 
 
 @register(outgoing=True, pattern="^.botver$")
@@ -227,18 +228,22 @@ async def amireallyalive(alive):
              f"🤖𝖇𝖔𝖙 𝖛𝖊𝖗𝖘𝖎𝖔𝖓: Remix {BOT_VER} \n"
              f"==================================== \n"
              f"😎𝖒𝖔𝖎 𝖒𝖆𝖘𝖙𝖊𝖗: {DEFAULTUSER} \n"
-             f"Bot Uptime 🕒: {uptime} \n"
+             f"`Bot Uptime ⏱️`: {uptime} \n"
              f"====================================\n")
     if ALIVE_LOGO:
         try:
             logo = ALIVE_LOGO
-            await bot.send_file(alive.chat_id, logo, caption=output)
             await alive.delete()
+            pic_alive = await bot.send_file(alive.chat_id, logo, caption=output)
+            await asyncio.sleep(25)
+            await pic_alive.delete()
         except BaseException:
             await alive.edit(output + "\n\n *`The provided logo is invalid."
                              "\nMake sure the link is directed to the logo picture`")
     else:
         await alive.edit(output)
+        await asyncio.sleep(25)
+        await alive.delete()
 
 @register(outgoing=True, pattern="^.aliveu")
 async def amireallyaliveuser(username):
@@ -277,5 +282,5 @@ CMD_HELP.update({
 \n\n`.db`\
 \nUsage:Shows database related info.\
 \n\n.`.spc`\
-\nUsage:Show system specification."   
-})  
+\nUsage:Show system specification."
+})

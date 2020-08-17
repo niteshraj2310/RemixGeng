@@ -1,3 +1,4 @@
+wheel
 aiohttp
 aiofiles
 aria2p
