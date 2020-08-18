@@ -128,7 +128,7 @@ async def repeat(rep):
 
     replyText = toBeRepeated + "\n"
 
-    for i in range(0, replyCount - 1):
+    for _ in range(replyCount - 1):
         replyText += toBeRepeated + "\n"
 
     await rep.edit(replyText)
@@ -226,10 +226,7 @@ async def okgoogle(img):
             await img.edit("`Couldn't find anything for your uglyass.`")
             return
 
-        if img.pattern_match.group(1):
-            lim = img.pattern_match.group(1)
-        else:
-            lim = 3
+        lim = img.pattern_match.group(1) if img.pattern_match.group(1) else 3
         images = await scam(match, lim)
         yeet = []
         for i in images:

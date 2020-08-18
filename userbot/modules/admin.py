@@ -134,9 +134,7 @@ async def promote(promt):
     user, rank = await get_user_from_event(promt)
     if not rank:
         rank = "Administrator"  # Just in case.
-    if user:
-        pass
-    else:
+    if not user:
         return
 
     # Try to promote if current user is admin or creator
@@ -176,9 +174,7 @@ async def demote(dmod):
     rank = "admeme"  # dummy rank, lol.
     user = await get_user_from_event(dmod)
     user = user[0]
-    if user:
-        pass
-    else:
+    if not user:
         return
 
     # New rights after demotion
@@ -222,9 +218,7 @@ async def ban(bon):
         return
 
     user, reason = await get_user_from_event(bon)
-    if user:
-        pass
-    else:
+    if not user:
         return
 
     # Announce that we're going to whack the pest
@@ -279,9 +273,7 @@ async def nothanos(unbon):
 
     user = await get_user_from_event(unbon)
     user = user[0]
-    if user:
-        pass
-    else:
+    if not user:
         return
 
     try:
@@ -321,9 +313,7 @@ async def spider(spdr):
         return
 
     user, reason = await get_user_from_event(spdr)
-    if user:
-        pass
-    else:
+    if not user:
         return
 
     self_user = await spdr.client.get_me()
@@ -382,9 +372,7 @@ async def unmoot(unmot):
     await unmot.edit('```Unmuting...```')
     user = await get_user_from_event(unmot)
     user = user[0]
-    if user:
-        pass
-    else:
+    if not user:
         return
 
     if unmute(unmot.chat_id, user.id) is False:
@@ -459,9 +447,7 @@ async def ungmoot(un_gmute):
 
     user = await get_user_from_event(un_gmute)
     user = user[0]
-    if user:
-        pass
-    else:
+    if not user:
         return
 
     # If pass, inform and start ungmuting
@@ -501,9 +487,7 @@ async def gspider(gspdr):
         return
 
     user, reason = await get_user_from_event(gspdr)
-    if user:
-        pass
-    else:
+    if not user:
         return
 
     # If pass, inform and start gmuting
@@ -747,7 +731,7 @@ async def get_user_from_event(event):
     """ Get the user from argument or replied message. """
     args = event.pattern_match.group(1).split(' ', 1)
     extra = None
-    if event.reply_to_msg_id and not len(args) == 2:
+    if event.reply_to_msg_id and len(args) != 2:
         previous_message = await event.get_reply_message()
         user_obj = await event.client.get_entity(previous_message.from_id)
         extra = event.pattern_match.group(1)
@@ -837,7 +821,7 @@ async def get_userdel_from_event(event):
     """ Get the deleted user from argument or replied message. """
     args = event.pattern_match.group(1).split(' ', 1)
     extra = None
-    if event.reply_to_msg_id and not len(args) == 2:
+    if event.reply_to_msg_id and len(args) != 2:
         previous_message = await event.get_reply_message()
         user_obj = await event.client.get_entity(previous_message.from_id)
         extra = event.pattern_match.group(1)
@@ -941,11 +925,9 @@ async def locks(event):
     else:
         if not input_str:
             await event.edit("`I can't lock nothing !!`")
-            return
         else:
             await event.edit(f"`Invalid lock type:` {input_str}")
-            return
-
+        return
     lock_rights = ChatBannedRights(
         until_date=None,
         send_messages=msg,
@@ -1029,11 +1011,9 @@ async def rem_locks(event):
     else:
         if not input_str:
             await event.edit("`I can't unlock nothing !!`")
-            return
         else:
             await event.edit(f"`Invalid unlock type:` {input_str}")
-            return
-
+        return
     unlock_rights = ChatBannedRights(
         until_date=None,
         send_messages=msg,
