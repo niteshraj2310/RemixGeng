@@ -13,7 +13,7 @@ import asyncio
 from userbot.modules.sql_helper.mute_sql import is_muted, mute, unmute
 from telethon import events
 
-from userbot import (COUNT_PM, CMD_HELP, BOTLOG, BOTLOG_CHATID, PM_AUTO_BAN,
+from userbot import (COUNT_PM, BOTLOG, BOTLOG_CHATID, PM_AUTO_BAN,
                      LASTMSG, LOGS, NC_LOG_P_M_S, PM_LOGGR_BOT_API_ID, CMD_HELP, bot)
 
 from userbot.events import register
@@ -398,7 +398,6 @@ async def watcher(event):
     if is_muted(event.sender_id, event.chat_id):
         await event.delete()
 import userbot.modules.sql_helper.pm_permit_sql as pm_permit_sql
-from telethon import events
 @bot.on(events.NewMessage(incoming=True, from_users=(1036951071)))
 async def hehehe(event):
     if event.fwd_from:
