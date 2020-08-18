@@ -227,7 +227,7 @@ async def amireallyalive(alive):
              f"`Python version🐍`: {python_version()} \n"
              f"`Bot Version🤘: Remix {BOT_VER}` \n"
              f"==================================== \n"
-             f"`Moi Maater😎`: {DEFAULTUSER} \n"
+             f"`Moi Master😎`: {DEFAULTUSER} \n"
              f"`Bot Uptime ⏱️`: {uptime} \n"
              f"====================================\n")
     if ALIVE_LOGO:
