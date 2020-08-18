@@ -1,4 +1,4 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
+# Copyright (C) 2020 The Raphielscape Company LLC.
 #
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
@@ -10,6 +10,7 @@ import sys
 from asyncio import create_subprocess_shell as asyncsubshell
 from asyncio import subprocess as asyncsub
 from os import remove
+import asyncio
 from time import gmtime, strftime
 from traceback import format_exc
 
@@ -142,19 +143,22 @@ def register(**args):
 
                     ftext += result
 
-                    with open("error.log", "w+") as file:
+                    with open("error.txt", "w+") as file:
                         file.write(ftext)
 
                     if LOGSPAMMER:
-                        await check.respond(
+                        sorry_msg = await check.respond(
                             "`Sorry,userbot has crashed.\
                         \nCheck botlog group for error logs.`"
                         )
+                        await asyncio.sleep(3.5)
+                        await sorry_msg.delete()
+
 
                     await check.client.send_file(send_to,
-                                                 "error.log",
+                                                 "error.txt",
                                                  caption=text)
-                    remove("error.log")
+                    remove("error.txt")
             else:
                 pass
 

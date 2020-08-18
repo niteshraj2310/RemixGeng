@@ -223,11 +223,11 @@ async def amireallyalive(alive):
     logo = ALIVE_LOGO
     uptime = await get_readable_time((time.time() - StartTime))
     output = (f"丂 丅 口 尸   工 丅   厶 乇 丅   丂 口 从 乇   卄 乇 乚 尸  乃 工 匚 工 \n"
-             f"👽𝖙𝖊𝖑𝖊𝖙𝖍𝖔𝖓 𝖛𝖊𝖗𝖘𝖎𝖔𝖓: {version.__version__} \n"
-             f"🐍𝖕𝖞𝖙𝖍𝖔𝖓 𝖛𝖊𝖗𝖘𝖎𝖔𝖓: {python_version()} \n"
-             f"🤖𝖇𝖔𝖙 𝖛𝖊𝖗𝖘𝖎𝖔𝖓: Remix {BOT_VER} \n"
+             f"`Telethon version`: {version.__version__} \n"
+             f"`Python version🐍`: {python_version()} \n"
+             f"`Bot Version🤘: Remix {BOT_VER}` \n"
              f"==================================== \n"
-             f"😎𝖒𝖔𝖎 𝖒𝖆𝖘𝖙𝖊𝖗: {DEFAULTUSER} \n"
+             f"`Moi Maater😎`: {DEFAULTUSER} \n"
              f"`Bot Uptime ⏱️`: {uptime} \n"
              f"====================================\n")
     if ALIVE_LOGO:
@@ -235,7 +235,7 @@ async def amireallyalive(alive):
             logo = ALIVE_LOGO
             await alive.delete()
             pic_alive = await bot.send_file(alive.chat_id, logo, caption=output)
-            await asyncio.sleep(25)
+            await asyncio.sleep(40)
             await pic_alive.delete()
         except BaseException:
             await alive.edit(output + "\n\n *`The provided logo is invalid."
