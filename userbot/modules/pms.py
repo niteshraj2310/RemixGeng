@@ -24,6 +24,8 @@ UNAPPROVED_MSG = (
     "`My master hasn't approved you to PM.`"
     "`Please wait for my master to look in, he mostly approves PMs.\n\n`"
     "`As far as I know, he doesn't usually approve retards though.`")
+    "`Until then, please don't spam My PM or you will get blocked...\n`"
+    "`Thank You\n\n`"
 # =================================================================
 
 NO_PM_LOG_USERS = []
@@ -313,7 +315,7 @@ async def approve_p_m(event):
                 await asyncio.sleep(3)
                 await event.delete()
 
-                
+
 @register(pattern="^.log(?: |$)(.*)")
 async def approve_p_m(event):
     if event.fwd_from:
@@ -351,7 +353,7 @@ async def startmute(event):
             return await event.edit("Please reply to a user or add their userid into the command to mute them.")
         chat_id = event.chat_id
         chat = await event.get_chat()
-        if "admin_rights" in vars(chat) and vars(chat)["admin_rights"] is not None: 
+        if "admin_rights" in vars(chat) and vars(chat)["admin_rights"] is not None:
             if chat.admin_rights.delete_messages is True:
                 pass
             else:
@@ -440,5 +442,5 @@ CMD_HELP.update({
 \n\n`logpms`\
 \nUsage: If you don't want chat logs than use `.nolog` , for opposite use `.log`. Default is .log enabled\nThis will now log chat msgs to your PM_LOGGR_BOT_API_ID.\
 \nnotice: now you can totally disable pm logs by adding heroku vars PM_LOGGR_BOT_API_ID by providing a valid group ID and NC_LOG_P_M_S True or False\
-\nwhere False means no pm logs at all..enjoy.. update and do add above mentioned vars."       
+\nwhere False means no pm logs at all..enjoy.. update and do add above mentioned vars."
 })
