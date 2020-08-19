@@ -17,16 +17,11 @@ DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 
 
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
 
     if event.fwd_from:
 
         return
-
-    animation_interval = 3
-
-    animation_ttl = range(0, 103)
 
     input_str = event.pattern_match.group(1)
 
@@ -47,6 +42,10 @@ async def _(event):
             "👁👁\n  💋  =====> Ok retard 😑",
             "👁👁\n  👄  =====> I go away then"
         ]
+
+        animation_interval = 3
+
+        animation_ttl = range(103)
 
         for i in animation_ttl:
 
@@ -196,7 +195,6 @@ async def _(event):
             await event.edit(animation_chars[i % 12])
 
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
 
     if event.fwd_from:
@@ -205,8 +203,6 @@ async def _(event):
 
     animation_interval = 101
 
-
-    animation_ttl = range(0, 103)
 
     input_str = event.pattern_match.group(1)
 
@@ -230,6 +226,8 @@ async def _(event):
             "**Target killed successfully, Enjoy Funeral XD (°̥̥̥̥̥̥̥̥•̀.̫•́°̥̥̥̥̥̥̥)**",
         ]
 
+        animation_ttl = range(103)
+
         for i in animation_ttl:
 
 
@@ -238,16 +236,11 @@ async def _(event):
 
 
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
 
     if event.fwd_from:
 
         return
-
-    animation_interval = 0.5
-
-    animation_ttl = range(0, 11)
 
     input_str = event.pattern_match.group(1)
 
@@ -270,6 +263,10 @@ async def _(event):
             "`Welcome...\n\nStock OS: Symbian OS\nCurrent OS: Hackintosh`\n\n**My PC Specs:**\n\n **CPU:** __2.9GHz Intel Core i9-8950HK (hexa-core, 12MB cache, up to 4.8GHz)__\n\n**Graphics:** __Nvidia GeForce GTX 1080 OC (8GB GDDR5X)__\n\n**RAM:** __32GB DDR4 (2,666MHz)__\n\n**Screen:** __17.3-inch, QHD (2,560 x 1,440) 120Hz G-Sync__\n\n**Storage:** __512GB PCIe SSD, 1TB HDD (7,200 rpm)__\n\n**Ports:** __2 x USB 3.0, 1 x USB-C 3.0, 1 x USB-C (Thunderbolt 3), HDMI, mini DisplayPort, Ethernet, headphone jack, microphone jack__\n\n**Connectivity:** __Killer 1550 802.11ac Wi-Fi, Bluetooth 5.0__\n\n**Camera:** __Alienware FHD camera, Tobii IR Eye-tracking with Windows Hello__\n\n**Size:** __16.7 x 13.1 x 1.18 inches (42.4 x 33.2 x 2.99cm; W x D x H)__"
         ]
 
+        animation_interval = 0.5
+
+        animation_ttl = range(11)
+
         for i in animation_ttl:
 
             await asyncio.sleep(animation_interval)
@@ -278,16 +275,11 @@ async def _(event):
 
 
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
 
     if event.fwd_from:
 
         return
-
-    animation_interval = 0.5
-
-    animation_ttl = range(0, 11)
 
     input_str = event.pattern_match.group(1)
 
@@ -310,6 +302,10 @@ async def _(event):
             "`Welcome...\n\nStock OS: Symbian OS\nCurrent OS: Windows 10`\n\n**My PC Specs:**\n\n **CPU:** __2.9GHz Intel Core i9-8950HK (hexa-core, 12MB cache, up to 4.8GHz)__\n\n**Graphics:** __Nvidia GeForce GTX 1080 OC (8GB GDDR5X)__\n\n**RAM:** __32GB DDR4 (2,666MHz)__\n\n**Screen:** __17.3-inch, QHD (2,560 x 1,440) 120Hz G-Sync__\n\n**Storage:** __512GB PCIe SSD, 1TB HDD (7,200 rpm)__\n\n**Ports:** __2 x USB 3.0, 1 x USB-C 3.0, 1 x USB-C (Thunderbolt 3), HDMI, mini DisplayPort, Ethernet, headphone jack, microphone jack__\n\n**Connectivity:** __Killer 1550 802.11ac Wi-Fi, Bluetooth 5.0__\n\n**Camera:** __Alienware FHD camera, Tobii IR Eye-tracking with Windows Hello__\n\n**Size:** __16.7 x 13.1 x 1.18 inches (42.4 x 33.2 x 2.99cm; W x D x H)__"
         ]
 
+        animation_interval = 0.5
+
+        animation_ttl = range(11)
+
         for i in animation_ttl:
 
             await asyncio.sleep(animation_interval)
@@ -319,16 +315,11 @@ async def _(event):
 
 
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
 
     if event.fwd_from:
 
         return
-
-    animation_interval = 0.5
-
-    animation_ttl = range(0, 11)
 
     input_str = event.pattern_match.group(1)
 
@@ -351,6 +342,10 @@ async def _(event):
             "`Welcome...\n\nStock OS: Symbian OS\nCurrent OS: Linux`\n\n**My PC Specs:**\n\n **CPU:** __2.9GHz Intel Core i9-8950HK (hexa-core, 12MB cache, up to 4.8GHz)__\n\n**Graphics:** __Nvidia GeForce GTX 1080 OC (8GB GDDR5X)__\n\n**RAM:** __32GB DDR4 (2,666MHz)__\n\n**Screen:** __17.3-inch, QHD (2,560 x 1,440) 120Hz G-Sync__\n\n**Storage:** __512GB PCIe SSD, 1TB HDD (7,200 rpm)__\n\n**Ports:** __2 x USB 3.0, 1 x USB-C 3.0, 1 x USB-C (Thunderbolt 3), HDMI, mini DisplayPort, Ethernet, headphone jack, microphone jack__\n\n**Connectivity:** __Killer 1550 802.11ac Wi-Fi, Bluetooth 5.0__\n\n**Camera:** __Alienware FHD camera, Tobii IR Eye-tracking with Windows Hello__\n\n**Size:** __16.7 x 13.1 x 1.18 inches (42.4 x 33.2 x 2.99cm; W x D x H)__"
         ]
 
+        animation_interval = 0.5
+
+        animation_ttl = range(11)
+
         for i in animation_ttl:
 
             await asyncio.sleep(animation_interval)
@@ -359,16 +354,11 @@ async def _(event):
 
 
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
 
     if event.fwd_from:
 
         return
-
-    animation_interval = 0.5
-
-    animation_ttl = range(0, 11)
 
     input_str = event.pattern_match.group(1)
 
@@ -390,6 +380,10 @@ async def _(event):
             "`Loading Symbian OS... 100%\n▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ `",
             "`Welcome...\n\nStock OS: Symbian OS\nCurrent OS: Symbian OS`\n\n**My PC Specs:**\n\n **CPU:** __2.9GHz Intel Core i9-8950HK (hexa-core, 12MB cache, up to 4.8GHz)__\n\n**Graphics:** __Nvidia GeForce GTX 1080 OC (8GB GDDR5X)__\n\n**RAM:** __32GB DDR4 (2,666MHz)__\n\n**Screen:** __17.3-inch, QHD (2,560 x 1,440) 120Hz G-Sync__\n\n**Storage:** __512GB PCIe SSD, 1TB HDD (7,200 rpm)__\n\n**Ports:** __2 x USB 3.0, 1 x USB-C 3.0, 1 x USB-C (Thunderbolt 3), HDMI, mini DisplayPort, Ethernet, headphone jack, microphone jack__\n\n**Connectivity:** __Killer 1550 802.11ac Wi-Fi, Bluetooth 5.0__\n\n**Camera:** __Alienware FHD camera, Tobii IR Eye-tracking with Windows Hello__\n\n**Size:** __16.7 x 13.1 x 1.18 inches (42.4 x 33.2 x 2.99cm; W x D x H)__"
         ]
+
+        animation_interval = 0.5
+
+        animation_ttl = range(11)
 
         for i in animation_ttl:
 
@@ -506,16 +500,11 @@ async def _(event):
         await asyncio.sleep(0.3)
         await event.edit("EVERyBOdy wAs GanGeSTar UNtIL I ArRivEd 😎😎😎")
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
 
     if event.fwd_from:
 
         return
-
-    animation_interval = 2
-
-    animation_ttl = range(0, 11)
 
     input_str = event.pattern_match.group(1)
 
@@ -537,6 +526,10 @@ async def _(event):
             "`Hacking... 100%\n█████████HACKED███████████ `",
            f"`Targeted Account Hacked...\n\nPay 9999$ To @{DEFAULTUSER} or gib a pizza party 🍕 To Remove This Hack`"
         ]
+
+        animation_interval = 2
+
+        animation_ttl = range(11)
 
         for i in animation_ttl:
 
@@ -588,9 +581,6 @@ async def _(event):
             await event.edit(animation_chars[i % 15])
 
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
-
-
 async def _(event):
 
 
@@ -600,14 +590,6 @@ async def _(event):
 
 
         return
-
-
-
-    animation_interval = 2
-
-
-
-    animation_ttl = range(0, 15)
 
 
 
@@ -658,6 +640,14 @@ async def _(event):
             "Targeted Account Hacked...!\n\n ✅ File has been successfully uploaded to my server.\nWhatsApp Database:\n`./DOWNLOADS/msgstore.db.crypt12`"
 
         ]
+
+
+
+        animation_interval = 2
+
+
+
+        animation_ttl = range(15)
 
 
 
@@ -831,16 +821,11 @@ async def _(event):
             await asyncio.sleep(animation_interval)
             await event.edit(animation_chars[i % 549755813888])
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
 
     if event.fwd_from:
 
         return
-
-    animation_interval = 5
-
-    animation_ttl = range(0, 11)
 
     input_str = event.pattern_match.group(1)
 
@@ -863,6 +848,10 @@ async def _(event):
             "`Quick Heal Total Security Checkup\n\n\nSubscription: Pru User\nValid Until: 31/12/2099\n\nTask: 01 of 01 Files Scanned...\n\nReault: No Virus Found...`"
         ]
 
+        animation_interval = 5
+
+        animation_ttl = range(11)
+
         for i in animation_ttl:
 
             await asyncio.sleep(animation_interval)
@@ -870,16 +859,11 @@ async def _(event):
             await event.edit(animation_chars[i % 11])
 
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
 
     if event.fwd_from:
 
         return
-
-    animation_interval = 0.1
-
-    animation_ttl = range(0, 11)
 
     input_str = event.pattern_match.group(1)
 
@@ -888,7 +872,7 @@ async def _(event):
         await event.edit(input_str)
 
         animation_chars = [
-        
+
             "`Downloading File..`",
             "`File Downloaded....`",
             "`Quick Heal Total Security Checkup\n\n\nSubscription: Pru User\nValid Until: 31/12/2099\n\nFile Scanned... 0%\n▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ `",
@@ -902,6 +886,10 @@ async def _(event):
             "`Quick Heal Total Security Checkup\n\n\nSubscription: Pru User\nValid Until: 31/12/2099\n\nTask: 01 of 01 Files Scanned...\n\nReault: No Virus Found...`"
         ]
 
+        animation_interval = 0.1
+
+        animation_ttl = range(11)
+
         for i in animation_ttl:
 
             await asyncio.sleep(animation_interval)
@@ -910,16 +898,11 @@ async def _(event):
 
 
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
 
     if event.fwd_from:
 
         return
-
-    animation_interval = 5
-
-    animation_ttl = range(0, 11)
 
     input_str = event.pattern_match.group(1)
 
@@ -928,7 +911,7 @@ async def _(event):
         await event.edit(input_str)
 
         animation_chars = [
-        
+
             "`Downloading File..`",
             "`File Downloaded....`",
             "`Quick Heal Total Security Checkup\n\n\nSubscription: Pru User\nValid Until: 31/12/2099\n\nFile Scanned... 0%\n▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ `",
@@ -941,6 +924,10 @@ async def _(event):
             "`Quick Heal Total Security Checkup\n\n\nSubscription: Pru User\nValid Until: 31/12/2099\n\nFile Scanned... 100%\n█████████████████████████ `",
             "`Quick Heal Total Security Checkup\n\n\nSubscription: Pru User\nValid Until: 31/12/2099\n\nTask: 01 of 01 Files Scanned...\n\nReault:⚠️Virus Found⚠️\nMore Info: Torzan, Spyware, Adware`"
         ]
+
+        animation_interval = 5
+
+        animation_ttl = range(11)
 
         for i in animation_ttl:
 
@@ -1136,16 +1123,11 @@ async def _(event):
 		
 		
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
 
     if event.fwd_from:
 
         return
-
-    animation_interval = 0.3
-
-    animation_ttl = range(0, 27)
 
     input_str = event.pattern_match.group(1)
 
@@ -1156,7 +1138,7 @@ async def _(event):
         animation_chars = [
 
             "◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
-            
+
             "◻️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
 
             "◻️◻️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
@@ -1168,11 +1150,11 @@ async def _(event):
             "‎◻️◻️◻️◻️◻️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
 
             "◻️◻️◻️◻️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
-            
+
             "◻️◻️◻️◻️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
-            
+
             "◻️◻️◻️◻️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◼️◼️",
-   
+
             "◻️◻️◻️◻️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◼️◻️",
 
             "◻️◻️◻️◻️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◻️◻️",
@@ -1206,9 +1188,13 @@ async def _(event):
             "◻️◻️◻️◻️◻️\n◻️◻️◻️◻️◻️\n◻️◻️◼️◻️◻️\n◻️◻️◻️◻️◻️\n◻️◻️◻️◻️◻️",
 
             "◻️◻️◻️◻️◻️\n◻️◻️◻️◻️◻️\n◻️◻️◻️◻️◻️\n◻️◻️◻️◻️◻️\n◻️◻️◻️◻️◻️",
-          
+
             "◻️◻️◻️◻️◻️\n◻️◼️◻️◼️◻️\n◻️◻️◻️◻️◻️\n◻️◼️◼️◼️◻️\n◻️◻️◻️◻️◻️"
         ]
+
+        animation_interval = 0.3
+
+        animation_ttl = range(27)
 
         for i in animation_ttl:
 
@@ -1220,8 +1206,6 @@ async def _(event):
 async def _(event):
     if event.fwd_from:
         return
-    animation_interval = 0.01
-    animation_ttl = range(0, 288)
     input_str = event.pattern_match.group(1)
     if input_str == "think":
         await event.edit(input_str)
@@ -1264,8 +1248,10 @@ async def _(event):
             "THINKING... 🤔"
         ]
 
+        animation_interval = 0.01
+        animation_ttl = range(288)
         for i in animation_ttl:
-        	
+
             await asyncio.sleep(animation_interval)
             await event.edit(animation_chars[i % 72])
 		
@@ -1273,8 +1259,6 @@ async def _(event):
 async def _(event):
     if event.fwd_from:
         return
-    animation_interval = 0.3
-    animation_ttl = range(0, 5)
     input_str = event.pattern_match.group(1)
     if input_str == "wtf":
         await event.edit(input_str)
@@ -1286,23 +1270,20 @@ async def _(event):
             "What The F Brah\nhttps://telegra.ph//file/f3b760e4a99340d331f9b.jpg"
         ]
 
+        animation_interval = 0.3
+        animation_ttl = range(5)
         for i in animation_ttl:
-        	
+
             await asyncio.sleep(animation_interval)
             await event.edit(animation_chars[i %5 ])
 		
 		
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
 
     if event.fwd_from:
 
         return
-
-    animation_interval = 1.5
-
-    animation_ttl = range(0, 11)
 
     input_str = event.pattern_match.group(1)
 
@@ -1324,6 +1305,10 @@ async def _(event):
             "⬤⬤◯ 80% ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀`✖️`\n\n⠀⠀⠀⠀⠀[cee jay Music Player](tg://user?id=689811472)\n\n⠀⠀⠀⠀**Now Playing:Kamasutra BGM**\n\n**00:10** ▰▰▰▰▰▰▰▰▰▰ **00:10**\n\n⠀⠀⠀⠀⠀`🔂` `⏮️` `⏪️` `⏺️` `⏩️` `⏭️`\n\n**⠀Next Song:** __I Am Sexy And I Know It.__\n\n⠀⠀⠀⠀**⠀Device: Nokia 1100**"
         ]
 
+        animation_interval = 1.5
+
+        animation_ttl = range(11)
+
         for i in animation_ttl:
 
             await asyncio.sleep(animation_interval)
@@ -1332,16 +1317,11 @@ async def _(event):
 		
 		
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
 
     if event.fwd_from:
 
         return
-
-    animation_interval = 3
-
-    animation_ttl = range(0, 18)
 
     input_str = event.pattern_match.group(1)
 
@@ -1350,7 +1330,7 @@ async def _(event):
         await event.edit(input_str)
 
         animation_chars = [
-        
+
             "`Connecting To Telegram Headquarters...`",
             "`Call Connected.`",
             "`Telegram: Hello This is Telegram HQ. Who is this?`",
@@ -1370,6 +1350,10 @@ async def _(event):
             "`Pavel: Sure Sur \nTC Bye Bye :)`",
             "`Private Call Disconnected.`"
         ]
+
+        animation_interval = 3
+
+        animation_ttl = range(18)
 
         for i in animation_ttl:
 
@@ -2333,16 +2317,11 @@ async def _(event):
         await event.edit("`\"What’s something you misunderstood as a child and only realized much later was wrong?\"`")		
    
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
 
     if event.fwd_from:
 
         return
-
-    animation_interval = 0.1
-
-    animation_ttl = range(0, 100)
 
     input_str = event.pattern_match.group(1)
 
@@ -2363,6 +2342,10 @@ async def _(event):
 
         ]
 
+        animation_interval = 0.1
+
+        animation_ttl = range(100)
+
         for i in animation_ttl:
 
             await asyncio.sleep(animation_interval)
@@ -2380,16 +2363,11 @@ import asyncio
 
 
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
 
     if event.fwd_from:
 
         return
-
-    animation_interval = 0.1
-
-    animation_ttl = range(0, 100)
 
     input_str = event.pattern_match.group(1)
 
@@ -2410,6 +2388,10 @@ async def _(event):
 
         ]
 
+        animation_interval = 0.1
+
+        animation_ttl = range(100)
+
         for i in animation_ttl:
 
             await asyncio.sleep(animation_interval)
@@ -2419,16 +2401,11 @@ async def _(event):
 
 
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
 
     if event.fwd_from:
 
         return
-
-    animation_interval = 0.1
-
-    animation_ttl = range(0, 100)
 
     input_str = event.pattern_match.group(1)
 
@@ -2449,6 +2426,10 @@ async def _(event):
 
         ]
 
+        animation_interval = 0.1
+
+        animation_ttl = range(100)
+
         for i in animation_ttl:
 
             await asyncio.sleep(animation_interval)
@@ -2456,16 +2437,11 @@ async def _(event):
             await event.edit(animation_chars[i % 4])
 
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
 
     if event.fwd_from:
 
         return
-
-    animation_interval = 0.1
-
-    animation_ttl = range(0, 100)
 
     input_str = event.pattern_match.group(1)
 
@@ -2486,6 +2462,10 @@ async def _(event):
 
         ]
 
+        animation_interval = 0.1
+
+        animation_ttl = range(100)
+
         for i in animation_ttl:
 
             await asyncio.sleep(animation_interval)
@@ -2495,16 +2475,11 @@ async def _(event):
 
 
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
 
     if event.fwd_from:
 
         return
-
-    animation_interval = 0.1
-
-    animation_ttl = range(0, 100)
 
     input_str = event.pattern_match.group(1)
 
@@ -2525,6 +2500,10 @@ async def _(event):
 
         ]
 
+        animation_interval = 0.1
+
+        animation_ttl = range(100)
+
         for i in animation_ttl:
 
             await asyncio.sleep(animation_interval)
@@ -2534,16 +2513,11 @@ async def _(event):
 
 
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
 
     if event.fwd_from:
 
         return
-
-    animation_interval = 1
-
-    animation_ttl = range(0, 11)
 
     input_str = event.pattern_match.group(1)
 
@@ -2575,6 +2549,10 @@ async def _(event):
 
         ]
 
+        animation_interval = 1
+
+        animation_ttl = range(11)
+
         for i in animation_ttl:
 
             await asyncio.sleep(animation_interval)
@@ -2583,16 +2561,11 @@ async def _(event):
 
 
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
 
     if event.fwd_from:
 
         return
-
-    animation_interval = 2
-
-    animation_ttl = range(0, 6)
 
     input_str = event.pattern_match.group(1)
 
@@ -2616,6 +2589,10 @@ async def _(event):
 
         ]
 
+        animation_interval = 2
+
+        animation_ttl = range(6)
+
         for i in animation_ttl:
 
             await asyncio.sleep(animation_interval)
@@ -2624,16 +2601,11 @@ async def _(event):
 
 
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
 
     if event.fwd_from:
 
         return
-
-    animation_interval = 2
-
-    animation_ttl = range(0, 6)
 
     input_str = event.pattern_match.group(1)
 
@@ -2657,6 +2629,10 @@ async def _(event):
 
         ]
 
+        animation_interval = 2
+
+        animation_ttl = range(6)
+
         for i in animation_ttl:
 
             await asyncio.sleep(animation_interval)
@@ -2667,16 +2643,11 @@ async def _(event):
 
 
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
 
     if event.fwd_from:
 
         return
-
-    animation_interval = 1
-
-    animation_ttl = range(0, 14)
 
     input_str = event.pattern_match.group(1)
 
@@ -2714,6 +2685,10 @@ async def _(event):
 
         ]
 
+        animation_interval = 1
+
+        animation_ttl = range(14)
+
         for i in animation_ttl:
 
             await asyncio.sleep(animation_interval)
@@ -2722,16 +2697,11 @@ async def _(event):
 
 
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
 async def _(event):
 
     if event.fwd_from:
 
         return
-
-    animation_interval = 1
-
-    animation_ttl = range(0, 13)
 
     input_str = event.pattern_match.group(1)
 
@@ -2767,6 +2737,10 @@ async def _(event):
 
         ]
 
+        animation_interval = 1
+
+        animation_ttl = range(13)
+
         for i in animation_ttl:
 
             await asyncio.sleep(animation_interval)
@@ -2774,9 +2748,6 @@ async def _(event):
             await event.edit(animation_chars[i % 13])
 
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
-
-
 async def _(event):
 
 
@@ -2786,14 +2757,6 @@ async def _(event):
 
 
         return
-
-
-
-    animation_interval = 9
-
-
-
-    animation_ttl = range(0, 15)
 
 
 
@@ -2811,7 +2774,7 @@ async def _(event):
 
         animation_chars = [
 
-        
+
 
             "Uploading File From Telegram To Whatsapp...",
 
@@ -2847,6 +2810,14 @@ async def _(event):
 
 
 
+        animation_interval = 9
+
+
+
+        animation_ttl = range(15)
+
+
+
         for i in animation_ttl:
 
 
@@ -2859,9 +2830,6 @@ async def _(event):
 		
 		
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
-
-
-
 async def _(event):
 
 
@@ -2876,11 +2844,7 @@ async def _(event):
 
     animation_interval = 1
 
-    
 
-
-
-    animation_ttl = range(0, 103)
 
 
 
@@ -2927,6 +2891,10 @@ async def _(event):
             "@admin"
 
         ]
+
+
+
+        animation_ttl = range(103)
 
 
 
