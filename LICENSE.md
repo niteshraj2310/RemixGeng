@@ -1,13 +1,13 @@
-                    RAPHIELSCAPE PUBLIC LICENSE
-                     Version 1.d, February 2020
+                         RAPHIELSCAPE PUBLIC LICENSE
+                         Version 1.d, February 2020
 
-  Copyright (C) 2020 Devscapes Open Source Holding GmbH.
+             Copyright (C) 2020 Devscapes Open Source Holding GmbH.
 
-  Everyone is permitted to copy and distribute verbatim copies
-of this license document, and changing it is prohibited.
+          Everyone is permitted to copy and distribute verbatim copies
+          of this license document, and changing it is prohibited.
 
-                    RAPHIELSCAPE PUBLIC LICENSE
-                        A-1. DEFINITIONS
+                        RAPHIELSCAPE PUBLIC LICENSE
+                             A-1. DEFINITIONS
 
   0. “This License” refers to version 1.d of the Raphielscape Public License.
 
@@ -120,4 +120,4 @@ by the Devscapes Open Source Holding GmbH. If the Program does not specify a
 version number of the Raphielscape Public License, you may use the latest version
 published by the Devscapes Open Source Holding GmbH.
 
-                             END OF LICENSE
+                              END OF LICENSE
