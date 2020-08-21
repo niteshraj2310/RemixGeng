@@ -1,4 +1,3 @@
-pylint
 name: PyLint
 
 on: [push, pull_request]
@@ -32,4 +31,3 @@ jobs:
           commit_user_name: niteshrah2310
           commit_user_email: niteshraj231@outlook.com
           commit_author: Nitesh_XD <niteshrah231@outlook.com>
-
