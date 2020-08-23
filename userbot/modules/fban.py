@@ -30,7 +30,7 @@ async def fban(event):
 
     if fban_id == self_user.id or fban_id == "@" + self_user.username:
         return await event.edit(
-            "**Error: This action has been prevented by One4uBot self preservation protocols.**"
+            "**Error: This action has been prevented by remix self preservation protocols.**"
         )
 
     if isinstance(fban_id, int):
@@ -59,7 +59,8 @@ async def fban(event):
                                                 message=reply,
                                                 clear_mentions=True)
 
-                if "New FedBan" not in reply.text:
+                if ("New FedBan" not in reply.text) and ("Starting a federation ban" not in reply.text) and (
+                        "Start a federation ban" not in reply.text) and ("FedBan reason updated" not in reply.text):
                     failed.append(i.fed_name)
         except BaseException:
             failed.append(i.fed_name)
@@ -125,7 +126,8 @@ async def unfban(event):
                                                 message=reply,
                                                 clear_mentions=True)
 
-                if "New un-FedBan" not in reply.text:
+                if ("New un-FedBan" not in reply.text) and (
+                        "I'll give" not in reply.text) and ("Un-FedBan" not in reply.text):
                     failed.append(i.fed_name)
         except BaseException:
             failed.append(i.fed_name)
