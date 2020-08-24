@@ -25,7 +25,7 @@ UNAPPROVED_MSG = (
     "`Please wait for my master to look in, he mostly approves PMs.\n\n`"
     "`As far as I know, he doesn't usually approve retards though.`")
     "`Until then, please don't spam My PM or you will get blocked...\n`"
-    "`Thank You\n\n`"
+    "`Thank You\n\n`")
 # =================================================================
 
 NO_PM_LOG_USERS = []
