@@ -92,7 +92,7 @@ async def ocr_space_file(filename,
         )
     return r.json()
 
-DOGBIN_URL = "https://del.dog/"    
+DOGBIN_URL = "https://del.dog/"
 
 @register(outgoing=True, pattern="^.crblang (.*)")
 async def setlang(prog):
@@ -164,12 +164,12 @@ async def carbon_api(e):
     driver.quit()
     # Removing carbon.png after uploading
     await e.delete()  # Deleting msg
-    
-    
+
+
 @register(outgoing=True, pattern="^.img (.*)")
 async def img_sampler(event):
     """ For .img command, search and return images matching the query. """
-    await event.edit("Processing...")
+    await event.edit("`Processing...`")
     query = event.pattern_match.group(1)
     lim = findall(r"lim=\d+", query)
     try:
@@ -177,7 +177,7 @@ async def img_sampler(event):
         lim = lim.replace("lim=", "")
         query = query.replace("lim=" + lim[0], "")
     except IndexError:
-        lim = 5
+        lim = 10
     response = googleimagesdownload()
 
     # creating list of arguments
@@ -303,8 +303,8 @@ async def _(event):
         await event.edit("Text: **{}**\n\nMeaning: **{}**\n\nExample: __{}__".format(mean.word, mean.definition, mean.example))
     except asyncurban.WordNotFoundError:
         await event.edit("No result found for **" + word + "**")
-       
-               
+
+
 
 @register(outgoing=True, pattern=r"^.tts(?: |$)([\s\S]*)")
 async def text_to_speech(query):
@@ -690,7 +690,7 @@ async def ReTrieveURL(input_url):
                       headers=headers,
                       data=data,
                       allow_redirects=True,
-                      stream=True)    
+                      stream=True)
 
 @register(pattern=r".ocr (.*)", outgoing=True)
 async def ocr(event):
