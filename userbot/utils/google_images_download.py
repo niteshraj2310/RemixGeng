@@ -681,7 +681,7 @@ class googleimagesdownload:
                 download_message = "URLError on an image...trying next one..." + " Error: " + str(e)
                 return_image_name = ''
                 absolute_path = ''
-                
+
             except BadStatusLine as e:
                 download_status = 'fail'
                 download_message = "BadStatusLine on an image...trying next one..." + " Error: " + str(e)
@@ -758,7 +758,7 @@ class googleimagesdownload:
         end_object = s.find('</script>', start_object + 1) - 4
         object_raw = str(s[start_object:end_object])
         object_decode = bytes(object_raw[:-1], "utf-8").decode("unicode_escape")
-        image_objects = json.loads(object_decode)[31][0][12][2]
+        image_objects = json.loads(object_decode[:-15])[31][0][12][2]
         return image_objects
 
     def _get_all_items(self,page,main_directory,dir_name,limit,arguments):
