@@ -14,6 +14,7 @@ import argparse
 import os
 import time  # Importing the time library to check the time of code execution
 import sys
+import ast
 version = (3, 0)
 cur_version = sys.version_info
 if cur_version >= version:  # If the Current Version of Python is 3.0 or above
@@ -32,6 +33,18 @@ else:  # If the Current Version of Python is 2.x
     import httplib
     from httplib import BadStatusLine
     httplib._MAXHEADERS = 1000
+<<<<<<< HEAD
+=======
+import time  # Importing the time library to check the time of code execution
+import os
+import argparse
+import ssl
+import datetime
+import json
+import re
+import codecs
+import socket
+>>>>>>> 1055f07c6657355dcb8840cc8739ed810fd2cda1
 
 args_list = [
     "keywords",
@@ -468,7 +481,11 @@ class googleimagesdownload:
         pass
 
     # Downloading entire Web Document (Raw Page Content)
+<<<<<<< HEAD
     def download_page(self, url):
+=======
+    def download_page(self,url):
+>>>>>>> 1055f07c6657355dcb8840cc8739ed810fd2cda1
         version = (3, 0)
         cur_version = sys.version_info
         if cur_version >= version:  # If the Current Version of Python is 3.0 or above
@@ -504,8 +521,12 @@ class googleimagesdownload:
                 return "Page Not found"
 
     # Download Page for more than 100 images
+<<<<<<< HEAD
 
     def download_extended_page(self, url, chromedriver):
+=======
+    def download_extended_page(self,url,chromedriver):
+>>>>>>> 1055f07c6657355dcb8840cc8739ed810fd2cda1
         from selenium import webdriver
         from selenium.webdriver.common.keys import Keys
         if sys.version_info[0] < 3:
@@ -539,7 +560,7 @@ class googleimagesdownload:
 
         try:
             browser.find_element_by_id("smb").click()
-            for _ in range(50):
+            for i in range(50):
                 element.send_keys(Keys.PAGE_DOWN)
                 time.sleep(0.3)  # bot id protection
         except BaseException:
@@ -558,7 +579,12 @@ class googleimagesdownload:
 
     # Correcting the escape characters for python2
 
+<<<<<<< HEAD
     def replace_with_byte(self, match):
+=======
+    #Correcting the escape characters for python2
+    def replace_with_byte(self,match):
+>>>>>>> 1055f07c6657355dcb8840cc8739ed810fd2cda1
         return chr(int(match.group(0)[1:], 8))
 
     def repair(self, brokenjson):
@@ -567,8 +593,12 @@ class googleimagesdownload:
         return invalid_escape.sub(self.replace_with_byte, brokenjson)
 
     # Finding 'Next Image' from the given raw page
+<<<<<<< HEAD
 
     def get_next_tab(self, s):
+=======
+    def get_next_tab(self,s):
+>>>>>>> 1055f07c6657355dcb8840cc8739ed810fd2cda1
         start_line = s.find('class="dtviD"')
         if start_line == -1:  # If no links are found then give an error!
             end_quote = 0
@@ -621,7 +651,12 @@ class googleimagesdownload:
 
     # Format the object in readable format
 
+<<<<<<< HEAD
     def format_object(self, object):
+=======
+    #Format the object in readable format
+    def format_object(self,object):
+>>>>>>> 1055f07c6657355dcb8840cc8739ed810fd2cda1
         data = object[1]
         main = data[3]
         info = data[9]
@@ -638,7 +673,12 @@ class googleimagesdownload:
 
     # function to download single image
 
+<<<<<<< HEAD
     def single_image(self, image_url):
+=======
+    #function to download single image
+    def single_image(self,image_url):
+>>>>>>> 1055f07c6657355dcb8840cc8739ed810fd2cda1
         main_directory = "downloads"
         extensions = (".jpg", ".gif", ".png", ".bmp", ".svg", ".webp", ".ico")
         url = image_url
@@ -676,12 +716,19 @@ class googleimagesdownload:
             raise e
         except OSError as e:
             raise e
+<<<<<<< HEAD
         print(
             "completed ====> " +
             image_name.encode('raw_unicode_escape').decode('utf-8'))
         return
 
     def similar_images(self, similar_images):
+=======
+        print("completed ====> " + image_name.encode('raw_unicode_escape').decode('utf-8'))
+        return
+
+    def similar_images(self,similar_images):
+>>>>>>> 1055f07c6657355dcb8840cc8739ed810fd2cda1
         version = (3, 0)
         cur_version = sys.version_info
         if cur_version >= version:  # If the Current Version of Python is 3.0 or above
@@ -729,8 +776,13 @@ class googleimagesdownload:
             except BaseException:
                 return "Cloud not connect to Google Images endpoint"
 
+<<<<<<< HEAD
     # Building URL parameters
     def build_url_parameters(self, arguments):
+=======
+    #Building URL parameters
+    def build_url_parameters(self,arguments):
+>>>>>>> 1055f07c6657355dcb8840cc8739ed810fd2cda1
         if arguments['language']:
             lang = "&lr="
             lang_param = {
@@ -897,7 +949,12 @@ class googleimagesdownload:
 
     # measures the file size
 
+<<<<<<< HEAD
     def file_size(self, file_path):
+=======
+    #measures the file size
+    def file_size(self,file_path):
+>>>>>>> 1055f07c6657355dcb8840cc8739ed810fd2cda1
         if os.path.isfile(file_path):
             file_info = os.stat(file_path)
             size = file_info.st_size
@@ -907,8 +964,13 @@ class googleimagesdownload:
                 size /= 1024.0
             return size
 
+<<<<<<< HEAD
     # keywords from file
     def keywords_from_file(self, file_name):
+=======
+    #keywords from file
+    def keywords_from_file(self,file_name):
+>>>>>>> 1055f07c6657355dcb8840cc8739ed810fd2cda1
         search_keyword = []
         with codecs.open(file_name, 'r', encoding='utf-8-sig') as f:
             if '.csv' in file_name or '.txt' in file_name:
@@ -926,12 +988,16 @@ class googleimagesdownload:
         return search_keyword
 
     # make directories
+<<<<<<< HEAD
     def create_directories(
             self,
             main_directory,
             dir_name,
             thumbnail,
             thumbnail_only):
+=======
+    def create_directories(self,main_directory, dir_name,thumbnail,thumbnail_only):
+>>>>>>> 1055f07c6657355dcb8840cc8739ed810fd2cda1
         dir_name_thumbnail = dir_name + " - thumbnail"
         # make a search keyword  directory
         try:
@@ -951,6 +1017,10 @@ class googleimagesdownload:
             if e.errno != 17:
                 raise
         return
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1055f07c6657355dcb8840cc8739ed810fd2cda1
 
     # Download Image thumbnails
 
@@ -1228,8 +1298,12 @@ class googleimagesdownload:
             return final_object, end_object
 
     # Getting all links with the help of '_images_get_next_image'
+<<<<<<< HEAD
 
     def _get_image_objects(self, s):
+=======
+    def _get_image_objects(self,s):
+>>>>>>> 1055f07c6657355dcb8840cc8739ed810fd2cda1
         start_line = s.find("AF_initDataCallback({key: \\'ds:1\\'") - 10
         start_object = s.find('[', start_line + 1)
         end_object = s.find('</script>', start_object + 1) - 4
