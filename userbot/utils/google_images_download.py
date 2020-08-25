@@ -752,14 +752,14 @@ class googleimagesdownload:
 
     # Getting all links with the help of '_images_get_next_image'
     @staticmethod
-    def _get_image_objects(self, s):
+    def _get_image_objects(s):
         start_line = s.find("AF_initDataCallback({key: \\'ds:1\\'") - 10
         start_object = s.find('[', start_line + 1)
         end_object = s.find('</script>', start_object + 1) - 4
         object_raw = str(s[start_object:end_object])
-        object_decode = bytes(object_raw[:-1],
-                              "utf-8").decode("unicode_escape")
-        return json.loads(object_decode[:-15])[31][0][12][2]
+        object_decode = bytes(object_raw[:-1], "utf-8").decode("unicode_escape")
+        image_objects = json.loads(object_decode)[31][0][12][2]
+        return image_objects
 
     def _get_all_items(self,page,main_directory,dir_name,limit,arguments):
         items = []
