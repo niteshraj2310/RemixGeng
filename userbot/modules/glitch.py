@@ -73,7 +73,7 @@ async def glitch(event):
         await bot.send_file(
             event.chat_id,
             glitched,
-            reply_to_message_id= id)
+            reply_to_message_id=event_id)
         os.remove(glitched)
         await event.delete()
     elif cmd == "glitch":
@@ -91,7 +91,7 @@ async def glitch(event):
         await bot.send_file(
             event.chat_id,
             Glitched,
-            reply_to_message_id=id)
+            reply_to_message_id=event_id)
         os.remove(Glitched)
         await event.delete()
     for files in (remixsticker, glitch_file):
