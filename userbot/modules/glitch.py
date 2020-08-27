@@ -8,7 +8,7 @@ raped by @Nitesh_231 for RemixGeng kek :)
 import os
 from PIL import Image
 from glitch_this import ImageGlitcher
-from userbot import CMD_HELP
+from userbot import bot, CMD_HELP
 from userbot.events import register
 
 @register(pattern="^.(glitch|glitchs)(?: |$)(.*)", outgoing=True)
@@ -87,7 +87,7 @@ async def glitch(event):
             save_all=True,
             duration=DURATION,
             loop=LOOP)
-        await borg.send_file(
+        await bot.send_file(
             event.chat_id,
             Glitched,
             reply_to_message_id=id)
