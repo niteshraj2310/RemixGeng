@@ -7,7 +7,7 @@
 import re
 import hashlib
 import os.path
-from typing import Tuple, Union
+from typing import Tuple, Union, Optional
 from userbot import bot
 from telethon.tl.functions.channels import GetParticipantRequest
 from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator
