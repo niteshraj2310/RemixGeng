@@ -15,7 +15,7 @@ async def take_screen_shot(video_file: str, duration: int, path: str = '') -> Op
         print(err)
     return thumb_image_path if os.path.exists(thumb_image_path) else None
 
-# executing of terminal commands 
+# executing of terminal commands
 async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
     args = shlex.split(cmd)
     process = await asyncio.create_subprocess_exec(*args,
