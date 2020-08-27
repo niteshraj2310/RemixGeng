@@ -7,6 +7,7 @@
 from .chrome import chrome, options
 from .progress import progress
 from .google_images_download import googleimagesdownload
+from .take_screen_shit import take_screen_shot
 
 from .tools import (
     humanbytes,
