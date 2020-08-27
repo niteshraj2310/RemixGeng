@@ -22,7 +22,7 @@ EMOJI_PATTERN = re.compile(
     "\U0001F900-\U0001F9FF"  # Supplemental Symbols and Pictographs
     "\U0001FA00-\U0001FA6F"  # Chess Symbols
     "\U0001FA70-\U0001FAFF"  # Symbols and Pictographs Extended-A
-    "\U00002702-\U000027B0"  # Dingbats 
+    "\U00002702-\U000027B0"  # Dingbats
     "]+")
 
 
@@ -35,7 +35,7 @@ def deEmojify(inputString: str) -> str:
 
 async def waifu(animu):
 #"""Generate random waifu sticker with the text!"""
-     
+
     text = animu.pattern_match.group(1)
     if not text:
         if animu.is_reply:
@@ -133,5 +133,5 @@ CMD_HELP.update({
 \n\n`.hz` or `.hz [flip, x2, rotate (degree), background (number), black]`\
 \nUsage: Reply to a image / sticker to suit up!.\
 \n\n`.rst`\
-\nUsage: To stickerize your text with random sticker templates."    
-})    
+\nUsage: To stickerize your text with random sticker templates."
+})
