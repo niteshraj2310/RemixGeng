@@ -69,7 +69,7 @@ async def glitch(event):
         glitched = "./temp/" + "glitched.webp"
         glitch_img = glitcher.glitch_image(img, input, color_offset=True)
         glitch_img.save(glitched)
-        await borg.send_file(
+        await bot.send_file(
             event.chat_id,
             glitched,
             reply_to_message_id= id)
