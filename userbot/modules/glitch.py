@@ -22,7 +22,7 @@ async def glitch(event):
         return
     if not os.path.isdir("./temp/"):
         os.mkdir("./temp/")
-       id = event.reply_to_msg_id
+        id = event.reply_to_msg_id
     remixsticker = await reply.download_media(file = "./temp/")
     if not remixsticker.endswith(('.mp4','.webp','.tgs','.png','.jpg')):
         os.remove(remixsticker)
