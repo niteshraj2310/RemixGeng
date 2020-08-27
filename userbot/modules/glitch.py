@@ -11,7 +11,7 @@ from glitch_this import ImageGlitcher
 from userbot import CMD_HELP
 from userbot.events import register
 
-@register(pattern="^.glitch(?: |$)(.*)", outgoing=True)
+@register(pattern="^.(glitch|glitchs)(?: |$)(.*)", outgoing=True)
 async def glitch(event):
     await event.edit("```Glitching... 😁```")
     cmd = event.pattern_match.group(1)
