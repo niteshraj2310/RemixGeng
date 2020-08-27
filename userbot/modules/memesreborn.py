@@ -29,6 +29,7 @@ RAPE_STRINGS = [
      "`Tu sasti rendi hai Sabko pta hai😂`",
      "`Lodu Andha hai kya Yaha tera rape ho raha hai aur tu abhi tak yahi gaand mara raha hai lulz`",
 ]
+
 ABUSE_STRINGS = [
            "`Madharchod`",
 	   "`Gaandu`",
@@ -235,15 +236,15 @@ async def gtfo(e):
                      "`\n█▄▄▄▄▄▄▄███▄▄███▄▄██████▄▄▄▄▄▄█ `"
                      "`\n███████████████████████████████ `")
 
-@register(outgoing=True, pattern=r"^.f")
+@register(outgoing=True, pattern=r"^.F")
 async def fcmd(e):
     if e.text[0].isalpha() or e.text[0] in ("/", "#", "@", "!"):
         return
     message = e.text
 
-    if message[-1] == 'p' and message[-2] == 'f':
+    if message[-1] == 'p' and message[-2] == 'F':
         await e.edit("🤦‍♂")
-    elif message[-1] == 'f':
+    elif message[-1] == 'F':
         await e.edit("┏━━━┓\n┃┏━━┛\n┃┗━━┓\n┃┏━━┛\n┃┃\n┗┛")
 
     else:
