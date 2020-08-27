@@ -13,7 +13,7 @@ from userbot.events import register
 
 @register(pattern="^.(glitch|glitchs)(?: |$)(.*)", outgoing=True)
 async def glitch(event):
-    await event.edit("```Glitching... 😁```")
+    await event.edit("```Glitching Wait...🙂```")
     cmd = event.pattern_match.group(1)
     input = event.pattern_match.group(2)
     reply = await event.get_reply_message()
