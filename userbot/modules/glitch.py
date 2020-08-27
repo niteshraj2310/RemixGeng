@@ -46,12 +46,12 @@ async def glitch(event):
         if not os.path.lexists(file):
             await event.edit("`remixsticker not found...`")
             LOGS.info(stdout + stderr)
-        glitch_file = catfile
+        glitch_file = file
     elif remixsticker.endswith(".webp"):
         file = os.path.join("./temp/", "glitch.png")
         os.rename(remixsticker , file)
         if not os.path.lexists(file):
-            await cat.edit("`remixsticker not found... `")
+            await event.edit("`remixsticker not found... `")
             return
         glitch_file = file
     elif remixsticker.endswith(".mp4"):
