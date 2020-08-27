@@ -7,8 +7,7 @@ raped by @Nitesh_231 for RemixGeng kek :)
 
 import os
 from PIL import Image
-from ..utils import admin_cmd
-from . import take_screen_shot , runcmd
+from . import take_screen_shot
 from glitch_this import ImageGlitcher
 from userbot import bot, CMD_HELP
 from userbot.events import register
