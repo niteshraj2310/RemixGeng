@@ -1,7 +1,7 @@
 """
 designed By @Krishna_Singhal in userge
 ported to telethon by @mrconfused and @sandy1709
-raped by @Nitesh_231 for RemixGeng kek :)
+Modified by @Nitesh_231 for USERBOT kek :)  @heyworld roks 🤘
 
 """
 
@@ -23,7 +23,7 @@ async def glitch(event):
         return
     if not os.path.isdir("./temp/"):
         os.mkdir("./temp/")
-        reply_to_id = event.reply_to_msg_id
+    reply_to_id = event.reply_to_msg_id
     remixsticker = await reply.download_media(file = "./temp/")
     if not remixsticker.endswith(('.mp4','.webp','.tgs','.png','.jpg')):
         os.remove(remixsticker)
