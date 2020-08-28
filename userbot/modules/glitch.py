@@ -9,7 +9,7 @@ import os
 from PIL import Image
 from userbot.utils import take_screen_shot, runcmd
 from glitch_this import ImageGlitcher
-from userbot import bot, CMD_HELP
+from userbot import bot, CMD_HELP, LOGS
 from userbot.events import register
 
 @register(pattern="^.(glitch|glitchs)(?: |$)(.*)", outgoing=True)
@@ -97,14 +97,3 @@ async def glitch(event):
     for files in (remixsticker, glitch_file):
         if files and os.path.exists(files):
             os.remove(files)
-
-CMD_HELP.update({
-    "glitch":
-    "**SYNTAX : **`.glitch` reply to media file\
-    \n**USAGE :** glitches the given mediafile(gif , stickers , image, videos) to a gif and glitch range is from 1 to 8.\
-    If nothing is mentioned then by default it is 2\
-    \n\n**SYNTAX : **`.glitchs` reply to media file\
-    \n**USAGE :** glitches the given mediafile(gif , stickers , image, videos) to a sticker and glitch range is from 1 to 8.\
-    If nothing is mentioned then by default it is 2\
-    "
-})
