@@ -23,7 +23,7 @@ async def glitch(event):
         return
     if not os.path.isdir("./temp/"):
         os.mkdir("./temp/")
-        id = event.reply_to_msg_id
+        reply_to_id = event.reply_to_msg_id
     remixsticker = await reply.download_media(file = "./temp/")
     if not remixsticker.endswith(('.mp4','.webp','.tgs','.png','.jpg')):
         os.remove(remixsticker)
@@ -73,7 +73,7 @@ async def glitch(event):
         await bot.send_file(
             event.chat_id,
             glitched,
-            reply_to_message_id=event_id)
+            reply_to_message_id=reply_to_id)
         os.remove(glitched)
         await event.delete()
     elif cmd == "glitch":
@@ -91,7 +91,7 @@ async def glitch(event):
         await bot.send_file(
             event.chat_id,
             Glitched,
-            reply_to_message_id=event_id)
+            reply_to_message_id=reply_to_id)
         os.remove(Glitched)
         await event.delete()
     for files in (remixsticker, glitch_file):
