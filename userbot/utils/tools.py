@@ -108,4 +108,3 @@ async def take_screen_shot(video_file: str, duration: int, path: str = '') -> Op
     if err:
         LOGS.error(err)
     return thumb_image_path if os.path.exists(thumb_image_path) else None
-

@@ -1,7 +1,8 @@
 """
 designed By @Krishna_Singhal in userge
 ported to telethon by @mrconfused and @sandy1709
-Modified by @Nitesh_231 for USERBOT kek :)  @heyworld roks 🤘
+
+imported by @Nitesh_231 for USERBOT kek :) @heyworld roks🤘
 
 """
 
