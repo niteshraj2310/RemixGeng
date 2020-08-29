@@ -82,4 +82,3 @@ validators
 twitter_scraper
 glitch_this
 pyaztro
-glitch_this
