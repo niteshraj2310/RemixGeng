@@ -48,7 +48,6 @@ def deEmojify(inputString: str) -> str:
 
 
 @register(outgoing=True, pattern="^.waifu(?: |$)(.*)")
-
 async def waifu(animu):
 #"""Generate random waifu sticker with the text!"""
 
@@ -73,7 +72,7 @@ async def waifu(animu):
         return await animu.edit(
             "`You cannot send inline results in this chat (caused by SendInlineBotResultRequest)`"
         )
-    await sleep(5)
+    await sleep(3)
     await animu.delete()
 
 @register(outgoing=True, pattern=r'^.hz(:? |$)(.*)?')
@@ -152,5 +151,5 @@ CMD_HELP.update({
 \n\n`.hz` or `.hz [flip, x2, rotate (degree), background (number), black]`\
 \nUsage: Reply to a image / sticker to suit up!.\
 \n\n`.rst`\
-\nUsage: To stickerize your text with random sticker templates."    
+\nUsage: To stickerize your text with random sticker templates."
 })

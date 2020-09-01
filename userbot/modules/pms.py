@@ -220,18 +220,19 @@ async def disapprovepm(disapprvpm):
         aname = replied_user.id
         name0 = str(replied_user.first_name)
         dissprove(aname)
+        uid = replied_user.id
     else:
         dissprove(disapprvpm.chat_id)
         aname = await disapprvpm.client.get_entity(disapprvpm.chat_id)
         name0 = str(aname.first_name)
-
+        uid = disapprvpm.chat_id
     await disapprvpm.edit(
-        f"[{name0}](tg://user?id={disapprvpm.chat_id}) `Disaproved to PM!`")
+        f"[{name0}](tg://user?id={uid}) `Disaproved to PM!`")
 
     if BOTLOG:
         await disapprvpm.client.send_message(
             BOTLOG_CHATID,
-            f"[{name0}](tg://user?id={disapprvpm.chat_id})"
+            f"[{name0}](tg://user?id={uid})"
             " was disapproved to PM you.",
         )
 

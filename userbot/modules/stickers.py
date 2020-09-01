@@ -8,15 +8,13 @@
 import io
 import math
 import urllib.request
-from PIL import Image
 import asyncio
-from telethon.tl.types import InputPeerNotifySettings
+from PIL import Image
+from telethon.tl.types import InputPeerNotifySettings, DocumentAttributeSticker, InputStickerSetID
 from telethon.tl.functions.account import UpdateNotifySettingsRequest
 from userbot import bot, CMD_HELP
 from userbot.events import register
 from telethon.tl.functions.messages import GetStickerSetRequest
-from telethon.tl.types import InputStickerSetID
-from telethon.tl.types import DocumentAttributeSticker
 
 PACK_FULL = "Whoa! That's probably enough stickers for one pack, give it a break. \
 A pack can't have more than 120 stickers at the moment."
@@ -166,7 +164,7 @@ async def kang(event):
         f"{emoji} as the emoji! "
         f"This pack can be found `[here](t.me/addstickers/{packname})",
         parse_mode='md')
-    await asyncio.sleep(7.5)
+    await asyncio.sleep(5)
     await event.delete()
 
 
