@@ -305,7 +305,7 @@ with bot:
             "Please generate proper group id and set.You can ask in @PPE_Support if you need help")
         sys.exit(1)
 
-StartTime = time.time()        
+StartTime = time.time()
 
 # Global Variables
 COUNT_MSG = 0

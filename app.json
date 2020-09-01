@@ -32,7 +32,7 @@
     },
     "MONGO_URI": {
             "description": "Your MongoDB Atlas URL, Get your guide from https://telegra.ph/Mongo-DB-12-24.",
-            "required": false 
+            "required": false
     },
     "NC_LOG_P_M_S": {
       "description": "set to True if you want to log PMs to your PM_LOGGR_BOT_API_ID",
