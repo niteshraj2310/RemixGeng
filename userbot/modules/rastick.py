@@ -113,5 +113,5 @@ async def rastick(animu):
         return await animu.edit(
             "`You cannot send inline results in this chat (caused by SendInlineBotResultRequest)`"
         )
-    await sleep(5)
+    await sleep(2)
     await animu.delete()

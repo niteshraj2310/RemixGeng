@@ -10,8 +10,8 @@ logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s'
                     level=logging.WARNING)
 import asyncio
 import os
-from datetime import datetime
 import requests
+from datetime import datetime
 from telethon import events
 from userbot import bot, TEMP_DOWNLOAD_DIRECTORY, BOTLOG_CHATID, LOGS, CMD_HELP, BOTLOG
 from telethon.errors.rpcerrorlist import YouBlockedUserError
@@ -20,7 +20,7 @@ from userbot.events import register
 
 def progress(current, total):
     logging.info("Downloaded {} of {}\nCompleted {}".format(current, total, (current / total) * 100))
-    
+
 
 
 DOGBIN_URL = "https://del.dog/"
@@ -66,7 +66,7 @@ async def _(event):
         await event.edit("Pasted to dogbin : [dog]({}) in {} seconds. GoTo Original URL: [link]({})".format(url, ms, nurl))
     else:
         await event.edit("Pasted to dogbin : [dog]({}) in {} seconds".format(url, ms))
-        
+
 
 @register(outgoing=True, pattern="^.getpaste(?: |$)(.*)")
 async def get_dogbin_content(dog_url):
@@ -118,8 +118,8 @@ async def get_dogbin_content(dog_url):
         )
 
 
-      
-        
+
+
 @register(outgoing=True, pattern=r"^.neko(?: |$)([\s\S]*)")
 async def _(event):
     if event.fwd_from:
@@ -167,10 +167,10 @@ async def _(event):
         await event.edit(reply_text)
 
 
- 
-    
-    
-    
+
+
+
+
 @register(outgoing=True, pattern=r"^.iffuci(?: |$)([\s\S]*)")
 async def _(event):
     if event.fwd_from:
@@ -256,11 +256,11 @@ async def _(event):
     else:
       await event.edit("**Making instant view...**")
       async with event.client.conversation(chat) as conv:
-            try:     
+            try:
                 response = conv.wait_event(events.NewMessage(incoming=True,from_users=272572121))
                 await event.client.send_message(chat, url)
-                response = await response 
-            except YouBlockedUserError: 
+                response = await response
+            except YouBlockedUserError:
                 await event.reply("```Please unblock me (@chotamreaderbot) u Nigga```")
                 return
             await event.delete()
@@ -278,4 +278,4 @@ CMD_HELP.update({
 \nUsage: Create a paste or a shortened url using iffuci\
 \n\n`.paster` <text/reply>\
 \nUsage: Create a instant view or a paste it in telegraph file."
-})  
+})

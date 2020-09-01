@@ -1,14 +1,14 @@
 #credits to the respective owner xD
-#imported by @heyworld 
-import requests , re , random 
+#imported by @heyworld
+import requests , re , random
 
-import urllib , os 
+import urllib , os
 
 from telethon.tl import functions
 
 import asyncio
 
-from userbot.events import register 
+from userbot.events import register
 
 COLLECTION_STRING = [
 
@@ -110,7 +110,7 @@ async def main(event):
 
         await animepp()
 
-        file = await event.client.upload_file("donottouch.jpg")  
+        file = await event.client.upload_file("donottouch.jpg")
 
         await event.client(functions.photos.UploadProfilePhotoRequest( file))
 

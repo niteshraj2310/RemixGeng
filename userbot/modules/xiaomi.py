@@ -24,7 +24,7 @@ async def _(event):
         else:
            await event.delete()
            await bot.forward_messages(event.chat_id, response.message)
-                
+
 @register(outgoing=True, pattern="^.fastboot(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
@@ -44,8 +44,8 @@ async def _(event):
         else:
            await event.delete()
            await bot.forward_messages(event.chat_id, response.message)
-                
-                
+
+
 @register(outgoing=True, pattern="^.recovery(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
@@ -65,7 +65,7 @@ async def _(event):
         else:
            await event.delete()
            await bot.forward_messages(event.chat_id, response.message)
-                
+
 @register(outgoing=True, pattern="^.pb(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
@@ -85,7 +85,7 @@ async def _(event):
         else:
            await event.delete()
            await bot.forward_messages(event.chat_id, response.message)
-                
+
 @register(outgoing=True, pattern="^.of(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
@@ -164,7 +164,7 @@ async def _(event):
             return
         else:
            await event.delete()
-           await bot.forward_messages(event.chat_id, response.message)             
+           await bot.forward_messages(event.chat_id, response.message)
 
 
 CMD_HELP.update({

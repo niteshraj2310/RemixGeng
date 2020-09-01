@@ -14,7 +14,7 @@ from userbot import bot, TEMP_DOWNLOAD_DIRECTORY, CMD_HELP
 
 @register(outgoing=True, pattern=r'^.df(:? |$)([1-8])?')
 async def _(fry):
-    await fry.edit("`Sending information...`")
+    await fry.edit("``Plox Donate Some Musturad Oil``")
     level = fry.pattern_match.group(2)
     if fry.fwd_from:
         return
