@@ -1,13 +1,29 @@
 #imported from ppe-remix by @heyworld & @DeletedUser420
 #Based Code by @adekmaulana
 #Improve by @aidilaryanto
+from asyncio import sleep
+from random import choice, getrandbits, randint
 import re
+from re import sub
 import random
+import datetime
+import asyncio
 from telethon.errors.rpcerrorlist import YouBlockedUserError
+from os import execl
+import time
+from telethon import events
+from collections import deque
+import requests
+import sys
 import os
+import io
+import html
+import json
+from PIL import ImageEnhance, ImageOps
 
 from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
+from userbot.modules.admin import get_user_from_event
 
 
 EMOJI_PATTERN = re.compile(
@@ -86,13 +102,16 @@ async def _(hazmat):
                           m,
                           reply_to=msg.id)
                 r = await conv.get_response()
+                response = await conv.get_response()
             elif reply_message.gif:
-                m = "/hazmat"
+                m = f"/hazmat"
                 msg_reply = await conv.send_message(
                           m,
                           reply_to=msg.id)
                 r = await conv.get_response()
-            response = await conv.get_response()
+                response = await conv.get_response()
+            else:
+                response = await conv.get_response()
             """ - don't spam notif - """
             await bot.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
@@ -133,5 +152,5 @@ CMD_HELP.update({
 \n\n`.hz` or `.hz [flip, x2, rotate (degree), background (number), black]`\
 \nUsage: Reply to a image / sticker to suit up!.\
 \n\n`.rst`\
-\nUsage: To stickerize your text with random sticker templates."
+\nUsage: To stickerize your text with random sticker templates."    
 })
