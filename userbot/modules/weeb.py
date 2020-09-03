@@ -44,7 +44,7 @@ async def pat(e):
 
 @register(outgoing=True, pattern="^\.pgif(?: |$)(.*)")
 async def pussyg(e):
-    await e.edit("`Finding some pussy gifs...`")
+    await e.edit("`Finding some pumssy camt gifs...`")
     await sleep(2)
     target = 'pussy'
     await bot.send_file(e.chat_id, nekos.img(target), reply_to=e.reply_to_msg_id)
@@ -53,7 +53,7 @@ async def pussyg(e):
 
 @register(outgoing=True, pattern="^\.pjpg(?: |$)(.*)")
 async def pussyp(e):
-    await e.edit("`Finding some pussy pics...`")
+    await e.edit("`Finding some pumssy camt pics...`")
     await sleep(2)
     target = 'pussy_jpg'
     await bot.send_file(e.chat_id, nekos.img(target), reply_to=e.reply_to_msg_id)
