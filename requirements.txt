@@ -87,4 +87,4 @@ glitch_this
 twitter_scraper
 pyaztro
 jikanpy
-nekos
+nekospy
