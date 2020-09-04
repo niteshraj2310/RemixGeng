@@ -171,7 +171,7 @@ async def upstream(event):
         await event.edit(
             f'\n`{TERM_ALIAS} is` **updated-af🤘🤘**\n`BRANCH:`**{UPSTREAM_REPO_BRANCH}**\n')
         return repo.__del__()
-        await asyncio.sleep(7.5)
+        await asyncio.sleep(3)
         await event.delete()
 
     if conf is None and not force_update:
