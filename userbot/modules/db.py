@@ -30,7 +30,3 @@ async def amireallydbs(dbs):
                      f"`Database status: {db}\n`"
                      f"`OUB-REMIX: {BOT_VER}`"
                      "")
-                     
-                     
-                     
-

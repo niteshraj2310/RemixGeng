@@ -4,7 +4,7 @@ import random
 import requests
 from userbot.events import register
 
-@register(outgoing=True, pattern="^.quote(?: |$)(.*)")
+@register(outgoing=True, pattern="^.lmao(?: |$)(.*)")
 async def quote_search(event):
     if event.fwd_from:
         return
