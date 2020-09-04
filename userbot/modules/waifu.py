@@ -72,7 +72,7 @@ async def waifu(animu):
         return await animu.edit(
             "`You cannot send inline results in this chat (caused by SendInlineBotResultRequest)`"
         )
-    await sleep(3)
+    await sleep(2)
     await animu.delete()
 
 @register(outgoing=True, pattern=r'^.hz(:? |$)(.*)?')
