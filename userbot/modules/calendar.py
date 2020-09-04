@@ -4,7 +4,11 @@ from userbot.events import register
 
 @register(pattern="^.(cal)(?: |$)(.*)", outgoing=True)
 async def cal_(event ):
-
+   try:
+      input_ = calendar.month(int(year.strip()), int(month.strip()))
+        await event.edit(f"```{input_}```")
+    except Exception as e:
+        await event.err(e)
     if not event.input_str:
         await event.err(
             "I don't found any input text"
@@ -15,8 +19,3 @@ async def cal_(event ):
         return
     await event.edit("`Searching...`")
     year, month = message.input_str.split('|', maxsplit=1)
-    try:
-        input_ = calendar.month(int(year.strip()), int(month.strip()))
-        await event.edit(f"```{input_}```")
-    except Exception as e:
-        await event.err(e)
