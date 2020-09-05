@@ -1,5 +1,5 @@
 #imported from catuserbot by @RoyalBoyPriyanshu and @DeletedUser420 also thanks  @AbhinavShinde
-"""  Some Modules Imported by @Nitesh_231 :) """
+"""  Some Modules Imported by @Nitesh_231 :) & Again @heyworld roks *_* """
 
 import os, requests, re, nekos, pybase64, random, asyncio
 from random import choice
@@ -330,7 +330,7 @@ async def nekobot(event):
         await event.client(file)
     except:
         pass
-    download_location = await bot.download_media(replied , Config.TMP_DOWNLOAD_DIRECTORY)
+    download_location = await bot.download_media(replied , TMP_DOWNLOAD_DIRECTORY)
     if download_location.endswith((".webp")):
         download_location = convert_toimage(download_location)
     size = os.stat(download_location).st_size
