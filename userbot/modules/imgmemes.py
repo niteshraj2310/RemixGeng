@@ -330,7 +330,7 @@ async def nekobot(event):
         await event.client(file)
     except:
         pass
-    download_location = await bot.download_media(replied , TMP_DOWNLOAD_DIRECTORY)
+    download_location = await bot.download_media(replied , TEMP_DOWNLOAD_DIRECTORY)
     if download_location.endswith((".webp")):
         download_location = convert_toimage(download_location)
     size = os.stat(download_location).st_size
