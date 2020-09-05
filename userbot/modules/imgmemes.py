@@ -466,7 +466,7 @@ async def phub(event):
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
     if not replied:
-         await event.edit("reply to a supported media file")
+        await event.edit("reply to a supported media file")
         return
     if replied.media:
         await event.edit("passing to telegraph...")
