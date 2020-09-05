@@ -311,7 +311,7 @@ async def tweet(event):
     await event.delete()
     await purge()
 
-@register(pattern="^.therat(?: |$)(.*)", outgoing=True)
+@register(pattern="^.threat(?: |$)(.*)", outgoing=True)
 async def nekobot(event):
     replied = await event.get_reply_message()
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
