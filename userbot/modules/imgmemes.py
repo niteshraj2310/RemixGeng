@@ -1,7 +1,7 @@
 #imported from catuserbot by @RoyalBoyPriyanshu and @DeletedUser420 also thanks  @AbhinavShinde
 """  Some Modules Imported by @Nitesh_231 :) & Again @heyworld roks *_* """
 
-import os, requests, re, nekos, pybase64, random, asyncio
+import os, requests, re, pybase64, random, asyncio
 from random import choice
 from bs4 import BeautifulSoup
 from re import sub
@@ -460,7 +460,7 @@ async def phub(event):
     if "|" in input_str:
         username, text = input_str.split("|")
     else:
-        await event.edit(" Usage: reply to image or sticker with `.phub (username)|(text in comment)`")
+        await event.edit(" Usage: reply to image or sticker with `.ph (username)|(text in comment)`")
         return
     replied = await event.get_reply_message()
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
