@@ -825,7 +825,9 @@ CMD_HELP.update({
 \n\n`.ls` <directory>.\
 \nUsage:Get list file inside directory.\
 \n\n<`.modi` or `.trump` or `.cmm` or `.kanna`> <text>\
-\n\nUsage: just for fun.\
+\nUsage: Just for Fun.\
+\n\n<`.ph` or `.threat` or `.trash` or `.trap` >\
+\nUsage: Reply to image or sticker and see magik.\
 \n\n`.hc` **sign**\
 \nExample:`.hc scorpio`\
 \nUsage:Gets your horoscope.\
