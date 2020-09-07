@@ -1,11 +1,12 @@
-import os
+import os, time, asyncio
+from asyncio import sleep
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from urllib.parse import quote_plus
 from userbot import CMD_HELP, CHROME_DRIVER, GOOGLE_CHROME_BIN
 from userbot.events import register
-
+from telethon.tl.types import DocumentAttributeAudio
 
 CARBONLANG = "auto"
 TTS_LANG = "en"
@@ -82,7 +83,7 @@ async def carbon_api(e):
     driver.quit()
     # Removing carbon.png after uploading
     await e.delete()  # Deleting msg
-    
+
 
 @register(outgoing=True, pattern="^.carbon2")
 async def carbon_api(e):
@@ -148,7 +149,7 @@ async def carbon_api(e):
     driver.quit()
     # Removing carbon.png after uploading
     await e.delete()  # Deleting msg
-    
+
 
 @register(outgoing=True, pattern="^.carbon3")
 async def carbon_api(e):
@@ -214,8 +215,8 @@ async def carbon_api(e):
     driver.quit()
     # Removing carbon.png after uploading
     await e.delete()  # Deleting msg
-    
-    
+
+
 @register(outgoing=True, pattern="^.carbon4")
 async def carbon_api(e):
     """ A Wrapper for carbon.now.sh """
@@ -280,7 +281,7 @@ async def carbon_api(e):
     driver.quit()
     # Removing carbon.png after uploading
     await e.delete()  # Deleting msg
-    
+
 
 @register(outgoing=True, pattern="^.carbon5")
 async def carbon_api(e):
@@ -346,8 +347,8 @@ async def carbon_api(e):
     driver.quit()
     # Removing carbon.png after uploading
     await e.delete()  # Deleting msg
- 
-    
+
+
 CMD_HELP.update({
     "carbon":
     "`.carbon`value <values=1,2,3,4,5>\
