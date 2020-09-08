@@ -363,7 +363,7 @@ with bot:
         @tgbot.on(events.NewMessage(pattern="/start"))
         async def handler(event):
             if event.message.from_id != uid:
-                await event.reply("I'm [尺 乇 从 工 乂 厶 乇 𠘨 厶](https://github.com/niteshraj2310/RemixGeng) modules helper...\nplease make your own bot, don't use mine 😋")
+                await event.reply("I'm [尺 乇 从 工 乂 厶 乇 𠘨 厶](https://github.com/niteshraj2310/RemixGeng) modules helper...\n Abey Saley please make your own bot, don't use mine 😋")
             else:
                 await event.reply(f"`Hey there {ALIVE_NAME}\n\nI work for you :)`")
 
