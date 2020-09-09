@@ -8,6 +8,7 @@ async def create_poll(event):
     """" Create poll """
     options = ["Yes, Sure 😎", "No interest 🙄", "What..? 😳😳🤔🤔"]
     anonymous = True
+    replied = event.reply_to_message
     if replied:
         query = "Do you agree with that replied Suggestion..?"
         event_id = replied.message_id
