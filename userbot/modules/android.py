@@ -10,6 +10,7 @@ import re
 import os
 import time
 import math
+import json
 
 from requests import get
 from bs4 import BeautifulSoup
@@ -19,13 +20,11 @@ from userbot.events import register
 from userbot.utils import chrome, humanbytes, time_formatter, md5, human_to_bytes
 
 GITHUB = 'https://github.com'
-DEVICES_DATA = 'https://raw.githubusercontent.com/wulan17/' \
-               'certified-android-devices/master/devices.json'
 
 
 @register(outgoing=True, pattern="^.magisk$")
 async def magisk(request):
-    """magisk latest releases"""
+    """ magisk latest releases """
     magisk_dict = {
         "Stable":
         "https://raw.githubusercontent.com/topjohnwu/magisk_files/master/stable.json",
@@ -47,29 +46,26 @@ async def magisk(request):
 async def device_info(request):
     """ get android device basic info from its codename """
     textx = await request.get_reply_message()
-    device = request.pattern_match.group(1)
-    if device:
+    codename = request.pattern_match.group(1)
+    if codename:
         pass
     elif textx:
-        device = textx.text
+        codename = textx.text
     else:
-        return await request.edit("`Usage: .device <codename> / <model>`")
-    found = [
-        i for i in get(DEVICES_DATA).json()
-        if i["device"] == device or i["model"] == device
-    ]
-    if found:
-        reply = f'Search results for {device}:\n\n'
-        for item in found:
-            brand = item['brand']
-            name = item['name']
-            codename = item['device']
-            model = item['model']
-            reply += f'{brand} {name}\n' \
-                f'**Codename**: `{codename}`\n' \
-                f'**Model**: {model}\n\n'
+        await request.edit("`Usage: .device <codename> / <model>`")
+        return
+    data = json.loads(
+        get("https://raw.githubusercontent.com/androidtrackers/"
+            "certified-android-devices/master/by_device.json").text)
+    results = data.get(codename)
+    if results:
+        reply = f"**Search results for {codename}**:\n\n"
+        for item in results:
+            reply += f"**Brand**: {item['brand']}\n" \
+                     f"**Name**: {item['name']}\n" \
+                     f"**Model**: {item['model']}\n\n"
     else:
-        reply = f"`Couldn't find info about {device}!`\n"
+        reply = f"`Couldn't find info about {codename}!`\n"
     await request.edit(reply)
 
 
@@ -79,29 +75,34 @@ async def codename_info(request):
     textx = await request.get_reply_message()
     brand = request.pattern_match.group(1).lower()
     device = request.pattern_match.group(2).lower()
+
     if brand and device:
         pass
     elif textx:
         brand = textx.text.split(' ')[0]
         device = ' '.join(textx.text.split(' ')[1:])
     else:
-        return await request.edit("`Usage: .codename <brand> <device>`")
-    found = [
-        i for i in get(DEVICES_DATA).json()
-        if i["brand"].lower() == brand and device in i["name"].lower()
+        await request.edit("`Usage: .codename <brand> <device>`")
+        return
+
+    data = json.loads(
+        get("https://raw.githubusercontent.com/androidtrackers/"
+            "certified-android-devices/master/by_brand.json").text)
+    devices_lower = {k.lower(): v
+                     for k, v in data.items()}  # Lower brand names in JSON
+    devices = devices_lower.get(brand)
+    results = [
+        i for i in devices if i["name"].lower() == device.lower()
+        or i["model"].lower() == device.lower()
     ]
-    if len(found) > 8:
-        found = found[:8]
-    if found:
-        reply = f'Search results for {brand.capitalize()} {device.capitalize()}:\n\n'
-        for item in found:
-            brand = item['brand']
-            name = item['name']
-            codename = item['device']
-            model = item['model']
-            reply += f'{brand} {name}\n' \
-                f'**Codename**: `{codename}`\n' \
-                f'**Model**: {model}\n\n'
+    if results:
+        reply = f"**Search results for {brand} {device}**:\n\n"
+        if len(results) > 8:
+            results = results[:8]
+        for item in results:
+            reply += f"**Device**: {item['device']}\n" \
+                     f"**Name**: {item['name']}\n" \
+                     f"**Model**: {item['model']}\n\n"
     else:
         reply = f"`Couldn't find {device} codename!`\n"
     await request.edit(reply)
@@ -126,9 +127,10 @@ async def download_api(dl):
     await dl.edit("`Getting information...`")
     driver.get(URL)
     error = driver.find_elements_by_class_name("swal2-content")
-    if len(error) > 0 and error[0].text == "File Not Found.":
-        await dl.edit(f"`FileNotFoundError`: {URL} is not found.")
-        return
+    if len(error) > 0:
+        if error[0].text == "File Not Found.":
+            await dl.edit(f"`FileNotFoundError`: {URL} is not found.")
+            return
     datas = driver.find_elements_by_class_name('download__meta')
     """ - enumerate data to make sure we download the matched version - """
     md5_origin = None
@@ -143,7 +145,10 @@ async def download_api(dl):
             break
     if md5_origin is None and i is None:
         await dl.edit("`There is no match version available...`")
-    file_name = URL.split("/")[-2] if URL.endswith('/') else URL.split("/")[-1]
+    if URL.endswith('/'):
+        file_name = URL.split("/")[-2]
+    else:
+        file_name = URL.split("/")[-1]
     file_path = TEMP_DOWNLOAD_DIRECTORY + file_name
     download = driver.find_elements_by_class_name("download__btn")[i]
     download.click()
@@ -152,7 +157,7 @@ async def download_api(dl):
     display_message = None
     complete = False
     start = time.time()
-    while not complete:
+    while complete is False:
         if os.path.isfile(file_path + '.crdownload'):
             try:
                 downloaded = os.stat(file_path + '.crdownload').st_size
@@ -187,7 +192,7 @@ async def download_api(dl):
             f"`ETA` -> {time_formatter(eta)}"
         )
         if round(diff % 15.00) == 0 and display_message != current_message or (
-          downloaded == file_size):
+                downloaded == file_size):
             await dl.edit(current_message)
             display_message = current_message
         if downloaded == file_size:
@@ -211,7 +216,7 @@ async def download_api(dl):
     return
 
 
-@register(outgoing=True, pattern=r"^.spec(?: |)([\S]*)(?: |)([\s\S]*)")
+@register(outgoing=True, pattern=r"^.specs(?: |)([\S]*)(?: |)([\s\S]*)")
 async def devices_specifications(request):
     """ Mobile devices specifications """
     textx = await request.get_reply_message()
@@ -223,7 +228,8 @@ async def devices_specifications(request):
         brand = textx.text.split(' ')[0]
         device = ' '.join(textx.text.split(' ')[1:])
     else:
-        return await request.edit("`Usage: .spec <brand> <device>`")
+        await request.edit("`Usage: .specs <brand> <device>`")
+        return
     all_brands = BeautifulSoup(
         get('https://www.devicespecifications.com/en/brand-more').content,
         'lxml').find('div', {
@@ -252,12 +258,12 @@ async def devices_specifications(request):
     reply = ''
     for url in device_page_url:
         info = BeautifulSoup(get(url).content, 'lxml')
-        reply = '\n**' + info.title.text.split('-')[0].strip() + '**\n\n'
+        reply = '\n' + info.title.text.split('-')[0].strip() + '\n'
         info = info.find('div', {'id': 'model-brief-specifications'})
         specifications = re.findall(r'<b>.*?<br/>', str(info))
         for item in specifications:
             title = re.findall(r'<b>(.*?)</b>', item)[0].strip()
-            data = re.findall(r'</b>: (.*?)<br/>', item)[0]\
+            data = re.findall(r'</b>: (.*?)<br/>', item)[0] \
                 .replace('<b>', '').replace('</b>', '').strip()
             reply += f'**{title}**: {data}\n'
     await request.edit(reply)
@@ -273,11 +279,13 @@ async def twrp(request):
     elif textx:
         device = textx.text.split(' ')[0]
     else:
-        return await request.edit("`Usage: .twrp <codename>`")
+        await request.edit("`Usage: .twrp <codename>`")
+        return
     url = get(f'https://dl.twrp.me/{device}/')
     if url.status_code == 404:
         reply = f"`Couldn't find twrp downloads for {device}!`\n"
-        return await request.edit(reply)
+        await request.edit(reply)
+        return
     page = BeautifulSoup(url.content, 'lxml')
     download = page.find('table').find('tr').find('a')
     dl_link = f"https://dl.twrp.me{download['href']}"
@@ -285,24 +293,25 @@ async def twrp(request):
     size = page.find("span", {"class": "filesize"}).text
     date = page.find("em").text.strip()
     reply = f'**Latest TWRP for {device}:**\n' \
-        f'[{dl_file}]({dl_link}) - __{size}__\n' \
-        f'**Updated:** __{date}__\n'
+            f'[{dl_file}]({dl_link}) - __{size}__\n' \
+            f'**Updated:** __{date}__\n'
     await request.edit(reply)
 
 
 CMD_HELP.update({
     "android":
-    "`.magisk`\
+    ".magisk\
 \nGet latest Magisk releases\
-\n\n`.device <codename>`\
+\n\n.device <codename>\
 \nUsage: Get info about android device codename or model.\
-\n\n`.codename <brand> <device>`\
+\n\n.codename <brand> <device>\
 \nUsage: Search for android device codename.\
-\n\n`.pixeldl` **<download.pixelexperience.org>**\
+\n\n.pixeldl **<download.pixelexperience.org>**\
 \nUsage: Download pixel experience ROM into your userbot server.\
-\n\n`.spec <brand> <device>`\
+\n\n.specs <brand> <device>\
 \nUsage: Get device specifications info.\
-\n\n`.twrp <codename>`\
+\n\n.twrp <codename>\
+\nUsage: Get latest twrp download for android device.\
 \nUsage: Get latest twrp download for android device.\
 \n\n`.gpsetup` <Try this in botlog group only>\
 \nUsage: Setup auth for Google Photos.\
