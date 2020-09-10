@@ -312,7 +312,6 @@ CMD_HELP.update({
 \nUsage: Get device specifications info.\
 \n\n.twrp <codename>\
 \nUsage: Get latest twrp download for android device.\
-\nUsage: Get latest twrp download for android device.\
 \n\n`.gpsetup` <Try this in botlog group only>\
 \nUsage: Setup auth for Google Photos.\
 \n\n`.gp` Reply to photo or video.\
