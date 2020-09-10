@@ -13,6 +13,7 @@ from re import sub
 from telethon import events
 from userbot import CMD_HELP
 from userbot.events import register
+from userbot import bot
 
 # ================= CONSTANT =================
 
