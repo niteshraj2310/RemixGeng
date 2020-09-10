@@ -6,11 +6,10 @@
 #custom cmds by @Nitesh_231 for personal use 👀
 
 """ Userbot module for having some fun with people. """
-import html
-import asyncio
+import html, random, asyncio, logging
 from random import choice
 from re import sub
-
+from telethon import events
 from userbot import CMD_HELP
 from userbot.events import register
 
@@ -255,6 +254,17 @@ async def fcmd(e):
             out += (n * c) + "\n"
         await e.edit(html.escape(out))
 
+@register(outgoing=True, pattern=r"^.kk")
+async def _(event):
+    input_str = event.pattern_match.group(1)
+    if input_str == "kk":
+        r = random.randint(0, 3)
+        logger.debug(r)
+        if r == 0:
+            await event.edit("┏━━━┓\n┃┏━━┛\n┃┗━━┓\n┃┏━━┛\n┃┃\n┗┛")
+        else:
+            await event.edit("╭━━━╮\n┃╭━━╯\n┃╰━━╮\n┃╭━━╯\n┃┃\n╰╯")
+
 
 CMD_HELP.update({
     "memesreborn":
@@ -264,5 +274,4 @@ CMD_HELP.update({
 \nUsage: gib text and see magik.\
 \n\n`.rape .thanos .chu .abuse .abusehard`\
 \nUsage: See it yourself nibba🌚."
-
 })
