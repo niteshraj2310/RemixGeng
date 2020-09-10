@@ -1,6 +1,5 @@
 import importlib.util, time, re, bs4, asyncio, requests, json, datetime, time, os
 from telethon import events
-from userbot.utils import admin_cmd
 from PIL import Image, ImageColor
 from userbot import bot
 from userbot.events import register
