@@ -123,7 +123,7 @@ async def rollstick(tem):
         if tem.is_reply:
             text = (await tem.get_reply_message()).message
         else:
-            await tem.answer("`No text given, hence HONKA will say fuq Off.`")
+            await tem.edit("`No text given, hence HONKA will say fuq Off.`")
             return
 
     fries = await bot.inline_query(
