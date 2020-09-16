@@ -132,7 +132,7 @@ async def auto_accept(event):
                         approve(event.chat_id)
                     except IntegrityError:
                         return
-
+                      
                 if is_approved(event.chat_id) and BOTLOG:
                     await event.client.send_message(
                         BOTLOG_CHATID,
@@ -300,6 +300,7 @@ async def monito_p_m_s(event):
                 )
             except Exception as e:
                 LOGS.warn(str(e))
+                
 
 @register(pattern="^.nolog(?: |$)(.*)")
 async def approve_p_m(event):
