@@ -2,7 +2,7 @@
 #
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
- # thanks to anishsk 
+# thanks to anishsk
 """
 Userbot module to help you manage a group
 """
@@ -131,7 +131,7 @@ async def promote(promt):
                                  delete_messages=True,
                                  pin_messages=True)
 
-    await promt.edit("`Promoting...`")
+    await promt.edit("`Wait plox Promoting...`")
     user, rank = await get_user_from_event(promt)
     if not rank:
         rank = "Administrator"  # Just in case.
@@ -594,7 +594,7 @@ async def admin(event):
     else:
         await event.reply(mentions)
     await event.delete()
-    
+
 
 @register(outgoing=True, pattern="^.admins(?: |$)(.*)")
 async def getadmin(event):
@@ -821,7 +821,7 @@ async def get_user_from_id(user, event):
 
     return user_obj
 
-  
+
 @register(outgoing=True, pattern="^.usersdel ?(.*)")
 async def get_usersdel(show):
     """ For .usersdel command, list all of the deleted users in a chat. """
@@ -1091,11 +1091,11 @@ async def _(event):
     creator = chat.creator
     warn_reason = event.pattern_match.group(1)
     reply_message = await event.get_reply_message()
-    
+
     if not admin and not creator:
         await event.edit("`Bruh I Am Not Admin Here`")
         return
-    
+
     if await is_admin(event.chat_id, reply_message.from_id):
         return await event.edit("`User is an admin`")
 
@@ -1156,7 +1156,7 @@ async def set_warn_strength(event):
             sql.set_warn_strength(event.chat_id, True)
             await event.edit("Warn Strength Set To Kick User.")
             return
-       
+
         else:
             await event.edit("`Please send Correct Arg!`")
     else:
@@ -1177,7 +1177,7 @@ async def set_warn_limit(event):
     if not admin and not creator:
         await event.edit("`Bruh I Am Not Admin Here`")
         return
-    
+
     if input_str:
         if int(input_str) < 3:
             await event.edit("`The minimum warn limit is 3!`")
@@ -1185,11 +1185,11 @@ async def set_warn_limit(event):
             sql.set_warn_limit(event.chat_id, int(input_str))
             await event.edit("`Updated the warn limit to` {}".format(input_str))
             return
-        
+
     else:
         limit, soft_warn = sql.get_warn_setting(event.chat_id)
         await event.edit("`The current warn limit is {}`".format(limit))
-    return ""        
+    return ""
 
 
 @register(outgoing=True, pattern="^.resetwarns(?: |$)(.*)")
@@ -1198,7 +1198,7 @@ async def _(event):
         return
     reply_message = await event.get_reply_message()
     sql.reset_warns(reply_message.from_id, event.chat_id)
-    await event.edit("Warnings have been reset!") 
+    await event.edit("Warnings have been reset!")
 
 
 
