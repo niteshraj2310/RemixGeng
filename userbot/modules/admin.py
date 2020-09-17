@@ -559,7 +559,6 @@ async def rm_deletedacc(show):
                 EditBannedRequest(show.chat_id, user.id, UNBAN_RIGHTS))
             del_u += 1
 
-
     if del_u > 0:
         del_status = f"Cleaned **{del_u}** deleted account(s)"
 
@@ -567,17 +566,16 @@ async def rm_deletedacc(show):
         del_status = f"Cleaned **{del_u}** deleted account(s) \
         \n**{del_a}** deleted admin accounts are not removed"
 
-
     await show.edit(del_status)
     await sleep(2)
     await show.delete()
-
 
     if BOTLOG:
         await show.client.send_message(
             BOTLOG_CHATID, "#CLEANUP\n"
             f"Cleaned **{del_u}** deleted account(s) !!\
             \nCHAT: {show.chat.title}(`{show.chat_id}`)")
+
 
 @register(outgoing=True, pattern="^.report(?: |$)(.*)")
 async def admin(event):
@@ -625,12 +623,14 @@ async def getadmin(event):
         async for x in event.client.iter_participants(chat, filter=ChannelParticipantsAdmins):
             if not x.deleted:
                 if isinstance(x.participant, ChannelParticipantCreator):
-                    mentions += "\n [{}](tg://user?id={}) `{}`".format(x.first_name, x.id, x.id)
+                    mentions += "\n [{}](tg://user?id={}) `{}`".format(
+                        x.first_name, x.id, x.id)
         mentions += "\n"
         async for x in event.client.iter_participants(chat, filter=ChannelParticipantsAdmins):
             if not x.deleted:
                 if isinstance(x.participant, ChannelParticipantAdmin):
-                    mentions += "\n [{}](tg://user?id={}) `{}`".format(x.first_name, x.id, x.id)
+                    mentions += "\n [{}](tg://user?id={}) `{}`".format(
+                        x.first_name, x.id, x.id)
             else:
                 mentions += "\n `{}`".format(x.id)
     except Exception as e:
@@ -838,7 +838,7 @@ async def get_usersdel(show):
         else:
             searchq = show.pattern_match.group(1)
             async for user in show.client.iter_participants(
-                   show.chat_id, search=f'{searchq}'):
+                    show.chat_id, search=f'{searchq}'):
                 if not user.deleted:
                     mentions += f"\n[{user.first_name}](tg://user?id={user.id}) `{user.id}`"
          #       else:
@@ -910,6 +910,7 @@ async def get_userdel_from_id(user, event):
         return None
 
     return user_obj
+
 
 @register(outgoing=True, pattern=r"^\.lock ?(.*)")
 async def locks(event):
@@ -1081,7 +1082,9 @@ async def rem_locks(event):
         await event.edit(
             f"`Do I have proper rights for that ??`\n**Error:** {str(e)}")
         return
-#imported from uniborg by @heyworld
+# imported from uniborg by @heyworld
+
+
 @register(outgoing=True, pattern="^.warn(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
@@ -1100,21 +1103,27 @@ async def _(event):
         return await event.edit("`User is an admin`")
 
     limit, soft_warn = sql.get_warn_setting(event.chat_id)
-    num_warns, reasons = sql.warn_user(reply_message.from_id, event.chat_id, warn_reason)
+    num_warns, reasons = sql.warn_user(
+        reply_message.from_id, event.chat_id, warn_reason)
     if num_warns >= limit:
         await event.client.edit_permissions(chat, reply_message.from_id, until_date=None, view_messages=False)
         if soft_warn:
-            reply = "{} warnings, <u><a href='tg://user?id={}'>user</a></u> has been kicked!".format(limit, reply_message.from_id)
+            reply = "{} warnings, <u><a href='tg://user?id={}'>user</a></u> has been kicked!".format(
+                limit, reply_message.from_id)
             await event.client.kick_participant(event.chat_id, reply_message.from_id)
         else:
             await event.client.edit_permissions(chat, reply_message.from_id, until_date=None, view_messages=False)
-            reply = "{} warnings, <u><a href='tg://user?id={}'>user</a></u> has been banned!".format(limit, reply_message.from_id)
+            reply = "{} warnings, <u><a href='tg://user?id={}'>user</a></u> has been banned!".format(
+                limit, reply_message.from_id)
     else:
-        reply = "<u><a href='tg://user?id={}'>user</a></u> has {}/{} warnings... watch out!".format(reply_message.from_id, num_warns, limit)
+        reply = "<u><a href='tg://user?id={}'>user</a></u> has {}/{} warnings... watch out!".format(
+            reply_message.from_id, num_warns, limit)
         if warn_reason:
-            reply += "\nReason for last warn:\n{}".format(html.escape(warn_reason))
+            reply += "\nReason for last warn:\n{}".format(
+                html.escape(warn_reason))
     #
     await event.edit(reply, parse_mode="html")
+
 
 @register(outgoing=True, pattern="^.getwarns(?: |$)(.*)")
 async def _(event):
@@ -1126,7 +1135,8 @@ async def _(event):
         num_warns, reasons = result
         limit, soft_warn = sql.get_warn_setting(event.chat_id)
         if reasons:
-            text = "This user has {}/{} warnings, for the following reasons:".format(num_warns, limit)
+            text = "This user has {}/{} warnings, for the following reasons:".format(
+                num_warns, limit)
             text += "\r\n"
             text += reasons
             await event.edit(text)
@@ -1134,6 +1144,7 @@ async def _(event):
             await event.edit("This user has {} / {} warning, but no reasons for any of them.".format(num_warns, limit))
     else:
         await event.edit("This user hasn't got any warnings!")
+
 
 @register(outgoing=True, pattern="^.strongwarn(?: |$)(.*)")
 async def set_warn_strength(event):
@@ -1167,6 +1178,7 @@ async def set_warn_strength(event):
             await event.edit("I Am **Baning** User's For Now.")
     return ""
 
+
 @register(outgoing=True, pattern="^.setwarn(?: |$)(.*)")
 async def set_warn_limit(event):
     chat = await event.get_chat()
@@ -1199,7 +1211,6 @@ async def _(event):
     reply_message = await event.get_reply_message()
     sql.reset_warns(reply_message.from_id, event.chat_id)
     await event.edit("Warnings have been reset!")
-
 
 
 CMD_HELP.update({

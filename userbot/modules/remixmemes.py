@@ -4,7 +4,6 @@
 import asyncio
 import random
 from collections import deque
-from random import randint
 
 from telethon import events
 from telethon.errors.rpcerrorlist import MessageIdInvalidError
@@ -188,7 +187,6 @@ async def _(event):
 
         return
 
-    animation_interval = 101
 
     input_str = event.pattern_match.group(1)
 
@@ -2573,7 +2571,6 @@ async def _(event):
 
         return
 
-    animation_interval = 1
 
     input_str = event.pattern_match.group(1)
 

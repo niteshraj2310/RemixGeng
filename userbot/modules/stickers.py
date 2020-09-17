@@ -31,17 +31,21 @@ async def kang(event):
         try:
             user.first_name.decode('ascii')
             pack_username = user.first_name
-        except UnicodeDecodeError: # User's first name isn't ASCII, use ID instead
+        except UnicodeDecodeError:  # User's first name isn't ASCII, use ID instead
             pack_username = user.id
-    else: pack_username = user.username
+    else:
+        pack_username = user.username
 
     textx = await event.get_reply_message()
     emoji = event.pattern_match.group(2)
-    number = int(event.pattern_match.group(3) or 1) # If no number specified, use 1
+    # If no number specified, use 1
+    number = int(event.pattern_match.group(3) or 1)
     new_pack = False
 
-    if textx.photo or textx.sticker: message = textx
-    elif event.photo or event.sticker: message = event
+    if textx.photo or textx.sticker:
+        message = textx
+    elif event.photo or event.sticker:
+        message = event
     else:
         await event.edit("`You need to send/reply to a sticker/photo to be able to kang it!`")
         return
@@ -63,25 +67,25 @@ async def kang(event):
 
     # The user didn't specify an emoji...
     if not emoji:
-        if message.file.emoji: # ...but the sticker has one
+        if message.file.emoji:  # ...but the sticker has one
             emoji = message.file.emoji
-        else: # ...and the sticker doesn't have one either
+        else:  # ...and the sticker doesn't have one either
             emoji = "🤔"
 
     packname = f"a{user.id}_by_{pack_username}_{number}{'_anim' if is_anim else ''}"
     packtitle = (f"@{user.username or user.first_name}'s remix Pack "
-                f"{number}{' animated' if is_anim else ''}")
+                 f"{number}{' animated' if is_anim else ''}")
     response = urllib.request.urlopen(
-            urllib.request.Request(f'http://t.me/addstickers/{packname}'))
+        urllib.request.Request(f'http://t.me/addstickers/{packname}'))
     htmlstr = response.read().decode("utf8").split('\n')
     new_pack = PACK_DOESNT_EXIST in htmlstr
 
     # Mute Stickers bot to ensure user doesn't get notification spam
     muted = await bot(UpdateNotifySettingsRequest(
         peer='t.me/Stickers',
-        settings=InputPeerNotifySettings(mute_until=2**31-1)) # Mute forever
+        settings=InputPeerNotifySettings(mute_until=2**31 - 1))  # Mute forever
     )
-    if not muted: # Tell the user just in case, this may rarely happen
+    if not muted:  # Tell the user just in case, this may rarely happen
         await event.edit(
             "`remix couldn't mute the Stickers bot, beware of notification spam.`")
 
@@ -107,8 +111,9 @@ async def kang(event):
                 # Switch to a new pack, create one if it doesn't exist
                 number += 1
                 packname = f"a{user.id}_by_{pack_username}_{number}{'_anim' if is_anim else ''}"
-                packtitle = (f"@{user.username or user.first_name}'s remix Pack "
-                            f"{number}{' animated' if is_anim else ''}")
+                packtitle = (
+                    f"@{user.username or user.first_name}'s remix Pack "
+                    f"{number}{' animated' if is_anim else ''}")
 
                 await event.edit(
                     f"`Switching to Pack {number} due to insufficient space in Pack {number-1}.`"
@@ -116,7 +121,7 @@ async def kang(event):
 
                 await conv.send_message(packname)
                 x = await conv.get_response()
-                if x.text == "Invalid pack selected.": # That pack doesn't exist
+                if x.text == "Invalid pack selected.":  # That pack doesn't exist
                     await newpack(is_anim, sticker, emoji, packtitle, packname)
 
                     # Read all unread messages
@@ -213,6 +218,7 @@ async def newpack(is_anim, sticker, emoji, packtitle, packname):
         await conv.send_message(packname)
         await conv.get_response()
 
+
 async def resize_photo(photo):
     """ Resize the given photo to 512x512 """
     image = Image.open(photo)
@@ -271,7 +277,6 @@ async def get_pack_info(event):
         if document_sticker.emoticon not in pack_emojis:
             pack_emojis.append(document_sticker.emoticon)
 
-
     OUTPUT = f"**Sticker Title:** `{get_stickerset.set.title}\n`" \
         f"**Sticker Short Name:** `{get_stickerset.set.short_name}`\n" \
         f"**Official:** `{get_stickerset.set.official}`\n" \
@@ -280,6 +285,7 @@ async def get_pack_info(event):
         f"**Emojis In Pack:**\n{' '.join(pack_emojis)}"
 
     await event.edit(OUTPUT)
+
 
 @register(outgoing=True, pattern="^.getsticker$")
 async def sticker_to_png(sticker):

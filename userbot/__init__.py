@@ -2,7 +2,7 @@
 #
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
-#inline credit @keselekpermen69
+# inline credit @keselekpermen69
 import sys
 """ Userbot initialization. """
 
@@ -83,7 +83,7 @@ HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME", None)
 HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY", None)
 
 # JustWatch Country
-WATCH_COUNTRY = os.environ.get("WATCH_COUNTRY","IN")
+WATCH_COUNTRY = os.environ.get("WATCH_COUNTRY", "IN")
 
 # Github Credentials for updater and Gitupload.
 GIT_REPO_NAME = os.environ.get("GIT_REPO_NAME", None)
@@ -156,7 +156,7 @@ BITLY_TOKEN = os.environ.get("BITLY_TOKEN", None)
 # Bot Name
 TERM_ALIAS = os.environ.get("TERM_ALIAS", "oub-remix")
 
-#Bot version
+# Bot version
 BOT_VER = os.environ.get("BOT_VER", "3.3")
 
 # Default .alive logo
@@ -213,7 +213,6 @@ BOT_TOKEN = os.environ.get("BOT_TOKEN") or None
 BOT_USERNAME = os.environ.get("BOT_USERNAME") or None
 
 
-
 # Init Mongo
 MONGOCLIENT = MongoClient(MONGO_URI, 27017, serverSelectionTimeoutMS=1)
 MONGO = MONGOCLIENT.userbot
@@ -239,11 +238,6 @@ def is_redis_alive():
         return True
     except BaseException:
         return False
-
-
-
-
-
 
 
 # Setting Up CloudMail.ru and MEGA.nz extractor binaries,
@@ -299,7 +293,7 @@ async def check_botlog_chatid():
 with bot:
     try:
         bot.loop.run_until_complete(check_botlog_chatid())
-    except:
+    except BaseException:
         LOGS.info(
             "BOTLOG_CHATID environment variable isn't valid"
             "Please generate proper group id and set.You can ask in @PPE_Support if you need help")
