@@ -14,7 +14,7 @@ from telethon.events import StopPropagation
 from telethon.tl.functions.account import UpdateProfileRequest
 
 from userbot import (AFKREASON, COUNT_MSG, CMD_HELP, ISAFK, BOTLOG,
-                     BOTLOG_CHATID, USERS, PM_AUTO_BAN, bot)
+                     BOTLOG_CHATID, USERS, PM_AUTO_BAN, bot) # noqa
 from userbot.events import register
 
 # ========================= CONSTANTS ============================
@@ -55,7 +55,7 @@ async def set_afk(afk_e):
     """ For .afk command, allows you to inform people that you are afk when they message you """
     afk_e.text
     string = afk_e.pattern_match.group(1)
-    global ISAFK     # pylint:disable=E0602
+    global ISAFK
     global AFKREASON
     global USER_AFK  # pylint:disable=E0602
     global afk_time  # pylint:disable=E0602
