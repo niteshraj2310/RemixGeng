@@ -53,7 +53,7 @@ async def set_afk(afk_e):
     """ For .afk command, allows you to inform people that you are afk when they message you """
     message = afk_e.text
     string = afk_e.pattern_match.group(1)
-    global ISAFK
+    global ISAFK     # pylint:disable=E0602
     global AFKREASON
     global USER_AFK  # pylint:disable=E0602
     global afk_time  # pylint:disable=E0602
