@@ -162,7 +162,7 @@ async def kang(event):
     await event.edit(
         f"`Sticker added to pack {number}{'(animated)' if is_anim else ''} with "
         f"{emoji} as the emoji! "
-        f"This pack can be found `[here](t.me/addstickers/{packname})",
+        f"This pack can be found` [here](t.me/addstickers/{packname})",
         parse_mode='md')
     await asyncio.sleep(5)
     await event.delete()
