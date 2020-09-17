@@ -2,8 +2,8 @@
 #
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
-#custom cmds by @heyworld to make it look more gayish
-#Thanks to @AbhinavShinde for strings
+# custom cmds by @heyworld to make it look more gayish
+# Thanks to @AbhinavShinde for strings
 """ Userbot module for having some fun with people. """
 
 from asyncio import sleep
@@ -11,8 +11,6 @@ import asyncio
 from random import choice, getrandbits, randint
 from re import sub
 import time
-
-
 
 
 from collections import deque
@@ -79,77 +77,77 @@ ZALG_LIST = [[
     " ͚",
     " ",
 ],
-             [
-                 " ̍",
-                 " ̎",
-                 " ̄",
-                 " ̅",
-                 " ̿",
-                 " ̑",
-                 " ̆",
-                 " ̐",
-                 " ͒",
-                 " ͗",
-                 " ͑",
-                 " ̇",
-                 " ̈",
-                 " ̊",
-                 " ͂",
-                 " ̓",
-                 " ̈́",
-                 " ͊",
-                 " ͋",
-                 " ͌",
-                 " ̃",
-                 " ̂",
-                 " ̌",
-                 " ͐",
-                 " ́",
-                 " ̋",
-                 " ̏",
-                 " ̽",
-                 " ̉",
-                 " ͣ",
-                 " ͤ",
-                 " ͥ",
-                 " ͦ",
-                 " ͧ",
-                 " ͨ",
-                 " ͩ",
-                 " ͪ",
-                 " ͫ",
-                 " ͬ",
-                 " ͭ",
-                 " ͮ",
-                 " ͯ",
-                 " ̾",
-                 " ͛",
-                 " ͆",
-                 " ̚",
-             ],
-             [
-                 " ̕",
-                 " ̛",
-                 " ̀",
-                 " ́",
-                 " ͘",
-                 " ̡",
-                 " ̢",
-                 " ̧",
-                 " ̨",
-                 " ̴",
-                 " ̵",
-                 " ̶",
-                 " ͜",
-                 " ͝",
-                 " ͞",
-                 " ͟",
-                 " ͠",
-                 " ͢",
-                 " ̸",
-                 " ̷",
-                 " ͡",
-             ]]
+    [
+    " ̍",
+    " ̎",
+    " ̄",
+    " ̅",
+    " ̿",
+    " ̑",
+    " ̆",
+    " ̐",
+    " ͒",
+    " ͗",
+    " ͑",
+    " ̇",
+    " ̈",
+    " ̊",
+    " ͂",
+    " ̓",
+    " ̈́",
+    " ͊",
+    " ͋",
+    " ͌",
+    " ̃",
+    " ̂",
+    " ̌",
+    " ͐",
+    " ́",
+    " ̋",
+    " ̏",
+    " ̽",
+    " ̉",
+    " ͣ",
+    " ͤ",
+    " ͥ",
+    " ͦ",
+    " ͧ",
+    " ͨ",
+    " ͩ",
+    " ͪ",
+    " ͫ",
+    " ͬ",
+    " ͭ",
+    " ͮ",
+    " ͯ",
+    " ̾",
+    " ͛",
+    " ͆",
+    " ̚",
+],
+    [
+    " ̕",
+    " ̛",
+    " ̀",
+    " ́",
+    " ͘",
+    " ̡",
+    " ̢",
+    " ̧",
+    " ̨",
+    " ̴",
+    " ̵",
+    " ̶",
+    " ͜",
+    " ͝",
+    " ͞",
+    " ͟",
+    " ͠",
+    " ͢",
+    " ̸",
+    " ̷",
+    " ͡",
+]]
 
 EMOJIS = [
     "😂",
@@ -543,9 +541,9 @@ HELLOSTR = [
 
 PROSTR = [
     "`You is pro user kidly GTFO from nubs aera.`",
-     "`Pros here -_- Time to Leave`",
-     "`Pros everywhere`",
-     "`Pro Pro Pro ; What a tragedy`",
+    "`Pros here -_- Time to Leave`",
+    "`Pros everywhere`",
+    "`Pro Pro Pro ; What a tragedy`",
 ]
 
 NUBSTR = [
@@ -1062,6 +1060,7 @@ async def night(night):
     """ Greet everyone! """
     await night.edit(choice(GDNIGHT))
 
+
 @register(outgoing=True, pattern="^.congo$")
 async def congo(congo):
     """ Greet everyone! """
@@ -1072,6 +1071,7 @@ async def congo(congo):
 async def morning(morning):
     """ Greet everyone! """
     await morning.edit(choice(GDMORNING))
+
 
 @register(outgoing=True, pattern="^.gnoon$")
 async def noon(noon):
@@ -1090,10 +1090,12 @@ async def noob(nubdo):
     """ Greet everyone! """
     await nubdo.edit(choice(NUBSTR))
 
+
 @register(outgoing=True, pattern="^.bye$")
 async def bhago(bhagobc):
     """ Greet everyone! """
     await bhagobc.edit(choice(BYESTR))
+
 
 @register(outgoing=True, pattern="^.owo(?: |$)(.*)")
 async def faces(owo):
@@ -1162,6 +1164,7 @@ async def Oem(e):
     for _ in range(16):
         t = t[:-1] + "em"
         await e.edit(t)
+
 
 @register(outgoing=True, pattern="^.10iq$")
 async def iqless(e):
@@ -1270,39 +1273,38 @@ async def let_me_google_that_for_you(lmgtfy_q):
     \n[{query}]({r.json()['shorturl']})")
 
 
-#@register(pattern=r".scam(?: |$)(.*)", outgoing=True)
-#async def scam(event):
+# @register(pattern=r".scam(?: |$)(.*)", outgoing=True)
+# async def scam(event):
    # """ Just a small command to fake chat actions for fun !! """
    # options = [
-      #  'typing', 'contact', 'game', 'location', 'voice', 'round', 'video',
-     #   'photo', 'document', 'cancel'
-    #]
+    #  'typing', 'contact', 'game', 'location', 'voice', 'round', 'video',
+    #   'photo', 'document', 'cancel'
+    # ]
    # input_str = event.pattern_match.group(1)
   #  args = input_str.split()
    # if len(args) is 0:  # Let bot decide action and time
-        #scam_action = choice(options)
-       # scam_time = randint(30, 60)
-    #elif len(args) is 1:  # User decides time/action, bot decides the other.
-        #try:
-         #   scam_action = str(args[0]).lower()
-        #    scam_time = randint(30, 60)
-       # except ValueError:
-      #      scam_action = choice(options)
-     #       scam_time = int(args[0])
-    #elif len(args) is 2:  # User decides both action and time
-      #  scam_action = str(args[0]).lower()
-     #   scam_time = int(args[1])
-    #else:
-      #  await event.edit("`Invalid Syntax !!`")
-     #   return
-    #try:
-        #if (scam_time > 0):
-       #     await event.delete()
-      #      async with event.client.action(event.chat_id, scam_action):
-     #           await sleep(scam_time)
-    #except BaseException:
-       # return
-
+    #scam_action = choice(options)
+    # scam_time = randint(30, 60)
+    # elif len(args) is 1:  # User decides time/action, bot decides the other.
+    # try:
+    #   scam_action = str(args[0]).lower()
+    #    scam_time = randint(30, 60)
+    # except ValueError:
+    #      scam_action = choice(options)
+    #       scam_time = int(args[0])
+    # elif len(args) is 2:  # User decides both action and time
+    #  scam_action = str(args[0]).lower()
+    #   scam_time = int(args[1])
+    # else:
+    #  await event.edit("`Invalid Syntax !!`")
+    #   return
+    # try:
+    # if (scam_time > 0):
+    #     await event.delete()
+    #      async with event.client.action(event.chat_id, scam_action):
+    #           await sleep(scam_time)
+    # except BaseException:
+    # return
 
 
 @register(pattern=r".type(?: |$)(.*)", outgoing=True)
@@ -1331,10 +1333,10 @@ async def typewriter(typew):
         await sleep(sleep_time)
 
 
-
 @register(outgoing=True, pattern="^.lols$")
 async def lol(e):
     await e.edit("😂\n😂\n😂\n😂\n😂😂😂😂\n\n   😂😂😂\n 😂         😂\n😂           😂\n 😂         😂\n   😂😂😂\n\n😂\n😂\n😂\n😂\n😂😂😂😂")
+
 
 @register(pattern=r".scam(?: |$)(.*)", outgoing=True)
 async def scam(event):
@@ -1369,9 +1371,10 @@ async def scam(event):
     except BaseException:
         return
 
+
 @register(outgoing=True, pattern="^.fail$")
 async def fail(e):
-   if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
+    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         await e.edit("`\n▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ `"
                      "`\n████▌▄▌▄▐▐▌█████ `"
                      "`\n████▌▄▌▄▐▐▌▀████ `"
@@ -1385,7 +1388,6 @@ async def lol(e):
                      "`\n╱┃┃╱╱╱┃╭━╮┃┃┃╱╱╱╱ `"
                      "`\n╱┃┗━━┓┃╰━╯┃┃┗━━┓╱ `"
                      "`\n╱┗━━━┛╰━━━╯┗━━━┛╱ `")
-
 
 
 @register(outgoing=True, pattern="^.lool$")
@@ -1417,26 +1419,26 @@ async def nih(e):
                      "`\n(●_●)`"
                      "`\n />🌹 *This is for you`"
                      "`\n                    `"
-                     "`\n(\_/)`"
+                     r"`\n(\_/)`"
                      "`\n(●_●)`"
                      "`\n🌹<\  *Now give it back`")
 
 
 @register(outgoing=True, pattern="^.fag$")
 async def gtfo(e):
-   if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
+    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         await e.edit("`\n█████████`"
                      "`\n█▄█████▄█`"
                      "`\n█▼▼▼▼▼`"
                      "`\n█       STFU FAGGOT'S`"
                      "`\n█▲▲▲▲▲`"
                      "`\n█████████`"
-                    "`\n ██   ██`")
+                     "`\n ██   ██`")
 
 
 @register(outgoing=True, pattern="^.taco$")
 async def taco(e):
-   if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
+    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         await e.edit("\n{\__/}"
                      "\n(●_●)"
                      "\n( >🌮 Want a taco?")
@@ -1462,7 +1464,7 @@ async def gey(e):
         await e.edit("`\n┈┈┈╭━━━━━╮┈┈┈┈┈\n┈┈┈┃┊┊┊┊┊┃┈┈┈┈┈`"
                      "`\n┈┈┈┃┊┊╭━╮┻╮┈┈┈┈\n┈┈┈╱╲┊┃▋┃▋┃┈┈┈┈\n┈┈╭┻┊┊╰━┻━╮┈┈┈┈`"
                      "`\n┈┈╰┳┊╭━━━┳╯┈┈┈┈\n┈┈┈┃┊┃╰━━┫┈NIGGA U GEY`"
-                    "\n┈┈┈┈┈┈┏━┓┈┈┈┈┈┈")
+                     "\n┈┈┈┈┈┈┏━┓┈┈┈┈┈┈")
 
 
 @register(outgoing=True, pattern="^.gay$")
@@ -1471,7 +1473,7 @@ async def gey(e):
         await e.edit("`\n┈┈┈╭━━━━━╮┈┈┈┈┈\n┈┈┈┃┊┊┊┊┊┃┈┈┈┈┈`"
                      "`\n┈┈┈┃┊┊╭━╮┻╮┈┈┈┈\n┈┈┈╱╲┊┃▋┃▋┃┈┈┈┈\n┈┈╭┻┊┊╰━┻━╮┈┈┈┈`"
                      "`\n┈┈╰┳┊╭━━━┳╯┈┈┈┈\n┈┈┈┃┊┃╰━━┫┈BAPAQ U GAY`"
-                    "\n┈┈┈┈┈┈┏━┓┈┈┈┈┈┈")
+                     "\n┈┈┈┈┈┈┏━┓┈┈┈┈┈┈")
 
 
 @register(outgoing=True, pattern="^.bot$")
@@ -1495,7 +1497,7 @@ async def nou(e):
         await e.edit("`\n┈╭╮╭╮\n┈┃┃┃┃\n╭┻┗┻┗╮`"
                      "`\n┃┈▋┈▋┃\n┃┈╭▋━╮━╮\n┃┈┈╭╰╯╰╯╮`"
                      "`\n┫┈┈  NoU\n┃┈╰╰━━━━╯`"
-"`\n┗━━┻━┛`")
+                     "`\n┗━━┻━┛`")
 
 
 @register(outgoing=True, pattern="^.rain$")
@@ -1509,6 +1511,7 @@ async def rain(event):
     except BaseException:
         return
 
+
 @register(outgoing=True, pattern="^.love$")
 async def love(event):
     deq = deque(list("❤️🧡💛💚💙💜🖤💕💞💓💗💖💘💝"))
@@ -1519,6 +1522,7 @@ async def love(event):
             deq.rotate(1)
     except BaseException:
         return
+
 
 @register(outgoing=True, pattern="^.shout(?: |$)(.*)")
 async def shout(args):
@@ -1536,27 +1540,26 @@ async def shout(args):
         result[0] = text[0]
         result = "".join(result)
         msg = "\n" + result
-        await args.edit("`"+msg+"`")
+        await args.edit("`" + msg + "`")
+
 
 @register(outgoing=True, pattern="^.bigoof$")
 async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.1
-    animation_ttl = range(0,7)
+    animation_ttl = range(0, 7)
     #input_str = event.pattern_match.group(1)
-   # if input_str == "nope":
+    # if input_str == "nope":
     await event.edit("┏━━━┓╋╋╋╋┏━━━┓ \n┃┏━┓┃╋╋╋╋┃┏━┓┃ \n┃┃╋┃┣┓┏┓┏┫┃╋┃┃ \n┃┃╋┃┃┗┛┗┛┃┃╋┃┃ \n┃┗━┛┣┓┏┓┏┫┗━┛┃ \n┗━━━┛┗┛┗┛┗━━━┛")
     animation_chars = [
-            "╭━━━╮╱╱╱╭━╮ \n┃╭━╮┃╱╱╱┃╭╯ \n┃┃╱┃┣━━┳╯╰╮ \n┃┃╱┃┃╭╮┣╮╭╯ \n┃╰━╯┃╰╯┃┃┃ \n╰━━━┻━━╯╰╯ ",
-            "╭━━━╮╱╱╱╱╱╱╭━╮ \n┃╭━╮┃╱╱╱╱╱╱┃╭╯ \n┃┃╱┃┣━━┳━━┳╯╰╮ \n┃┃╱┃┃╭╮┃╭╮┣╮╭╯ \n┃╰━╯┃╰╯┃╰╯┃┃┃ \n ╰━━━┻━━┻━━╯╰╯",
-            "╭━━━╮╱╱╱╱╱╱╱╱╱╭━╮ \n┃╭━╮┃╱╱╱╱╱╱╱╱╱┃╭╯ \n┃┃╱┃┣━━┳━━┳━━┳╯╰╮ \n┃┃╱┃┃╭╮┃╭╮┃╭╮┣╮╭╯ \n┃╰━╯┃╰╯┃╰╯┃╰╯┃┃┃ \n╰━━━┻━━┻━━┻━━╯╰╯",
-            "╭━━━╮╱╱╱╱╱╱╱╱╱╱╱╱╭━╮ \n┃╭━╮┃╱╱╱╱╱╱╱╱╱╱╱╱┃╭╯ \n┃┃╱┃┣━━┳━━┳━━┳━━┳╯╰╮ \n┃┃╱┃┃╭╮┃╭╮┃╭╮┃╭╮┣╮╭╯ \n┃╰━╯┃╰╯┃╰╯┃╰╯┃╰╯┃┃┃ \n╰━━━┻━━┻━━┻━━┻━━╯╰╯",
-            "╭━━━╮╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╭━╮ \n┃╭━╮┃╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱┃╭╯ \n┃┃╱┃┣━━┳━━┳━━┳━━┳━━┳╯╰╮ \n┃┃╱┃┃╭╮┃╭╮┃╭╮┃╭╮┃╭╮┣╮╭╯ \n┃╰━╯┃╰╯┃╰╯┃╰╯┃╰╯┃╰╯┃┃┃ \n╰━━━┻━━┻━━┻━━┻━━┻━━╯╰╯",
-            "╭━━━╮╱╱╱╱╱╱╱╱╱╱╱╱╭━╮ \n┃╭━╮┃╱╱╱╱╱╱╱╱╱╱╱╱┃╭╯ \n┃┃╱┃┣━━┳━━┳━━┳━━┳╯╰╮ \n┃┃╱┃┃╭╮┃╭╮┃╭╮┃╭╮┣╮╭╯ \n┃╰━╯┃╰╯┃╰╯┃╰╯┃╰╯┃┃┃ \n╰━━━┻━━┻━━┻━━┻━━╯╰╯",
-            "╭━━━╮╱╱╱╱╱╱╱╱╱╭━╮ \n┃╭━╮┃╱╱╱╱╱╱╱╱╱┃╭╯ \n┃┃╱┃┣━━┳━━┳━━┳╯╰╮ \n┃┃╱┃┃╭╮┃╭╮┃╭╮┣╮╭╯ \n┃╰━╯┃╰╯┃╰╯┃╰╯┃┃┃ \n╰━━━┻━━┻━━┻━━╯╰╯"
-         ]
-
+        "╭━━━╮╱╱╱╭━╮ \n┃╭━╮┃╱╱╱┃╭╯ \n┃┃╱┃┣━━┳╯╰╮ \n┃┃╱┃┃╭╮┣╮╭╯ \n┃╰━╯┃╰╯┃┃┃ \n╰━━━┻━━╯╰╯ ",
+        "╭━━━╮╱╱╱╱╱╱╭━╮ \n┃╭━╮┃╱╱╱╱╱╱┃╭╯ \n┃┃╱┃┣━━┳━━┳╯╰╮ \n┃┃╱┃┃╭╮┃╭╮┣╮╭╯ \n┃╰━╯┃╰╯┃╰╯┃┃┃ \n ╰━━━┻━━┻━━╯╰╯",
+        "╭━━━╮╱╱╱╱╱╱╱╱╱╭━╮ \n┃╭━╮┃╱╱╱╱╱╱╱╱╱┃╭╯ \n┃┃╱┃┣━━┳━━┳━━┳╯╰╮ \n┃┃╱┃┃╭╮┃╭╮┃╭╮┣╮╭╯ \n┃╰━╯┃╰╯┃╰╯┃╰╯┃┃┃ \n╰━━━┻━━┻━━┻━━╯╰╯",
+        "╭━━━╮╱╱╱╱╱╱╱╱╱╱╱╱╭━╮ \n┃╭━╮┃╱╱╱╱╱╱╱╱╱╱╱╱┃╭╯ \n┃┃╱┃┣━━┳━━┳━━┳━━┳╯╰╮ \n┃┃╱┃┃╭╮┃╭╮┃╭╮┃╭╮┣╮╭╯ \n┃╰━╯┃╰╯┃╰╯┃╰╯┃╰╯┃┃┃ \n╰━━━┻━━┻━━┻━━┻━━╯╰╯",
+        "╭━━━╮╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╭━╮ \n┃╭━╮┃╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱┃╭╯ \n┃┃╱┃┣━━┳━━┳━━┳━━┳━━┳╯╰╮ \n┃┃╱┃┃╭╮┃╭╮┃╭╮┃╭╮┃╭╮┣╮╭╯ \n┃╰━╯┃╰╯┃╰╯┃╰╯┃╰╯┃╰╯┃┃┃ \n╰━━━┻━━┻━━┻━━┻━━┻━━╯╰╯",
+        "╭━━━╮╱╱╱╱╱╱╱╱╱╱╱╱╭━╮ \n┃╭━╮┃╱╱╱╱╱╱╱╱╱╱╱╱┃╭╯ \n┃┃╱┃┣━━┳━━┳━━┳━━┳╯╰╮ \n┃┃╱┃┃╭╮┃╭╮┃╭╮┃╭╮┣╮╭╯ \n┃╰━╯┃╰╯┃╰╯┃╰╯┃╰╯┃┃┃ \n╰━━━┻━━┻━━┻━━┻━━╯╰╯",
+        "╭━━━╮╱╱╱╱╱╱╱╱╱╭━╮ \n┃╭━╮┃╱╱╱╱╱╱╱╱╱┃╭╯ \n┃┃╱┃┣━━┳━━┳━━┳╯╰╮ \n┃┃╱┃┃╭╮┃╭╮┃╭╮┣╮╭╯ \n┃╰━╯┃╰╯┃╰╯┃╰╯┃┃┃ \n╰━━━┻━━┻━━┻━━╯╰╯"]
 
     for i in animation_ttl:
 

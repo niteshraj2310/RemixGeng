@@ -22,7 +22,7 @@ async def on_new_message(event):
         if re.search(pattern, name, flags=re.IGNORECASE):
             try:
                 await event.delete()
-            except Exception as e:
+            except Exception:
                 await event.reply("I do not have DELETE permission in this chat")
                 sql.rm_from_blacklist(event.chat_id, snip.lower())
             break
@@ -77,7 +77,7 @@ async def on_delete_blacklist(rmbl):
         if sql.rm_from_blacklist(rmbl.chat_id, trigger.lower()):
             successful += 1
     await rmbl.edit(f"Removed {successful} / {len(to_unblacklist)} from the blacklist")
-    
+
 CMD_HELP.update({
     "blacklist":
     ".listbl\

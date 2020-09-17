@@ -14,7 +14,6 @@ DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 # ============================================
 
 
-
 @register(outgoing=True, pattern="^.db$")
 async def amireallydbs(dbs):
     if not is_mongo_alive() and not is_redis_alive():
@@ -26,7 +25,7 @@ async def amireallydbs(dbs):
     else:
         db = "Databases functioning normally!"
     await dbs.edit(""
-                     f"`User:` {DEFAULTUSER} \n"
-                     f"`Database status: {db}\n`"
-                     f"`OUB-REMIX: {BOT_VER}`"
-                     "")
+                   f"`User:` {DEFAULTUSER} \n"
+                   f"`Database status: {db}\n`"
+                   f"`OUB-REMIX: {BOT_VER}`"
+                   "")

@@ -1,10 +1,9 @@
-#fix by @heyworld for OUB
-#bug fixed by @d3athwarrior
+# fix by @heyworld for OUB
+# bug fixed by @d3athwarrior
 
 from telethon.tl.types import InputMediaDice
 from userbot.events import register
 from userbot import CMD_HELP
-
 
 
 @register(outgoing=True, pattern="^.dice(?: |$)(.*)")
@@ -20,7 +19,7 @@ async def _(event):
             while r.media.value != required_number:
                 await r.delete()
                 r = await event.reply(file=InputMediaDice(''))
-        except:
+        except BaseException:
             pass
 
 
@@ -37,7 +36,7 @@ async def _(event):
             while r.media.value != required_number:
                 await r.delete()
                 r = await event.reply(file=InputMediaDice('🎯'))
-        except:
+        except BaseException:
             pass
 
 
@@ -54,8 +53,9 @@ async def _(event):
             while r.media.value != required_number:
                 await r.delete()
                 r = await event.reply(file=InputMediaDice('🏀'))
-        except:
+        except BaseException:
             pass
+
 
 @register(outgoing=True, pattern="^.fb(?: |$)(.*)")
 async def _(event):
@@ -70,7 +70,7 @@ async def _(event):
             while not r.media.value == required_number:
                 await r.delete()
                 r = await event.reply(file=InputMediaDice('⚽'))
-        except:
+        except BaseException:
             pass
 
 CMD_HELP.update({

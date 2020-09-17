@@ -11,6 +11,7 @@ import asyncio
 
 modules = CMD_HELP
 
+
 @register(outgoing=True, pattern="^.help(?: |$)(.*)")
 async def help(event):
     """ For .help command,"""

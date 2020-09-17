@@ -82,13 +82,14 @@ async def ANTI_SPAMBOT(welcm):
                     ##############################################
 
                     try:
-                        cas_url = f"https://api.cas.chat/check?user_id={check_user.id}" # https://t.me/combotnews/283
+                        # https://t.me/combotnews/283
+                        cas_url = f"https://api.cas.chat/check?user_id={check_user.id}"
                         r = get(cas_url, timeout=3)
                         data = r.json()
                     except BaseException:
-                        print("CAS check failed, falling back to legacy anti_spambot behaviour.")
+                        print(
+                            "CAS check failed, falling back to legacy anti_spambot behaviour.")
                         data = None
-                        pass
 
                     if data and data['ok']:
                         reason = f"[Banned by Combot Anti Spam](https://cas.chat/query?u={check_user.id})"
@@ -109,9 +110,16 @@ async def ANTI_SPAMBOT(welcm):
                         reason = "Match on `bit.ly` URLs"
                         spambot = True
                     else:
-                        if check_user.first_name in ("Bitmex", "Promotion",
-                                                     "Information", "Dex",
-                                                     "Announcements", "Info", "Bitcoin", "N-95", "Seller"):
+                        if check_user.first_name in (
+                            "Bitmex",
+                            "Promotion",
+                            "Information",
+                            "Dex",
+                            "Announcements",
+                            "Info",
+                            "Bitcoin",
+                            "N-95",
+                                "Seller"):
                             if users.last_name == "Bot":
                                 reason = "Known spambot"
                                 spambot = True
@@ -174,4 +182,5 @@ async def ANTI_SPAMBOT(welcm):
     except ValueError:
         pass
 
-#you don't need help modules. if you need spam should enable it in config vars.
+# you don't need help modules. if you need spam should enable it in config
+# vars.

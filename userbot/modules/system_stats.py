@@ -1,4 +1,4 @@
-#Copyright (C) 2019 The Raphielscape Company LLC.
+# Copyright (C) 2019 The Raphielscape Company LLC.
 #
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ from userbot.events import register
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 # ============================================
 
+
 async def get_readable_time(seconds: int) -> str:
     count = 0
     up_time = ""
@@ -32,7 +33,9 @@ async def get_readable_time(seconds: int) -> str:
 
     while count < 4:
         count += 1
-        remainder, result = divmod(seconds, 60) if count < 3 else divmod(seconds, 24)
+        remainder, result = divmod(
+            seconds, 60) if count < 3 else divmod(
+            seconds, 24)
         if seconds == 0 and remainder == 0:
             break
         time_list.append(int(result))
@@ -47,7 +50,6 @@ async def get_readable_time(seconds: int) -> str:
     up_time += ":".join(time_list)
 
     return up_time
-
 
 
 @register(outgoing=True, pattern="^.sysd$")
@@ -69,6 +71,7 @@ async def sysdetails(sysd):
             await sysd.edit("`" + result + "`")
         except FileNotFoundError:
             await sysd.edit("`Install neofetch first !!`")
+
 
 @register(outgoing=True, pattern=r"^\.spc")
 async def psu(event):
@@ -215,19 +218,20 @@ async def pipcheck(pip):
     else:
         await pip.edit("`Use .help system to see an example`")
 
+
 @register(outgoing=True, pattern="^.start$")
 async def amireallyalive(alive):
     """ For .start command, check if the bot is running.  """
     logo = ALIVE_LOGO
     uptime = await get_readable_time((time.time() - StartTime))
     output = (f"丂 丅 口 尸   工 丅   厶 乇 丅   丂 口 从 乇   卄 乇 乚 尸  乃 工 匚 工 \n"
-             f"`Telethon version`: {version.__version__} \n"
-             f"`Python version🐍`: {python_version()} \n"
-             f"`Bot Version🤘: Remix {BOT_VER}` \n"
-             f"==================================== \n"
-             f"`Moi Master😎`: {DEFAULTUSER} \n"
-             f"`Bot Uptime ⏱️`: {uptime} \n"
-             f"====================================\n")
+              f"`Telethon version`: {version.__version__} \n"
+              f"`Python version🐍`: {python_version()} \n"
+              f"`Bot Version🤘: Remix {BOT_VER}` \n"
+              f"==================================== \n"
+              f"`Moi Master😎`: {DEFAULTUSER} \n"
+              f"`Bot Uptime ⏱️`: {uptime} \n"
+              f"====================================\n")
     if ALIVE_LOGO:
         try:
             logo = ALIVE_LOGO
@@ -243,6 +247,7 @@ async def amireallyalive(alive):
         await asyncio.sleep(25)
         await alive.delete()
 
+
 @register(outgoing=True, pattern="^.aliveu")
 async def amireallyaliveuser(username):
     """ For .aliveu command, change the username in the .alive command. """
@@ -254,6 +259,7 @@ async def amireallyaliveuser(username):
         DEFAULTUSER = newuser
         output = 'Successfully changed user to ' + newuser + '!'
     await username.edit("`" f"{output}" "`")
+
 
 @register(outgoing=True, pattern="^.resetalive$")
 async def amireallyalivereset(ureset):

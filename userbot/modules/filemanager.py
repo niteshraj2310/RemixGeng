@@ -106,4 +106,3 @@ async def lst(event):
             await event.delete()
     else:
         await event.edit(msg)
-
