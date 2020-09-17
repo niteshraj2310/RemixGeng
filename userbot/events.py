@@ -2,7 +2,7 @@
 #
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
-##inline credit @keselekpermen69
+# inline credit @keselekpermen69
 
 """Userbot module for managing events. One of the main components of the userbot."""
 
@@ -153,7 +153,6 @@ def register(**args):
                         )
                         await asyncio.sleep(3.5)
                         await sorry_msg.delete()
-
 
                     await check.client.send_file(send_to,
                                                  "error.txt",

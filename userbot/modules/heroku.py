@@ -140,9 +140,9 @@ async def dyno_usage(dyno):
             'Chrome/81.0.4044.117 Mobile Safari/537.36'
         )
         headers = {
-         'User-Agent': useragent,
-         'Authorization': f'Bearer {HEROKU_API_KEY}',
-         'Accept': 'application/vnd.heroku+json; version=3.account-quotas',
+            'User-Agent': useragent,
+            'Authorization': f'Bearer {HEROKU_API_KEY}',
+            'Accept': 'application/vnd.heroku+json; version=3.account-quotas',
         }
         async with session.get(heroku_api + path, headers=headers) as r:
             if r.status != 200:
@@ -180,16 +180,17 @@ async def dyno_usage(dyno):
             AppMinutes = math.floor(AppQuotaUsed % 60)
 
             await dyno.edit(
-                 "**Dyno Usage**:\n\n"
-                 f" -> `Dyno usage for`  **{app.name}**:\n"
-                 f"     •  **{AppHours} hour(s), "
-                 f"{AppMinutes} minute(s)  -  {AppPercentage}%**"
-                 "\n-------------------------------------------------------------\n"
-                 " -> `Dyno hours quota remaining this month`:\n"
-                 f"     •  **{hours} hour(s), {minutes} minute(s)  "
-                 f"-  {percentage}%**"
+                "**Dyno Usage**:\n\n"
+                f" -> `Dyno usage for`  **{app.name}**:\n"
+                f"     •  **{AppHours} hour(s), "
+                f"{AppMinutes} minute(s)  -  {AppPercentage}%**"
+                "\n-------------------------------------------------------------\n"
+                " -> `Dyno hours quota remaining this month`:\n"
+                f"     •  **{hours} hour(s), {minutes} minute(s)  "
+                f"-  {percentage}%**"
             )
             return True
+
 
 @register(outgoing=True, pattern=r"^\.logs")
 async def _(dyno):
@@ -210,5 +211,3 @@ async def _(dyno):
     url = f"https://nekobin.com/raw/{key}"
     await dyno.edit(f"`Here the heroku logs:`\n\nPasted to: [Nekobin]({url})")
     return os.remove("logs.txt")
-
-

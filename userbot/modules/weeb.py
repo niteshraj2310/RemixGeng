@@ -1,4 +1,3 @@
-import jikanpy
 import nekos
 import os
 import json
@@ -6,9 +5,7 @@ import aiohttp
 import asyncio
 import random
 from jikanpy import Jikan
-from jikanpy.exceptions import APIException
 from urllib.parse import quote as urlencode
-from telethon import events
 from userbot.events import register
 from userbot import CMD_HELP, bot
 from asyncio import sleep
@@ -21,7 +18,6 @@ jikan = Jikan()
 @register(outgoing=True, pattern=r"^.pat(?: |$)")
 async def pat(e):
     global _pats
-
 
     url = 'https://headp.at/js/pats.json'
     if not _pats:
@@ -42,7 +38,7 @@ async def pat(e):
     ])
 
 
-@register(outgoing=True, pattern="^\.pgif(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.pgif(?: |$)(.*)")
 async def pussyg(e):
     await e.edit("`Finding some pumssy camt gifs...`")
     await sleep(2)
@@ -51,7 +47,7 @@ async def pussyg(e):
     await e.delete()
 
 
-@register(outgoing=True, pattern="^\.pjpg(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.pjpg(?: |$)(.*)")
 async def pussyp(e):
     await e.edit("`Finding some pumssy camt pics...`")
     await sleep(2)
@@ -60,7 +56,7 @@ async def pussyp(e):
     await e.delete()
 
 
-@register(outgoing=True, pattern="^\.cum(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.cum(?: |$)(.*)")
 async def cum(e):
     await e.edit("`Finding some cum gifs...`")
     await sleep(2)

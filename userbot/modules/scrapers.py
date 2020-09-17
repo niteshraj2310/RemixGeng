@@ -15,7 +15,6 @@ import json
 import requests
 from os import popen
 import urllib.parse
-import logging
 from bs4 import BeautifulSoup
 import re
 from re import match
@@ -27,24 +26,16 @@ import barcode
 from barcode.writer import ImageWriter
 import emoji
 from time import sleep
-from html import unescape
 from re import findall
 from selenium import webdriver
-from selenium.webdriver.support.ui import Select
 from selenium.webdriver.chrome.options import Options
 from urllib.parse import quote_plus
-from urllib.error import HTTPError
-from telethon import events
 from wikipedia import summary
 from wikipedia.exceptions import DisambiguationError, PageError
-from urbandict import define
-from requests import get, post, exceptions
+from requests import get
 from search_engine_parser import GoogleSearch
-from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
 from googletrans import LANGUAGES, Translator
-from shutil import rmtree
-from gtts import gTTS, gTTSError
+from gtts import gTTS
 from gtts.lang import tts_langs
 from emoji import get_emoji_regexp
 from telethon.tl.types import MessageMediaPhoto
@@ -55,10 +46,10 @@ from youtube_dl.utils import (DownloadError, ContentTooShortError,
                               MaxDownloadsReached, PostProcessingError,
                               UnavailableVideoError, XAttrMetadataError)
 from asyncio import sleep
-from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRIVER, GOOGLE_CHROME_BIN, bot, REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY, OCR_SPACE_API_KEY, LOGS
+from userbot import BOTLOG, BOTLOG_CHATID, CHROME_DRIVER, CMD_HELP, GOOGLE_CHROME_BIN, LOGS, OCR_SPACE_API_KEY, REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
 from telethon.tl.types import DocumentAttributeAudio
-from userbot.utils import progress, humanbytes, time_formatter, chrome, options, googleimagesdownload
+from userbot.utils import chrome, googleimagesdownload, options, progress
 import subprocess
 from datetime import datetime
 import asyncurban
@@ -68,6 +59,7 @@ CARBONLANG = "auto"
 TTS_LANG = "en"
 TRT_LANG = "en"
 TEMP_DOWNLOAD_DIRECTORY = "/root/userbot/.bin"
+
 
 async def ocr_space_file(filename,
                          overlay=False,
@@ -101,11 +93,13 @@ async def ocr_space_file(filename,
 
 DOGBIN_URL = "https://del.dog/"
 
+
 @register(outgoing=True, pattern="^.crblang (.*)")
 async def setlang(prog):
     global CARBONLANG
     CARBONLANG = prog.pattern_match.group(1)
     await prog.edit(f"Language for carbon.now.sh set to {CARBONLANG}")
+
 
 @register(outgoing=True, pattern="^.karbon")
 async def carbon_api(e):
@@ -147,7 +141,7 @@ async def carbon_api(e):
             'downloadPath': download_path
         }
     }
-    command_result = driver.execute("send_command", params)
+    driver.execute("send_command", params)
     driver.find_element_by_xpath("//button[contains(text(),'Export')]").click()
    # driver.find_element_by_xpath("//button[contains(text(),'4x')]").click()
    # driver.find_element_by_xpath("//button[contains(text(),'PNG')]").click()
@@ -312,10 +306,9 @@ async def _(event):
         await event.edit("No result found for **" + word + "**")
 
 
-
 @register(outgoing=True, pattern=r"^.tts(?: |$)([\s\S]*)")
 async def text_to_speech(query):
-#async def _(event):
+    # async def _(event):
     if query.fwd_from:
         return
     input_str = query.pattern_match.group(1)
@@ -335,25 +328,26 @@ async def text_to_speech(query):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
     required_file_name = TEMP_DOWNLOAD_DIRECTORY + "voice.ogg"
     try:
-        #https://github.com/SpEcHiDe/UniBorg/commit/17f8682d5d2df7f3921f50271b5b6722c80f4106
+        # https://github.com/SpEcHiDe/UniBorg/commit/17f8682d5d2df7f3921f50271b5b6722c80f4106
         tts = gTTS(text, lang=lan)
         tts.save(required_file_name)
         command_to_execute = [
             "ffmpeg",
             "-i",
-             required_file_name,
-             "-map",
-             "0:a",
-             "-codec:a",
-             "libopus",
-             "-b:a",
-             "100k",
-             "-vbr",
-             "on",
-             required_file_name + ".opus"
+            required_file_name,
+            "-map",
+            "0:a",
+            "-codec:a",
+            "libopus",
+            "-b:a",
+            "100k",
+            "-vbr",
+            "on",
+            required_file_name + ".opus"
         ]
         try:
-            t_response = subprocess.check_output(command_to_execute, stderr=subprocess.STDOUT)
+            t_response = subprocess.check_output(
+                command_to_execute, stderr=subprocess.STDOUT)
         except (subprocess.CalledProcessError, NameError, FileNotFoundError) as exc:
             await query.edit(str(exc))
             # continue sending required_file_name
@@ -376,6 +370,7 @@ async def text_to_speech(query):
         await query.delete()
     except Exception as e:
         await query.edit(str(e))
+
 
 @register(outgoing=True, pattern="^.tr(?: |$)(.*)")
 async def _(event):
@@ -412,7 +407,6 @@ async def _(event):
         await event.edit(output_str)
     except Exception as exc:
         await event.edit(str(exc))
-
 
 
 @register(pattern=".lang (tr|tts) (.*)", outgoing=True)
@@ -489,6 +483,7 @@ async def yt_search(video_q):
             break
 
     await video_q.edit(output, link_preview=False)
+
 
 @register(outgoing=True, pattern=r".rip(audio|video) (.*)")
 async def download_video(v_url):
@@ -621,6 +616,7 @@ def deEmojify(inputString):
     """ Remove emojis and other non-safe characters from string """
     return get_emoji_regexp().sub(u'', inputString)
 
+
 @register(outgoing=True, pattern="^.rbg(?: |$)(.*)")
 async def kbg(remob):
     """ For .rbg command, Remove Image Background. """
@@ -702,6 +698,7 @@ async def ReTrieveURL(input_url):
                       stream=True)
     return r
 
+
 @register(pattern=r".ocr (.*)", outgoing=True)
 async def ocr(event):
     if not OCR_SPACE_API_KEY:
@@ -724,6 +721,7 @@ async def ocr(event):
         await event.edit(f"`Here's what I could read from it:`\n\n{ParsedText}"
                          )
     os.remove(downloaded_file_name)
+
 
 @register(pattern=r"^.decode$", outgoing=True)
 async def parseqr(qr_e):
@@ -836,6 +834,7 @@ async def make_qr(makeqr):
                                   reply_to=reply_msg_id)
     os.remove("img_file.webp")
     await makeqr.delete()
+
 
 @register(outgoing=True, pattern=r"^.direct(?: |$)([\s\S]*)")
 async def direct_link_generator(request):
@@ -1138,6 +1137,7 @@ def useragent():
     user_agent = choice(useragents)
     return user_agent.text
 
+
 @register(pattern="^.ss (.*)", outgoing=True)
 async def capture(url):
     """ For .ss command, capture a website's screenshot and send the photo. """
@@ -1163,13 +1163,11 @@ async def capture(url):
     height = driver.execute_script(
         "return Math.max(document.body.scrollHeight, document.body.offsetHeight, "
         "document.documentElement.clientHeight, document.documentElement.scrollHeight, "
-        "document.documentElement.offsetHeight);"
-    )
+        "document.documentElement.offsetHeight);")
     width = driver.execute_script(
         "return Math.max(document.body.scrollWidth, document.body.offsetWidth, "
         "document.documentElement.clientWidth, document.documentElement.scrollWidth, "
-        "document.documentElement.offsetWidth);"
-    )
+        "document.documentElement.offsetWidth);")
     driver.set_window_size(width + 125, height + 125)
     wait_for = height / 1000
     await url.edit(
@@ -1194,6 +1192,7 @@ async def capture(url):
                                    reply_to=message_id)
         await url.delete()
 
+
 @register(outgoing=True, pattern="^.imdb (.*)")
 async def imdb(e):
     try:
@@ -1202,7 +1201,7 @@ async def imdb(e):
         final_name = '+'.join(remove_space)
         page = get("https://www.imdb.com/find?ref_=nv_sr_fn&q=" + final_name +
                    "&s=all")
-        lnk = str(page.status_code)
+        str(page.status_code)
         soup = BeautifulSoup(page.content, 'lxml')
         odds = soup.findAll("tr", "odd")
         mov_title = odds[0].findNext('td').findNext('td').text
