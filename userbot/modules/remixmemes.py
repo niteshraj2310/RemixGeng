@@ -187,7 +187,6 @@ async def _(event):
 
         return
 
-
     input_str = event.pattern_match.group(1)
 
     if input_str == "kill":
@@ -2570,7 +2569,6 @@ async def _(event):
     if event.fwd_from:
 
         return
-
 
     input_str = event.pattern_match.group(1)
 
