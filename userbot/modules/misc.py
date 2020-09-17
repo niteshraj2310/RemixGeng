@@ -22,7 +22,6 @@ import re
 from PIL import Image
 
 
-
 # ================= CONSTANT =================
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 # ============================================
@@ -149,6 +148,7 @@ async def myrepo_is_here(wannaseeme):
         f'Click [here](https://github.com/{GIT_REPO_NAME}/tree/sql-extended/) to open {DEFAULTUSER}`s GitHub page'
     )
 
+
 @register(outgoing=True, pattern="^.raw$")
 async def raw(event):
     the_real_message = None
@@ -171,6 +171,7 @@ async def raw(event):
             allow_cache=False,
             reply_to=reply_to_id,
             caption="`Here's the decoded message data !!`")
+
 
 @register(outgoing=True, pattern=r"^.reverse(?: |$)(\d*)")
 async def okgoogle(img):

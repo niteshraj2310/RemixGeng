@@ -10,6 +10,7 @@ from userbot import bot, CMD_HELP
 from userbot.events import register
 from asyncio.exceptions import TimeoutError
 
+
 @register(outgoing=True, pattern=r"^\.sm(?: |$)(.*)")
 async def lastname(steal):
     if steal.fwd_from:
@@ -51,7 +52,7 @@ async def lastname(steal):
 
 
 CMD_HELP.update({
-        "sangmata":
+    "sangmata":
         "`.sm`\
           \nUsage: Steal ur or friend name."
 })

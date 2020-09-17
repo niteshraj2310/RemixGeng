@@ -116,6 +116,7 @@ async def rastick(animu):
     await sleep(1)
     await animu.delete()
 
+
 @register(outgoing=True, pattern=r"^\.hsb(?: |$)(.*)")
 async def rollstick(tem):
     text = tem.pattern_match.group(1)

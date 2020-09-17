@@ -1,8 +1,11 @@
-#credits to the respective owner xD
-#imported by @heyworld
-import requests , re , random
+# credits to the respective owner xD
+# imported by @heyworld
+import requests
+import re
+import random
 
-import urllib , os
+import urllib
+import os
 
 from telethon.tl import functions
 
@@ -12,69 +15,70 @@ from userbot.events import register
 
 COLLECTION_STRING = [
 
-  "epic-fantasy-wallpaper",
+    "epic-fantasy-wallpaper",
 
-  "castle-in-the-sky-wallpaper",
+    "castle-in-the-sky-wallpaper",
 
-  "fantasy-forest-wallpaper",
+    "fantasy-forest-wallpaper",
 
-  "fantasy-wallpaper-1080p",
+    "fantasy-wallpaper-1080p",
 
-  "toothless-wallpaper-hd"
+    "toothless-wallpaper-hd"
 
-  "japanese-art-wallpaper"
+    "japanese-art-wallpaper"
 
-  "star-wars-landscape-wallpaper"
+    "star-wars-landscape-wallpaper"
 
-  "4k-sci-fi-wallpaper"
+    "4k-sci-fi-wallpaper"
 
-  "minion-screensavers-wallpaper"
+    "minion-screensavers-wallpaper"
 
-  "zootopia-hd-wallpaper"
+    "zootopia-hd-wallpaper"
 
-  "gravity-falls-hd-wallpaper"
+    "gravity-falls-hd-wallpaper"
 
-  "cool-cartoon-wallpaper"
+    "cool-cartoon-wallpaper"
 
-  "disney-movie-wallpaper"
+    "disney-movie-wallpaper"
 
-  "cute-pokemon-wallpapers"
+    "cute-pokemon-wallpapers"
 
-  "4k-anime-wallpaper"
+    "4k-anime-wallpaper"
 
-  "balance-druid-wallpaper"
+    "balance-druid-wallpaper"
 
-  "harry-potter-wallpaper"
+    "harry-potter-wallpaper"
 
-  "funny-meme-wallpaper"
+    "funny-meme-wallpaper"
 
-  "minimalist-hd-wallpaper"
+    "minimalist-hd-wallpaper"
 
-  "cute-animal-wallpaper-backgrounds"
+    "cute-animal-wallpaper-backgrounds"
 
-  "3840-x-1080-wallpaper"
+    "3840-x-1080-wallpaper"
 
-  "wallpaper-outer-space"
+    "wallpaper-outer-space"
 
-  "best-wallpapers-in-the-world"
+    "best-wallpapers-in-the-world"
 
-  "funny-desktop-backgrounds"
+    "funny-desktop-backgrounds"
 
-  "funny-cats-wallpapers"
+    "funny-cats-wallpapers"
 
-  "cool-cat-wallpaper"
+    "cool-cat-wallpaper"
 
-  "doge-wallpaper-hd"
+    "doge-wallpaper-hd"
 
-  "ice-cream-cone-wallpaper"
+    "ice-cream-cone-wallpaper"
 
-  "food-wallpaper-background"
+    "food-wallpaper-background"
 
-  "snowy-christmas-scenes-wallpaper"
+    "snowy-christmas-scenes-wallpaper"
 
-  "life-quotes-wallpaper"
+    "life-quotes-wallpaper"
 
 ]
+
 
 async def animepp():
 
@@ -86,22 +90,23 @@ async def animepp():
 
     pc = requests.get("http://getwallpapers.com/collection/" + pack).text
 
-    f = re.compile('/\w+/full.+.jpg')
+    f = re.compile(r'/\w+/full.+.jpg')
 
     f = f.findall(pc)
 
-    fy = "http://getwallpapers.com"+random.choice(f)
+    fy = "http://getwallpapers.com" + random.choice(f)
 
     print(fy)
 
     if not os.path.exists("f.ttf"):
 
-        urllib.request.urlretrieve("https://github.com/rebel6969/mym/raw/master/Rebel-robot-Regular.ttf","f.ttf")
+        urllib.request.urlretrieve(
+            "https://github.com/rebel6969/mym/raw/master/Rebel-robot-Regular.ttf", "f.ttf")
 
-    urllib.request.urlretrieve(fy,"donottouch.jpg")
+    urllib.request.urlretrieve(fy, "donottouch.jpg")
+
 
 @register(outgoing=True, pattern="^.randompp(?: |$)(.*)")
-
 async def main(event):
 
     await event.edit("`changing your Profile Pic...`\n\n`Check Your DP in 10 seconds.`")
@@ -112,8 +117,8 @@ async def main(event):
 
         file = await event.client.upload_file("donottouch.jpg")
 
-        await event.client(functions.photos.UploadProfilePhotoRequest( file))
+        await event.client(functions.photos.UploadProfilePhotoRequest(file))
 
         os.system("rm -rf donottouch.jpg")
 
-        await asyncio.sleep(1600) #Edit this to your required needs
+        await asyncio.sleep(1600)  # Edit this to your required needs

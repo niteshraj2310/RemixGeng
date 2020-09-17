@@ -8,13 +8,11 @@
 import os
 import logging
 from telethon.tl import functions
-from telethon import events
 from telethon.tl.functions.account import UpdateUsernameRequest, UpdateProfileRequest
 from telethon.tl.functions.channels import GetAdminedPublicChannelsRequest
-from telethon.errors import ImageProcessFailedError, PhotoCropSizeSmallError
-from telethon.tl.types import InputPhoto, MessageMediaPhoto, User, Chat, Channel
-from telethon.tl.functions.photos import DeletePhotosRequest,GetUserPhotosRequest
-from telethon.errors.rpcerrorlist import PhotoExtInvalidError, UsernameOccupiedError
+from telethon.tl.types import Channel, Chat, InputPhoto, User
+from telethon.tl.functions.photos import DeletePhotosRequest, GetUserPhotosRequest
+from telethon.errors.rpcerrorlist import UsernameOccupiedError
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 from telethon.utils import get_input_location
@@ -81,8 +79,8 @@ async def _(event):
     else:
         if photo:
             await event.edit("now, Uploading to Telegram ...")
-            if photo.endswith((".mp4" ,".MP4",".gif",".GIF")):
-                #https://t.me/tgbetachat/324694
+            if photo.endswith((".mp4", ".MP4", ".gif", ".GIF")):
+                # https://t.me/tgbetachat/324694
                 size = os.stat(photo).st_size
                 if size > 2097152:
                     await event.edit("size must be less than 2 mb")
@@ -95,9 +93,9 @@ async def _(event):
                 catvideo = None
             try:
                 await bot(functions.photos.UploadProfilePhotoRequest(
-                    file = catpic,
-                    video = catvideo,
-                    video_start_ts =  0.01               ))
+                    file=catpic,
+                    video=catvideo,
+                    video_start_ts=0.01))
             except Exception as e:  # pylint:disable=C0103,W0703
                 await event.edit(str(e))
             else:
@@ -190,6 +188,7 @@ async def remove_profilepic(delpfp):
     await delpfp.edit(
         f"`Successfully deleted {len(input_photos)} profile picture(s).`")
 
+
 @register(pattern=".data(?: |$)(.*)", outgoing=True)
 async def who(event):
 
@@ -274,7 +273,7 @@ async def fetch_info(replied_user, event):
     replied_user_profile_photos_count = "This gay has no pic."
     try:
         replied_user_profile_photos_count = replied_user_profile_photos.count
-    except AttributeError as e:
+    except AttributeError:
         pass
     user_id = replied_user.user.id
     first_name = replied_user.user.first_name
@@ -283,7 +282,7 @@ async def fetch_info(replied_user, event):
         dc_id, _ = get_input_location(replied_user.profile_photo)
     except Exception as e:
         dc_id = "Couldn't fetch DC ID!"
-        location = str(e)
+        str(e)
     common_chat = replied_user.common_chats_count
     username = replied_user.user.username
     user_bio = replied_user.about
