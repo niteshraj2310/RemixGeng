@@ -141,7 +141,6 @@ if 1 == 1:
     client = bot
 
 
-
 @register(outgoing=True, pattern="^.app(?: |$)(.*)")
 async def apk(e):
     try:
