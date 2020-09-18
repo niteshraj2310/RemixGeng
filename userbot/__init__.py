@@ -7,6 +7,7 @@ import sys
 """ Userbot initialization. """
 
 import os
+import heroku3
 import re
 import time
 from sys import version_info
@@ -78,9 +79,11 @@ LOGSPAMMER = sb(os.environ.get("LOGSPAMMER", "False"))
 PM_AUTO_BAN = sb(os.environ.get("PM_AUTO_BAN", "False"))
 
 # Heroku Credentials for updater.
-HEROKU_MEMEZ = sb(os.environ.get("HEROKU_MEMEZ", "False"))
-HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME", None)
+HEROKU_MEMEZ = sb(os.environ.get("HEROKU_MEMEZ") or "False")
+HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME") or None
+HEROKU_APP_FALLBACK_NAME = os.environ.get("HEROKU_APP_FALLBACK_NAME") or None
 HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY", None)
+HEROKU_API_KEY_FALLBACK = os.environ.get("HEROKU_API_KEY_FALLBACK") or None
 
 # JustWatch Country
 WATCH_COUNTRY = os.environ.get("WATCH_COUNTRY", "IN")
@@ -204,9 +207,8 @@ QUOTES_API_TOKEN = os.environ.get("QUOTES_API_TOKEN", None)
 # Deezloader
 DEEZER_ARL_TOKEN = os.environ.get("DEEZER_ARL_TOKEN", None)
 
-# Photo Chat - Get this value from http://antiddos.systems
-API_TOKEN = os.environ.get("API_TOKEN", "15e05de0-0357-4553-b39c-d614443ed91e")
-API_URL = os.environ.get("API_URL", "http://antiddos.systems")
+# Wolfram Alpha API
+WOLFRAM_ID = os.environ.get("WOLFRAM_ID") or None
 
 # Inline bot helper
 BOT_TOKEN = os.environ.get("BOT_TOKEN") or None
@@ -265,6 +267,22 @@ else:
     # pylint: disable=invalid-name
     bot = TelegramClient("userbot", API_KEY, API_HASH)
 
+#######################################################################
+#                        Initialization fallback                      #
+heroku = heroku3.from_key(HEROKU_API_KEY)
+fallback = None
+if HEROKU_API_KEY_FALLBACK and HEROKU_APP_FALLBACK_NAME:
+    fallback = heroku3.from_key(HEROKU_API_KEY_FALLBACK)
+    try:
+        fallback_app = fallback.app(HEROKU_APP_FALLBACK_NAME)
+    except HTTPError:
+        LOGS.info(
+            "Your HEROKU_API_KEY_FALLBACK and HEROKU_APP_FALLBACK_NAME"
+            " doesn't seem to be in the same account, or "
+            f"{HEROKU_APP_FALLBACK_NAME} not found."
+        )
+        quit(1)
+#######################################################################
 
 async def check_botlog_chatid():
     if not BOTLOG_CHATID and LOGSPAMMER:
@@ -332,10 +350,10 @@ def paginate_help(page_number, loaded_modules, prefix):
         ] + [
             (
                 custom.Button.inline(
-                    "⬅️", data="{}_prev({})".format(prefix, modulo_page)
+                    "🥱", data="{}_prev({})".format(prefix, modulo_page)
                 ),
                 custom.Button.inline(
-                    "➡️", data="{}_next({})".format(prefix, modulo_page)
+                    "🥱", data="{}_next({})".format(prefix, modulo_page)
                 ),
             )
         ]

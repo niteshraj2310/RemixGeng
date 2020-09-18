@@ -266,6 +266,39 @@ async def fcmd(e):
             out += (n * c) + "\n"
         await e.edit(html.escape(out))
 
+@register(outgoing=True, pattern="^.iff$")
+async def pressf(f):
+    """Pays respects"""
+    args = f.text.split()
+    arg = (f.text.split(' ', 1))[1] if len(args) > 1 else None
+    if len(args) == 1:
+        r = randint(0, 3)
+        LOGS.info(r)
+        if r == 0:
+            await f.edit("┏━━━┓\n┃┏━━┛\n┃┗━━┓\n┃┏━━┛\n┃┃\n┗┛")
+        elif r == 1:
+            await f.edit("╭━━━╮\n┃╭━━╯\n┃╰━━╮\n┃╭━━╯\n┃┃\n╰╯")
+        else:
+            arg = "F"
+    if arg is not None:
+        out = ""
+        F_LENGTHS = [5, 1, 1, 4, 1, 1, 1]
+        for line in F_LENGTHS:
+            c = max(round(line / len(arg)), 1)
+            out += (arg * c) + "\n"
+        await f.edit("`" + out + "`")
+
+@register(outgoing=True, pattern="^.paw$")
+async def paw(pawed):
+    if not pawed.text[0].isalpha() and pawed.text[0] not in (
+            "/", "#", "@", "!"):
+        await pawed.edit("`(=ↀωↀ=)")
+
+
+@register(outgoing=True, pattern="^.tf$")
+async def tf(focc):
+    if not focc.text[0].isalpha() and focc.text[0] not in ("/", "#", "@", "!"):
+        await focc.edit("(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)̄  ")
 
 @register(pattern="^.color(?: |$)(.*)", outgoing=True)
 async def _(event):

@@ -104,7 +104,7 @@ async def editer(edit):
             await message.edit(string)
             await edit.delete()
             break
-        i += 1
+        i = i + 1
     if BOTLOG:
         await edit.client.send_message(BOTLOG_CHATID,
                                        "Edit query was executed successfully")

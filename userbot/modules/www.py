@@ -8,6 +8,7 @@
 
 from datetime import datetime
 
+from telethon import functions
 from speedtest import Speedtest
 from userbot import CMD_HELP
 from userbot.events import register
@@ -51,15 +52,23 @@ def speed_convert(size):
         zero += 1
     return f"{round(size, 2)} {units[zero]}"
 
+@register(outgoing=True, pattern="^.dc$")
+async def neardc(event):
+    """ For .dc command, get the nearest datacenter information. """
+    result = await event.client(functions.help.GetNearestDcRequest())
+    await event.edit(f"Country : `{result.country}`\n"
+                     f"Nearest Datacenter : `{result.nearest_dc}`\n"
+                     f"This Datacenter : `{result.this_dc}`")
+
 
 @register(outgoing=True, pattern="^.ping$")
 async def pingme(pong):
     """ For .ping command, ping the userbot from any chat.  """
     start = datetime.now()
-    await pong.edit("`pooong!`")
+    await pong.edit("Ping is High AF 😭")
     end = datetime.now()
     duration = (end - start).microseconds / 1000
-    await pong.edit("`Pong!\n%sms`" % (duration))
+    await pong.edit("Ping is High AF 😭\n`%sms`" % (duration))
 
 CMD_HELP.update(
     {"ping": "`.ping`\
@@ -67,3 +76,6 @@ CMD_HELP.update(
     \n\n`.speed`\
     \nUsage: Does a speedtest and shows the results."
      })
+CMD_HELP.update(
+    {"dc": ".dc\
+    \nUsage: Finds the nearest datacenter from your server."})

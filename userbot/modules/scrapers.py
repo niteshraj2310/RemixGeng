@@ -12,12 +12,13 @@ import time
 import asyncio
 import shutil
 import json
+import glob
 import requests
 from os import popen
 import urllib.parse
 from bs4 import BeautifulSoup
 import re
-from re import match
+from re import match, findall
 import io
 from random import choice
 from humanize import naturalsize
@@ -30,6 +31,7 @@ from re import findall
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from urllib.parse import quote_plus
+from urllib.error import HTTPError
 from wikipedia import summary
 from wikipedia.exceptions import DisambiguationError, PageError
 from requests import get
@@ -46,7 +48,7 @@ from youtube_dl.utils import (DownloadError, ContentTooShortError,
                               MaxDownloadsReached, PostProcessingError,
                               UnavailableVideoError, XAttrMetadataError)
 from asyncio import sleep
-from userbot import BOTLOG, BOTLOG_CHATID, CHROME_DRIVER, CMD_HELP, GOOGLE_CHROME_BIN, LOGS, OCR_SPACE_API_KEY, REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY, bot
+from userbot import BOTLOG, BOTLOG_CHATID, CHROME_DRIVER, CMD_HELP, GOOGLE_CHROME_BIN, LOGS, OCR_SPACE_API_KEY, REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY, WOLFRAM_ID, bot
 from userbot.events import register
 from telethon.tl.types import DocumentAttributeAudio
 from userbot.utils import chrome, googleimagesdownload, options, progress
@@ -226,7 +228,7 @@ async def moni(event):
         return
 
 
-@register(outgoing=True, pattern=r"^.google (.*)")
+register(outgoing=True, pattern=r"^.google (.*)")
 async def gsearch(q_event):
     """ For .google command, do a Google search. """
     match = q_event.pattern_match.group(1)
@@ -241,7 +243,7 @@ async def gsearch(q_event):
     gsearch = GoogleSearch()
     gresults = await gsearch.async_search(*search_args)
     msg = ""
-    for i in range(7):
+    for i in range(10):
         try:
             title = gresults["titles"][i]
             link = gresults["links"][i]
@@ -258,7 +260,6 @@ async def gsearch(q_event):
             BOTLOG_CHATID,
             "Google Search query `" + match + "` was executed successfully",
         )
-
 
 @register(outgoing=True, pattern=r"^.wiki (.*)")
 async def wiki(wiki_q):
@@ -305,6 +306,49 @@ async def _(event):
     except asyncurban.WordNotFoundError:
         await event.edit("No result found for **" + word + "**")
 
+@register(outgoing=True, pattern=r"^.voice(?: |$)([\s\S]*)")
+async def text_to_speech(query):
+    """ For .tts command, a wrapper for Google Text-to-Speech. """
+    textx = await query.get_reply_message()
+    message = query.pattern_match.group(1)
+    if message:
+        pass
+    elif textx:
+        message = textx.text
+    else:
+        await query.edit(
+            "`Give a text or reply to a message for Text-to-Speech!`")
+        return
+
+    try:
+        gTTS(message, lang=TTS_LANG)
+    except AssertionError:
+        await query.edit(
+            'The text is empty.\n'
+            'Nothing left to speak after pre-precessing, tokenizing and cleaning.'
+        )
+        return
+    except ValueError:
+        await query.edit('Language is not supported.')
+        return
+    except RuntimeError:
+        await query.edit('Error loading the languages dictionary.')
+        return
+    tts = gTTS(message, lang=TTS_LANG)
+    tts.save("k.mp3")
+    with open("k.mp3", "rb") as audio:
+        linelist = list(audio)
+        linecount = len(linelist)
+    if linecount == 1:
+        tts = gTTS(message, lang=TTS_LANG)
+        tts.save("k.mp3")
+    with open("k.mp3", "r"):
+        await query.client.send_file(query.chat_id, "k.mp3", voice_note=True)
+        os.remove("k.mp3")
+        if BOTLOG:
+            await query.client.send_message(
+                BOTLOG_CHATID, "Text to Speech executed successfully !")
+        await query.delete()
 
 @register(outgoing=True, pattern=r"^.tts(?: |$)([\s\S]*)")
 async def text_to_speech(query):
@@ -1275,6 +1319,55 @@ async def imdb(e):
     except IndexError:
         await e.edit("Plox enter **Valid movie name** kthx")
 
+@register(outgoing=True, pattern=r"^.song(?: |$)(.*)")
+async def download_song(song):
+    if song.fwd_from:
+        return
+    cmd = song.pattern_match.group(1)
+    reply_to_id = song.message.id
+
+    def bruh(name):
+        os.system("instantmusic -q -s " + name)
+    if song.reply_to_msg_id:
+        reply_to_id = song.reply_to_msg_id
+    await song.edit("`Ok finding the song...`")
+    bruh(str(cmd))
+    l = glob.glob("*.mp3")
+    try:
+        loa = l[0]
+    except IndexError:
+        await song.edit("`Search failed.`")
+        return False
+    await song.edit("`Sending song...`")
+    await song.client.send_file(
+        song.chat_id,
+        loa,
+        force_document=True,
+        allow_cache=False,
+        caption=cmd,
+        reply_to=reply_to_id
+    )
+    await song.edit("`Done`")
+    os.remove(loa)
+
+@register(outgoing=True, pattern=r'^.wolfram (.*)')
+async def wolfram(wvent):
+    """ Wolfram Alpha API """
+    if WOLFRAM_ID is None:
+        await wvent.edit(
+            'Please set your WOLFRAM_ID first !\n'
+            'Get your API KEY from [here](https://'
+            'products.wolframalpha.com/api/)',
+            parse_mode='Markdown')
+        return
+    i = wvent.pattern_match.group(1)
+    appid = WOLFRAM_ID
+    server = f'https://api.wolframalpha.com/v1/spoken?appid={appid}&i={i}'
+    res = get(server)
+    await wvent.edit(f'**{i}**\n\n' + res.text, parse_mode='Markdown')
+    if BOTLOG:
+        await wvent.client.send_message(BOTLOG_CHATID, f'.wolfram {i} was executed successfully')
+
 
 CMD_HELP.update({
     "scrappers":
@@ -1317,4 +1410,16 @@ CMD_HELP.update({
 \nExample of a valid URL : `google.com` or `https://www.google.com`\
 \n\n`.imdb` movie/series name\
 \nUsage:scrap movie/series information."
+})
+
+CMD_HELP.update({
+    'wolfram':
+    '.wolfram <query>\
+        \nUsage: Get answers to questions using WolframAlpha Spoken Results API.'
+})
+
+CMD_HELP.update({
+    'song':
+    '.song title or .song <yt vid link>\
+        \nUsage: Instantly download any songs from YouTube and many other sites.'
 })
