@@ -76,7 +76,60 @@ weebyfont = [
     '乂',
     '丫',
     '乙']
-
+circlyfont = [
+    '🅐',
+    '🅑',
+    '🅒',
+    '🅓',
+    '🅔',
+    '🅕',
+    '🅖',
+    '🅗',
+    '🅘',
+    '🅙',
+    '🅚',
+    '🅛',
+    '🅜',
+    '🅝',
+    '🅞',
+    '🅟',
+    '🅠',
+    '🅡',
+    '🅢',
+    '🅣',
+    '🅤',
+    '🅥',
+    '🅦',
+    '🅧',
+    '🅨',
+    '🅩']
+oldengfont = [
+    '𝔄',
+    '𝔅',
+    'ℭ',
+    '𝔇',
+    '𝔈',
+    '𝔉',
+    '𝔊',
+    'ℌ',
+    'ℑ',
+    '𝔍',
+    '𝔎',
+    '𝔏',
+    '𝔐',
+    '𝔑',
+    '𝔒',
+    '𝔓',
+    '𝔔',
+    'ℜ',
+    '𝔖',
+    '𝔗',
+    '𝔘',
+    '𝔙',
+    '𝔚',
+    '𝔛',
+    '𝔜',
+    'ℨ']
 
 logger = logging.getLogger(__name__)
 
@@ -87,6 +140,42 @@ if 1 == 1:
     name = "Profile Photos"
     client = bot
 
+@register(outgoing=True, pattern=r"^.itv(?: |$)(.*)")
+async def _(event):
+    if event.fwd_from:
+        return
+    if not event.reply_to_msg_id:
+        await event.edit("```Reply to a Link.```")
+        return
+    reply_message = await event.get_reply_message()
+    if not reply_message.text:
+        await event.edit("```Reply to a Link```")
+        return
+    chat = "@chotamreaderbot"
+    reply_message.sender
+    await event.edit("```Processing```")
+    async with bot.conversation(chat) as conv:
+        try:
+            response = conv.wait_event(
+                events.NewMessage(
+                    incoming=True,
+                    from_users=272572121))
+            msg = await bot.forward_messages(chat, reply_message)
+            response = await response
+            """ - don't spam notif - """
+            await bot.send_read_acknowledge(conv.chat_id)
+        except YouBlockedUserError:
+            await event.reply("`RIP Check Your Blacklist Boss`")
+            return
+        if response.text.startswith(""):
+            await event.edit("Am I Dumb Or Am I Dumb?")
+        else:
+            await event.delete()
+            await bot.send_message(event.chat_id, response.message)
+            await bot.send_read_acknowledge(event.chat_id)
+            """ - cleanup chat after completed - """
+            await event.client.delete_messages(conv.chat_id,
+                                               [msg.id, response.id])
 
 @register(outgoing=True, pattern="^.app(?: |$)(.*)")
 async def apk(e):
@@ -1011,6 +1100,40 @@ async def xcursive(cursivelite):
             string = string.replace(normiecharacter, cursivecharacter)
     await cursivelite.edit(string)
 
+@register(outgoing=True, pattern="^.circlify(?: |$)(.*)")
+async def circly(event):
+
+    args = event.pattern_match.group(1)
+    if not args:
+        get = await event.get_reply_message()
+        args = get.text
+    if not args:
+        await event.edit("`What I am Supposed to circlyfy U Dumb`")
+        return
+    string = '  '.join(args).lower()
+    for normiecharacter in string:
+        if normiecharacter in normiefont:
+            circlycharacter = circlyfont[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, circlycharacter)
+    await event.edit(string)
+
+
+@register(outgoing=True, pattern="^.oldeng(?: |$)(.*)")
+async def oldy(event):
+
+    args = event.pattern_match.group(1)
+    if not args:
+        get = await event.get_reply_message()
+        args = get.text
+    if not args:
+        await event.edit("`What, I am Supposed To Work with text only`")
+        return
+    string = '  '.join(args).lower()
+    for normiecharacter in string:
+        if normiecharacter in normiefont:
+            oldycharacter = oldengfont[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, oldycharacter)
+    await event.edit(string)
 
 @register(outgoing=True, pattern="^.rclone(?: |$)(.*)")
 async def _(event):

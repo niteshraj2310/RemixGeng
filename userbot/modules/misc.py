@@ -59,7 +59,6 @@ async def sleepybot(time):
     sleep(counter)
     await time.edit("`OK, I'm awake now.`")
 
-
 @register(outgoing=True, pattern="^.shutdown$")
 async def killdabot(event):
     """ For .shutdown command, shut the bot down."""
@@ -127,7 +126,7 @@ async def repeat(rep):
 
     replyText = toBeRepeated + "\n"
 
-    for _ in range(replyCount - 1):
+    for i in range(0, replyCount - 1):
         replyText += toBeRepeated + "\n"
 
     await rep.edit(replyText)
