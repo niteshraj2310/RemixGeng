@@ -59,6 +59,7 @@ async def sleepybot(time):
     sleep(counter)
     await time.edit("`OK, I'm awake now.`")
 
+
 @register(outgoing=True, pattern="^.shutdown$")
 async def killdabot(event):
     """ For .shutdown command, shut the bot down."""

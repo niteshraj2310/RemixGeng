@@ -140,6 +140,7 @@ if 1 == 1:
     name = "Profile Photos"
     client = bot
 
+
 @register(outgoing=True, pattern=r"^.itv(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
@@ -176,6 +177,7 @@ async def _(event):
             """ - cleanup chat after completed - """
             await event.client.delete_messages(conv.chat_id,
                                                [msg.id, response.id])
+
 
 @register(outgoing=True, pattern="^.app(?: |$)(.*)")
 async def apk(e):
@@ -1100,6 +1102,7 @@ async def xcursive(cursivelite):
             string = string.replace(normiecharacter, cursivecharacter)
     await cursivelite.edit(string)
 
+
 @register(outgoing=True, pattern="^.circlify(?: |$)(.*)")
 async def circly(event):
 
@@ -1134,6 +1137,7 @@ async def oldy(event):
             oldycharacter = oldengfont[normiefont.index(normiecharacter)]
             string = string.replace(normiecharacter, oldycharacter)
     await event.edit(string)
+
 
 @register(outgoing=True, pattern="^.rclone(?: |$)(.*)")
 async def _(event):
