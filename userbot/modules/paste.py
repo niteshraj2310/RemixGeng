@@ -6,7 +6,7 @@ Syntax: .iffuci
 """
 
 from userbot.events import register
-from requests import exceptions, get
+from requests import exceptions, get, post
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
 from telethon import events
