@@ -17,7 +17,15 @@ import aiohttp
 import math
 import os
 import requests
-from userbot import (CMD_HELP, heroku, fallback, HEROKU_APP_NAME, HEROKU_API_KEY, HEROKU_API_KEY_FALLBACK, BOTLOG, BOTLOG_CHATID)
+from userbot import (
+    CMD_HELP,
+    heroku,
+    fallback,
+    HEROKU_APP_NAME,
+    HEROKU_API_KEY,
+    HEROKU_API_KEY_FALLBACK,
+    BOTLOG,
+    BOTLOG_CHATID)
 from userbot.events import register
 
 heroku_api = "https://api.heroku.com"
@@ -191,6 +199,7 @@ async def dyno_usage(dyno):
                 f"-  {percentage}%**"
             )
             return True
+
 
 @register(outgoing=True,
           pattern=(

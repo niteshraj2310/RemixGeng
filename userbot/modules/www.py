@@ -52,6 +52,7 @@ def speed_convert(size):
         zero += 1
     return f"{round(size, 2)} {units[zero]}"
 
+
 @register(outgoing=True, pattern="^.dc$")
 async def neardc(event):
     """ For .dc command, get the nearest datacenter information. """
