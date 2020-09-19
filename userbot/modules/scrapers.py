@@ -47,12 +47,6 @@ from youtube_dl.utils import (DownloadError, ContentTooShortError,
                               ExtractorError, GeoRestrictedError,
                               MaxDownloadsReached, PostProcessingError,
                               UnavailableVideoError, XAttrMetadataError)
-import glob
-try:
-    pass
-except BaseException:
-    os.system("pip install instantmusic")
-
 from asyncio import sleep
 from userbot import BOTLOG, BOTLOG_CHATID, CHROME_DRIVER, CMD_HELP, GOOGLE_CHROME_BIN, LOGS, OCR_SPACE_API_KEY, REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY, WOLFRAM_ID, bot
 from userbot.events import register
@@ -1353,38 +1347,6 @@ async def imdb(e):
         await e.edit("Plox enter **Valid movie name** kthx")
 
 
-@register(outgoing=True, pattern=r"^.song(?: |$)(.*)")
-async def download_song(song):
-    if song.fwd_from:
-        return
-    cmd = song.pattern_match.group(1)
-    reply_to_id = song.message.id
-
-    def bruh(name):
-        os.system("instantmusic -q -s " + name)
-    if song.reply_to_msg_id:
-        reply_to_id = song.reply_to_msg_id
-    await song.edit("`Ok finding the song...`")
-    bruh(str(cmd))
-    l = glob.glob("*.mp3")
-    try:
-        loa = l[0]
-    except IndexError:
-        await song.edit("`Search failed.`")
-        return False
-    await song.edit("`Sending song...`")
-    await song.client.send_file(
-        song.chat_id,
-        loa,
-        force_document=True,
-        allow_cache=False,
-        caption=cmd,
-        reply_to=reply_to_id
-    )
-    await song.edit("`Done`")
-    os.remove(loa)
-
-
 @register(outgoing=True, pattern=r'^.wolfram (.*)')
 async def wolfram(wvent):
     """ Wolfram Alpha API """
@@ -1451,10 +1413,4 @@ CMD_HELP.update({
     'wolfram':
     '.wolfram <query>\
         \nUsage: Get answers to questions using WolframAlpha Spoken Results API.'
-})
-
-CMD_HELP.update({
-    'song':
-    '.song title or .song <yt vid link>\
-        \nUsage: Instantly download any songs from YouTube and many other sites.'
 })

@@ -307,3 +307,10 @@ CMD_HELP.update(
         "\nUsage: To rotate your image\n* The value is range 1-360 if not it'll give default value which is 90"
     }
 )
+
+CMD_HELP.update(
+    {
+        "memify": ">`.mmf texttop ; textbottom`"
+        "\nUsage: Reply a sticker/image/gif and send with cmd."
+    }
+)
