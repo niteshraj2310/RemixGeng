@@ -3,14 +3,9 @@
 # Ported from Userge by Alfiananda P.A
 
 import asyncio
-import time, re
-from asyncio.exceptions import TimeoutError
 import os
-from PIL import Image, ImageDraw, ImageEnhance, ImageFont, ImageOps
-from telethon import events, functions, types
-from userbot.utils import progress
+from PIL import Image, ImageDraw, ImageFont, ImageOps
 import textwrap
-from random import randint, uniform
 from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
 from userbot.utils.tools import check_media
@@ -148,6 +143,7 @@ async def rotate(event):
     os.remove(rotate)
     os.remove(Converted)
 
+
 @register(outgoing=True, pattern=r"^\.mmf(?: |$)(.*)")
 async def mim(event):
     if not event.reply_to_msg_id:
@@ -175,7 +171,8 @@ async def mim(event):
         if event.reply_to_msg_id:
             file_name = "meme.jpg"
             to_download_directory = TEMP_DOWNLOAD_DIRECTORY
-            downloaded_file_name = os.path.join(to_download_directory, file_name)
+            downloaded_file_name = os.path.join(
+                to_download_directory, file_name)
             downloaded_file_name = await bot.download_media(
                 reply_message,
                 downloaded_file_name,

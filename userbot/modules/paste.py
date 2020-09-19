@@ -26,6 +26,7 @@ def progress(current, total):
             total,
             (current / total) * 100))
 
+
 NEKOBIN_URL = "https://nekobin.com/"
 DOGBIN_URL = "https://del.dog/"
 BOTLOG = True
@@ -192,6 +193,7 @@ async def neko(nekobin):
             BOTLOG_CHATID,
             "Paste query was executed successfully",
         )
+
 
 @register(outgoing=True, pattern=r"^.iffuci(?: |$)([\s\S]*)")
 async def _(event):

@@ -249,6 +249,7 @@ async def whoizme(e):
         await asyncio.sleep(0.3)
         await e.edit("EVERyBOdy iZ PrO UNtIL U ArRivE 🔥")
 
+
 @register(outgoing=True, pattern=r"^\.(?:penis|dick)\s?(.)?")
 async def emoji_penis(titit):
     emoji = titit.pattern_match.group(1)
