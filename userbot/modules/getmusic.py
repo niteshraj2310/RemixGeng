@@ -25,16 +25,14 @@ from userbot.utils import progress
 
 # For getvideosong
 
-
 def getmusicvideo(cat):
     search = cat
     headers = {
         "User-Agent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
     }
     html = requests.get(
-        "https://www.youtube.com/results?search_query=" +
-        search,
-        headers=headers).text
+        "https://www.youtube.com/results?search_query=" + search, headers=headers
+    ).text
     soup = BeautifulSoup(html, "html.parser")
     for link in soup.find_all("a"):
         if "/watch?v=" in link.get("href"):
@@ -42,9 +40,8 @@ def getmusicvideo(cat):
             video_link = link.get("href")
             break
     video_link = "http://www.youtube.com/" + video_link
-    command = 'youtube-dl -f "[filesize<50M]" ' + video_link
+    command = 'youtube-dl -f "[filesize<50M]" --merge-output-format mp4 ' + video_link
     os.system(command)
-
 
 @register(outgoing=True, pattern=r"^\.songn (?:(now)|(.*) - (.*))")
 async def _(event):
@@ -164,7 +161,6 @@ async def _(event):
     except TimeoutError:
         return await event.edit("`Error: `@SpotifyMusicDownloaderBot` is not responding!.`")
 
-
 @register(outgoing=True, pattern=r"^\.vsong(?: |$)(.*)")
 async def _(event):
     reply_to_id = event.message.id
@@ -198,11 +194,15 @@ async def _(event):
     if metadata.has("height"):
         height = metadata.get("height")
     await event.edit("`Uploading video.. Please wait..`")
+    os.system("cp *mp4 thumb.mp4")
+    os.system("ffmpeg -i thumb.mp4 -vframes 1 -an -s 480x360 -ss 5 thumb.jpg")
+    thumb_image = "thumb.jpg"
     c_time = time.time()
     await event.client.send_file(
         event.chat_id,
         loa,
-        force_document=True,
+        force_document=False,
+        thumb=thumb_image,
         allow_cache=False,
         caption=query,
         supports_streaming=True,
@@ -221,6 +221,7 @@ async def _(event):
         ),
     )
     await event.delete()
+    os.remove(thumb_image)
     os.system("rm -rf *.mkv")
     os.system("rm -rf *.mp4")
     os.system("rm -rf *.webm")

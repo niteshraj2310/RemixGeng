@@ -9,7 +9,7 @@ import html
 from justwatch import JustWatch
 from telethon import *
 from userbot.events import register
-from userbot import CMD_HELP, bot, TEMP_DOWNLOAD_DIRECTORY, DEFAULT_BIO, ALIVE_NAME
+from userbot import CMD_HELP, bot, TEMP_DOWNLOAD_DIRECTORY, DEFAULT_BIO, ALIVE_NAME, WATCH_COUNTRY
 from telethon import events
 from telethon.tl import functions
 from urllib.parse import quote
@@ -652,7 +652,6 @@ async def get_full_user(event):
                 return replied_user, None
             except Exception as e:
                 return None, e
-
 
 def get_stream_data(query):
     stream_data = {}

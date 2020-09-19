@@ -8,15 +8,26 @@
 # Based code + improve from AdekMaulana and aidilaryanto
 
 import asyncio
+import io
 import os
+import random
+import re
 import textwrap
+import time
+from asyncio.exceptions import TimeoutError
+from random import randint, uniform
 
-from PIL import Image, ImageDraw, ImageFont
+from glitch_this import ImageGlitcher
+from PIL import Image, ImageDraw, ImageEnhance, ImageFont, ImageOps
+from telethon import events, functions, types
+from telethon.errors.rpcerrorlist import YouBlockedUserError
 
 from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
+from userbot.utils import progress
 from userbot.utils.tools import check_media
 
+THUMB_IMAGE_PATH = "./thumb_image.jpg"
 
 @register(outgoing=True, pattern=r"^\.mmf(?: |$)(.*)")
 async def mim(event):
@@ -25,7 +36,6 @@ async def mim(event):
             "`Syntax: reply to an image with .mmf` 'text on top' ; 'text on bottom' "
         )
         return
-
     reply_message = await event.get_reply_message()
     if not reply_message.media:
         await event.edit("```reply to a image/sticker/gif```")
@@ -45,8 +55,7 @@ async def mim(event):
         if event.reply_to_msg_id:
             file_name = "meme.jpg"
             to_download_directory = TEMP_DOWNLOAD_DIRECTORY
-            downloaded_file_name = os.path.join(
-                to_download_directory, file_name)
+            downloaded_file_name = os.path.join(to_download_directory, file_name)
             downloaded_file_name = await bot.download_media(
                 reply_message,
                 downloaded_file_name,
@@ -167,7 +176,6 @@ async def draw_meme_text(image_path, text):
     webp_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY, image_name)
     img.save(webp_file, "WebP")
     return webp_file
-
 
 CMD_HELP.update(
     {
