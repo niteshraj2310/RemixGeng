@@ -10,7 +10,7 @@ import html
 import asyncio
 import os
 from PIL import Image, ImageColor
-from random import choice
+from random import choice, getrandbits, randint
 from re import sub
 from userbot import CMD_HELP
 from userbot.events import register
@@ -294,13 +294,13 @@ async def pressf(f):
 async def paw(pawed):
     if not pawed.text[0].isalpha() and pawed.text[0] not in (
             "/", "#", "@", "!"):
-        await pawed.edit("`(=ↀωↀ=)")
+        await pawed.edit("`(=ↀωↀ=)`")
 
 
 @register(outgoing=True, pattern="^.tf$")
 async def tf(focc):
     if not focc.text[0].isalpha() and focc.text[0] not in ("/", "#", "@", "!"):
-        await focc.edit("(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)̄  ")
+        await focc.edit("`(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)̄ ` ")
 
 
 @register(pattern="^.color(?: |$)(.*)", outgoing=True)

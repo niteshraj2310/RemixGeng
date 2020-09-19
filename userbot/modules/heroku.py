@@ -28,6 +28,12 @@ from userbot import (
     BOTLOG_CHATID)
 from userbot.events import register
 
+useragent = (
+    'Mozilla/5.0 (Linux; Android 10; SM-G975F) '
+    'AppleWebKit/537.36 (KHTML, like Gecko) '
+    'Chrome/81.0.4044.117 Mobile Safari/537.36'
+)
+
 heroku_api = "https://api.heroku.com"
 if HEROKU_APP_NAME is not None and HEROKU_API_KEY is not None:
     Heroku = heroku3.from_key(HEROKU_API_KEY)

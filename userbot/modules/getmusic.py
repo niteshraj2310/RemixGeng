@@ -26,8 +26,8 @@ from userbot.utils import progress
 # For getvideosong
 
 
-def getmusicvideo(event):
-    search = event
+def getmusicvideo(cat):
+    search = cat
     headers = {
         "User-Agent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
     }
