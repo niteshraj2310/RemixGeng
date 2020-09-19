@@ -10,7 +10,7 @@ import html
 import asyncio
 import os
 from PIL import Image, ImageColor
-from random import choice, getrandbits, randint
+from random import choice, randint
 from re import sub
 from userbot import CMD_HELP
 from userbot.events import register
