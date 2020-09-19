@@ -11,70 +11,55 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot import bot, CMD_HELP
 from userbot.events import register
 
-if 1 == 1:
-    strings = {
-        "name": "Quotes",
-        "api_token_cfg_doc": "API Key/Token for Quotes.",
-        "api_url_cfg_doc": "API URL for Quotes.",
-        "colors_cfg_doc": "Username colors",
-        "default_username_color_cfg_doc": "Default color for the username.",
-        "no_reply": "You didn't reply to a message.",
-        "no_template": "You didn't specify the template.",
-        "delimiter": "</code>, <code>",
-        "server_error": "Server error. Please report to developer.",
-        "invalid_token": "You've set an invalid token, get it from `http://antiddos.systems`.",
-        "unauthorized": "You're unauthorized to do this.",
-        "not_enough_permissions": "Wrong template. You can use only the default one.",
-        "templates": "Available Templates: <code>{}</code>",
-        "cannot_send_stickers": "You cannot send stickers in this chat.",
-        "admin": "admin",
-        "creator": "creator",
-        "hidden": "hidden",
-        "channel": "Channel"}
-
-    config = {"api_url": "http://api.antiddos.systems",
-              "username_colors": ["#fb6169", "#faa357", "#b48bf2", "#85de85",
-                                  "#62d4e3", "#65bdf3", "#ff5694"],
-              "default_username_color": "#b48bf2"}
-
-
-@register(outgoing=True, pattern=r"^\.q")
+@register(outgoing=True, pattern=r"^\.q(?: |$)(.*)")
 async def quotess(qotli):
     if qotli.fwd_from:
         return
     if not qotli.reply_to_msg_id:
-        return await qotli.edit("```Reply to any user message.```")
+        await qotli.edit("```Reply to any user message.```")
+        return
     reply_message = await qotli.get_reply_message()
     if not reply_message.text:
-        return await qotli.edit("```Reply to text message```")
+        await qotli.edit("```Reply to text message```")
+        return
     chat = "@QuotLyBot"
+    reply_message.sender
     if reply_message.sender.bot:
-        return await qotli.edit("```Reply to actual users message.```")
-    await qotli.edit("```Making a Quote```")
+        await qotli.edit("```Reply to actual users message.```")
+        return
     try:
+        await qotli.edit("`Processing..`")
         async with bot.conversation(chat) as conv:
             try:
                 response = conv.wait_event(
-                    events.NewMessage(
-                        incoming=True,
-                        from_users=1031952739))
+                    events.NewMessage(incoming=True, from_users=1031952739)
+                )
                 msg = await bot.forward_messages(chat, reply_message)
                 response = await response
-                """ - don't spam notif - """
+                """don't spam notif"""
                 await bot.send_read_acknowledge(conv.chat_id)
             except YouBlockedUserError:
-                return await qotli.reply("```Please unblock @QuotLyBot and try again```")
+                await qotli.reply("```Please unblock @QuotLyBot and try again```")
+                return
             if response.text.startswith("Hi!"):
-                await qotli.edit("```Can you kindly disable your forward privacy settings for good?```")
+                await qotli.edit(
+                    "```Can you kindly disable your forward privacy settings for good?```"
+                )
             else:
+                downloaded_file_name = await qotli.client.download_media(
+                    response.media, TEMP_DOWNLOAD_DIRECTORY
+                )
+                await qotli.client.send_file(
+                    qotli.chat_id, downloaded_file_name, reply_to=qotli.reply_to_msg_id
+                )
                 await qotli.delete()
-                await bot.forward_messages(qotli.chat_id, response.message)
                 await bot.send_read_acknowledge(qotli.chat_id)
                 """ - cleanup chat after completed - """
-                await qotli.client.delete_messages(conv.chat_id,
-                                                   [msg.id, response.id])
+                await qotli.client.delete_messages(conv.chat_id, [msg.id, response.id])
+                os.remove(downloaded_file_name)
     except TimeoutError:
-        await qotli.edit()
+        return await qotli.edit("`Error: `@QuotLyBot` is not responding!.`")
+
 
 CMD_HELP.update({
     "quotly":
