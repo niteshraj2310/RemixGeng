@@ -13,7 +13,7 @@ from os.path import basename
 import os.path
 from typing import Optional, Tuple
 from userbot import bot, LOGS
-
+from telethon.tl.types import DocumentAttributeFilename
 from telethon.tl.functions.channels import GetParticipantRequest
 from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator
 
