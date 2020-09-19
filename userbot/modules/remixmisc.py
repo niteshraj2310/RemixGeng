@@ -661,7 +661,7 @@ def get_stream_data(query):
     try:
         country = WATCH_COUNTRY
     except Exception:
-        country = "ID"
+        country = "IN"
 
     # Cooking Data
     just_watch = JustWatch(country=country)
