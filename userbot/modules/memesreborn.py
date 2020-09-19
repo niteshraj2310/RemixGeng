@@ -134,6 +134,23 @@ IWIS = [
     "乁( ⁰͡  Ĺ̯ ⁰͡ ) ㄏ",
 ]
 
+GAMBAR_TITIT = """
+🍆🍆
+🍆🍆🍆
+  🍆🍆🍆
+    🍆🍆🍆
+     🍆🍆🍆
+       🍆🍆🍆
+        🍆🍆🍆
+         🍆🍆🍆
+          🍆🍆🍆
+          🍆🍆🍆
+      🍆🍆🍆🍆
+ 🍆🍆🍆🍆🍆🍆
+ 🍆🍆🍆  🍆🍆🍆
+    🍆🍆       🍆🍆
+"""
+
 # ===========================================
 
 
@@ -231,6 +248,14 @@ async def whoizme(e):
         await e.edit("🔥")
         await asyncio.sleep(0.3)
         await e.edit("EVERyBOdy iZ PrO UNtIL U ArRivE 🔥")
+
+@register(outgoing=True, pattern=r"^\.(?:penis|dick)\s?(.)?")
+async def emoji_penis(titit):
+    emoji = titit.pattern_match.group(1)
+    titid = GAMBAR_TITIT
+    if emoji:
+        titid = titid.replace("🍆", emoji)
+    await titit.edit(titid)
 
 
 @register(outgoing=True, pattern="^.gtfo$")

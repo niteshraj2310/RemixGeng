@@ -52,6 +52,7 @@ try:
     pass
 except BaseException:
     os.system("pip install instantmusic")
+
 from asyncio import sleep
 from userbot import BOTLOG, BOTLOG_CHATID, CHROME_DRIVER, CMD_HELP, GOOGLE_CHROME_BIN, LOGS, OCR_SPACE_API_KEY, REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY, WOLFRAM_ID, bot
 from userbot.events import register
