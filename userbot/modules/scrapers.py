@@ -54,7 +54,6 @@ from telethon.tl.types import DocumentAttributeAudio
 from userbot.utils import chrome, googleimagesdownload, options, progress
 import subprocess
 from datetime import datetime
-import asyncurban
 
 
 CARBONLANG = "auto"
