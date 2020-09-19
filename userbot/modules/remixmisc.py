@@ -720,6 +720,7 @@ def get_provider(url):
     url = url.split(".")[0]
     return url
 
+
 @register(outgoing=True, pattern=r"^\.watch (.*)")
 async def _(event):
     if event.fwd_from:
