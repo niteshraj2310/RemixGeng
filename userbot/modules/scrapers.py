@@ -228,7 +228,7 @@ async def moni(event):
         return
 
 
-register(outgoing=True, pattern=r"^.google (.*)")
+@register(outgoing=True, pattern=r"^.google (.*)")
 async def gsearch(q_event):
     """ For .google command, do a Google search. """
     match = q_event.pattern_match.group(1)
@@ -306,6 +306,7 @@ async def _(event):
     except asyncurban.WordNotFoundError:
         await event.edit("No result found for **" + word + "**")
 
+
 @register(outgoing=True, pattern=r"^.voice(?: |$)([\s\S]*)")
 async def text_to_speech(query):
     """ For .tts command, a wrapper for Google Text-to-Speech. """
@@ -349,6 +350,7 @@ async def text_to_speech(query):
             await query.client.send_message(
                 BOTLOG_CHATID, "Text to Speech executed successfully !")
         await query.delete()
+
 
 @register(outgoing=True, pattern=r"^.tts(?: |$)([\s\S]*)")
 async def text_to_speech(query):
@@ -1423,3 +1425,4 @@ CMD_HELP.update({
     '.song title or .song <yt vid link>\
         \nUsage: Instantly download any songs from YouTube and many other sites.'
 })
+

@@ -76,6 +76,7 @@ CMD_HELP.update(
     \n\n`.speed`\
     \nUsage: Does a speedtest and shows the results."
      })
+
 CMD_HELP.update(
     {"dc": ".dc\
     \nUsage: Finds the nearest datacenter from your server."})

@@ -284,6 +284,7 @@ if HEROKU_API_KEY_FALLBACK and HEROKU_APP_FALLBACK_NAME:
         quit(1)
 #######################################################################
 
+
 async def check_botlog_chatid():
     if not BOTLOG_CHATID and LOGSPAMMER:
         LOGS.info(
@@ -350,10 +351,10 @@ def paginate_help(page_number, loaded_modules, prefix):
         ] + [
             (
                 custom.Button.inline(
-                    "🥱", data="{}_prev({})".format(prefix, modulo_page)
+                    "⬅️", data="{}_prev({})".format(prefix, modulo_page)
                 ),
                 custom.Button.inline(
-                    "🥱", data="{}_next({})".format(prefix, modulo_page)
+                    "➡️", data="{}_next({})".format(prefix, modulo_page)
                 ),
             )
         ]
@@ -498,3 +499,4 @@ with bot:
             "valid entity. Check your environment variables/config.env file."
         )
         sys.exit(1)
+

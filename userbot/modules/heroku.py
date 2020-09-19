@@ -406,6 +406,7 @@ async def dyno_manage(dyno):
         await dyno.delete()
         return os.remove('logs.txt')
 
+
 @register(outgoing=True, pattern=r"^\.logs")
 async def _(dyno):
     try:
