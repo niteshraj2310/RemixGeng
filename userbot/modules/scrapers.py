@@ -58,7 +58,6 @@ from userbot.events import register
 from userbot.utils import chrome, googleimagesdownload, options, progress
 import subprocess
 from datetime import datetime
-import asyncurban
 
 
 CARBONLANG = "auto"
