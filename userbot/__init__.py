@@ -499,4 +499,3 @@ with bot:
             "valid entity. Check your environment variables/config.env file."
         )
         sys.exit(1)
-

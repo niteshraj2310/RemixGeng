@@ -31,7 +31,6 @@ from re import findall
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from urllib.parse import quote_plus
-from urllib.error import HTTPError
 from wikipedia import summary
 from wikipedia.exceptions import DisambiguationError, PageError
 from requests import get
@@ -260,6 +259,7 @@ async def gsearch(q_event):
             BOTLOG_CHATID,
             "Google Search query `" + match + "` was executed successfully",
         )
+
 
 @register(outgoing=True, pattern=r"^.wiki (.*)")
 async def wiki(wiki_q):
@@ -1321,6 +1321,7 @@ async def imdb(e):
     except IndexError:
         await e.edit("Plox enter **Valid movie name** kthx")
 
+
 @register(outgoing=True, pattern=r"^.song(?: |$)(.*)")
 async def download_song(song):
     if song.fwd_from:
@@ -1351,6 +1352,7 @@ async def download_song(song):
     )
     await song.edit("`Done`")
     os.remove(loa)
+
 
 @register(outgoing=True, pattern=r'^.wolfram (.*)')
 async def wolfram(wvent):
@@ -1425,4 +1427,3 @@ CMD_HELP.update({
     '.song title or .song <yt vid link>\
         \nUsage: Instantly download any songs from YouTube and many other sites.'
 })
-

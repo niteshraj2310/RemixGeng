@@ -266,6 +266,7 @@ async def fcmd(e):
             out += (n * c) + "\n"
         await e.edit(html.escape(out))
 
+
 @register(outgoing=True, pattern="^.iff$")
 async def pressf(f):
     """Pays respects"""
@@ -288,6 +289,7 @@ async def pressf(f):
             out += (arg * c) + "\n"
         await f.edit("`" + out + "`")
 
+
 @register(outgoing=True, pattern="^.paw$")
 async def paw(pawed):
     if not pawed.text[0].isalpha() and pawed.text[0] not in (
@@ -299,6 +301,7 @@ async def paw(pawed):
 async def tf(focc):
     if not focc.text[0].isalpha() and focc.text[0] not in ("/", "#", "@", "!"):
         await focc.edit("(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)̄  ")
+
 
 @register(pattern="^.color(?: |$)(.*)", outgoing=True)
 async def _(event):
