@@ -5,7 +5,6 @@
 #
 # (c) Spechide - UniBorg
 # Port From UniBorg to UserBot by @afdulfauzan
-
 from telethon.tl import functions
 
 from userbot import CMD_HELP
