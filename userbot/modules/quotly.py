@@ -5,13 +5,15 @@
 #
 # Port From UniBorg to UserBot by MoveAngel
 
+import asyncio
+import io
 import os
+import random
+import re
+import textwrap
+import time
 from asyncio.exceptions import TimeoutError
-from telethon import events
-from telethon.errors.rpcerrorlist import YouBlockedUserError
-from userbot import bot, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
-from userbot.events import register
-
+from random import randint, uniform
 
 @register(outgoing=True, pattern=r"^\.q(?: |$)(.*)")
 async def quotess(qotli):
