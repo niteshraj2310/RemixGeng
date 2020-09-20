@@ -1,11 +1,13 @@
 # Authored by @Khrisna_Singhal
 # Ported from Userge by Alfiananda P.A
-
 import os
 
-from PIL import Image, ImageOps
+from PIL import Image
+from PIL import ImageOps
 
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
+from userbot import bot
+from userbot import CMD_HELP
+from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 from userbot.utils.tools import check_media
 
