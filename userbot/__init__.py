@@ -312,8 +312,7 @@ with bot:
     except BaseException:
         LOGS.info(
             "BOTLOG_CHATID environment variable isn't valid"
-            "Please generate proper group id and set.You can ask in @PPE_Support if you need help"
-        )
+            "Please generate proper group id and set.You can ask in @PPE_Support if you need help")
         sys.exit(1)
 
 StartTime = time.time()
@@ -403,16 +402,16 @@ with bot:
             else:
                 result = builder.article(
                     "oubremix",
-                    text=
-                    """You can convert your account to bot and use them. Remember, you can't manage someone else's bot! All installation details are explained from GitHub address below.""",
+                    text="""You can convert your account to bot and use them. Remember, you can't manage someone else's bot! All installation details are explained from GitHub address below.""",
                     buttons=[
                         [
                             custom.Button.url(
                                 "GitHub Repo",
                                 "https://github.com/niteshraj2310/RemixGeng",
                             ),
-                            custom.Button.url("Support",
-                                              "https://t.me/PPE_Support"),
+                            custom.Button.url(
+                                "Support",
+                                "https://t.me/PPE_Support"),
                         ],
                     ],
                     link_preview=False,
