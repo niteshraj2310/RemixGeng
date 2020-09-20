@@ -5,6 +5,7 @@
 #
 # Port From UniBorg to UserBot by MoveAngel
 
+import os
 from asyncio.exceptions import TimeoutError
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
