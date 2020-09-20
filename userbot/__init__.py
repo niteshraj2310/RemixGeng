@@ -281,7 +281,7 @@ if HEROKU_API_KEY_FALLBACK and HEROKU_APP_FALLBACK_NAME:
             " doesn't seem to be in the same account, or "
             f"{HEROKU_APP_FALLBACK_NAME} not found."
         )
-        quit(1)
+        sys.exit(1)
 #######################################################################
 
 
