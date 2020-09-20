@@ -289,8 +289,7 @@ async def dyno_manage(dyno):
             'User-Agent': useragent,
             'Accept': 'application/vnd.heroku+json; version=3.account-quotas',
         }
-        user_id = []
-        user_id.append(heroku.account().id)
+        user_id = [heroku.account().id]
         if fallback is not None:
             user_id.append(fallback.account().id)
         msg = ''
@@ -367,7 +366,7 @@ async def dyno_manage(dyno):
             return await dyno.edit(msg)
         else:
             return
-    elif exe == "cancel deploy" or exe == "cancel build":
+    elif exe in ["cancel deploy", "cancel build"]:
         """ - Only cancel 1 recent builds from activity - """
         build_id = dyno.pattern_match.group(2)
         if build_id is None:
