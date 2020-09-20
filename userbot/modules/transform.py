@@ -2,9 +2,11 @@
 # Ported from Userge by Alfiananda P.A
 
 import os
-
 from PIL import Image, ImageOps
-
+import asyncio
+import os
+import textwrap
+from PIL import Image, ImageDraw, ImageFont, ImageOps
 from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
 from userbot.utils.tools import check_media
