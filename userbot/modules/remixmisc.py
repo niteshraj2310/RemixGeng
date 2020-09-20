@@ -653,6 +653,7 @@ async def get_full_user(event):
             except Exception as e:
                 return None, e
 
+
 def get_stream_data(query):
     stream_data = {}
 

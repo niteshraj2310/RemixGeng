@@ -25,14 +25,16 @@ from userbot.utils import progress
 
 # For getvideosong
 
+
 def getmusicvideo(cat):
     search = cat
     headers = {
         "User-Agent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
     }
     html = requests.get(
-        "https://www.youtube.com/results?search_query=" + search, headers=headers
-    ).text
+        "https://www.youtube.com/results?search_query=" +
+        search,
+        headers=headers).text
     soup = BeautifulSoup(html, "html.parser")
     for link in soup.find_all("a"):
         if "/watch?v=" in link.get("href"):
@@ -42,6 +44,7 @@ def getmusicvideo(cat):
     video_link = "http://www.youtube.com/" + video_link
     command = 'youtube-dl -f "[filesize<50M]" --merge-output-format mp4 ' + video_link
     os.system(command)
+
 
 @register(outgoing=True, pattern=r"^\.songn (?:(now)|(.*) - (.*))")
 async def _(event):
@@ -160,6 +163,7 @@ async def _(event):
         await event.delete()
     except TimeoutError:
         return await event.edit("`Error: `@SpotifyMusicDownloaderBot` is not responding!.`")
+
 
 @register(outgoing=True, pattern=r"^\.vsong(?: |$)(.*)")
 async def _(event):
