@@ -8,23 +8,13 @@
 # Based code + improve from AdekMaulana and aidilaryanto
 
 import asyncio
-import io
 import os
-import random
-import re
 import textwrap
-import time
-from asyncio.exceptions import TimeoutError
-from random import randint, uniform
 
-from glitch_this import ImageGlitcher
-from PIL import Image, ImageDraw, ImageEnhance, ImageFont, ImageOps
-from telethon import events, functions, types
-from telethon.errors.rpcerrorlist import YouBlockedUserError
+from PIL import Image, ImageDraw, ImageFont
 
 from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
-from userbot.utils import progress
 from userbot.utils.tools import check_media
 
 
@@ -55,7 +45,8 @@ async def mim(event):
         if event.reply_to_msg_id:
             file_name = "meme.jpg"
             to_download_directory = TEMP_DOWNLOAD_DIRECTORY
-            downloaded_file_name = os.path.join(to_download_directory, file_name)
+            downloaded_file_name = os.path.join(
+                to_download_directory, file_name)
             downloaded_file_name = await bot.download_media(
                 reply_message,
                 downloaded_file_name,
