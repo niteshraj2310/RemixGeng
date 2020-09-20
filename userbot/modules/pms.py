@@ -5,29 +5,19 @@
 #
 """ Userbot module for keeping control who PM's you, Logging pm and muting users in pm """
 
-import userbot.modules.sql_helper.pm_permit_sql as pm_permit_sql
+import asyncio
+
+from sqlalchemy.exc import IntegrityError
+from telethon import events
 from telethon.tl.functions.contacts import BlockRequest, UnblockRequest
 from telethon.tl.functions.messages import ReportSpamRequest
 from telethon.tl.types import User
-from sqlalchemy.exc import IntegrityError
-import asyncio
-from userbot.modules.sql_helper.mute_sql import is_muted, mute, unmute
-from telethon import events
 
-from userbot import (
-    COUNT_PM,
-    BOTLOG,
-    BOTLOG_CHATID,
-    PM_AUTO_BAN,
-    LASTMSG,
-    LOGS,
-    NC_LOG_P_M_S,
-    PM_LOGGR_BOT_API_ID,
-    CMD_HELP,
-    bot,
-)
-
+import userbot.modules.sql_helper.pm_permit_sql as pm_permit_sql
+from userbot import (BOTLOG, BOTLOG_CHATID, CMD_HELP, COUNT_PM, LASTMSG, LOGS,
+                     NC_LOG_P_M_S, PM_AUTO_BAN, PM_LOGGR_BOT_API_ID, bot)
 from userbot.events import register
+from userbot.modules.sql_helper.mute_sql import is_muted, mute, unmute
 
 # ========================= CONSTANTS ============================
 UNAPPROVED_MSG = (
@@ -57,8 +47,8 @@ async def permitpm(event):
         and not (await event.get_sender()).bot
     ):
         try:
-            from userbot.modules.sql_helper.pm_permit_sql import is_approved
             from userbot.modules.sql_helper.globals import gvarstatus
+            from userbot.modules.sql_helper.pm_permit_sql import is_approved
         except AttributeError:
             return
         apprv = is_approved(event.chat_id)
@@ -137,8 +127,8 @@ async def auto_accept(event):
         and not (await event.get_sender()).bot
     ):
         try:
-            from userbot.modules.sql_helper.pm_permit_sql import is_approved
-            from userbot.modules.sql_helper.pm_permit_sql import approve
+            from userbot.modules.sql_helper.pm_permit_sql import (approve,
+                                                                  is_approved)
         except AttributeError:
             return
 
