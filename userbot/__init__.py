@@ -8,22 +8,22 @@ import sys
 """ Userbot initialization. """
 
 import os
-import heroku3
 import re
 import time
-from sys import version_info
-from logging import basicConfig, getLogger, INFO, DEBUG
 from distutils.util import strtobool as sb
+from logging import DEBUG, INFO, basicConfig, getLogger
 from math import ceil
+from sys import version_info
 
-from pylast import LastFMNetwork, md5
-from pySmartDL import SmartDL
-from pymongo import MongoClient
-from redis import StrictRedis
+import heroku3
 from dotenv import load_dotenv
+from pylast import LastFMNetwork, md5
+from pymongo import MongoClient
+from pySmartDL import SmartDL
+from redis import StrictRedis
 from requests import get
-from telethon.sync import TelegramClient, custom, events
 from telethon.sessions import StringSession
+from telethon.sync import TelegramClient, custom, events
 
 load_dotenv("config.env")
 
