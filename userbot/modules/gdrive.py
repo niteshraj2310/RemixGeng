@@ -358,9 +358,9 @@ async def download_gdrive(gdrive, service, uri):
                         error = (page.find("p", {
                             "class": "uc-error-caption"
                         }).text + "\n" +
-                                 page.find("p", {
-                                     "class": "uc-error-subcaption"
-                                 }).text)
+                            page.find("p", {
+                                "class": "uc-error-subcaption"
+                            }).text)
                     except Exception:
                         reply += ("`[FILE - ERROR]`\n\n"
                                   "`Status` : **BAD** - failed to download.\n"

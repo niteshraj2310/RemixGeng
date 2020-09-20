@@ -1462,7 +1462,7 @@ async def gtfo(e):
 @register(outgoing=True, pattern="^.taco$")
 async def taco(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("\n{\__/}" "\n(●_●)" "\n( >🌮 Want a taco?")
+        await e.edit(r"\n{\__/}" "\n(●_●)" "\n( >🌮 Want a taco?")
 
 
 @register(outgoing=True, pattern="^.sayhi$")
