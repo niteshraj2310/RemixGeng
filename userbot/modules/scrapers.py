@@ -750,10 +750,10 @@ async def ReTrieveFile(input_file_name):
         "image_file": (input_file_name, open(input_file_name, "rb")),
     }
     return requests.post("https://api.remove.bg/v1.0/removebg",
-                      headers=headers,
-                      files=files,
-                      allow_redirects=True,
-                      stream=True)
+                         headers=headers,
+                         files=files,
+                         allow_redirects=True,
+                         stream=True)
 
 
 async def ReTrieveURL(input_url):
@@ -762,10 +762,10 @@ async def ReTrieveURL(input_url):
     }
     data = {"image_url": input_url}
     return requests.post("https://api.remove.bg/v1.0/removebg",
-                      headers=headers,
-                      data=data,
-                      allow_redirects=True,
-                      stream=True)
+                         headers=headers,
+                         data=data,
+                         allow_redirects=True,
+                         stream=True)
 
 
 @register(pattern=r".ocr (.*)", outgoing=True)

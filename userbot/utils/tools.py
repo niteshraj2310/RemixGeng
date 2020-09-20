@@ -73,10 +73,10 @@ async def is_admin(chat_id, user_id):
     ))
     chat_participant = req_jo.participant
     return isinstance(
-            chat_participant,
-            ChannelParticipantCreator) or isinstance(
-            chat_participant,
-            ChannelParticipantAdmin)
+        chat_participant,
+        ChannelParticipantCreator) or isinstance(
+        chat_participant,
+        ChannelParticipantAdmin)
 
 
 async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
