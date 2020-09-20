@@ -182,5 +182,4 @@ async def ANTI_SPAMBOT(welcm):
     except ValueError:
         pass
 
-# you don't need help modules. if you need spam should enable it in config
-# vars.
+# you don't need help modules. if you need spam should enable it in config vars.

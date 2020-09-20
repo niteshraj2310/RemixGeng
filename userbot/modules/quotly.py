@@ -8,7 +8,7 @@
 from asyncio.exceptions import TimeoutError
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from userbot import bot, CMD_HELP
+from userbot import bot, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 
@@ -29,7 +29,7 @@ async def quotess(qotli):
         await qotli.edit("```Reply to actual users message.```")
         return
     try:
-        await qotli.edit("`Processing..`")
+        await qotli.edit("`Making a Quote Plox Wait..`")
         async with bot.conversation(chat) as conv:
             try:
                 response = conv.wait_event(
@@ -44,7 +44,7 @@ async def quotess(qotli):
                 return
             if response.text.startswith("Hi!"):
                 await qotli.edit(
-                    "```Can you kindly disable your forward privacy settings for good?```"
+                    "```Abey Saley Can you kindly disable your forward privacy settings for good?```"
                 )
             else:
                 downloaded_file_name = await qotli.client.download_media(

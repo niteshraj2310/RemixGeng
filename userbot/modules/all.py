@@ -1,7 +1,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-"""A Plugin to tagall in the chat for @UniBorg and cmd is `.all`"""
+"""A Plugin to tagall in the chat and cmd is `.all`"""
 
 from userbot import bot
 from userbot.events import register

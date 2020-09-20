@@ -75,6 +75,8 @@ async def set_afk(afk_e):
         \nReason: `{string}`")
     else:
         await afk_e.edit("**工   厶 口   卂 山 卂 丫 工 工!**")
+        time.sleep(3)
+        await afk_e.delete()
     if user.last_name:
         await afk_e.client(UpdateProfileRequest(first_name=user.first_name, last_name=user.last_name + " [ 卂 下 长 ]"))
     else:
