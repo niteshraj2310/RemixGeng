@@ -12,7 +12,7 @@ import os
 from PIL import Image, ImageColor
 from random import choice, randint
 from re import sub
-from userbot import CMD_HELP
+from userbot import CMD_HELP, LOGS
 from userbot.events import register
 from userbot import bot
 
