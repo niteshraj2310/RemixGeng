@@ -5,8 +5,25 @@
 #
 # Port From UniBorg to UserBot by MoveAngel
 
+import asyncio
+import io
 import os
+import random
+import re
+import textwrap
+import time
 from asyncio.exceptions import TimeoutError
+from random import randint, uniform
+
+from glitch_this import ImageGlitcher
+from PIL import Image, ImageDraw, ImageEnhance, ImageFont, ImageOps
+from telethon import events, functions, types
+from telethon.errors.rpcerrorlist import YouBlockedUserError
+
+from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
+from userbot.events import register
+from userbot.utils import progress
+from userbot.utils.tools import check_media
 
 
 @register(outgoing=True, pattern=r"^\.q(?: |$)(.*)")
