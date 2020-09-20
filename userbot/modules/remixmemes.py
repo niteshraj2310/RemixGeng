@@ -104,10 +104,6 @@ async def _(event):
 
         return
 
-    animation_interval = 0.5
-
-    animation_ttl = range(0, 17)
-
     input_str = event.pattern_match.group(1)
 
     if input_str == "gift":
@@ -134,6 +130,10 @@ async def _(event):
             "Click your Gift [🎁](http://giphygifs.s3.amazonaws.com/media/5Y2bU7FqLOuzK/giphy.mp4)",
         ]
 
+        animation_interval = 0.5
+
+        animation_ttl = range(17)
+
         for i in animation_ttl:
 
             await asyncio.sleep(animation_interval)
@@ -147,10 +147,6 @@ async def _(event):
     if event.fwd_from:
 
         return
-
-    animation_interval = 0.3
-
-    animation_ttl = range(0, 12)
 
     input_str = event.pattern_match.group(1)
 
@@ -172,6 +168,10 @@ async def _(event):
             "🔴🔴🔴⬜⬜⬜🔵🔵🔵\n🔴🔴🔴⬜⬜⬜🔵🔵🔵\n🔴🔴🔴⬜⬜⬜🔵🔵🔵",
             "OUB **Police is Chasing you now**",
         ]
+
+        animation_interval = 0.3
+
+        animation_ttl = range(12)
 
         for i in animation_ttl:
 
@@ -374,10 +374,6 @@ async def _(event):
 
         return
 
-    animation_interval = 0.1
-
-    animation_ttl = range(0, 7)
-
     input_str = event.pattern_match.group(1)
 
     if input_str == "os":
@@ -394,6 +390,10 @@ async def _(event):
             "__Current Loaded OS: CrDroid OS__\n\n**To Boot Other OS, Use The Following Trigger:**\n✅ `.Macos`\n✅ `.Windows`\n✅ `.Linux`\n✅ `.Stock`\n\n by @heyworld and others",
         ]
 
+        animation_interval = 0.1
+
+        animation_ttl = range(7)
+
         for i in animation_ttl:
 
             await asyncio.sleep(animation_interval)
@@ -407,10 +407,6 @@ async def _(event):
     if event.fwd_from:
 
         return
-
-    animation_interval = 1
-
-    animation_ttl = range(0, 24)
 
     input_str = event.pattern_match.group(1)
 
@@ -444,6 +440,10 @@ async def _(event):
             "⬛⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛\n⬛⬛👽🛸🚶‍♂️⬛\n⬜⬜⬜⬜⬜⬜",
             "__Signal Lost....__",
         ]
+
+        animation_interval = 1
+
+        animation_ttl = range(24)
 
         for i in animation_ttl:
 
@@ -518,10 +518,6 @@ async def _(event):
 
         return
 
-    animation_interval = 0.3
-
-    animation_ttl = range(0, 15)
-
     input_str = event.pattern_match.group(1)
 
     if input_str == "hypno":
@@ -545,6 +541,10 @@ async def _(event):
             "⬜⬜⬜\n⬜⬛⬜\n⬜⬜⬜",
             "[👉🔴👈](t.me/heyworld)",
         ]
+
+        animation_interval = 0.3
+
+        animation_ttl = range(15)
 
         for i in animation_ttl:
 
@@ -599,8 +599,6 @@ async def _(event):
 async def _(event):
     if event.fwd_from:
         return
-    animation_interval = 0.1
-    animation_ttl = range(0, 549755813888)
     input_str = event.pattern_match.group(1)
     if input_str == "solar":
         await event.edit(input_str)
@@ -751,6 +749,8 @@ async def _(event):
             "`◼️◼️◼️☀◼️\n◼️◼️◼️◼️◼️\n◼️◼️🌎◼️◼️\n◼️◼️◼️◼️◼️\n◼️🌕◼️◼️◼️`",
         ]
 
+        animation_interval = 0.1
+        animation_ttl = range(549755813888)
         for i in animation_ttl:
             await asyncio.sleep(animation_interval)
             await event.edit(animation_chars[i % 549755813888])
@@ -900,10 +900,6 @@ async def _(event):
 
         return
 
-    animation_interval = 1
-
-    animation_ttl = range(0, 19)
-
     input_str = event.pattern_match.group(1)
 
     if input_str == "jio":
@@ -931,6 +927,10 @@ async def _(event):
             "`▁ ▂ ▄ ▅ ▆ ▇ █`",
             "**Jio Network Boosted....**",
         ]
+
+        animation_interval = 1
+
+        animation_ttl = range(19)
 
         for i in animation_ttl:
 
@@ -978,10 +978,6 @@ async def _(event):
 
         return
 
-    animation_interval = 1
-
-    animation_ttl = range(0, 20)
-
     input_str = event.pattern_match.group(1)
 
     if input_str == "fadmin":
@@ -1011,6 +1007,10 @@ async def _(event):
             "**pRoMooTeD SuCcEsSfUlLy**",
         ]
 
+        animation_interval = 1
+
+        animation_ttl = range(20)
+
         for i in animation_ttl:
 
             await asyncio.sleep(animation_interval)
@@ -1024,10 +1024,6 @@ async def _(event):
     if event.fwd_from:
 
         return
-
-    animation_interval = 1
-
-    animation_ttl = range(0, 17)
 
     input_str = event.pattern_match.group(1)
 
@@ -1052,6 +1048,10 @@ async def _(event):
             "__Legend is leaving this chat.....! Bye geys..__",
             "__Legend is leaving this chat.....! Bye geys..__",
         ]
+
+        animation_interval = 1
+
+        animation_ttl = range(17)
 
         for i in animation_ttl:
 
@@ -1858,10 +1858,6 @@ async def _(event):
 
         return
 
-    animation_interval = 0.5
-
-    animation_ttl = range(0, 16)
-
     input_str = event.pattern_match.group(1)
 
     if input_str == "human":
@@ -1886,6 +1882,10 @@ async def _(event):
             "⬛⬛⬛⬛⬛⬛⬛\n⬛⬛⬛😊⬛⬛⬛\n⬛⬛⬜⬜⬜⬛⬛\n⬛⬜⬛⬜⬛⬜⬛\n⬛⬛⬜⬛⬜⬛⬛\n⬛⬛⬜⬛⬜⬛⬛\n⬛⬛⬜⬛⬜⬛⬛\n🔲🔲🔲🔲🔲🔲🔲",
             "⬛⬛⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛⬛\n⬜⬜⬜😊⬜⬜⬜\n⬜⬜⬜⬜⬜⬜⬜\n🔲🔲🔲🔲🔲🔲🔲",
         ]
+
+        animation_interval = 0.5
+
+        animation_ttl = range(16)
 
         for i in animation_ttl:
 
