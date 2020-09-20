@@ -16,7 +16,6 @@ from telethon import events
 
 from userbot import (
     COUNT_PM,
-    CMD_HELP,
     BOTLOG,
     BOTLOG_CHATID,
     PM_AUTO_BAN,
