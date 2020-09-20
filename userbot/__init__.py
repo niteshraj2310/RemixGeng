@@ -7,22 +7,22 @@ import sys
 """ Userbot initialization. """
 
 import os
-import heroku3
 import re
 import time
-from sys import version_info
-from logging import basicConfig, getLogger, INFO, DEBUG
 from distutils.util import strtobool as sb
+from logging import DEBUG, INFO, basicConfig, getLogger
 from math import ceil
+from sys import version_info
 
-from pylast import LastFMNetwork, md5
-from pySmartDL import SmartDL
-from pymongo import MongoClient
-from redis import StrictRedis
+import heroku3
 from dotenv import load_dotenv
+from pylast import LastFMNetwork, md5
+from pymongo import MongoClient
+from pySmartDL import SmartDL
+from redis import StrictRedis
 from requests import get
-from telethon.sync import TelegramClient, custom, events
 from telethon.sessions import StringSession
+from telethon.sync import TelegramClient, custom, events
 
 load_dotenv("config.env")
 
@@ -94,10 +94,8 @@ GITHUB_ACCESS_TOKEN = os.environ.get("GITHUB_ACCESS_TOKEN", None)
 
 # Custom (forked) repo URL for updater.
 UPSTREAM_REPO_URL = os.environ.get(
-    "UPSTREAM_REPO_URL",
-    "https://github.com/sahyam2019/oub-remix.git")
-UPSTREAM_REPO_BRANCH = os.environ.get(
-    "UPSTREAM_REPO_BRANCH", "sql-extended")
+    "UPSTREAM_REPO_URL", "https://github.com/sahyam2019/oub-remix.git")
+UPSTREAM_REPO_BRANCH = os.environ.get("UPSTREAM_REPO_BRANCH", "sql-extended")
 
 # Console verbose logging
 CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
@@ -163,8 +161,8 @@ TERM_ALIAS = os.environ.get("TERM_ALIAS", "oub-remix")
 BOT_VER = os.environ.get("BOT_VER", "3.3")
 
 # Default .alive logo
-ALIVE_LOGO = os.environ.get(
-    "ALIVE_LOGO") or "https://telegra.ph/file/7714b2fd458c5e678d1a6.jpg"
+ALIVE_LOGO = (os.environ.get("ALIVE_LOGO")
+              or "https://telegra.ph/file/7714b2fd458c5e678d1a6.jpg")
 
 # Last.fm Module
 BIO_PREFIX = os.environ.get("BIO_PREFIX", None)
@@ -176,10 +174,12 @@ LASTFM_USERNAME = os.environ.get("LASTFM_USERNAME", None)
 LASTFM_PASSWORD_PLAIN = os.environ.get("LASTFM_PASSWORD", None)
 LASTFM_PASS = md5(LASTFM_PASSWORD_PLAIN)
 if LASTFM_API and LASTFM_SECRET and LASTFM_USERNAME and LASTFM_PASS:
-    lastfm = LastFMNetwork(api_key=LASTFM_API,
-                           api_secret=LASTFM_SECRET,
-                           username=LASTFM_USERNAME,
-                           password_hash=LASTFM_PASS)
+    lastfm = LastFMNetwork(
+        api_key=LASTFM_API,
+        api_secret=LASTFM_SECRET,
+        username=LASTFM_USERNAME,
+        password_hash=LASTFM_PASS,
+    )
 else:
     lastfm = None
 
@@ -214,7 +214,6 @@ WOLFRAM_ID = os.environ.get("WOLFRAM_ID") or None
 BOT_TOKEN = os.environ.get("BOT_TOKEN") or None
 BOT_USERNAME = os.environ.get("BOT_USERNAME") or None
 
-
 # Init Mongo
 MONGOCLIENT = MongoClient(MONGO_URI, 27017, serverSelectionTimeoutMS=1)
 MONGO = MONGOCLIENT.userbot
@@ -231,7 +230,7 @@ def is_mongo_alive():
 # Init Redis
 # Redis will be hosted inside the docker container that hosts the bot
 # We need redis for just caching, so we just leave it to non-persistent
-REDIS = StrictRedis(host='localhost', port=6379, db=0)
+REDIS = StrictRedis(host="localhost", port=6379, db=0)
 
 
 def is_redis_alive():
@@ -244,14 +243,14 @@ def is_redis_alive():
 
 # Setting Up CloudMail.ru and MEGA.nz extractor binaries,
 # and giving them correct perms to work properly.
-if not os.path.exists('bin'):
-    os.mkdir('bin')
+if not os.path.exists("bin"):
+    os.mkdir("bin")
 
 binaries = {
     "https://raw.githubusercontent.com/adekmaulana/megadown/master/megadown":
     "bin/megadown",
     "https://raw.githubusercontent.com/yshalsager/cmrudl.py/master/cmrudl.py":
-    "bin/cmrudl"
+    "bin/cmrudl",
 }
 
 for binary, path in binaries.items():
@@ -276,12 +275,10 @@ if HEROKU_API_KEY_FALLBACK and HEROKU_APP_FALLBACK_NAME:
     try:
         fallback_app = fallback.app(HEROKU_APP_FALLBACK_NAME)
     except HTTPError:
-        LOGS.info(
-            "Your HEROKU_API_KEY_FALLBACK and HEROKU_APP_FALLBACK_NAME"
-            " doesn't seem to be in the same account, or "
-            f"{HEROKU_APP_FALLBACK_NAME} not found."
-        )
-        quit(1)
+        LOGS.info("Your HEROKU_API_KEY_FALLBACK and HEROKU_APP_FALLBACK_NAME"
+                  " doesn't seem to be in the same account, or "
+                  f"{HEROKU_APP_FALLBACK_NAME} not found.")
+        sys.exit(1)
 #######################################################################
 
 
@@ -337,37 +334,33 @@ def paginate_help(page_number, loaded_modules, prefix):
     helpable_modules = [p for p in loaded_modules if not p.startswith("_")]
     helpable_modules = sorted(helpable_modules)
     modules = [
-        custom.Button.inline("{} {}".format("🔹", x), data="ub_modul_{}".format(x))
+        custom.Button.inline("{} {}".format("🔹", x),
+                             data="ub_modul_{}".format(x))
         for x in helpable_modules
     ]
     pairs = list(zip(modules[::number_of_cols], modules[1::number_of_cols]))
     if len(modules) % number_of_cols == 1:
-        pairs.append((modules[-1],))
+        pairs.append((modules[-1], ))
     max_num_pages = ceil(len(pairs) / number_of_rows)
     modulo_page = page_number % max_num_pages
     if len(pairs) > number_of_rows:
-        pairs = pairs[
-            modulo_page * number_of_rows: number_of_rows * (modulo_page + 1)
-        ] + [
-            (
-                custom.Button.inline(
-                    "🥱️", data="{}_prev({})".format(prefix, modulo_page)
-                ),
-                custom.Button.inline(
-                    "🥱", data="{}_next({})".format(prefix, modulo_page)
-                ),
-            )
-        ]
+        pairs = pairs[modulo_page * number_of_rows:number_of_rows *
+                      (modulo_page + 1)] + [(
+                          custom.Button.inline("🥱️",
+                                               data="{}_prev({})".format(
+                                                   prefix, modulo_page)),
+                          custom.Button.inline("🥱",
+                                               data="{}_next({})".format(
+                                                   prefix, modulo_page)),
+                      )]
     return pairs
 
 
 with bot:
     try:
-        tgbot = TelegramClient(
-            "TG_BOT_TOKEN",
-            api_id=API_KEY,
-            api_hash=API_HASH).start(
-            bot_token=BOT_TOKEN)
+        tgbot = TelegramClient("TG_BOT_TOKEN",
+                               api_id=API_KEY,
+                               api_hash=API_HASH).start(bot_token=BOT_TOKEN)
 
         dugmeler = CMD_HELP
         me = bot.get_me()
@@ -376,9 +369,12 @@ with bot:
         @tgbot.on(events.NewMessage(pattern="/start"))
         async def handler(event):
             if event.message.from_id != uid:
-                await event.reply("I'm [尺 乇 从 工 乂 厶 乇 𠘨 厶](https://github.com/niteshraj2310/RemixGeng) modules helper...\nAbey Saley please make your own bot, don't use mine 😋")
+                await event.reply(
+                    "I'm [尺 乇 从 工 乂 厶 乇 𠘨 厶](https://github.com/niteshraj2310/RemixGeng) modules helper...\nAbey Saley please make your own bot, don't use mine 😋"
+                )
             else:
-                await event.reply(f"`Hey there {ALIVE_NAME}\n\nI work for you :)`")
+                await event.reply(
+                    f"`Hey there {ALIVE_NAME}\n\nI work for you :)`")
 
         @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
         async def inline_handler(event):
@@ -401,7 +397,8 @@ with bot:
                     "oubremix Helper",
                     text="List of Modules",
                     buttons=[],
-                    link_preview=True)
+                    link_preview=True,
+                )
             else:
                 result = builder.article(
                     "oubremix",
@@ -410,10 +407,12 @@ with bot:
                         [
                             custom.Button.url(
                                 "GitHub Repo",
-                                "https://github.com/niteshraj2310/RemixGeng"),
+                                "https://github.com/niteshraj2310/RemixGeng",
+                            ),
                             custom.Button.url(
                                 "Support",
-                                "https://t.me/PPE_Support")],
+                                "https://t.me/PPE_Support"),
+                        ],
                     ],
                     link_preview=False,
                 )
@@ -421,44 +420,44 @@ with bot:
 
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
-                data=re.compile(rb"helpme_next\((.+?)\)")
-            )
-        )
+                data=re.compile(rb"helpme_next\((.+?)\)")))
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:  # pylint:disable=E0602
                 current_page_number = int(
                     event.data_match.group(1).decode("UTF-8"))
-                buttons = paginate_help(
-                    current_page_number + 1, dugmeler, "helpme")
+                buttons = paginate_help(current_page_number + 1, dugmeler,
+                                        "helpme")
                 # https://t.me/TelethonChat/115200
                 await event.edit(buttons=buttons)
             else:
                 reply_pop_up_alert = "Abey Saley make for yourself, don't use my bot!"
-                await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
+                await event.answer(reply_pop_up_alert,
+                                   cache_time=0,
+                                   alert=True)
 
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
-                data=re.compile(rb"helpme_prev\((.+?)\)")
-            )
-        )
+                data=re.compile(rb"helpme_prev\((.+?)\)")))
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:  # pylint:disable=E0602
                 current_page_number = int(
                     event.data_match.group(1).decode("UTF-8"))
                 buttons = paginate_help(
-                    current_page_number - 1, dugmeler, "helpme"  # pylint:disable=E0602
+                    current_page_number - 1,
+                    dugmeler,
+                    "helpme"  # pylint:disable=E0602
                 )
                 # https://t.me/TelethonChat/115200
                 await event.edit(buttons=buttons)
             else:
                 reply_pop_up_alert = "Abey Saley make for yourself, don't use my bot!"
-                await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
+                await event.answer(reply_pop_up_alert,
+                                   cache_time=0,
+                                   alert=True)
 
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
-                data=re.compile(b"ub_modul_(.*)")
-            )
-        )
+                data=re.compile(b"ub_modul_(.*)")))
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:  # pylint:disable=E0602
                 modul_name = event.data_match.group(1).decode("UTF-8")
@@ -466,21 +465,15 @@ with bot:
                 cmdhel = str(CMD_HELP[modul_name])
                 if len(cmdhel) > 150:
                     help_string = (
-                        str(CMD_HELP[modul_name]).replace('`', '')[:150] + "..."
-                        + "\n\nRead more .help "
-                        + modul_name
-                        + " "
-                    )
+                        str(CMD_HELP[modul_name]).replace("`", "")[:150] +
+                        "..." + "\n\nRead more .help " + modul_name + " ")
                 else:
-                    help_string = str(CMD_HELP[modul_name]).replace('`', '')
+                    help_string = str(CMD_HELP[modul_name]).replace("`", "")
 
                 reply_pop_up_alert = (
-                    help_string
-                    if help_string is not None
-                    else "{} No document has been written for module.".format(
-                        modul_name
-                    )
-                )
+                    help_string if help_string is not None else
+                    "{} No document has been written for module.".format(
+                        modul_name))
             else:
                 reply_pop_up_alert = "Abey Saley makee for yourself, don't use my bot!"
 
@@ -496,6 +489,5 @@ with bot:
     except BaseException:
         LOGS.info(
             "BOTLOG_CHATID environment variable isn't a "
-            "valid entity. Check your environment variables/config.env file."
-        )
+            "valid entity. Check your environment variables/config.env file.")
         sys.exit(1)
