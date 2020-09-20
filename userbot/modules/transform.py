@@ -92,9 +92,9 @@ async def mirrorflip(event):
         elif cmd == "flip":
             IMG = ImageOps.flip(im)
         IMG.save(Converted, quality=95)
-        await event.client.send_file(
-            event.chat_id, Converted, reply_to=event.reply_to_msg_id
-        )
+        await event.client.send_file(event.chat_id,
+                                     Converted,
+                                     reply_to=event.reply_to_msg_id)
         await event.delete()
         os.remove(mirror_flip_file)
         os.remove(Converted)
@@ -137,23 +137,22 @@ async def rotate(event):
     im = Image.open(rotate).convert("RGB")
     IMG = im.rotate(value, expand=1)
     IMG.save(Converted, quality=95)
-    await event.client.send_file(
-        event.chat_id, Converted, reply_to=event.reply_to_msg_id
-    )
+    await event.client.send_file(event.chat_id,
+                                 Converted,
+                                 reply_to=event.reply_to_msg_id)
     await event.delete()
     os.remove(rotate)
     os.remove(Converted)
 
 
-CMD_HELP.update(
-    {
-        "transform": ">`.ghost`"
-        "\nUsage: Enchance your image to become a ghost!."
-        "\n\n>`.flip`"
-        "\nUsage: To flip your image"
-        "\n\n>`.mirror`"
-        "\nUsage: To mirror your image"
-        "\n\n>`.rotate <value>`"
-        "\nUsage: To rotate your image\n* The value is range 1-360 if not it'll give default value which is 90"
-    }
-)
+CMD_HELP.update({
+    "transform":
+    ">`.ghost`"
+    "\nUsage: Enchance your image to become a ghost!."
+    "\n\n>`.flip`"
+    "\nUsage: To flip your image"
+    "\n\n>`.mirror`"
+    "\nUsage: To mirror your image"
+    "\n\n>`.rotate <value>`"
+    "\nUsage: To rotate your image\n* The value is range 1-360 if not it'll give default value which is 90"
+})
