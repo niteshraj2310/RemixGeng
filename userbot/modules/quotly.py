@@ -5,15 +5,9 @@
 #
 # Port From UniBorg to UserBot by MoveAngel
 
-import asyncio
-import io
 import os
-import random
-import re
-import textwrap
-import time
 from asyncio.exceptions import TimeoutError
-from random import randint, uniform
+
 
 @register(outgoing=True, pattern=r"^\.q(?: |$)(.*)")
 async def quotess(qotli):
