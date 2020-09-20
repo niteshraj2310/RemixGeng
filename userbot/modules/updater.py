@@ -179,9 +179,6 @@ async def upstream(event):
         await event.edit(
             f'\n`{TERM_ALIAS} is` **updated-af🤘🤘**\n`BRANCH:`**{UPSTREAM_REPO_BRANCH}**\n')
         return repo.__del__()
-        await asyncio.sleep(3)
-        await event.delete()
-
     if conf is None and not force_update:
         changelog_str = f'**New UPDATE available for [{ac_br}]:\n\nCHANGELOG:**\n`{changelog}`'
         if len(changelog_str) > 4096:
