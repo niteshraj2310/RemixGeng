@@ -3,23 +3,13 @@
 # Ported from Userge by Alfiananda P.A
 
 import asyncio
-import io
 import os
-import random
-import re
 import textwrap
-import time
-from asyncio.exceptions import TimeoutError
-from random import randint, uniform
 
-from glitch_this import ImageGlitcher
-from PIL import Image, ImageDraw, ImageEnhance, ImageFont, ImageOps
-from telethon import events, functions, types
-from telethon.errors.rpcerrorlist import YouBlockedUserError
+from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
-from userbot.utils import progress
 from userbot.utils.tools import check_media
 
 Converted = TEMP_DOWNLOAD_DIRECTORY + "sticker.webp"

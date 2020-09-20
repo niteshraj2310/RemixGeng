@@ -11,6 +11,7 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot import bot, CMD_HELP
 from userbot.events import register
 
+
 @register(outgoing=True, pattern=r"^\.q(?: |$)(.*)")
 async def quotess(qotli):
     if qotli.fwd_from:
