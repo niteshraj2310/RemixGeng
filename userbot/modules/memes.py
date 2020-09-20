@@ -6,17 +6,14 @@
 # Thanks to @AbhinavShinde for strings
 """ Userbot module for having some fun with people. """
 
-from asyncio import sleep
 import asyncio
+import time
+from asyncio import sleep
+from collections import deque
 from random import choice, getrandbits, randint
 from re import sub
-import time
-
-
-from collections import deque
 
 import requests
-
 from cowpy import cow
 
 from userbot import CMD_HELP

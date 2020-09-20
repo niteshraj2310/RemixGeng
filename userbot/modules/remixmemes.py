@@ -8,9 +8,7 @@ from collections import deque
 from telethon import events
 from telethon.errors.rpcerrorlist import MessageIdInvalidError
 
-from userbot import ALIVE_NAME
-from userbot import bot
-from userbot import CMD_HELP
+from userbot import ALIVE_NAME, CMD_HELP, bot
 from userbot.events import register
 
 # ================= CONSTANT =================

@@ -9,24 +9,18 @@
    Heroku manager for your userbot
 """
 import asyncio
-import math
-from operator import itemgetter
 import codecs
-import heroku3
-import aiohttp
 import math
 import os
+from operator import itemgetter
+
+import aiohttp
+import heroku3
 import requests
-from userbot import (
-    CMD_HELP,
-    heroku,
-    fallback,
-    HEROKU_APP_NAME,
-    HEROKU_API_KEY,
-    HEROKU_API_KEY_FALLBACK,
-    BOTLOG,
-    BOTLOG_CHATID,
-)
+
+from userbot import (BOTLOG, BOTLOG_CHATID, CMD_HELP, HEROKU_API_KEY,
+                     HEROKU_API_KEY_FALLBACK, HEROKU_APP_NAME, fallback,
+                     heroku)
 from userbot.events import register
 
 useragent = (
