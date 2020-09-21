@@ -528,10 +528,10 @@ async def yt_search(event):
     else:
         counter = int(5)
 
-    query = video_q.pattern_match.group(2)
+    query = event.pattern_match.group(2)
     if not query:
-        await video_q.edit("`Enter query to search`")
-    await video_q.edit("`Processing...`")
+        await event.edit("`Enter query to search`")
+    await event.edit("`Processing...`")
         counter = int(3)
 
     query = event.pattern_match.group(2)
@@ -546,7 +546,7 @@ async def yt_search(event):
                 query,
                 max_results=counter).to_json())
     except KeyError:
-        return await video_q.edit("`Youtube Search gone retard.\nCan't search this query!`")
+        return await event.edit("`Youtube Search gone retard.\nCan't search this query!`")
 
     output = f"**Search Query:**\n`{query}`\n\n**Results:**\n\n"
         return await event.edit(
@@ -565,9 +565,7 @@ async def yt_search(event):
         except IndexError:
             break
 
-    await video_q.edit(output, link_preview=False)
     await event.edit(output, link_preview=False)
-
 
 @register(outgoing=True, pattern=r".rip(audio|video) (.*)")
 async def download_video(v_url):
