@@ -425,11 +425,11 @@ async def replied_user(draw, tot, text, maxlength, title):
             space += textfont.getsize(letter)[0]
 
 
-@register(outgoing=True, pattern="^.ripq(?: |$)(.*)", disable_errors=True)
+@register(outgoing=True, pattern="^.kot(?: |$)(.*)", disable_errors=True)
 async def _(event):
     if event.fwd_from:
         return
-    await event.delete()
+    await event.edit('```Wait plox...```')
     reply = await event.get_reply_message()
     msg = reply.message
     repliedreply = await reply.get_reply_message()

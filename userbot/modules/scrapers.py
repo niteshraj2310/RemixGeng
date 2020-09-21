@@ -35,6 +35,7 @@ from wikipedia import summary
 from wikipedia.exceptions import DisambiguationError, PageError
 from requests import get
 from urbandict import define
+import ascyncurban
 from search_engine_parser import GoogleSearch
 from googletrans import LANGUAGES, Translator
 from gtts import gTTS
@@ -293,43 +294,17 @@ async def wiki(wiki_q):
 
 
 @register(outgoing=True, pattern="^.ud (.*)")
-async def urban_dict(ud_e):
-    """ For .ud command, fetch content from Urban Dictionary. """
-    await ud_e.edit("Processing...")
-    query = ud_e.pattern_match.group(1)
-    try:
-        define(query)
-    except HTTPError:
-        await ud_e.edit(f"Sorry, couldn't find any results for: {query}")
+async def _(event):
+    if event.fwd_from:
         return
-    mean = define(query)
-    deflen = sum(len(i) for i in mean[0]["def"])
-    exalen = sum(len(i) for i in mean[0]["example"])
-    meanlen = deflen + exalen
-    if int(meanlen) >= 0:
-        if int(meanlen) >= 4096:
-            await ud_e.edit("`Output too large, sending as file.`")
-            file = open("output.txt", "w+")
-            file.write("Text: " + query + "\n\nMeaning: " + mean[0]["def"] +
-                       "\n\n" + "Example: \n" + mean[0]["example"])
-            file.close()
-            await ud_e.client.send_file(
-                ud_e.chat_id,
-                "output.txt",
-                caption="`Output was too large, sent it as a file.`")
-            if os.path.exists("output.txt"):
-                os.remove("output.txt")
-            await ud_e.delete()
-            return
-        await ud_e.edit("Text: **" + query + "**\n\nMeaning: **" +
-                        mean[0]["def"] + "**\n\n" + "Example: \n__" +
-                        mean[0]["example"] + "__")
-        if BOTLOG:
-            await ud_e.client.send_message(
-                BOTLOG_CHATID,
-                "#UD QUERY `" + query + "` executed successfully.")
-    else:
-        await ud_e.edit("No result found for **" + query + "**")
+    await event.edit("processing...")
+    word = event.pattern_match.group(1)
+    urban = asyncurban.UrbanDictionary()
+    try:
+        mean = await urban.get_word(word)
+        await event.edit("Text: **{}**\n\nMeaning: **{}**\n\nEx       >
+    except asyncurban.WordNotFoundError:
+        await event.edit("No result found for **" + word + "**")
 
 
 @register(outgoing=True, pattern=r"^.voice(?: |$)([\s\S]*)")
@@ -514,13 +489,11 @@ async def lang(value):
             BOTLOG_CHATID,
             f"`Language for {scraper} changed to {LANG.title()}.`")
 
-
 @register(outgoing=True, pattern=r"^\.yt (\d*) *(.*)")
-async def yt_search(event):
-    """ For .yt command, do a YouTube search from Telegram. """
-
-    if event.pattern_match.group(1) != "":
-        counter = int(event.pattern_match.group(1))
+async def yt_search(video_q):
+    """For .yt command, do a YouTube search from Telegram."""
+    if video_q.pattern_match.group(1) != "":
+        counter = int(video_q.pattern_match.group(1))
         if counter > 10:
             counter = int(10)
         if counter <= 0:
@@ -528,16 +501,10 @@ async def yt_search(event):
     else:
         counter = int(5)
 
-    query = event.pattern_match.group(2)
+    query = video_q.pattern_match.group(2)
     if not query:
-        await event.edit("`Enter query to search`")
-    await event.edit("`Processing...`")
-    counter = int(3)
-    query = event.pattern_match.group(2)
-
-    if not query:
-        return await event.edit("`Enter a query to search.`")
-    await event.edit("`Processing...`")
+        await video_q.edit("`Enter query to search`")
+    await video_q.edit("`Processing...`")
 
     try:
         results = json.loads(
@@ -545,14 +512,10 @@ async def yt_search(event):
                 query,
                 max_results=counter).to_json())
     except KeyError:
-        return await event.edit("`Youtube Search gone retard.\nCan't search this query!`")
+        return await video_q.edit("`Youtube Search gone retard.\nCan't search this query!`")
 
     output = f"**Search Query:**\n`{query}`\n\n**Results:**\n\n"
-    return await event.edit(
-        "`Youtube Search gone retard.\nCan't search this query!`"
-    )
 
-    output = f"**Search Query:**\n`{query}`\n\n**Results:**\n"
     for i in results["videos"]:
         try:
             title = i["title"]
@@ -564,7 +527,7 @@ async def yt_search(event):
         except IndexError:
             break
 
-    await event.edit(output, link_preview=False)
+    await video_q.edit(output, link_preview=False)
 
 
 @register(outgoing=True, pattern=r".rip(audio|video) (.*)")
