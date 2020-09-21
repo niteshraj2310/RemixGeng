@@ -146,18 +146,16 @@ def register(**args):
                     with open("error.txt", "w+") as file:
                         file.write(ftext)
 
-                    if LOGSPAMMER:
-                        sorry_msg = await check.respond(
-                            "`Sorry,userbot has crashed.\
-                        \nCheck botlog group for error logs.`"
-                        )
-                        await asyncio.sleep(1.5)
-                        await sorry_msg.delete()
+                    # if LOGSPAMMER:
+                    #    await check.respond(
+                    #        "`Sorry, my userbot has crashed.\
+                    #    \nThe error logs are stored in the userbot's log chat.`"
+                    #    )
 
-                    await check.client.send_file(send_to,
-                                                 "error.txt",
-                                                 caption=text)
-                    remove("error.txt")
+                    # await check.client.send_file(send_to,
+                    #                             "error.log",
+                    #                             caption=text)
+                    remove("error.log")
             else:
                 pass
 
