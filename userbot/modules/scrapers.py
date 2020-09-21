@@ -532,7 +532,7 @@ async def yt_search(event):
     if not query:
         await video_q.edit("`Enter query to search`")
     await video_q.edit("`Processing...`")
-        counter = int(3)
+    counter = int(3)
 
     query = event.pattern_match.group(2)
 
@@ -549,9 +549,9 @@ async def yt_search(event):
         return await video_q.edit("`Youtube Search gone retard.\nCan't search this query!`")
 
     output = f"**Search Query:**\n`{query}`\n\n**Results:**\n\n"
-        return await event.edit(
-            "`Youtube Search gone retard.\nCan't search this query!`"
-        )
+    return await event.edit(
+        "`Youtube Search gone retard.\nCan't search this query!`"
+    )
 
     output = f"**Search Query:**\n`{query}`\n\n**Results:**\n"
     for i in results["videos"]:
