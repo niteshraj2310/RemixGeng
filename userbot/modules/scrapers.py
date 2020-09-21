@@ -532,7 +532,7 @@ async def yt_search(event):
     if not query:
         await event.edit("`Enter query to search`")
     await event.edit("`Processing...`")
-        counter = int(3)
+    counter = int(3)
     query = event.pattern_match.group(2)
 
     if not query:
@@ -565,6 +565,7 @@ async def yt_search(event):
             break
 
     await event.edit(output, link_preview=False)
+
 
 @register(outgoing=True, pattern=r".rip(audio|video) (.*)")
 async def download_video(v_url):
