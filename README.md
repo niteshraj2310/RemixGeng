@@ -10,6 +10,10 @@
 <a href="https://deepsource.io/gh/niteshraj2310/RemixGeng/?ref=repository-badge" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://static.deepsource.io/deepsource-badge-light-mini.svg"></a>
 [![codebeat badge](https://codebeat.co/badges/049f1ac3-dfc2-4ee6-93a3-e40c1569313f)](https://codebeat.co/projects/github-com-niteshraj2310-remixgeng-sql-extended)
 [![Build status](https://ci.appveyor.com/api/projects/status/9h1i5ng3bjqgq11j?svg=true)](https://ci.appveyor.com/project/niteshraj2310/remixgeng-w0cvp)
+![FailedChecker](https://github.com/niteshraj2310/RemixGeng/workflows/FailedChecker/badge.svg?branch=sql-extended)
+![CI](https://github.com/niteshraj2310/RemixGeng/workflows/CI/badge.svg)
+![CodeQL](https://github.com/niteshraj2310/RemixGeng/workflows/CodeQL/badge.svg?branch=sql-extended)
+![PyLint](https://github.com/niteshraj2310/RemixGeng/workflows/PyLint/badge.svg)
 
 # Project 尺 乇 从 工 乂 厶 乇 𠘨 厶
 
