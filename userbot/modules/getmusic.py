@@ -9,34 +9,28 @@
 import glob
 import os
 import asyncio
-import requests
 import time
 from asyncio.exceptions import TimeoutError
-from bs4 import BeautifulSoup
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot import bot, CMD_HELP, lastfm, LASTFM_USERNAME
 from telethon.tl.types import DocumentAttributeVideo
-import shutil
 import time
 
-import deezloader
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from pylast import User
 from selenium import webdriver
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
+from telethon.tl.types import DocumentAttributeVideo
 
 from userbot import (
     CMD_HELP,
-    DEEZER_ARL_TOKEN,
     GOOGLE_CHROME_BIN,
     LASTFM_USERNAME,
-    TEMP_DOWNLOAD_DIRECTORY,
     bot,
     lastfm,
 )
