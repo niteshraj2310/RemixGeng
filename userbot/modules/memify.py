@@ -3,9 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-# Multifunction memes
-#
-# Based code + improve from AdekMaulana and aidilaryanto
+""" Based code + improve from AdekMaulana and aidilaryanto """
 
 import asyncio
 import os
@@ -59,7 +57,6 @@ async def mim(event):
         )
         await event.delete()
         os.remove(webp_file)
-        os.remove(dls_loc)
 
 
 async def draw_meme_text(image_path, text):
