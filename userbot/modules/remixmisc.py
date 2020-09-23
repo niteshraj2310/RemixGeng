@@ -1401,7 +1401,7 @@ async def stylish_generator(event):
     await event.edit(string)
 
 
-@ register(outgoing=True, pattern="^.downside(?: |$)(.*)")
+@register(outgoing=True, pattern="^.downside(?: |$)(.*)")
 async def stylish_generator(event):
     args = event.pattern_match.group(1)
     if not args:
@@ -1419,7 +1419,7 @@ async def stylish_generator(event):
     await event.edit(string)
 
 
-@ register(outgoing=True, pattern="^.subscript(?: |$)(.*)")
+@register(outgoing=True, pattern="^.subscript(?: |$)(.*)")
 async def stylish_generator(event):
     args = event.pattern_match.group(1)
     if not args:
@@ -1437,7 +1437,7 @@ async def stylish_generator(event):
     await event.edit(string)
 
 
-@ register(outgoing=True, pattern="^.supscript(?: |$)(.*)")
+@register(outgoing=True, pattern="^.supscript(?: |$)(.*)")
 async def stylish_generator(event):
     args = event.pattern_match.group(1)
     if not args:
@@ -1455,7 +1455,7 @@ async def stylish_generator(event):
     await event.edit(string)
 
 
-@ register(outgoing=True, pattern="^.circlify(?: |$)(.*)")
+@register(outgoing=True, pattern="^.circlify(?: |$)(.*)")
 async def circly(event):
 
     args = event.pattern_match.group(1)
@@ -1473,7 +1473,7 @@ async def circly(event):
     await event.edit(string)
 
 
-@ register(outgoing=True, pattern="^.handcf(?: |$)(.*)")
+@register(outgoing=True, pattern="^.handcf(?: |$)(.*)")
 async def stylish_generator(event):
     args = event.pattern_match.group(1)
     if not args:
@@ -1491,7 +1491,7 @@ async def stylish_generator(event):
     await event.edit(string)
 
 
-@ register(outgoing=True, pattern="^.doublef(?: |$)(.*)")
+@register(outgoing=True, pattern="^.doublef(?: |$)(.*)")
 async def stylish_generator(event):
     args = event.pattern_match.group(1)
     if not args:
@@ -1509,7 +1509,7 @@ async def stylish_generator(event):
     await event.edit(string)
 
 
-@ register(outgoing=True, pattern="^.songf(?: |$)(.*)")
+@register(outgoing=True, pattern="^.songf(?: |$)(.*)")
 async def stylish_generator(event):
     args = event.pattern_match.group(1)
     if not args:
@@ -1526,7 +1526,7 @@ async def stylish_generator(event):
     await edit_or_reply(event, string)
 
 
-@ register(outgoing=True, pattern="^.ancientf(?: |$)(.*)")
+@register(outgoing=True, pattern="^.ancientf(?: |$)(.*)")
 async def stylish_generator(event):
     args = event.pattern_match.group(1)
     if not args:
@@ -1543,7 +1543,7 @@ async def stylish_generator(event):
     await edit_or_reply(event, string)
 
 
-@ register(outgoing=True, pattern="^.smallf(?: |$)(.*)")
+@register(outgoing=True, pattern="^.smallf(?: |$)(.*)")
 async def stylish_generator(event):
     args = event.pattern_match.group(1)
     if not args:
@@ -1561,7 +1561,7 @@ async def stylish_generator(event):
     await event.edit(string)
 
 
-@ register(outgoing=True, pattern="^.bobbf(?: |$)(.*)")
+@register(outgoing=True, pattern="^.bobbf(?: |$)(.*)")
 async def stylish_generator(event):
     args = event.pattern_match.group(1)
     if not args:
@@ -1578,7 +1578,7 @@ async def stylish_generator(event):
     await event.edit(string)
 
 
-@ register(outgoing=True, pattern="^.tanf(?: |$)(.*)")
+@register(outgoing=True, pattern="^.tanf(?: |$)(.*)")
 async def stylish_generator(event):
     args = event.pattern_match.group(1)
     if not args:
@@ -1595,13 +1595,13 @@ async def stylish_generator(event):
     await event.edit(string)
 
 
-@ register(outgoing=True, pattern="^.boxf(?: |$)(.*)")
+@register(outgoing=True, pattern="^.boxf(?: |$)(.*)")
 async def stylish_generator(event):
     args = event.pattern_match.group(1)
     if not args:
         get = await event.get_reply_message()
         args = get.text
-   if not args:
+    if not args:
         await event.edit("What I am Supposed to change give text")
         return
     string= "  ".join(args).lower()
@@ -1612,7 +1612,7 @@ async def stylish_generator(event):
     await event.edit(string)
 
 
-@ register(outgoing=True, pattern="^.Smoothf(?: |$)(.*)")
+@register(outgoing=True, pattern="^.Smoothf(?: |$)(.*)")
 async def stylish_generator(event):
     args= event.pattern_match.group(1)
     if not args:
@@ -1628,7 +1628,7 @@ async def stylish_generator(event):
             string= string.replace(normiecharacter, smothtextcharacter)
     await event.edit(string)
 
-@ register(outgoing=True, pattern="^.oldeng(?: |$)(.*)")
+@register(outgoing=True, pattern="^.oldeng(?: |$)(.*)")
 async def oldy(event):
 
     args= event.pattern_match.group(1)
@@ -1645,7 +1645,7 @@ async def oldy(event):
             string= string.replace(normiecharacter, oldycharacter)
     await event.edit(string)
 
-@ register(outgoing=True, pattern="^.rclone(?: |$)(.*)")
+@register(outgoing=True, pattern="^.rclone(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
