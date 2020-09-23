@@ -6,7 +6,6 @@ import os
 import asyncio
 import time
 import html
-import random
 from justwatch import JustWatch
 from telethon import *
 from userbot.events import register
@@ -470,15 +469,15 @@ async def apk(e):
             'div', 'KoLSrc').text
         app_dev_link = "https://play.google.com" + \
             results[0].findNext(
-    'div', 'Vpfmgd').findNext(
-        'a', 'mnKHRc')['href']
+                'div', 'Vpfmgd').findNext(
+                'a', 'mnKHRc')['href']
         app_rating = results[0].findNext(
             'div', 'Vpfmgd').findNext(
             'div', 'pf5lIe').find('div')['aria-label']
         app_link = "https://play.google.com" + \
             results[0].findNext(
-    'div', 'Vpfmgd').findNext(
-        'div', 'vU6FJ p63iDd').a['href']
+                'div', 'Vpfmgd').findNext(
+                'div', 'vU6FJ p63iDd').a['href']
         app_icon = results[0].findNext(
             'div', 'Vpfmgd').findNext(
             'div', 'uzcko').img['data-src']
@@ -1604,54 +1603,58 @@ async def stylish_generator(event):
     if not args:
         await event.edit("What I am Supposed to change give text")
         return
-    string= "  ".join(args).lower()
+    string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            littleboxtextcharacter= littleboxtextfont[normiefont.index(normiecharacter)]
-            string= string.replace(normiecharacter, littleboxtextcharacter)
+            littleboxtextcharacter = littleboxtextfont[normiefont.index(
+                normiecharacter)]
+            string = string.replace(normiecharacter, littleboxtextcharacter)
     await event.edit(string)
 
 
 @register(outgoing=True, pattern="^.Smoothf(?: |$)(.*)")
 async def stylish_generator(event):
-    args= event.pattern_match.group(1)
+    args = event.pattern_match.group(1)
     if not args:
-        get= await event.get_reply_message()
-        args= get.text
+        get = await event.get_reply_message()
+        args = get.text
     if not args:
         await event.edit("What I am Supposed to change give text")
         return
-    string= "  ".join(args).lower()
+    string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            smothtextcharacter= smothtextfont[normiefont.index(normiecharacter)]
-            string= string.replace(normiecharacter, smothtextcharacter)
+            smothtextcharacter = smothtextfont[normiefont.index(
+                normiecharacter)]
+            string = string.replace(normiecharacter, smothtextcharacter)
     await event.edit(string)
+
 
 @register(outgoing=True, pattern="^.oldeng(?: |$)(.*)")
 async def oldy(event):
 
-    args= event.pattern_match.group(1)
+    args = event.pattern_match.group(1)
     if not args:
-        get= await event.get_reply_message()
-        args= get.text
+        get = await event.get_reply_message()
+        args = get.text
     if not args:
         await event.edit("`What, I am Supposed To Work with text only`")
         return
-    string= '  '.join(args).lower()
+    string = '  '.join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            oldycharacter= oldengfont[normiefont.index(normiecharacter)]
-            string= string.replace(normiecharacter, oldycharacter)
+            oldycharacter = oldengfont[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, oldycharacter)
     await event.edit(string)
+
 
 @register(outgoing=True, pattern="^.rclone(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
-    name= f"{ALIVE_NAME}"
-    bio= f"{DEFAULT_BIO}"
-    n= 1
+    name = f"{ALIVE_NAME}"
+    bio = f"{DEFAULT_BIO}"
+    n = 1
     await bot(functions.photos.DeletePhotosRequest(await event.client.get_profile_photos("me", limit=n)))
     await bot(functions.account.UpdateProfileRequest(about=bio))
     await bot(functions.account.UpdateProfileRequest(first_name=name))
