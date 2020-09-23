@@ -1395,198 +1395,212 @@ async def stylish_generator(event):
     string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            egyptfontcharacter = egyptfontfont[normiefont.index(normiecharacter)]
+            egyptfontcharacter = egyptfontfont[normiefont.index(
+                normiecharacter)]
             string = string.replace(normiecharacter, egyptfontcharacter)
     await event.edit(string)
 
 
 @ register(outgoing=True, pattern="^.downside(?: |$)(.*)")
 async def stylish_generator(event):
-    args= event.pattern_match.group(1)
+    args = event.pattern_match.group(1)
     if not args:
-        get= await event.get_reply_message()
-        args= get.text
+        get = await event.get_reply_message()
+        args = get.text
     if not args:
         await event.edit("What I am Supposed to change give text")
         return
-    string= "  ".join(args).lower()
+    string = "  ".join(args).lower()
     for upsidecharacter in string:
         if upsidecharacter in upsidefont:
-            downsidecharacter= downsidefont[upsidefont.index(upsideecharacter)]
-            string= string.replace(upsidecharacter, downsidecharacter)
+            downsidecharacter = downsidefont[upsidefont.index(
+                upsideecharacter)]
+            string = string.replace(upsidecharacter, downsidecharacter)
     await event.edit(string)
+
 
 @ register(outgoing=True, pattern="^.subscript(?: |$)(.*)")
 async def stylish_generator(event):
-    args= event.pattern_match.group(1)
+    args = event.pattern_match.group(1)
     if not args:
-        get= await event.get_reply_message()
-        args= get.text
+        get = await event.get_reply_message()
+        args = get.text
     if not args:
         await event.edit("What I am Supposed to change give text")
         return
-    string= "  ".join(args).lower()
+    string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            subscriptcharacter= subscriptfont[normiefont.index(normiecharacter)]
-            string= string.replace(normiecharacter, subscriptcharacter)
+            subscriptcharacter = subscriptfont[normiefont.index(
+                normiecharacter)]
+            string = string.replace(normiecharacter, subscriptcharacter)
     await event.edit(string)
+
 
 @ register(outgoing=True, pattern="^.supscript(?: |$)(.*)")
 async def stylish_generator(event):
-    args= event.pattern_match.group(1)
+    args = event.pattern_match.group(1)
     if not args:
-        get= await event.get_reply_message()
-        args= get.text
+        get = await event.get_reply_message()
+        args = get.text
     if not args:
         await event.edit("What I am Supposed to change give text")
         return
-    string= "  ".join(args).lower()
+    string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            superscriptcharacter= superscriptfont[normiefont.index(normiecharacter)]
-            string= string.replace(normiecharacter, superscriptcharacter)
+            superscriptcharacter = superscriptfont[normiefont.index(
+                normiecharacter)]
+            string = string.replace(normiecharacter, superscriptcharacter)
     await event.edit(string)
+
 
 @ register(outgoing=True, pattern="^.circlify(?: |$)(.*)")
 async def circly(event):
 
-    args= event.pattern_match.group(1)
+    args = event.pattern_match.group(1)
     if not args:
-        get= await event.get_reply_message()
-        args= get.text
+        get = await event.get_reply_message()
+        args = get.text
     if not args:
         await event.edit("`What I am Supposed to circlyfy U Dumb`")
         return
-    string= '  '.join(args).lower()
+    string = '  '.join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            circlycharacter= circlyfont[normiefont.index(normiecharacter)]
-            string= string.replace(normiecharacter, circlycharacter)
+            circlycharacter = circlyfont[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, circlycharacter)
     await event.edit(string)
+
 
 @ register(outgoing=True, pattern="^.handcf(?: |$)(.*)")
 async def stylish_generator(event):
-    args= event.pattern_match.group(1)
+    args = event.pattern_match.group(1)
     if not args:
-        get= await event.get_reply_message()
-        args= get.text
+        get = await event.get_reply_message()
+        args = get.text
     if not args:
         await event.edit("What I am Supposed to change give text")
         return
-    string= "  ".join(args).lower()
+    string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            hwcapitalcharacter= hwcapitalfont[normiefont.index(normiecharacter)]
-            string= string.replace(normiecharacter, hwcapitalcharacter)
+            hwcapitalcharacter = hwcapitalfont[normiefont.index(
+                normiecharacter)]
+            string = string.replace(normiecharacter, hwcapitalcharacter)
     await event.edit(string)
+
 
 @ register(outgoing=True, pattern="^.doublef(?: |$)(.*)")
 async def stylish_generator(event):
-    args= event.pattern_match.group(1)
+    args = event.pattern_match.group(1)
     if not args:
-        get= await event.get_reply_message()
-        args= get.text
+        get = await event.get_reply_message()
+        args = get.text
     if not args:
         await event.edit("What I am Supposed to change give text")
         return
-    string= "  ".join(args).lower()
+    string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            doubletextcharacter= doubletextfont[normiefont.index(normiecharacter)]
-            string= string.replace(normiecharacter, doubletextcharacter)
+            doubletextcharacter = doubletextfont[normiefont.index(
+                normiecharacter)]
+            string = string.replace(normiecharacter, doubletextcharacter)
     await event.edit(string)
 
 
 @ register(outgoing=True, pattern="^.songf(?: |$)(.*)")
 async def stylish_generator(event):
-    args= event.pattern_match.group(1)
+    args = event.pattern_match.group(1)
     if not args:
-        get= await event.get_reply_message()
-        args= get.text
+        get = await event.get_reply_message()
+        args = get.text
     if not args:
         await edit_or_reply(event, "What I am Supposed to change give text")
         return
-    string= "  ".join(args).lower()
+    string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            musicalcharacter= musicalfont[normiefont.index(normiecharacter)]
-            string= string.replace(normiecharacter, musicalcharacter)
+            musicalcharacter = musicalfont[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, musicalcharacter)
     await edit_or_reply(event, string)
+
 
 @ register(outgoing=True, pattern="^.ancientf(?: |$)(.*)")
 async def stylish_generator(event):
-    args= event.pattern_match.group(1)
+    args = event.pattern_match.group(1)
     if not args:
-        get= await event.get_reply_message()
-        args= get.text
+        get = await event.get_reply_message()
+        args = get.text
     if not args:
         await edit_or_reply(event, "What I am Supposed to change give text")
         return
-    string= "  ".join(args).lower()
+    string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            ancientcharacter= ancientfont[normiefont.index(normiecharacter)]
-            string= string.replace(normiecharacter, ancientcharacter)
+            ancientcharacter = ancientfont[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, ancientcharacter)
     await edit_or_reply(event, string)
 
 
 @ register(outgoing=True, pattern="^.smallf(?: |$)(.*)")
 async def stylish_generator(event):
-    args= event.pattern_match.group(1)
+    args = event.pattern_match.group(1)
     if not args:
-        get= await event.get_reply_message()
-        args= get.text
+        get = await event.get_reply_message()
+        args = get.text
     if not args:
         await event.edit("What I am Supposed to change give text")
         return
-    string= "  ".join(args).lower()
+    string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            smallcapscharacter= smallcapsfont[normiefont.index(normiecharacter)]
-            string= string.replace(normiecharacter, smallcapscharacter)
+            smallcapscharacter = smallcapsfont[normiefont.index(
+                normiecharacter)]
+            string = string.replace(normiecharacter, smallcapscharacter)
     await event.edit(string)
 
 
 @ register(outgoing=True, pattern="^.bobbf(?: |$)(.*)")
 async def stylish_generator(event):
-    args= event.pattern_match.group(1)
+    args = event.pattern_match.group(1)
     if not args:
-        get= await event.get_reply_message()
-        args= get.text
+        get = await event.get_reply_message()
+        args = get.text
     if not args:
         await event.edit("What I am Supposed to change give text")
         return
-    string= "  ".join(args).lower()
+    string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            bubblescharacter= bubblesfont[normiefont.index(normiecharacter)]
-            string= string.replace(normiecharacter, bubblescharacter)
+            bubblescharacter = bubblesfont[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, bubblescharacter)
     await event.edit(string)
+
 
 @ register(outgoing=True, pattern="^.tanf(?: |$)(.*)")
 async def stylish_generator(event):
-    args= event.pattern_match.group(1)
+    args = event.pattern_match.group(1)
     if not args:
-        get= await event.get_reply_message()
-        args= get.text
+        get = await event.get_reply_message()
+        args = get.text
     if not args:
         await event.edit("What I am Supposed to change give text")
         return
-    string= "  ".join(args).lower()
+    string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            tantextcharacter= tantextfont[normiefont.index(normiecharacter)]
-            string= string.replace(normiecharacter, tantextcharacter)
+            tantextcharacter = tantextfont[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, tantextcharacter)
     await event.edit(string)
 
 
 @ register(outgoing=True, pattern="^.boxf(?: |$)(.*)")
 async def stylish_generator(event):
-    args= event.pattern_match.group(1)
+    args = event.pattern_match.group(1)
     if not args:
-        get= await event.get_reply_message()
-        args= get.text
+        get = await event.get_reply_message()
+        args = get.text
    if not args:
         await event.edit("What I am Supposed to change give text")
         return
