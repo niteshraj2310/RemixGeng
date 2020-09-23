@@ -1385,17 +1385,17 @@ async def xcursive(cursivelite):
 
 @register(outgoing=True, pattern="^.egyptf(?: |$)(.*)")
 async def stylish_generator(event):
-    args = event.pattern_match.group(1)
+    args= event.pattern_match.group(1)
     if not args:
-        get = await event.get_reply_message()
-        args = get.text
+        get= await event.get_reply_message()
+        args= get.text
     if not args:
         await event.edit("```What I am Supposed to change give text, Lmao```")
         return
-    string = "  ".join(args).lower()
+    string= "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            egyptfontcharacter = egyptfontfont[[normiefont.index(normiecharacter)]
+            egyptfontcharacter= egyptfontfont[[normiefont.index(normiecharacter)]
             string= string.replace(normiecharacter, egyptfontcharacter)
     await event.edit(string)
 
