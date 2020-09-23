@@ -1395,7 +1395,7 @@ async def stylish_generator(event):
     string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            egyptfontcharacter = egyptfontfont[[normiefont.index(normiecharacter)]
+            egyptfontcharacter = egyptfontfont[normiefont.index(normiecharacter)]
             string = string.replace(normiecharacter, egyptfontcharacter)
     await event.edit(string)
 
