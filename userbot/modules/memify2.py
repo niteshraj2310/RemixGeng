@@ -24,7 +24,7 @@ from userbot.utils.tools import (
 )
 
 
-@register(pattern="^.(mmf|mms)(?: |$)(.*)", outgoing=True)
+@register(pattern="^.(meme|mms)(?: |$)(.*)", outgoing=True)
 async def memes(event):
     cmd = event.pattern_match.group(1)
     eventinput = event.pattern_match.group(2)
