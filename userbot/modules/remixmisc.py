@@ -6,6 +6,7 @@ import os
 import asyncio
 import time
 import html
+import random
 from justwatch import JustWatch
 from telethon import *
 from userbot.events import register
@@ -21,6 +22,313 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 
 
 import logging
+
+smallcapsfont = "ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢ1234567890\"'#$%&()*+,-./:;<=>?@[\\]^_`{|}~"
+
+superscriptfont = "ᴬᴮᶜᴰᴱᶠᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾᵠᴿˢᵀᵁⱽᵂˣʸᶻᵃᵇᶜᵈᵉᶠᵍʰᶦʲᵏˡᵐⁿᵒᵖᵠʳˢᵗᵘᵛʷˣʸᶻ¹²³⁴⁵⁶⁷⁸⁹⁰\"'#$%&()*+,-./:;<=>?@[\\]^_`{|}~"
+
+subscriptfont = "ₐBCDₑFGₕᵢⱼₖₗₘₙₒₚQᵣₛₜᵤᵥWₓYZₐᵦ𝒸𝒹ₑ𝒻𝓰ₕᵢⱼₖₗₘₙₒₚᵩᵣₛₜᵤᵥ𝓌ₓᵧ𝓏₁₂₃₄₅₆₇₈₉₀\"'#$%&()*+,-./:;<=>?@[\\]^_`{|}~"
+
+bubblesfont = "ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ1234567890\"'#$%&()*+,-./:;<=>?@[\\]^_`{|}~"
+
+smothtextfont = "ᗩᗷᑕᗞᗴᖴᏀᕼᏆᒍᏦᏞᗰᑎᝪᑭᑫᖇᔑᎢᑌᐯᗯ᙭ᎩᏃᗩᗷᑕᗞᗴᖴᏀᕼᏆᒍᏦᏞᗰᑎᝪᑭᑫᖇᔑᎢᑌᐯᗯ᙭ᎩᏃ1234567890\"'#$%&()*+,-./:;<=>?@[\\]^_`{|}~"
+
+egyptfontfont = "ค๒ς๔єŦﻮђเןкl๓ภ๏קợгรtยשฬץאzค๒ς๔єŦﻮђเןкl๓ภ๏קợгรtยשฬץאz1234567890\"'#$%&()*+,-./:;<=>?@[\\]^_`{|}~"
+
+hwcapitalfont = "𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩1234567890\"'#$%&()*+,-./:;<=>?@[\\]^_`{|}~"
+
+tantextfont = "ᎯᏰᏣᎴᏋᎴᎶᏂiᏠᏦlmᏁᏫᎵᏄᖇᎦᎿᏌᏉᏯﾒᎩᏃᎯᏰᏣᎴᏋᎴᎶᏂiᏠᏦlmᏁᏫᎵᏄᖇᎦᎿᏌᏉᏯﾒᎩᏃ1234567890\"'#$%&()*+,-./:;<=>?@[\\]^_`{|}~"
+
+littleboxtextfont = "🄰🄱🄲🄳🄴🄵🄶🄷🄸🄹🄺🄻🄼🄽🄾🄿🅀🅁🅂🅃🅄🅅🅆🅇🅈🅉🄰🄱🄲🄳🄴🄵🄶🄷🄸🄹🄺🄻🄼🄽🄾🄿🅀🅁🅂🅃🅄🅅🅆🅇🅈🅉1234567890\"'#$%&()*+,-./:;<=>?@[\\]^_`{|}~"
+
+doubletextfont = "ᎯℬℂⅅℰℱᎶℋℐᎫᏦℒℳℕᎾℙℚℛЅᏆUᏉᏇXᎽℤᎯℬℂⅅℰℱᎶℋℐᎫᏦℒℳℕᎾℙℚℛЅᏆUᏉᏇXᎽℤ1234567890\"'#$%&()*+,-./:;<=>?@[\\]^_`{|}~"
+
+upsidefont = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "_",
+    "'",
+    ",",
+    "\\",
+    "/",
+    "!",
+    "?",
+]
+
+downsidefont = [
+    "ɐ",
+    "q",
+    "ɔ",
+    "p",
+    "ə",
+    "ɟ",
+    "ɓ",
+    "ɥ",
+    "ı",
+    "ɾ",
+    "ʞ",
+    "l",
+    "ɯ",
+    "u",
+    "o",
+    "p",
+    "q",
+    "ɹ",
+    "s",
+    "ʇ",
+    "n",
+    "ʌ",
+    "ʍ",
+    "x",
+    "ʎ",
+    "z",
+    "∀",
+    "B",
+    "Ↄ",
+    "◖",
+    "Ǝ",
+    "Ⅎ",
+    "⅁",
+    "H",
+    "I",
+    "ſ",
+    "K",
+    "⅂",
+    "W",
+    "ᴎ",
+    "O",
+    "Ԁ",
+    "Ό",
+    "ᴚ",
+    "S",
+    "⊥",
+    "∩",
+    "ᴧ",
+    "M",
+    "X",
+    "⅄",
+    "Z",
+    "0",
+    "1",
+    "ᄅ",
+    "Ɛ",
+    "ᔭ",
+    "5",
+    "9",
+    "Ɫ",
+    "8",
+    "6",
+    "¯",
+    ",",
+    "'",
+    "/",
+    "\\",
+    "¡",
+    "¿",
+]
+
+ancientfont = [
+    "ꍏ",
+    "ꌃ",
+    "ꉓ",
+    "ꀸ",
+    "ꍟ",
+    "ꎇ",
+    "ꁅ",
+    "ꃅ",
+    "ꀤ",
+    "ꀭ",
+    "ꀘ",
+    "꒒",
+    "ꎭ",
+    "ꈤ",
+    "ꂦ",
+    "ᖘ",
+    "ꆰ",
+    "ꋪ",
+    "ꌗ",
+    "꓄",
+    "ꀎ",
+    "ᐯ",
+    "ꅏ",
+    "ꊼ",
+    "ꌩ",
+    "ꁴ",
+    "ꍏ",
+    "ꌃ",
+    "ꉓ",
+    "ꀸ",
+    "ꍟ",
+    "ꎇ",
+    "ꁅ",
+    "ꃅ",
+    "ꀤ",
+    "ꀭ",
+    "ꀘ",
+    "꒒",
+    "ꎭ",
+    "ꈤ",
+    "ꂦ",
+    "ᖘ",
+    "ꆰ",
+    "ꋪ",
+    "ꌗ",
+    "꓄",
+    "ꀎ",
+    "ᐯ",
+    "ꅏ",
+    "ꊼ",
+    "ꌩ",
+    "ꁴ",
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "_",
+    "'",
+    ",",
+    "\\",
+    "/",
+    "!",
+    "?",
+]
+musicalfont = [
+    "♬",
+    "ᖲ",
+    "¢",
+    "ᖱ",
+    "៩",
+    "⨏",
+    "❡",
+    "Ϧ",
+    "ɨ",
+    "ɉ",
+    "ƙ",
+    "ɭ",
+    "៣",
+    "⩎",
+    "០",
+    "ᖰ",
+    "ᖳ",
+    "Ʀ",
+    "ន",
+    "Ƭ",
+    "⩏",
+    "⩔",
+    "Ɯ",
+    "✗",
+    "ƴ",
+    "Ȥ",
+    "♬",
+    "ᖲ",
+    "¢",
+    "ᖱ",
+    "៩",
+    "⨏",
+    "❡",
+    "Ϧ",
+    "ɨ",
+    "ɉ",
+    "ƙ",
+    "ɭ",
+    "៣",
+    "⩎",
+    "០",
+    "ᖰ",
+    "ᖳ",
+    "Ʀ",
+    "ន",
+    "Ƭ",
+    "⩏",
+    "⩔",
+    "Ɯ",
+    "✗",
+    "ƴ",
+    "Ȥ",
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "_",
+    "'",
+    ",",
+    "\\",
+    "/",
+    "!",
+    "?",
+]
 
 normiefont = [
     'a',
@@ -532,7 +840,7 @@ async def _(event):
         except YouBlockedUserError:
             await event.reply("`RIP Check Your Blacklist Boss`")
             return
-        if response.text.startswith(""):
+        if response.text.startswith(""):
             await event.edit("Am I Dumb Or Am I Dumb?")
         else:
             await event.delete()
@@ -1075,6 +1383,238 @@ async def xcursive(cursivelite):
             string = string.replace(normiecharacter, cursivecharacter)
     await cursivelite.edit(string)
 
+@register(outgoing=True, pattern="^.egyptf(?: |$)(.*)")
+async def stylish_generator(event):
+    args = event.pattern_match.group(1)
+    if not args:
+        get = await event.get_reply_message()
+        args = get.text
+    if not args:
+        await event.edit("```What I am Supposed to change give text, Lmao```")
+        return
+    string = "  ".join(args).lower()
+    for normiecharacter in string:
+        if normiecharacter in normiefont:
+            egyptfontcharacter = egyptfontfont[[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, egyptfontcharacter)
+    await event.edit(string)
+
+
+@register(outgoing=True, pattern="^.downside(?: |$)(.*)")
+async def stylish_generator(event):
+    args = event.pattern_match.group(1)
+    if not args:
+        get = await event.get_reply_message()
+        args = get.text
+    if not args:
+        await event.edit("What I am Supposed to change give text")
+        return
+    string = "  ".join(args).lower()
+    for upsidecharacter in string:
+        if upsidecharacter in upsidefont:
+            downsidecharacter = downsidefont[upsidefont.index(upsideecharacter)]
+            string = string.replace(upsidecharacter, downsidecharacter)
+    await event.edit(string)
+
+
+@register(outgoing=True, pattern="^.subscript(?: |$)(.*)")
+async def stylish_generator(event):
+    args = event.pattern_match.group(1)
+    if not args:
+        get = await event.get_reply_message()
+        args = get.text
+    if not args:
+        await event.edit("What I am Supposed to change give text")
+        return
+    string = "  ".join(args).lower()
+    for normiecharacter in string:
+        if normiecharacter in normiefont:
+            subscriptcharacter = subscriptfont[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, subscriptcharacter)
+    await event.edit(string)
+
+
+@register(outgoing=True, pattern="^.supscript(?: |$)(.*)")
+async def stylish_generator(event):
+    args = event.pattern_match.group(1)
+    if not args:
+        get = await event.get_reply_message()
+        args = get.text
+    if not args:
+        await event.edit("What I am Supposed to change give text")
+        return
+    string = "  ".join(args).lower()
+    for normiecharacter in string:
+        if normiecharacter in normiefont:
+            superscriptcharacter = superscriptfont[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, superscriptcharacter)
+    await event.edit(string)
+
+@register(outgoing=True, pattern="^.circlify(?: |$)(.*)")
+async def circly(event):
+
+    args = event.pattern_match.group(1)
+    if not args:
+        get = await event.get_reply_message()
+        args = get.text
+    if not args:
+        await event.edit("`What I am Supposed to circlyfy U Dumb`")
+        return
+    string = '  '.join(args).lower()
+    for normiecharacter in string:
+        if normiecharacter in normiefont:
+            circlycharacter = circlyfont[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, circlycharacter)
+    await event.edit(string)
+
+@register(outgoing=True, pattern="^.handcf(?: |$)(.*)")
+async def stylish_generator(event):
+    args = event.pattern_match.group(1)
+    if not args:
+        get = await event.get_reply_message()
+        args = get.text
+    if not args:
+        await event.edit("What I am Supposed to change give text")
+        return
+    string = "  ".join(args).lower()
+    for normiecharacter in string:
+        if normiecharacter in normiefont:
+            hwcapitalcharacter = hwcapitalfont[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, hwcapitalcharacter)
+    await event.edit(string)
+
+@register(outgoing=True, pattern="^.doublef(?: |$)(.*)")
+async def stylish_generator(event):
+    args = event.pattern_match.group(1)
+    if not args:
+        get = await event.get_reply_message()
+        args = get.text
+    if not args:
+        await event.edit("What I am Supposed to change give text")
+        return
+    string = "  ".join(args).lower()
+    for normiecharacter in string:
+        if normiecharacter in normiefont:
+            doubletextcharacter = doubletextfont[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, doubletextcharacter)
+    await event.edit(string)
+
+
+@register(outgoing=True, pattern="^.songf(?: |$)(.*)")
+async def stylish_generator(event):
+    args = event.pattern_match.group(1)
+    if not args:
+        get = await event.get_reply_message()
+        args = get.text
+    if not args:
+        await edit_or_reply(event, "What I am Supposed to change give text")
+        return
+    string = "  ".join(args).lower()
+    for normiecharacter in string:
+        if normiecharacter in normiefont:
+            musicalcharacter = musicalfont[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, musicalcharacter)
+    await edit_or_reply(event, string)
+
+@register(outgoing=True, pattern="^.ancientf(?: |$)(.*)")
+async def stylish_generator(event):
+    args = event.pattern_match.group(1)
+    if not args:
+        get = await event.get_reply_message()
+        args = get.text
+    if not args:
+        await edit_or_reply(event, "What I am Supposed to change give text")
+        return
+    string = "  ".join(args).lower()
+    for normiecharacter in string:
+        if normiecharacter in normiefont:
+            ancientcharacter = ancientfont[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, ancientcharacter)
+    await edit_or_reply(event, string)
+
+
+@register(outgoing=True, pattern="^.smallf(?: |$)(.*)")
+async def stylish_generator(event):
+    args = event.pattern_match.group(1)
+    if not args:
+        get = await event.get_reply_message()
+        args = get.text
+    if not args:
+        await event.edit("What I am Supposed to change give text")
+        return
+    string = "  ".join(args).lower()
+    for normiecharacter in string:
+        if normiecharacter in normiefont:
+            smallcapscharacter = smallcapsfont[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, smallcapscharacter)
+    await event.edit(string)
+
+
+@register(outgoing=True, pattern="^.bobbf(?: |$)(.*)")
+async def stylish_generator(event):
+    args = event.pattern_match.group(1)
+    if not args:
+        get = await event.get_reply_message()
+        args = get.text
+    if not args:
+        await event.edit("What I am Supposed to change give text")
+        return
+    string = "  ".join(args).lower()
+    for normiecharacter in string:
+        if normiecharacter in normiefont:
+            bubblescharacter = bubblesfont[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, bubblescharacter)
+    await event.edit(string)
+
+@register(outgoing=True, pattern="^.tanf(?: |$)(.*)")
+async def stylish_generator(event):
+    args = event.pattern_match.group(1)
+    if not args:
+        get = await event.get_reply_message()
+        args = get.text
+    if not args:
+        await event.edit("What I am Supposed to change give text")
+        return
+    string = "  ".join(args).lower()
+    for normiecharacter in string:
+        if normiecharacter in normiefont:
+            tantextcharacter = tantextfont[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, tantextcharacter)
+    await event.edit(string)
+
+
+@register(outgoing=True, pattern="^.boxf(?: |$)(.*)")
+async def stylish_generator(event):
+    args = event.pattern_match.group(1)
+    if not args:
+        get = await event.get_reply_message()
+        args = get.text
+    if not args:
+        await event.edit("What I am Supposed to change give text")
+        return
+    string = "  ".join(args).lower()
+    for normiecharacter in string:
+        if normiecharacter in normiefont:
+            littleboxtextcharacter = littleboxtextfont[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, littleboxtextcharacter)
+    await event.edit(string)
+
+
+@register(outgoing=True, pattern="^.Smoothf(?: |$)(.*)")
+async def stylish_generator(event):
+    args = event.pattern_match.group(1)
+    if not args:
+        get = await event.get_reply_message()
+        args = get.text
+    if not args:
+        await event.edit("What I am Supposed to change give text")
+        return
+    string = "  ".join(args).lower()
+    for normiecharacter in string:
+        if normiecharacter in normiefont:
+            smothtextcharacter = smothtextfont[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, smothtextcharacter)
+    await event.edit(string)
 
 @register(outgoing=True, pattern="^.circlify(?: |$)(.*)")
 async def circly(event):
@@ -1146,10 +1686,6 @@ CMD_HELP.update({
 \nUsage: type account,channel,group or bot username and reply with .res and check restriction\
 \n\n`.watch` <movie/tv> show\
 \nUsage:know details about particular movie/show.\
-\n\n`.weeb` <text>\
-\nUsage:weebify a text\
-\n\nIt contains (`.bold <text>`,`.cur <text>`,`.curbold <text>`,`.medi <text>`,`.medibold <text>`,`.doublestruck <text>`)\
-\nUsage:makes your text <bold,cursive,cursivebold,medival,medivalbold,gayishbold>\
 \n\n`.randompp`\
 \nUsage:Automatically changes your profile picture after one hour. To stop this use .restart.\
 \n\n`.gps` <location name>.\
@@ -1179,5 +1715,9 @@ If nothing is mentioned then by default it is 2."
 CMD_HELP.update({
     "fonts":
     ".circlify :- circlifies text \
-\n.oldeng :- old eng font"
+\n.oldeng :- old eng font\
+\n\n`.weeb` <text>\
+\nUsage:weebify a text\
+\n\nIt contains (`.bold <text>`,`.cur <text>`,`.curbold <text>`,`.medi <text>`,`.medibold <text>`,`.doublestruck <text>`,`.egyptf <text>`,`.downside <text>`,`.subscript <text>`,`.supscript <text>`,`.handcf <text>`,`.doublef <text>` ,`.songf <text>`,`.ancientf <text>`,`.smallf <text>`,`.bobbf <text>`,`.tanf <text>`,`.boxf <text>`,`.Smoothf <text>`)\
+\nUsage:makes your text <bold,cursive,cursivebold,medival,medivalbold,gayishbold>"
 })
