@@ -14,10 +14,7 @@ from userbot.utils.tools import (
     remix_meme,
     convert_toimage,
     crop,
-    flip_image,
-    grayscale,
     invert_colors,
-    mirror_file,
     runcmd,
     solarize,
     take_screen_shot,
@@ -49,7 +46,8 @@ async def memes(event):
 
     await asyncio.sleep(2)
     eventsticker = await reply.download_media(file="./temp/")
-    if not eventsticker.endswith((".mp4", ".webp", ".tgs", ".png", ".jpg", ".mov")):
+    if not eventsticker.endswith(
+            (".mp4", ".webp", ".tgs", ".png", ".jpg", ".mov")):
         os.remove(eventsticker)
         await event.edit("```Supported Media not found...```")
         return
@@ -135,7 +133,8 @@ async def memes(event):
 
     await asyncio.sleep(2)
     eventsticker = await reply.download_media(file="./temp/")
-    if not eventsticker.endswith((".mp4", ".webp", ".tgs", ".png", ".jpg", ".mov")):
+    if not eventsticker.endswith(
+            (".mp4", ".webp", ".tgs", ".png", ".jpg", ".mov")):
         os.remove(eventsticker)
         await event.edit("```Supported Media not found...```")
         return
@@ -223,7 +222,8 @@ async def memes(event):
 
     await asyncio.sleep(2)
     eventsticker = await reply.download_media(file="./temp/")
-    if not eventsticker.endswith((".mp4", ".webp", ".tgs", ".png", ".jpg", ".mov")):
+    if not eventsticker.endswith(
+            (".mp4", ".webp", ".tgs", ".png", ".jpg", ".mov")):
         os.remove(eventsticker)
         await event.edit("```Supported Media not found...```")
         return
@@ -316,7 +316,8 @@ async def memes(event):
 
     await asyncio.sleep(2)
     eventsticker = await reply.download_media(file="./temp/")
-    if not eventsticker.endswith((".mp4", ".webp", ".tgs", ".png", ".jpg", ".mov")):
+    if not eventsticker.endswith(
+            (".mp4", ".webp", ".tgs", ".png", ".jpg", ".mov")):
         os.remove(eventsticker)
         await event.edit("```Supported Media not found...```")
         return
@@ -424,7 +425,8 @@ async def memes(event):
 
     await asyncio.sleep(2)
     eventsticker = await reply.download_media(file="./temp/")
-    if not eventsticker.endswith((".mp4", ".webp", ".tgs", ".png", ".jpg", ".mov")):
+    if not eventsticker.endswith(
+            (".mp4", ".webp", ".tgs", ".png", ".jpg", ".mov")):
         os.remove(eventsticker)
         await event.edit("```Supported Media not found...```")
         return

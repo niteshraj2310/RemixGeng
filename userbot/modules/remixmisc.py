@@ -1107,7 +1107,7 @@ async def _(event):
     if event.fwd_from:
         return
     query = event.pattern_match.group(1)
-        await event.edit("`Finding Sites...`")
+    await event.edit("`Finding Sites...`")
     try:
         streams = get_stream_data(query)
     except Exception as e:
