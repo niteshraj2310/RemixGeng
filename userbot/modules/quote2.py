@@ -4,7 +4,7 @@ Ported by @okay_retard"""
 # Source:
 # https://raw.githubusercontent.com/erenmetesar/NiceGrill/master/nicegrill/modules/quote.py
 
-
+from asyncio import sleep
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 from telethon.tl import types, functions
 from fontTools.ttLib import TTFont
@@ -382,7 +382,7 @@ async def emoji_fetch(emoji):
         img = emojis[emoji]
         return await transparent(urllib.request.urlretrieve(img, "resources/emoji.png")[0])
     else:
-        img = emojis["⛔"]
+        img = emojis["🔥"]
         return await transparent(urllib.request.urlretrieve(img, "resources/emoji.png")[0])
 
 
@@ -429,7 +429,7 @@ async def replied_user(draw, tot, text, maxlength, title):
 async def _(event):
     if event.fwd_from:
         return
-    await event.edit('```Wait plox...```')
+    await event.edit('```Ruko Jaraa sabrr kro...```')
     reply = await event.get_reply_message()
     msg = reply.message
     repliedreply = await reply.get_reply_message()
@@ -442,3 +442,5 @@ async def _(event):
     canvas.save('sticker.webp')
     await bot.send_file(event.chat_id, "sticker.webp")
     os.remove('sticker.webp')
+   await sleep(0.3)
+   await event.delete()
