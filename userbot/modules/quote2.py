@@ -430,6 +430,8 @@ async def _(event):
     if event.fwd_from:
         return
     await event.edit('```Ruko Jaraa sabrr kro...```')
+    await sleep(1)
+    await event.delete()
     reply = await event.get_reply_message()
     msg = reply.message
     repliedreply = await reply.get_reply_message()
