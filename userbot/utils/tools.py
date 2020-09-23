@@ -20,25 +20,15 @@ import re
 import hashlib
 import asyncio
 import shlex
-import datetime
-import logging
 import os
 from os.path import basename, join
-import math
 from os import getcwd
 import os.path
-import sys
-import time
-from typing import Tuple, Union, Optional
+from typing import Optional, Tuple
 from userbot import bot, LOGS
 
-from telethon import errors
-from telethon.tl import types
-from telethon.utils import get_display_name
-from telethon import events
-from telethon.tl.functions.messages import GetPeerDialogsRequest
 from telethon.tl.functions.channels import GetParticipantRequest
-from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator, DocumentAttributeFilename, channel, PollAnswer
+from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator, DocumentAttributeFilename, PollAnswer
 
 from PIL import Image, ImageDraw, ImageFont
 import PIL.ImageOps
@@ -46,6 +36,7 @@ from wand.color import Color
 from wand.drawing import Drawing
 from wand.image import Image as remiximage
 from textwrap import wrap
+
 
 async def md5(fname: str) -> str:
     hash_md5 = hashlib.md5()
@@ -165,7 +156,8 @@ async def check_media(reply_message):
     else:
         return data
 
-#memify
+# memify
+
 
 async def remix_meme(topString, bottomString, filename, endname):
     img = Image.open(filename)
@@ -175,7 +167,8 @@ async def remix_meme(topString, bottomString, filename, endname):
     font = ImageFont.truetype("userbot/utils/styles/impact.ttf", fontSize)
     topTextSize = font.getsize(topString)
     bottomTextSize = font.getsize(bottomString)
-    while topTextSize[0] > imageSize[0] - 20 or bottomTextSize[0] > imageSize[0] - 20:
+    while topTextSize[0] > imageSize[0] - \
+            20 or bottomTextSize[0] > imageSize[0] - 20:
         fontSize = fontSize - 1
         font = ImageFont.truetype("userbot/utils/styles/impact.ttf", fontSize)
         topTextSize = font.getsize(topString)
@@ -215,11 +208,18 @@ async def remix_meme(topString, bottomString, filename, endname):
 
 async def remix_meeme(upper_text, lower_text, picture_name, endname):
     main_image = remiximage(filename=picture_name)
-    main_image.resize(
-        1024, int(((main_image.height * 1.0) / (main_image.width * 1.0)) * 1024.0)
-    )
-    upper_text = "\n".join(wrap(upper_text, get_warp_length(main_image.width))).upper()
-    lower_text = "\n".join(wrap(lower_text, get_warp_length(main_image.width))).upper()
+    main_image.resize(1024, int(
+        ((main_image.height * 1.0) / (main_image.width * 1.0)) * 1024.0))
+    upper_text = "\n".join(
+        wrap(
+            upper_text,
+            get_warp_length(
+                main_image.width))).upper()
+    lower_text = "\n".join(
+        wrap(
+            lower_text,
+            get_warp_length(
+                main_image.width))).upper()
     lower_margin = MARGINS[lower_text.count("\n")]
     text_draw = Drawing()
     text_draw.font = join(getcwd(), "userbot/utils/styles/impact.ttf")
@@ -232,8 +232,9 @@ async def remix_meeme(upper_text, lower_text, picture_name, endname):
         text_draw.text((main_image.width) // 2, 80, upper_text)
     if lower_text:
         text_draw.text(
-            (main_image.width) // 2, main_image.height - lower_margin, lower_text
-        )
+            (main_image.width) // 2,
+            main_image.height - lower_margin,
+            lower_text)
     text_draw(main_image)
     main_image.save(filename=endname)
 
@@ -245,6 +246,7 @@ def convert_toimage(image):
     img.save("temp.jpg", "jpeg")
     os.remove(image)
     return "temp.jpg"
+
 
 async def invert_colors(imagefile, endname):
     image = Image.open(imagefile)
@@ -287,7 +289,9 @@ async def crop(imagefile, endname, x):
     inverted_image = PIL.ImageOps.crop(image, border=x)
     inverted_image.save(endname)
 
-#polls
+# polls
+
+
 def Build_Poll(options):
     i = 0
     poll = []
