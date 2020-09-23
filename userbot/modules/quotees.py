@@ -1,6 +1,5 @@
 """ported from Catuserbot module modified by  @mrconfused"""
 
-import json
 import logging
 import os
 import random
@@ -8,8 +7,7 @@ import textwrap
 import urllib
 
 import emoji
-from fontTools.ttLib import TTFont
-from PIL import Image, ImageDraw, ImageFont, ImageOps
+from PIL import Image, ImageDraw, ImageFont
 from telethon.tl import functions, types
 from userbot.events import register
 from userbot.utils import runcmd

@@ -1412,7 +1412,7 @@ async def stylish_generator(event):
     string = "  ".join(args).lower()
     for upsidecharacter in string:
         if upsidecharacter in upsidefont:
-            downsidecharacter= downsidefont[upsidefont.index(upsideecharacter)]
+            downsidecharacter = downsidefont[upsidefont.index(upsideecharacter)]
             string = string.replace(upsidecharacter, downsidecharacter)
     await event.edit(string)
 
@@ -1428,8 +1428,8 @@ async def stylish_generator(event):
     string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            subscriptcharacter= subscriptfont[normiefont.index(normiecharacter)]
-            string= string.replace(normiecharacter, subscriptcharacter)
+            subscriptcharacter = subscriptfont[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, subscriptcharacter)
     await event.edit(string)
 
 @register(outgoing=True, pattern="^.supscript(?: |$)(.*)")
@@ -1444,7 +1444,7 @@ async def stylish_generator(event):
     string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            superscriptcharacter= superscriptfont[normiefont.index(normiecharacter)]
+            superscriptcharacter = superscriptfont[normiefont.index(normiecharacter)]
             string = string.replace(normiecharacter, superscriptcharacter)
     await event.edit(string)
 
@@ -1523,7 +1523,7 @@ async def stylish_generator(event):
     if not args:
         await edit_or_reply(event, "What I am Supposed to change give text")
         return
-    string= "  ".join(args).lower()
+    string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
             ancientcharacter = ancientfont[normiefont.index(normiecharacter)]
@@ -1566,7 +1566,7 @@ async def stylish_generator(event):
 
 @register(outgoing=True, pattern="^.tanf(?: |$)(.*)")
 async def stylish_generator(event):
-    args= event.pattern_match.group(1)
+    args = event.pattern_match.group(1)
     if not args:
         get = await event.get_reply_message()
         args = get.text
@@ -1586,8 +1586,8 @@ async def stylish_generator(event):
     args = event.pattern_match.group(1)
     if not args:
         get = await event.get_reply_message()
-        args= get.text
-    if not args:
+        args = get.text
+   if not args:
         await event.edit("What I am Supposed to change give text")
         return
     string = "  ".join(args).lower()
@@ -1600,7 +1600,7 @@ async def stylish_generator(event):
 
 @register(outgoing=True, pattern="^.Smoothf(?: |$)(.*)")
 async def stylish_generator(event):
-    args= event.pattern_match.group(1)
+    args = event.pattern_match.group(1)
     if not args:
         get = await event.get_reply_message()
         args = get.text
@@ -1635,27 +1635,27 @@ async def circly(event):
 @register(outgoing=True, pattern="^.oldeng(?: |$)(.*)")
 async def oldy(event):
 
-    args= event.pattern_match.group(1)
+    args = event.pattern_match.group(1)
     if not args:
-        get= await event.get_reply_message()
-        args= get.text
+        get = await event.get_reply_message()
+        args = get.text
     if not args:
         await event.edit("`What, I am Supposed To Work with text only`")
         return
-    string= '  '.join(args).lower()
+    string = '  '.join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            oldycharacter= oldengfont[normiefont.index(normiecharacter)]
-            string= string.replace(normiecharacter, oldycharacter)
+            oldycharacter = oldengfont[normiefont.index(normiecharacter)]
+            string = string.replace(normiecharacter, oldycharacter)
     await event.edit(string)
 
 @register(outgoing=True, pattern="^.rclone(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
-    name= f"{ALIVE_NAME}"
-    bio= f"{DEFAULT_BIO}"
-    n= 1
+    name = f"{ALIVE_NAME}"
+    bio = f"{DEFAULT_BIO}"
+    n = 1
     await bot(functions.photos.DeletePhotosRequest(await event.client.get_profile_photos("me", limit=n)))
     await bot(functions.account.UpdateProfileRequest(about=bio))
     await bot(functions.account.UpdateProfileRequest(first_name=name))
