@@ -444,5 +444,3 @@ async def _(event):
     canvas.save('sticker.webp')
     await bot.send_file(event.chat_id, "sticker.webp")
     os.remove('sticker.webp')
-   await sleep(0.3)
-   await event.delete()
