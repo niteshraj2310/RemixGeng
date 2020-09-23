@@ -6,7 +6,7 @@ import os
 import asyncio
 import time
 import html
-from justwatch import JustWatch
+from justwatch import JustWatch, justwatchapi
 from telethon import *
 from userbot.events import register
 from userbot import CMD_HELP, bot, TEMP_DOWNLOAD_DIRECTORY, DEFAULT_BIO, ALIVE_NAME, WATCH_COUNTRY
@@ -18,9 +18,11 @@ from telethon.tl.types import UserStatusEmpty, UserStatusLastMonth, UserStatusLa
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-
-
 import logging
+
+justwatchapi.__dict__["HEADER"] = {
+    "User-Agent": "JustWatch client (github.com/dawoudt/JustWatchAPI)"
+}
 
 smallcapsfont = "ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢ1234567890\"'#$%&()*+,-./:;<=>?@[\\]^_`{|}~"
 
@@ -356,6 +358,78 @@ normiefont = [
     'x',
     'y',
     'z']
+
+upsidefont = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "_",
+    "'",
+    ",",
+    "\\",
+    "/",
+    "!",
+    "?",
+]
 weebyfont = [
     '卂',
     '乃',
@@ -1033,8 +1107,11 @@ async def _(event):
     if event.fwd_from:
         return
     query = event.pattern_match.group(1)
-    await event.edit("```Finding Sites...```")
-    streams = get_stream_data(query)
+        await event.edit("`Finding Sites...`")
+    try:
+        streams = get_stream_data(query)
+    except Exception as e:
+        return await event.edit(f"**Error :** `{str(e)}`")
     title = streams["title"]
     thumb_link = streams["movie_thumb"]
     release_year = streams["release_year"]
@@ -1515,7 +1592,7 @@ async def stylish_generator(event):
         get = await event.get_reply_message()
         args = get.text
     if not args:
-        await edit_or_reply(event, "What I am Supposed to change give text")
+        await event.edit("What I am Supposed to change give text")
         return
     string = "  ".join(args).lower()
     for normiecharacter in string:
@@ -1532,7 +1609,7 @@ async def stylish_generator(event):
         get = await event.get_reply_message()
         args = get.text
     if not args:
-        await edit_or_reply(event, "What I am Supposed to change give text")
+        await event.edit("What I am Supposed to change give text")
         return
     string = "  ".join(args).lower()
     for normiecharacter in string:
