@@ -1,4 +1,4 @@
-"""ported from Catuserbot module modified by  @mrconfused""""
+"""ported from Catuserbot module modified by  @mrconfused"""
 
 import json
 import logging
