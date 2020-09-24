@@ -15,9 +15,7 @@ import random
 import json
 import os
 from userbot import bot
-from telethon import event
 from userbot.events import register
-from userbot.utils import progress
 COLORS = [
     "#F07975",
     "#F49F69",

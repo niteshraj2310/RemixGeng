@@ -21,8 +21,7 @@ import hashlib
 import asyncio
 import shlex
 import os
-from os.path import basename, join
-from os import getcwd
+from os.path import basename
 import os.path
 from typing import Optional, Tuple
 from userbot import bot, LOGS

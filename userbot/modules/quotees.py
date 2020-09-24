@@ -5,12 +5,11 @@ import os
 import random
 import textwrap
 import urllib
-from telethon import events
 import emoji
 from PIL import Image, ImageDraw, ImageFont
 from telethon.tl import functions, types
 from userbot.events import register
-from userbot.utils import runcmd, progress
+from userbot.utils import runcmd
 
 COLORS = [
     "#F07975",
@@ -334,7 +333,8 @@ async def drawer(width, height):
     draw = ImageDraw.Draw(top)
     draw.line((10, 0, top.width - 20, 0), fill=(29, 29, 29, 255), width=50)
     draw.pieslice((0, 0, 30, 50), 180, 270, fill=(29, 29, 29, 255))
-    draw.pieslice((top.width - 75, 0, top.width, 50), 270, 360, fill=(29, 29, 29, 255))
+    draw.pieslice((top.width - 75, 0, top.width, 50),
+                  270, 360, fill=(29, 29, 29, 255))
 
     # Middle part
     middle = Image.new("RGBA", (top.width, height + 75), (29, 29, 29, 255))
@@ -389,6 +389,7 @@ async def catdoctype(name, size, htype, canvas):
     draw2.text((320, 97), size + htype, font=font, fill="#AAAAAA")
     return canvas
 
+
 async def no_photo(reply, tot):
     pfp = Image.new("RGBA", (105, 105), (0, 0, 0, 0))
     pen = ImageDraw.Draw(pfp)
@@ -437,7 +438,8 @@ async def replied_user(draw, tot, text, maxlength, title):
     space = 0
     for letter in tot:
         if not await fontTest(letter):
-            draw.text((180 + space, 86), letter, font=namefallback, fill="#888888")
+            draw.text((180 + space, 86), letter,
+                      font=namefallback, fill="#888888")
             space += namefallback.getsize(letter)[0]
         else:
             draw.text((180 + space, 86), letter, font=namefont, fill="#888888")
@@ -445,7 +447,8 @@ async def replied_user(draw, tot, text, maxlength, title):
     space = 0
     for letter in text:
         if not await fontTest(letter):
-            draw.text((180 + space, 132), letter, font=textfallback, fill="#888888")
+            draw.text((180 + space, 132), letter,
+                      font=textfallback, fill="#888888")
             space += textfallback.getsize(letter)[0]
         else:
             draw.text((180 + space, 132), letter, font=textfont, fill="white")
