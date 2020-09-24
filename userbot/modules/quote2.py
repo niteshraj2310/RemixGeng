@@ -15,8 +15,9 @@ import random
 import json
 import os
 from userbot import bot
+from telethon import event
 from userbot.events import register
-
+from userbot.utils import progress
 COLORS = [
     "#F07975",
     "#F49F69",
@@ -425,7 +426,7 @@ async def replied_user(draw, tot, text, maxlength, title):
             space += textfont.getsize(letter)[0]
 
 
-@register(outgoing=True, pattern="^.kot(?: |$)(.*)", disable_errors=True)
+@register(outgoing=True, pattern="^.kot(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return

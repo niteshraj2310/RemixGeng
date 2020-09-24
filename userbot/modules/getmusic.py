@@ -52,15 +52,11 @@ async def getmusicvideo(cat):
     driver = webdriver.Chrome(chrome_options=chrome_options)
     driver.get("https://www.youtube.com/results?search_query=" + search)
     user_data = driver.find_elements_by_xpath('//*[@id="video-title"]')
-    driver = webdriver.Chrome(chrome_options=chrome_options)
-    driver.get("https://www.youtube.com/results?search_query=" + search)
-    user_data = driver.find_elements_by_xpath('//*[@id="video-title"]')
     for i in user_data:
         video_link = i.get_attribute("href")
         break
     command = 'youtube-dl -f "[filesize<50M]" --merge-output-format mp4 ' + video_link
     os.system(command)
-
 
 @register(outgoing=True, pattern=r"^\.songn (?:(now)|(.*) - (.*))")
 async def _(event):
@@ -103,38 +99,6 @@ async def _(event):
         await event.delete()
     except TimeoutError:
         return await event.edit("`Error: `@WooMaiBot` is not responding!.`")
-
-
-@register(outgoing=True, pattern=r"^\.songl(?: |$)(.*)")
-async def _(event):
-    if event.fwd_from:
-        return
-    d_link = event.pattern_match.group(1)
-    if ".com" not in d_link:
-        await event.edit("`Enter a valid link to download from`")
-    else:
-        await event.edit("`Downloading...`")
-    chat = "@MusicHuntersBot"
-    try:
-        async with bot.conversation(chat) as conv:
-            try:
-                msg_start = await conv.send_message("/start")
-                response = await conv.get_response()
-                msg = await conv.send_message(d_link)
-                details = await conv.get_response()
-                song = await conv.get_response()
-                """- don't spam notif -"""
-                await bot.send_read_acknowledge(conv.chat_id)
-            except YouBlockedUserError:
-                await event.edit("`Unblock `@MusicHuntersBot` and retry`")
-                return
-            await bot.send_file(event.chat_id, song, caption=details.text)
-            await event.client.delete_messages(
-                conv.chat_id, [msg_start.id, response.id, msg.id, details.id, song.id]
-            )
-            await event.delete()
-    except TimeoutError:
-        return await event.edit("`Error: `@MusicHuntersBot` is not responding!.`")
 
 
 @register(outgoing=True, pattern=r"^\.songf (?:(now)|(.*) - (.*))")
@@ -203,56 +167,60 @@ async def _(event):
     else:
         await event.edit(f"`Sorry..! i can't find anything with` **{query}**")
         return
-    loa = l[0]
-    metadata = extractMetadata(createParser(loa))
-    duration = 0
-    width = 0
-    height = 0
-    if metadata.has("duration"):
-        duration = metadata.get("duration").seconds
-    if metadata.has("width"):
-        width = metadata.get("width")
-    if metadata.has("height"):
-        height = metadata.get("height")
-    os.system("cp *mp4 thumb.mp4")
-    os.system("ffmpeg -i thumb.mp4 -vframes 1 -an -s 480x360 -ss 5 thumb.jpg")
-    thumb_image = "thumb.jpg"
-    c_time = time.time()
-    await event.client.send_file(
-        event.chat_id,
-        loa,
-        force_document=False,
-        thumb=thumb_image,
-        allow_cache=False,
-        caption=query,
-        supports_streaming=True,
-        reply_to=reply_to_id,
-        attributes=[
-            DocumentAttributeVideo(
-                duration=duration,
-                w=width,
-                h=height,
-                round_message=False,
-                supports_streaming=True,
-            )
-        ],
-        progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-            progress(d, t, event, c_time, "[UPLOAD]", loa)
-        ),
-    )
-    await event.edit(f"**{query}** `Uploaded Successfully..!`")
-    os.remove(thumb_image)
-    os.system("rm -rf *.mkv")
-    os.system("rm -rf *.mp4")
-    os.system("rm -rf *.webm")
-
+    try:
+        loa = l[0]
+        metadata = extractMetadata(createParser(loa))
+        duration = 0
+        width = 0
+        height = 0
+        if metadata.has("duration"):
+            duration = metadata.get("duration").seconds
+        if metadata.has("width"):
+            width = metadata.get("width")
+        if metadata.has("height"):
+            height = metadata.get("height")
+        os.system("cp *mp4 thumb.mp4")
+        os.system("ffmpeg -i thumb.mp4 -vframes 1 -an -s 480x360 -ss 5 thumb.jpg")
+        thumb_image = "thumb.jpg"
+        c_time = time.time()
+        await event.client.send_file(
+            event.chat_id,
+            loa,
+            force_document=False,
+            thumb=thumb_image,
+            allow_cache=False,
+            caption=query,
+            supports_streaming=True,
+            reply_to=reply_to_id,
+            attributes=[
+                DocumentAttributeVideo(
+                    duration=duration,
+                    w=width,
+                    h=height,
+                    round_message=False,
+                    supports_streaming=True,
+                )
+            ],
+            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+                progress(d, t, event, c_time, "[UPLOAD]", loa)
+            ),
+        )
+        await event.edit(f"**{query}** `Uploaded Successfully..!`")
+        os.remove(thumb_image)
+        os.system("rm -rf *.mkv")
+        os.system("rm -rf *.mp4")
+        os.system("rm -rf *.webm")
+    except BaseException:
+        os.remove(thumb_image)
+        os.system("rm -rf *.mkv")
+        os.system("rm -rf *.mp4")
+        os.system("rm -rf *.webm")
+        return
 
 CMD_HELP.update({
     "getmusic":
     ".songn <Artist - Song Title>"
     "\nUsage: Download music by name (@WooMaiBot)"
-    "\n\n.songl <Spotify/Deezer Link>"
-    "\nUsage: Download music by link (@MusicHuntersBot)"
     "\n\n.songf <Artist - Song Title>"
     "\nUsage: Download music by name (@SpotifyMusicDownloaderBot)"
     "\n\n.songn now"

@@ -27,16 +27,6 @@ import os.path
 from typing import Optional, Tuple
 from userbot import bot, LOGS
 
-from telethon.tl.functions.channels import GetParticipantRequest
-from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator, DocumentAttributeFilename, PollAnswer
-
-from PIL import Image, ImageDraw, ImageFont
-import PIL.ImageOps
-from wand.color import Color
-from wand.drawing import Drawing
-from wand.image import Image as remiximage
-from textwrap import wrap
-
 
 async def md5(fname: str) -> str:
     hash_md5 = hashlib.md5()
@@ -204,90 +194,6 @@ async def remix_meme(topString, bottomString, filename, endname):
     draw.text(topTextPosition, topString, (255, 255, 255), font=font)
     draw.text(bottomTextPosition, bottomString, (255, 255, 255), font=font)
     img.save(endname)
-
-
-async def remix_meeme(upper_text, lower_text, picture_name, endname):
-    main_image = remiximage(filename=picture_name)
-    main_image.resize(1024, int(
-        ((main_image.height * 1.0) / (main_image.width * 1.0)) * 1024.0))
-    upper_text = "\n".join(
-        wrap(
-            upper_text,
-            get_warp_length(
-                main_image.width))).upper()
-    lower_text = "\n".join(
-        wrap(
-            lower_text,
-            get_warp_length(
-                main_image.width))).upper()
-    lower_margin = MARGINS[lower_text.count("\n")]
-    text_draw = Drawing()
-    text_draw.font = join(getcwd(), "userbot/utils/styles/impact.ttf")
-    text_draw.font_size = 100
-    text_draw.text_alignment = "center"
-    text_draw.stroke_color = Color("black")
-    text_draw.stroke_width = 3
-    text_draw.fill_color = Color("white")
-    if upper_text:
-        text_draw.text((main_image.width) // 2, 80, upper_text)
-    if lower_text:
-        text_draw.text(
-            (main_image.width) // 2,
-            main_image.height - lower_margin,
-            lower_text)
-    text_draw(main_image)
-    main_image.save(filename=endname)
-
-
-def convert_toimage(image):
-    img = Image.open(image)
-    if img.mode != "RGB":
-        img = img.convert("RGB")
-    img.save("temp.jpg", "jpeg")
-    os.remove(image)
-    return "temp.jpg"
-
-
-async def invert_colors(imagefile, endname):
-    image = Image.open(imagefile)
-    inverted_image = PIL.ImageOps.invert(image)
-    inverted_image.save(endname)
-
-
-async def flip_image(imagefile, endname):
-    image = Image.open(imagefile)
-    inverted_image = PIL.ImageOps.flip(image)
-    inverted_image.save(endname)
-
-
-async def grayscale(imagefile, endname):
-    image = Image.open(imagefile)
-    inverted_image = PIL.ImageOps.grayscale(image)
-    inverted_image.save(endname)
-
-
-async def mirror_file(imagefile, endname):
-    image = Image.open(imagefile)
-    inverted_image = PIL.ImageOps.mirror(image)
-    inverted_image.save(endname)
-
-
-async def solarize(imagefile, endname):
-    image = Image.open(imagefile)
-    inverted_image = PIL.ImageOps.solarize(image, threshold=128)
-    inverted_image.save(endname)
-
-
-async def add_frame(imagefile, endname, x, color):
-    image = Image.open(imagefile)
-    inverted_image = PIL.ImageOps.expand(image, border=x, fill=color)
-    inverted_image.save(endname)
-
-
-async def crop(imagefile, endname, x):
-    image = Image.open(imagefile)
-    inverted_image = PIL.ImageOps.crop(image, border=x)
-    inverted_image.save(endname)
 
 # polls
 

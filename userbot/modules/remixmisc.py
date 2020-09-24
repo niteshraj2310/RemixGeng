@@ -1599,7 +1599,7 @@ async def stylish_generator(event):
         if normiecharacter in normiefont:
             musicalcharacter = musicalfont[normiefont.index(normiecharacter)]
             string = string.replace(normiecharacter, musicalcharacter)
-    await edit_or_reply(event, string)
+    await event.edit(string)
 
 
 @register(outgoing=True, pattern="^.ancientf(?: |$)(.*)")
@@ -1616,7 +1616,7 @@ async def stylish_generator(event):
         if normiecharacter in normiefont:
             ancientcharacter = ancientfont[normiefont.index(normiecharacter)]
             string = string.replace(normiecharacter, ancientcharacter)
-    await edit_or_reply(event, string)
+    await event.edit(string)
 
 
 @register(outgoing=True, pattern="^.smallf(?: |$)(.*)")
