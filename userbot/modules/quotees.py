@@ -10,7 +10,7 @@ from PIL import Image, ImageDraw, ImageFont
 from telethon.tl import functions, types
 from userbot.events import register
 from userbot.utils import runcmd
-
+from userbot import bot
 COLORS = [
     "#F07975",
     "#F49F69",

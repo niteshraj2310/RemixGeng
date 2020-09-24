@@ -1490,7 +1490,7 @@ async def stylish_generator(event):
     for upsidecharacter in string:
         if upsidecharacter in upsidefont:
             downsidecharacter = downsidefont[upsidefont.index(
-                upsideecharacter)]
+                upsidecharacter)]
             string = string.replace(upsidecharacter, downsidecharacter)
     await event.edit(string)
 
