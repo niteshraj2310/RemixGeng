@@ -6,7 +6,8 @@ import random
 import textwrap
 import urllib
 import emoji
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageOps
+from fontTools.ttLib import TTFont
 from telethon.tl import functions, types
 from userbot.events import register
 from userbot.utils import runcmd
