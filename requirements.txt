@@ -85,5 +85,5 @@ twitter_scraper
 pyaztro
 jikanpy
 nekos.py
-wand 
+wand
 lottie
