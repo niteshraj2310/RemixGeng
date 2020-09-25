@@ -14,6 +14,7 @@
 ![CI](https://github.com/niteshraj2310/RemixGeng/workflows/CI/badge.svg)
 ![CodeQL](https://github.com/niteshraj2310/RemixGeng/workflows/CodeQL/badge.svg?branch=sql-extended)
 ![PyLint](https://github.com/niteshraj2310/RemixGeng/workflows/PyLint/badge.svg)
+<a herf="https://hub.docker.com/r/nitesh231/groovy"><img src="https://img.shields.io/docker/image-size/nitesh231/docker/groovy?color=green&label=Docker%20Size&style=for-the-badge&logo=docker&logoColor=white" alt="docker" /></a></br>
 
 # Project 尺 乇 从 工 乂 厶 乇 𠘨 厶
 
