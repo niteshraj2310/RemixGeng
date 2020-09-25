@@ -1,43 +1,11 @@
 import os
-import time
-import asyncio
-import random
-import asyncio
-import shutil
-from bs4 import BeautifulSoup
-import re
 from time import sleep
-from html import unescape
-from re import findall
 from selenium import webdriver
-from selenium.webdriver.support.ui import Select
 from selenium.webdriver.chrome.options import Options
 from urllib.parse import quote_plus
-from urllib.error import HTTPError
-from telethon import events
-from wikipedia import summary
-from wikipedia.exceptions import DisambiguationError, PageError
-from urbandict import define
-from requests import get
-from search_engine_parser import GoogleSearch
-from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
-from googletrans import LANGUAGES, Translator
-from gtts import gTTS
-from gtts.lang import tts_langs
-from emoji import get_emoji_regexp
-from youtube_dl import YoutubeDL
-from youtube_dl.utils import (DownloadError, ContentTooShortError,
-                              ExtractorError, GeoRestrictedError,
-                              MaxDownloadsReached, PostProcessingError,
-                              UnavailableVideoError, XAttrMetadataError)
 from asyncio import sleep
-from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRIVER, GOOGLE_CHROME_BIN, bot
+from userbot import CHROME_DRIVER, CMD_HELP, GOOGLE_CHROME_BIN
 from userbot.events import register
-from telethon.tl.types import DocumentAttributeAudio
-from userbot.utils import progress, humanbytes, time_formatter, googleimagesdownload
-import subprocess
-from datetime import datetime
 
 CARBONLANG = "auto"
 TTS_LANG = "en"
