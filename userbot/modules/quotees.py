@@ -1,6 +1,7 @@
 """ported from Catuserbot module modified by  @mrconfused"""
 
 import logging
+import json
 import os
 import random
 import textwrap
