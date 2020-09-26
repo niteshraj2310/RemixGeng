@@ -464,11 +464,11 @@ async def lang(value):
             TRT_LANG = arg
             LANG = LANGUAGES[arg]
         else:
-        await value.edit(
-            f"`Invalid Language code !!`\n`Available language codes for TRT`:\n\n`{LANGUAGES}`"
-        )
-        return
-        elif util == "tts":
+            await value.edit(
+                f"`Invalid Language code !!`\n`Available language codes for TRT`:\n\n`{LANGUAGES}`"
+            )
+            return
+    elif util == "tts":
         scraper = "Text to Speech"
         global TTS_LANG
         arg = value.pattern_match.group(2).lower()
@@ -476,16 +476,15 @@ async def lang(value):
             TTS_LANG = arg
             LANG = tts_langs()[arg]
         else:
-        await value.edit(
-            f"`Invalid Language code !!`\n`Available language codes for TTS`:\n\n`{tts_langs()}`"
-        )
-        return
-        await value.edit(f"`Language for {scraper} changed to {LANG.title()}.`")
-        if BOTLOG:
+            await value.edit(
+                f"`Invalid Language code !!`\n`Available language codes for TTS`:\n\n`{tts_langs()}`"
+            )
+            return
+    await value.edit(f"`Language for {scraper} changed to {LANG.title()}.`")
+    if BOTLOG:
         await value.client.send_message(
             BOTLOG_CHATID,
             f"`Language for {scraper} changed to {LANG.title()}.`")
-
 
 @register(outgoing=True, pattern=r"^\.yt (\d*) *(.*)")
 async def yt_search(video_q):
@@ -510,7 +509,7 @@ async def yt_search(video_q):
                 query,
                 max_results=counter).to_json())
     except KeyError:
-    return await video_q.edit("`Youtube Search gone retard.\nCan't search this query!`")
+        return await video_q.edit("`Youtube Search gone retard.\nCan't search this query!`")
 
     output = f"**Search Query:**\n`{query}`\n\n**Results:**\n\n"
 
