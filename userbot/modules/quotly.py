@@ -3,7 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-# Port From UniBorg to UserBot by MoveAngel
+"""  Port From UniBorg to UserBot by @MoveAngel """
 
 import os
 from asyncio.exceptions import TimeoutError
@@ -20,16 +20,16 @@ async def quotess(qotli):
     if qotli.fwd_from:
         return
     if not qotli.reply_to_msg_id:
-        await qotli.edit("```Reply to any user message.```")
+        await qotli.edit("```Reply to any user message u NUB.```")
         return
     reply_message = await qotli.get_reply_message()
     if not reply_message.text:
-        await qotli.edit("```Reply to text message```")
+        await qotli.edit("```Reply to text message BISH!```")
         return
     chat = "@QuotLyBot"
     reply_message.sender
     if reply_message.sender.bot:
-        await qotli.edit("```Reply to actual users message.```")
+        await qotli.edit("```Reply to actual NIBBA's  message.```")
         return
     try:
         await qotli.edit("`Making a Quote Plox Wait..`")

@@ -8,19 +8,6 @@ from userbot.events import register
 from userbot import bot, CMD_HELP
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 import os
-try:
-    pass
-except BaseException:
-    os.system("pip install instantmusic")
-
-
-os.system("rm -rf *.mp3")
-
-
-def bruh(name):
-
-    os.system("instantmusic -q -s " + name)
-
 
 @register(outgoing=True, pattern="^.spd(?: |$)(.*)")
 async def _(event):
@@ -104,7 +91,7 @@ async def DeezLoader(Deezlod):
 
 CMD_HELP.update({
     "music":
-        ".spd`<Artist - Song Title>\
+        "`.spd`<Artist - Song Title>\
             \nUsage:For searching songs from Spotify.\
             \n\n`.netease` <Artist - Song Title>\
             \nUsage:Download music with @WooMaiBot\
@@ -112,7 +99,7 @@ CMD_HELP.update({
             \nUsage:Download music from Spotify or Deezer.\
             \n\n`.deezload` <spotify/deezer link> <Format>\
             \nUsage: Download music from deezer.\
-            \n\n Well deezer is not available in India so create an deezer account using vpn. Set DEEZER_ARL_TOKEN in vars to make this work.\
-            \n\n *Format= `FLAC`, `MP3_320`, `MP3_256`, `MP3_128`.\
+            \n\nWell deezer is not available in India so create an deezer account using vpn. Set `DEEZER_ARL_TOKEN` in vars to make this work.\
+            \n\n**Format**= `FLAC`, `MP3_320`, `MP3_256`, `MP3_128`.\
             \n\n\n Guide:Video guide of arl token: [here](https://www.youtube.com/watch?v=O6PRT47_yds&feature=youtu.be) or Read [This](https://notabug.org/RemixDevs/DeezloaderRemix/wiki/Login+via+userToken)."
 })

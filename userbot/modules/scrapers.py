@@ -304,7 +304,7 @@ async def _(event):
         await event.edit("No result found for **" + word + "**")
 
 
-@ register(outgoing=True, pattern=r"^.voice(?: |$)([\s\S]*)")
+@register(outgoing=True, pattern=r"^.voice(?: |$)([\s\S]*)")
 async def text_to_speech(query):
     """ For .tts command, a wrapper for Google Text-to-Speech. """
     textx = await query.get_reply_message()
@@ -344,12 +344,12 @@ async def text_to_speech(query):
         await query.client.send_file(query.chat_id, "k.mp3", voice_note=True)
         os.remove("k.mp3")
         if BOTLOG:
-            await query.client.send_message(
+        await query.client.send_message(
                 BOTLOG_CHATID, "Text to Speech executed successfully !")
         await query.delete()
 
 
-@ register(outgoing=True, pattern=r"^.tts(?: |$)([\s\S]*)")
+@register(outgoing=True, pattern=r"^.tts(?: |$)([\s\S]*)")
 async def text_to_speech(query):
     # async def _(event):
     if query.fwd_from:
@@ -412,11 +412,11 @@ async def text_to_speech(query):
         await query.edit("Processed {} ({}) in {} seconds!".format(text[0:97], lan, ms))
         await asyncio.sleep(2)
         await query.delete()
-    except Exception as e:
+        except Exception as e:
         await query.edit(str(e))
 
 
-@ register(outgoing=True, pattern="^.tr(?: |$)(.*)")
+@register(outgoing=True, pattern="^.tr(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -449,11 +449,11 @@ async def _(event):
             mono_tr_text
         )
         await event.edit(output_str)
-    except Exception as exc:
+        except Exception as exc:
         await event.edit(str(exc))
 
 
-@ register(pattern=".lang (tr|tts) (.*)", outgoing=True)
+@register(pattern=".lang (tr|tts) (.*)", outgoing=True)
 async def lang(value):
     """ For .lang command, change the default langauge of userbot scrapers. """
     util = value.pattern_match.group(1).lower()
@@ -465,11 +465,11 @@ async def lang(value):
             TRT_LANG = arg
             LANG = LANGUAGES[arg]
         else:
-            await value.edit(
+        await value.edit(
                 f"`Invalid Language code !!`\n`Available language codes for TRT`:\n\n`{LANGUAGES}`"
             )
-            return
-    elif util == "tts":
+        return
+        elif util == "tts":
         scraper = "Text to Speech"
         global TTS_LANG
         arg = value.pattern_match.group(2).lower()
@@ -477,18 +477,18 @@ async def lang(value):
             TTS_LANG = arg
             LANG = tts_langs()[arg]
         else:
-            await value.edit(
+        await value.edit(
                 f"`Invalid Language code !!`\n`Available language codes for TTS`:\n\n`{tts_langs()}`"
             )
-            return
-    await value.edit(f"`Language for {scraper} changed to {LANG.title()}.`")
-    if BOTLOG:
+        return
+        await value.edit(f"`Language for {scraper} changed to {LANG.title()}.`")
+        if BOTLOG:
         await value.client.send_message(
             BOTLOG_CHATID,
             f"`Language for {scraper} changed to {LANG.title()}.`")
 
 
-@ register(outgoing=True, pattern=r"^\.yt (\d*) *(.*)")
+@register(outgoing=True, pattern=r"^\.yt (\d*) *(.*)")
 async def yt_search(video_q):
     """For .yt command, do a YouTube search from Telegram."""
     if video_q.pattern_match.group(1) != "":
@@ -511,7 +511,7 @@ async def yt_search(video_q):
                 query,
                 max_results=counter).to_json())
     except KeyError:
-        return await video_q.edit("`Youtube Search gone retard.\nCan't search this query!`")
+    return await video_q.edit("`Youtube Search gone retard.\nCan't search this query!`")
 
     output = f"**Search Query:**\n`{query}`\n\n**Results:**\n\n"
 
@@ -529,7 +529,7 @@ async def yt_search(video_q):
     await video_q.edit(output, link_preview=False)
 
 
-@ register(outgoing=True, pattern=r".rip(audio|video) (.*)")
+@register(outgoing=True, pattern=r".rip(audio|video) (.*)")
 async def download_video(v_url):
     """ For .rip command, download media from YouTube and many other sites. """
     url = v_url.pattern_match.group(2)
@@ -661,7 +661,7 @@ def deEmojify(inputString):
     return get_emoji_regexp().sub(u'', inputString)
 
 
-@ register(outgoing=True, pattern="^.rbg(?: |$)(.*)")
+@register(outgoing=True, pattern="^.rbg(?: |$)(.*)")
 async def kbg(remob):
     """ For .rbg command, Remove Image Background. """
     if REM_BG_API_KEY is None:
@@ -741,7 +741,7 @@ async def ReTrieveURL(input_url):
                          stream=True)
 
 
-@ register(pattern=r".ocr (.*)", outgoing=True)
+@register(pattern=r".ocr (.*)", outgoing=True)
 async def ocr(event):
     if not OCR_SPACE_API_KEY:
         return await event.edit(
@@ -765,7 +765,7 @@ async def ocr(event):
     os.remove(downloaded_file_name)
 
 
-@ register(pattern=r"^.decode$", outgoing=True)
+@register(pattern=r"^.decode$", outgoing=True)
 async def parseqr(qr_e):
     """ For .decode command, get QR Code/BarCode content from the replied photo. """
     downloaded_file_name = await qr_e.client.download_media(
@@ -795,7 +795,7 @@ async def parseqr(qr_e):
     await qr_e.edit(qr_contents)
 
 
-@ register(pattern=r".barcode(?: |$)([\s\S]*)", outgoing=True)
+@register(pattern=r".barcode(?: |$)([\s\S]*)", outgoing=True)
 async def bq(event):
     """ For .barcode command, genrate a barcode containing the given content. """
     await event.edit("`Processing..`")
@@ -837,7 +837,7 @@ async def bq(event):
     await event.delete()
 
 
-@ register(pattern=r".makeqr(?: |$)([\s\S]*)", outgoing=True)
+@register(pattern=r".makeqr(?: |$)([\s\S]*)", outgoing=True)
 async def make_qr(makeqr):
     """ For .makeqr command, make a QR Code containing the given content. """
     input_str = makeqr.pattern_match.group(1)
@@ -878,7 +878,7 @@ async def make_qr(makeqr):
     await makeqr.delete()
 
 
-@ register(outgoing=True, pattern=r"^.direct(?: |$)([\s\S]*)")
+@register(outgoing=True, pattern=r"^.direct(?: |$)([\s\S]*)")
 async def direct_link_generator(request):
     """ direct links generator """
     await request.edit("`Processing...`")
@@ -1180,7 +1180,7 @@ def useragent():
     return user_agent.text
 
 
-@ register(pattern="^.ss (.*)", outgoing=True)
+@register(pattern="^.ss (.*)", outgoing=True)
 async def capture(url):
     """ For .ss command, capture a website's screenshot and send the photo. """
     await url.edit("`Processing...`")
@@ -1235,7 +1235,7 @@ async def capture(url):
         await url.delete()
 
 
-@ register(outgoing=True, pattern="^.imdb (.*)")
+@register(outgoing=True, pattern="^.imdb (.*)")
 async def imdb(e):
     try:
         movie_name = e.pattern_match.group(1)
@@ -1316,11 +1316,11 @@ async def imdb(e):
         await e.edit("Plox enter **Valid movie name** kthx")
 
 
-@ register(outgoing=True, pattern=r'^.wolfram (.*)')
+@register(outgoing=True, pattern=r'^.wolfram (.*)')
 async def wolfram(wvent):
     """ Wolfram Alpha API """
     if WOLFRAM_ID is None:
-        await wvent.edit(
+    await wvent.edit(
             'Please set your WOLFRAM_ID first !\n'
             'Get your API KEY from [here](https://'
             'products.wolframalpha.com/api/)',
@@ -1331,9 +1331,6 @@ async def wolfram(wvent):
     server = f'https://api.wolframalpha.com/v1/spoken?appid={appid}&i={i}'
     res = get(server)
     await wvent.edit(f'**{i}**\n\n' + res.text, parse_mode='Markdown')
-    if BOTLOG:
-        await wvent.client.send_message(BOTLOG_CHATID, f'.wolfram {i} was executed successfully')
-
 
 CMD_HELP.update({
     "scrappers":
