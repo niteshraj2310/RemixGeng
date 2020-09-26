@@ -7,67 +7,53 @@
 #
 """ Userbot module containing various scrapers. """
 
-import os
-import time
 import asyncio
-import shutil
-import json
-import requests
-from os import popen
-import urllib.parse
-from bs4 import BeautifulSoup
-import re
-from re import match, findall
 import io
+import json
+import os
+import re
+import shutil
+import subprocess
+import time
+import urllib.parse
+from datetime import datetime
+from os import popen
 from random import choice
-from humanize import naturalsize
-import qrcode
-import barcode
-from barcode.writer import ImageWriter
-import emoji
+from re import findall, match
 from time import sleep
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from urllib.parse import quote_plus
-from wikipedia import summary
-from wikipedia.exceptions import DisambiguationError, PageError
-from requests import get
-from search_engine_parser import GoogleSearch
+
+import asyncurban  # noqa
+import barcode
+import emoji
+import qrcode
+import requests
+from barcode.writer import ImageWriter
+from bs4 import BeautifulSoup
+from emoji import get_emoji_regexp
 from googletrans import LANGUAGES, Translator
 from gtts import gTTS
 from gtts.lang import tts_langs
-from emoji import get_emoji_regexp
-from telethon.tl.types import MessageMediaPhoto, DocumentAttributeAudio
-from youtube_search import YoutubeSearch
+from humanize import naturalsize
+from requests import get
+from search_engine_parser import GoogleSearch
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from telethon.tl.types import DocumentAttributeAudio, MessageMediaPhoto
+from wikipedia import summary
+from wikipedia.exceptions import DisambiguationError, PageError
 from youtube_dl import YoutubeDL
-from youtube_dl.utils import (
-    DownloadError,
-    ContentTooShortError,
-    ExtractorError,
-    GeoRestrictedError,
-    MaxDownloadsReached,
-    PostProcessingError,
-    UnavailableVideoError,
-    XAttrMetadataError,
-)
-from userbot import (
-    BOTLOG,
-    BOTLOG_CHATID,
-    CHROME_DRIVER,
-    CMD_HELP,
-    GOOGLE_CHROME_BIN,
-    LOGS,
-    OCR_SPACE_API_KEY,
-    REM_BG_API_KEY,
-    TEMP_DOWNLOAD_DIRECTORY,
-    WOLFRAM_ID,
-    bot,
-)
+from youtube_dl.utils import (ContentTooShortError, DownloadError,
+                              ExtractorError, GeoRestrictedError,
+                              MaxDownloadsReached, PostProcessingError,
+                              UnavailableVideoError, XAttrMetadataError)
+from youtube_search import YoutubeSearch
+
+from userbot import (BOTLOG, BOTLOG_CHATID, CHROME_DRIVER, CMD_HELP,
+                     GOOGLE_CHROME_BIN, LOGS, OCR_SPACE_API_KEY,
+                     REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY, WOLFRAM_ID, bot)
 from userbot.events import register
 from userbot.utils import chrome, googleimagesdownload, options, progress
-import subprocess
-from datetime import datetime
-import asyncurban  # noqa
 
 CARBONLANG = "auto"
 TTS_LANG = "en"

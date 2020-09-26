@@ -6,21 +6,21 @@
 # Vsong ported by AnggaR69S
 # All rights reserved.
 
+import asyncio
 import glob
 import os
-import asyncio
 import time
 from asyncio.exceptions import TimeoutError
+
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
-from telethon import events
-from telethon.errors.rpcerrorlist import YouBlockedUserError
-from userbot import bot, CMD_HELP, lastfm, LASTFM_USERNAME
-from telethon.tl.types import DocumentAttributeVideo
 from pylast import User
 from selenium import webdriver
+from telethon import events
+from telethon.errors.rpcerrorlist import YouBlockedUserError
+from telethon.tl.types import DocumentAttributeVideo
 
-from userbot import GOOGLE_CHROME_BIN
+from userbot import CMD_HELP, GOOGLE_CHROME_BIN, LASTFM_USERNAME, bot, lastfm
 from userbot.events import register
 from userbot.utils import progress
 
