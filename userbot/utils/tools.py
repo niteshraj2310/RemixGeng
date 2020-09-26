@@ -3,28 +3,22 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
+import asyncio
+import hashlib
+import os.path
+import re
+import shlex
+from os.path import basename
+from typing import Optional
+from typing import Tuple
 
-import re
-import hashlib
-import asyncio
-import shlex
-import os
-from os.path import basename
-import os.path
-from typing import Optional, Tuple
-from userbot import bot, LOGS
-from telethon.tl.types import DocumentAttributeFilename
 from telethon.tl.functions.channels import GetParticipantRequest
-from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator
-import re
-import hashlib
-import asyncio
-import shlex
-import os
-from os.path import basename
-import os.path
-from typing import Optional, Tuple
-from userbot import bot, LOGS
+from telethon.tl.types import ChannelParticipantAdmin
+from telethon.tl.types import ChannelParticipantCreator
+from telethon.tl.types import DocumentAttributeFilename
+
+from userbot import bot
+from userbot import LOGS
 
 
 async def md5(fname: str) -> str:
@@ -52,64 +46,63 @@ def time_formatter(seconds: int) -> str:
     minutes, seconds = divmod(seconds, 60)
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
-    tmp = (
-        ((str(days) + " day(s), ") if days else "") +
-        ((str(hours) + " hour(s), ") if hours else "") +
-        ((str(minutes) + " minute(s), ") if minutes else "") +
-        ((str(seconds) + " second(s), ") if seconds else "")
-    )
+    tmp = (((str(days) + " day(s), ") if days else "") +
+           ((str(hours) + " hour(s), ") if hours else "") +
+           ((str(minutes) + " minute(s), ") if minutes else "") +
+           ((str(seconds) + " second(s), ") if seconds else ""))
     return tmp[:-2]
 
 
 def human_to_bytes(size: str) -> int:
     units = {
-        "M": 2**20, "MB": 2**20,
-        "G": 2**30, "GB": 2**30,
-        "T": 2**40, "TB": 2**40
+        "M": 2**20,
+        "MB": 2**20,
+        "G": 2**30,
+        "GB": 2**30,
+        "T": 2**40,
+        "TB": 2**40,
     }
 
     size = size.upper()
-    if not re.match(r' ', size):
-        size = re.sub(r'([KMGT])', r' \1', size)
+    if not re.match(r" ", size):
+        size = re.sub(r"([KMGT])", r" \1", size)
     number, unit = [string.strip() for string in size.split()]
     return int(float(number) * units[unit])
 
 
 async def is_admin(chat_id, user_id):
-    req_jo = await bot(GetParticipantRequest(
-        channel=chat_id,
-        user_id=user_id
-    ))
+    req_jo = await bot(GetParticipantRequest(channel=chat_id, user_id=user_id))
     chat_participant = req_jo.participant
-    return isinstance(
-        chat_participant,
-        ChannelParticipantCreator) or isinstance(
-        chat_participant,
-        ChannelParticipantAdmin)
+    return isinstance(chat_participant,
+                      ChannelParticipantCreator) or isinstance(
+                          chat_participant, ChannelParticipantAdmin)
 
 
 async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
     """ run command in terminal """
     args = shlex.split(cmd)
-    process = await asyncio.create_subprocess_exec(*args,
-                                                   stdout=asyncio.subprocess.PIPE,
-                                                   stderr=asyncio.subprocess.PIPE)
+    process = await asyncio.create_subprocess_exec(
+        *args, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
     stdout, stderr = await process.communicate()
-    return (stdout.decode('utf-8', 'replace').strip(),
-            stderr.decode('utf-8', 'replace').strip(),
-            process.returncode,
-            process.pid)
+    return (
+        stdout.decode("utf-8", "replace").strip(),
+        stderr.decode("utf-8", "replace").strip(),
+        process.returncode,
+        process.pid,
+    )
 
 
-async def take_screen_shot(video_file: str, duration: int, path: str = '') -> Optional[str]:
+async def take_screen_shot(video_file: str, duration: int,
+                           path: str = "") -> Optional[str]:
     """ take a screenshot """
     LOGS.info(
-        '[[[Extracting a frame from %s ||| Video duration => %s]]]',
+        "[[[Extracting a frame from %s ||| Video duration => %s]]]",
         video_file,
-        duration)
+        duration,
+    )
     ttl = duration // 2
-    thumb_image_path = path or os.path.join(
-        "./temp/", f"{basename(video_file)}.jpg")
+    thumb_image_path = path or os.path.join("./temp/",
+                                            f"{basename(video_file)}.jpg")
     command = f"ffmpeg -ss {ttl} -i '{video_file}' -vframes 1 '{thumb_image_path}'"
     err = (await runcmd(command))[1]
     if err:
@@ -122,17 +115,11 @@ async def check_media(reply_message):
         if reply_message.photo:
             data = reply_message.photo
         elif reply_message.document:
-            if (
-                DocumentAttributeFilename(file_name="AnimatedSticker.tgs")
-                in reply_message.media.document.attributes
-            ):
+            if (DocumentAttributeFilename(file_name="AnimatedSticker.tgs") in
+                    reply_message.media.document.attributes):
                 return False
-            if (
-                reply_message.gif
-                or reply_message.video
-                or reply_message.audio
-                or reply_message.voice
-            ):
+            if (reply_message.gif or reply_message.video or reply_message.audio
+                    or reply_message.voice):
                 return False
             data = reply_message.media.document
         else:
@@ -145,6 +132,7 @@ async def check_media(reply_message):
     else:
         return data
 
+
 # memify
 
 
@@ -156,8 +144,8 @@ async def remix_meme(topString, bottomString, filename, endname):
     font = ImageFont.truetype("userbot/utils/styles/impact.ttf", fontSize)
     topTextSize = font.getsize(topString)
     bottomTextSize = font.getsize(bottomString)
-    while topTextSize[0] > imageSize[0] - \
-            20 or bottomTextSize[0] > imageSize[0] - 20:
+    while topTextSize[0] > imageSize[0] - 20 or bottomTextSize[
+            0] > imageSize[0] - 20:
         fontSize = fontSize - 1
         font = ImageFont.truetype("userbot/utils/styles/impact.ttf", fontSize)
         topTextSize = font.getsize(topString)
@@ -193,6 +181,7 @@ async def remix_meme(topString, bottomString, filename, endname):
     draw.text(topTextPosition, topString, (255, 255, 255), font=font)
     draw.text(bottomTextPosition, bottomString, (255, 255, 255), font=font)
     img.save(endname)
+
 
 # polls
 
