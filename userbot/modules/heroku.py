@@ -14,7 +14,6 @@ from operator import itemgetter
 import codecs
 import heroku3
 import aiohttp
-import math
 import os
 import requests
 from userbot import (

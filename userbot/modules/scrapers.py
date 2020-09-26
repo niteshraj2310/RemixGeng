@@ -26,7 +26,6 @@ import barcode
 from barcode.writer import ImageWriter
 import emoji
 from time import sleep
-from re import findall
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from urllib.parse import quote_plus
@@ -45,7 +44,6 @@ from youtube_dl.utils import (DownloadError, ContentTooShortError,
                               ExtractorError, GeoRestrictedError,
                               MaxDownloadsReached, PostProcessingError,
                               UnavailableVideoError, XAttrMetadataError)
-from asyncio import sleep
 from userbot import BOTLOG, BOTLOG_CHATID, CHROME_DRIVER, CMD_HELP, GOOGLE_CHROME_BIN, LOGS, OCR_SPACE_API_KEY, REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY, WOLFRAM_ID, bot
 from userbot.events import register
 from userbot.utils import chrome, googleimagesdownload, options, progress

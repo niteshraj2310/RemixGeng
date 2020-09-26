@@ -17,25 +17,12 @@ from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot import bot, CMD_HELP, lastfm, LASTFM_USERNAME
 from telethon.tl.types import DocumentAttributeVideo
-import time
-
-from hachoir.metadata import extractMetadata
-from hachoir.parser import createParser
 from pylast import User
 from selenium import webdriver
-from telethon import events
-from telethon.errors.rpcerrorlist import YouBlockedUserError
-from telethon.tl.types import DocumentAttributeVideo
 
 from userbot import (
-    CMD_HELP,
-    GOOGLE_CHROME_BIN,
-    LASTFM_USERNAME,
-    bot,
-    lastfm,
-)
+    GOOGLE_CHROME_BIN)
 from userbot.events import register
-from pylast import User
 from userbot.utils import progress
 
 
