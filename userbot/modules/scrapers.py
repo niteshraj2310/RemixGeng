@@ -343,7 +343,7 @@ async def text_to_speech(query):
     with open("k.mp3", "r"):
         await query.client.send_file(query.chat_id, "k.mp3", voice_note=True)
         os.remove("k.mp3")
-        if BOTLOG:
+    if BOTLOG:
         await query.client.send_message(
             BOTLOG_CHATID, "Text to Speech executed successfully !")
         await query.delete()
