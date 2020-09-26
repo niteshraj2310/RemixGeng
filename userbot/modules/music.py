@@ -7,7 +7,7 @@ import asyncio
 from userbot.events import register
 from userbot import bot, CMD_HELP
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-import os
+
 
 @register(outgoing=True, pattern="^.spd(?: |$)(.*)")
 async def _(event):
