@@ -7,10 +7,8 @@
 
 import os
 from asyncio.exceptions import TimeoutError
-
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-
 from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
 
@@ -67,6 +65,6 @@ async def quotess(qotli):
 
 CMD_HELP.update({
     "quotly":
-    "`.q`\
+    "`.q` or `.pch`\
 \nUsage: Enhance ur text to sticker."
 })
