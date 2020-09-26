@@ -345,7 +345,7 @@ async def text_to_speech(query):
         os.remove("k.mp3")
         if BOTLOG:
         await query.client.send_message(
-                BOTLOG_CHATID, "Text to Speech executed successfully !")
+            BOTLOG_CHATID, "Text to Speech executed successfully !")
         await query.delete()
 
 
@@ -466,8 +466,8 @@ async def lang(value):
             LANG = LANGUAGES[arg]
         else:
         await value.edit(
-                f"`Invalid Language code !!`\n`Available language codes for TRT`:\n\n`{LANGUAGES}`"
-            )
+            f"`Invalid Language code !!`\n`Available language codes for TRT`:\n\n`{LANGUAGES}`"
+        )
         return
         elif util == "tts":
         scraper = "Text to Speech"
@@ -478,8 +478,8 @@ async def lang(value):
             LANG = tts_langs()[arg]
         else:
         await value.edit(
-                f"`Invalid Language code !!`\n`Available language codes for TTS`:\n\n`{tts_langs()}`"
-            )
+            f"`Invalid Language code !!`\n`Available language codes for TTS`:\n\n`{tts_langs()}`"
+        )
         return
         await value.edit(f"`Language for {scraper} changed to {LANG.title()}.`")
         if BOTLOG:
@@ -1321,11 +1321,11 @@ async def wolfram(wvent):
     """ Wolfram Alpha API """
     if WOLFRAM_ID is None:
     await wvent.edit(
-            'Please set your WOLFRAM_ID first !\n'
-            'Get your API KEY from [here](https://'
-            'products.wolframalpha.com/api/)',
-            parse_mode='Markdown')
-        return
+        'Please set your WOLFRAM_ID first !\n'
+        'Get your API KEY from [here](https://'
+        'products.wolframalpha.com/api/)',
+        parse_mode='Markdown')
+    return
     i = wvent.pattern_match.group(1)
     appid = WOLFRAM_ID
     server = f'https://api.wolframalpha.com/v1/spoken?appid={appid}&i={i}'
