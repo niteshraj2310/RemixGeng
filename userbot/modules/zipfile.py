@@ -19,14 +19,11 @@ import os
 import time
 import zipfile
 
-from telethon import events
-from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
-from userbot.utils import admin_cmd, humanbytes, progress, time_formatter
+from telethon.tl.types import DocumentAttributeVideo
+from userbot.utils import progress
 from datetime import datetime
-from pySmartDL import SmartDL
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
-from zipfile import ZipFile
 
 thumb_image_path = TEMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
 extracted = TEMP_DOWNLOAD_DIRECTORY + "extracted/"
@@ -36,6 +33,7 @@ if not os.path.isdir(extracted):
 # ====================
 today = date.today()
 # ====================
+
 
 @register(outgoing=True, pattern=r"^\.compress(?: |$)(.*)")
 async def _(event):
@@ -86,6 +84,7 @@ async def _(event):
     await asyncio.sleep(7)
     await event.delete()
 
+
 @register(outgoing=True, pattern=r"^\.unzip(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
@@ -97,7 +96,7 @@ async def _(event):
         start = datetime.now()
         reply_message = await event.get_reply_message()
         try:
-            c_time = time.time()
+            time.time()
             downloaded_file_name = await bot.download_media(
                 reply_message,
                 TEMP_DOWNLOAD_DIRECTORY,
@@ -131,7 +130,8 @@ async def _(event):
                     if metadata.has("duration"):
                         duration = metadata.get('duration').seconds
                     if os.path.exists(thumb_image_path):
-                        metadata = extractMetadata(createParser(thumb_image_path))
+                        metadata = extractMetadata(
+                            createParser(thumb_image_path))
                         if metadata.has("width"):
                             width = metadata.get("width")
                         if metadata.has("height"):
@@ -152,7 +152,7 @@ async def _(event):
                         caption=f"UnZipped `{caption_rts}`",
                         force_document=force_document,
                         supports_streaming=supports_streaming,
-                        allow_cache=False,                                                                                                                            reply_to=event.message.id,
+                        allow_cache=False, reply_to=event.message.id,
                         attributes=document_attributes,
                         # progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
                         #     progress(d, t, event, c_time, "trying to upload")
@@ -168,6 +168,7 @@ async def _(event):
                     continue
                 os.remove(single_file)
         os.remove(downloaded_file_name)
+
 
 @register(outgoing=True, pattern=r"^\.addzip(?: |$)(.*)")
 async def addzip(add):
@@ -237,6 +238,7 @@ async def remove_dir(rm):
     os.rmdir(ZIP_DOWNLOAD_DIRECTORY)
     await rm.edit("`Zip list removed`")
 
+
 def get_lst_of_files(input_directory, output_lst):
     filesinfolder = os.listdir(input_directory)
     for file_name in filesinfolder:
@@ -245,6 +247,7 @@ def get_lst_of_files(input_directory, output_lst):
             return get_lst_of_files(current_file_name, output_lst)
         output_lst.append(current_file_name)
     return output_lst
+
 
 def zipdir(path, ziph):
     # ziph is zipfile handle
