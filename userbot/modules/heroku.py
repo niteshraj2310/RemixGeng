@@ -27,11 +27,9 @@ from userbot import HEROKU_API_KEY_FALLBACK
 from userbot import HEROKU_APP_NAME
 from userbot.events import register
 
-useragent = (
-    "Mozilla/5.0 (Linux; Android 10; SM-G975F) "
-    "AppleWebKit/537.36 (KHTML, like Gecko) "
-    "Chrome/81.0.4044.117 Mobile Safari/537.36"
-)
+useragent = ("Mozilla/5.0 (Linux; Android 10; SM-G975F) "
+             "AppleWebKit/537.36 (KHTML, like Gecko) "
+             "Chrome/81.0.4044.117 Mobile Safari/537.36")
 
 heroku_api = "https://api.heroku.com"
 if HEROKU_APP_NAME is not None and HEROKU_API_KEY is not None:
@@ -40,8 +38,6 @@ if HEROKU_APP_NAME is not None and HEROKU_API_KEY is not None:
     heroku_var = app.config()
 else:
     app = None
-
-
 """
    ConfigVars setting, get current var, set var or delete var...
 """
@@ -51,7 +47,8 @@ else:
 async def variable(var):
     exe = var.pattern_match.group(1)
     if app is None:
-        await var.edit("`[HEROKU]" "\nPlease setup your`  **HEROKU_APP_NAME**.")
+        await var.edit("`[HEROKU]"
+                       "\nPlease setup your`  **HEROKU_APP_NAME**.")
         return False
     if exe == "get":
         await var.edit("`Getting information...`")
@@ -80,8 +77,9 @@ async def variable(var):
                 for item in configvars:
                     msg += f"`{item}` = `{configvars[item]}`\n"
                 await var.client.send_message(
-                    BOTLOG_CHATID, "#CONFIGVARS\n\n" "**ConfigVars**:\n" f"{msg}"
-                )
+                    BOTLOG_CHATID, "#CONFIGVARS\n\n"
+                    "**ConfigVars**:\n"
+                    f"{msg}")
                 await var.edit("`Received to BOTLOG_CHATID...`")
                 return True
             else:
@@ -97,7 +95,9 @@ async def variable(var):
             if BOTLOG:
                 await var.client.send_message(
                     BOTLOG_CHATID,
-                    "#DELCONFIGVAR\n\n" "**Delete ConfigVar**:\n" f"`{variable}`",
+                    "#DELCONFIGVAR\n\n"
+                    "**Delete ConfigVar**:\n"
+                    f"`{variable}`",
                 )
             await var.edit("`Information deleted...`")
             del heroku_var[variable]
@@ -124,7 +124,9 @@ async def set_var(var):
         if BOTLOG:
             await var.client.send_message(
                 BOTLOG_CHATID,
-                "#ADDCONFIGVAR\n\n" "**Add ConfigVar**:\n" f"`{variable}` = `{value}`",
+                "#ADDCONFIGVAR\n\n"
+                "**Add ConfigVar**:\n"
+                f"`{variable}` = `{value}`",
             )
         await var.edit("`Information added...`")
     heroku_var[variable] = value
@@ -144,11 +146,9 @@ async def dyno_usage(dyno):
     user_id = Heroku.account().id
     path = "/accounts/" + user_id + "/actions/get-quota"
     async with aiohttp.ClientSession() as session:
-        useragent = (
-            "Mozilla/5.0 (Linux; Android 10; SM-G975F) "
-            "AppleWebKit/537.36 (KHTML, like Gecko) "
-            "Chrome/81.0.4044.117 Mobile Safari/537.36"
-        )
+        useragent = ("Mozilla/5.0 (Linux; Android 10; SM-G975F) "
+                     "AppleWebKit/537.36 (KHTML, like Gecko) "
+                     "Chrome/81.0.4044.117 Mobile Safari/537.36")
         headers = {
             "User-Agent": useragent,
             "Authorization": f"Bearer {HEROKU_API_KEY}",
@@ -156,28 +156,27 @@ async def dyno_usage(dyno):
         }
         async with session.get(heroku_api + path, headers=headers) as r:
             if r.status != 200:
-                await dyno.client.send_message(
-                    dyno.chat_id, f"`{r.reason}`", reply_to=dyno.id
-                )
+                await dyno.client.send_message(dyno.chat_id,
+                                               f"`{r.reason}`",
+                                               reply_to=dyno.id)
                 await dyno.edit("`Can't get information...`")
                 return False
             result = await r.json()
             quota = result["account_quota"]
             quota_used = result["quota_used"]
-
             """ - User Quota Limit and Used - """
             remaining_quota = quota - quota_used
             percentage = math.floor(remaining_quota / quota * 100)
             minutes_remaining = remaining_quota / 60
             hours = math.floor(minutes_remaining / 60)
             minutes = math.floor(minutes_remaining % 60)
-
             """ - User App Used Quota - """
             Apps = result["apps"]
             for apps in Apps:
                 if apps.get("app_uuid") == app.id:
                     AppQuotaUsed = apps.get("quota_used") / 60
-                    AppPercentage = math.floor(apps.get("quota_used") * 100 / quota)
+                    AppPercentage = math.floor(
+                        apps.get("quota_used") * 100 / quota)
                     break
             else:
                 AppQuotaUsed = 0
@@ -194,18 +193,15 @@ async def dyno_usage(dyno):
                 "\n-------------------------------------------------------------\n"
                 " -> `Dyno hours quota remaining this month`:\n"
                 f"     •  **{hours} hour(s), {minutes} minute(s)  "
-                f"-  {percentage}%**"
-            )
+                f"-  {percentage}%**")
             return True
 
 
 @register(
     outgoing=True,
-    pattern=(
-        "^.dyno "
-        "(on|restart|off|usage|cancel deploy|cancel build"
-        "|get log)(?: (.*)|$)"
-    ),
+    pattern=("^.dyno "
+             "(on|restart|off|usage|cancel deploy|cancel build"
+             "|get log)(?: (.*)|$)"),
 )
 async def dyno_manage(dyno):
     """ - Restart/Kill dyno - """
@@ -300,14 +296,12 @@ async def dyno_manage(dyno):
             result = r.json()
             quota = result["account_quota"]
             quota_used = result["quota_used"]
-
             """ - Used - """
             remaining_quota = quota - quota_used
             percentage = math.floor(remaining_quota / quota * 100)
             minutes_remaining = remaining_quota / 60
             hours = math.floor(minutes_remaining / 60)
             minutes = math.floor(minutes_remaining % 60)
-
             """ - Used per/App Usage - """
             Apps = result["apps"]
             """ - Sort from larger usage to lower usage - """
@@ -323,11 +317,9 @@ async def dyno_manage(dyno):
             except IndexError:
                 """ - If all apps usage are zero - """
                 for App in apps:
-                    msg += (
-                        f" -> `Dyno usage for`  **{App.name}**:\n"
-                        f"     •  `0`**h**  `0`**m**  "
-                        f"**|**  [`0`**%**]\n\n"
-                    )
+                    msg += (f" -> `Dyno usage for`  **{App.name}**:\n"
+                            f"     •  `0`**h**  `0`**m**  "
+                            f"**|**  [`0`**%**]\n\n")
             for App in Apps:
                 AppName = "__~~Deleted or transferred app~~__"
                 ID = App.get("app_uuid")
@@ -345,17 +337,13 @@ async def dyno_manage(dyno):
                         if ID == names.id:
                             AppName = f"**{names.name}**"
                             break
-                    msg += (
-                        f" -> `Dyno usage for`  {AppName}:\n"
-                        f"     •  `{AppHours}`**h**  `{AppMinutes}`**m**  "
-                        f"**|**  [`{AppPercentage}`**%**]\n\n"
-                    )
-            msg = (
-                f"{msg}"
-                " -> `Dyno hours quota remaining this month`:\n"
-                f"     •  `{hours}`**h**  `{minutes}`**m**  "
-                f"**|**  [`{percentage}`**%**]\n\n"
-            )
+                    msg += (f" -> `Dyno usage for`  {AppName}:\n"
+                            f"     •  `{AppHours}`**h**  `{AppMinutes}`**m**  "
+                            f"**|**  [`{AppPercentage}`**%**]\n\n")
+            msg = (f"{msg}"
+                   " -> `Dyno hours quota remaining this month`:\n"
+                   f"     •  `{hours}`**h**  `{minutes}`**m**  "
+                   f"**|**  [`{percentage}`**%**]\n\n")
         if msg:
             return await dyno.edit(msg)
         else:
@@ -368,7 +356,8 @@ async def dyno_manage(dyno):
         else:
             build = app.builds().get(build_id)
             if build is None:
-                return await dyno.edit(f"`There is no such build.id`:  **{build_id}**")
+                return await dyno.edit(
+                    f"`There is no such build.id`:  **{build_id}**")
         if build.status != "pending":
             return await dyno.edit("`Zero active builds to cancel...`")
         headers = {
@@ -388,7 +377,8 @@ async def dyno_manage(dyno):
             await asyncio.sleep(1)
             dot += "."
             sleep += 1
-        await dyno.respond("`[HEROKU]`\n" f"Build: ⬢**{build.app.name}**  `Stopped...`")
+        await dyno.respond("`[HEROKU]`\n"
+                           f"Build: ⬢**{build.app.name}**  `Stopped...`")
         """ - Restart main if builds cancelled - """
         try:
             app.dynos()[0].restart()
@@ -426,20 +416,18 @@ async def _(dyno):
         log.write(app.get_log())
     fd = codecs.open("logs.txt", "r", encoding="utf-8")
     data = fd.read()
-    key = (
-        requests.post("https://nekobin.com/api/documents", json={"content": data})
-        .json()
-        .get("result")
-        .get("key")
-    )
+    key = (requests.post("https://nekobin.com/api/documents",
+                         json={
+                             "content": data
+                         }).json().get("result").get("key"))
     url = f"https://nekobin.com/raw/{key}"
     await dyno.edit(f"`Here the heroku logs:`\n\nPasted to: [Nekobin]({url})")
     return os.remove("logs.txt")
 
 
-CMD_HELP.update(
-    {
-        "heroku": ">**Dyno components.**\
+CMD_HELP.update({
+    "heroku":
+    ">**Dyno components.**\
     \n>`.dyno usage`\
     \nUsage: Check your heroku App usage dyno quota.\
     \nIf one of your app usage is empty, it won't be write in output.\
@@ -454,5 +442,4 @@ CMD_HELP.update(
     \nGive build.id to specify build to cancel.\
     \n\n>`.dyno get log`\
     \nUsage: Get your main dyno recent logs."
-    }
-)
+})
