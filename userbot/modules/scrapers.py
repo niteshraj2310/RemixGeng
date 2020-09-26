@@ -486,6 +486,7 @@ async def lang(value):
             BOTLOG_CHATID,
             f"`Language for {scraper} changed to {LANG.title()}.`")
 
+
 @register(outgoing=True, pattern=r"^\.yt (\d*) *(.*)")
 async def yt_search(video_q):
     """For .yt command, do a YouTube search from Telegram."""
