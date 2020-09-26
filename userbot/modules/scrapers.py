@@ -351,7 +351,7 @@ async def text_to_speech(query):
 
 @register(outgoing=True, pattern=r"^.tts(?: |$)([\s\S]*)")
 async def text_to_speech(query):
-#async def _(event):
+    # async def _(event):
     if query.fwd_from:
         return
     input_str = query.pattern_match.group(1)
@@ -371,25 +371,26 @@ async def text_to_speech(query):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
     required_file_name = TEMP_DOWNLOAD_DIRECTORY + "voice.ogg"
     try:
-        #https://github.com/SpEcHiDe/UniBorg/commit/17f8682d5d2df7f3921f50271b5b6722c80f4106
+        # https://github.com/SpEcHiDe/UniBorg/commit/17f8682d5d2df7f3921f50271b5b6722c80f4106
         tts = gTTS(text, lang=lan)
         tts.save(required_file_name)
         command_to_execute = [
             "ffmpeg",
             "-i",
-             required_file_name,
-             "-map",
-             "0:a",
-             "-codec:a",
-             "libopus",
-             "-b:a",
-             "100k",
-             "-vbr",
-             "on",
-             required_file_name + ".opus"
+            required_file_name,
+            "-map",
+            "0:a",
+            "-codec:a",
+            "libopus",
+            "-b:a",
+            "100k",
+            "-vbr",
+            "on",
+            required_file_name + ".opus"
         ]
         try:
-            t_response = subprocess.check_output(command_to_execute, stderr=subprocess.STDOUT)
+            t_response = subprocess.check_output(
+                command_to_execute, stderr=subprocess.STDOUT)
         except (subprocess.CalledProcessError, NameError, FileNotFoundError) as exc:
             await query.edit(str(exc))
             # continue sending required_file_name
@@ -412,6 +413,7 @@ async def text_to_speech(query):
         await query.delete()
     except Exception as e:
         await query.edit(str(e))
+
 
 @register(outgoing=True, pattern="^.tr(?: |$)(.*)")
 async def _(event):
@@ -448,6 +450,7 @@ async def _(event):
         await event.edit(output_str)
     except Exception as exc:
         await event.edit(str(exc))
+
 
 @register(pattern=".lang (tr|tts) (.*)", outgoing=True)
 async def lang(value):
