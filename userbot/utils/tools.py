@@ -6,25 +6,18 @@
 import asyncio
 import hashlib
 import os
-import os.path, join
+import os.path
 import re
 import shlex
-from os import getcwd
 from os.path import basename
 from typing import Optional
 from typing import Tuple
 from telethon.tl.functions.channels import GetParticipantRequest
 from telethon.tl.types import ChannelParticipantAdmin
 from telethon.tl.types import ChannelParticipantCreator
-from telethon.tl.types import DocumentAttributeFilename, PollAnswer
+from telethon.tl.types import DocumentAttributeFilename
 from userbot import bot
 from userbot import LOGS
-from PIL import Image, ImageDraw, ImageFont
-import PIL.ImageOps
-from wand.color import Color
-from wand.drawing import Drawing
-from wand.image import Image as remiximage
-from textwrap import wrap
 
 MARGINS = [50, 150, 250, 350, 450]
 

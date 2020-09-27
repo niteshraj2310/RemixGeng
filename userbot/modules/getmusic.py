@@ -15,7 +15,6 @@ from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from pylast import User
 from selenium import webdriver
-from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.types import DocumentAttributeVideo
 
@@ -87,6 +86,7 @@ async def _(event):
         await event.delete()
     except TimeoutError:
         return await event.edit("`Error: `@WooMaiBot` is not responding!.`")
+
 
 @register(outgoing=True, pattern=r"^\.vs(?: |$)(.*)")
 async def _(event):
