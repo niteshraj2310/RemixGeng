@@ -80,10 +80,11 @@ zipfile38
 bitlyshortener
 validators
 geopy
-glitch_this
 twitter_scraper
 pyaztro
 jikanpy
 nekos.py
 wand
 lottie
+glitch_this
+vcsi
