@@ -168,7 +168,9 @@ async def _(event):
                     continue
                 os.remove(single_file)
         os.remove(downloaded_file_name)
-
+        await event.edit("`Done!!`")
+        await asyncio.sleep(7)
+        await event.delete()
 
 @register(outgoing=True, pattern=r"^\.addzip(?: |$)(.*)")
 async def addzip(add):
