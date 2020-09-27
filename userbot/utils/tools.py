@@ -5,20 +5,28 @@
 #
 import asyncio
 import hashlib
-import os.path
+import os
+import os.path, join
 import re
 import shlex
+from os import getcwd
 from os.path import basename
 from typing import Optional
 from typing import Tuple
-
 from telethon.tl.functions.channels import GetParticipantRequest
 from telethon.tl.types import ChannelParticipantAdmin
 from telethon.tl.types import ChannelParticipantCreator
-from telethon.tl.types import DocumentAttributeFilename
-
+from telethon.tl.types import DocumentAttributeFilename, PollAnswer
 from userbot import bot
 from userbot import LOGS
+from PIL import Image, ImageDraw, ImageFont
+import PIL.ImageOps
+from wand.color import Color
+from wand.drawing import Drawing
+from wand.image import Image as remiximage
+from textwrap import wrap
+
+MARGINS = [50, 150, 250, 350, 450]
 
 
 async def md5(fname: str) -> str:
@@ -131,65 +139,3 @@ async def check_media(reply_message):
         return False
     else:
         return data
-
-
-# memify
-
-
-async def remix_meme(topString, bottomString, filename, endname):
-    img = Image.open(filename)
-    imageSize = img.size
-    # find biggest font size that works
-    fontSize = int(imageSize[1] / 5)
-    font = ImageFont.truetype("userbot/utils/styles/impact.ttf", fontSize)
-    topTextSize = font.getsize(topString)
-    bottomTextSize = font.getsize(bottomString)
-    while topTextSize[0] > imageSize[0] - 20 or bottomTextSize[
-            0] > imageSize[0] - 20:
-        fontSize = fontSize - 1
-        font = ImageFont.truetype("userbot/utils/styles/impact.ttf", fontSize)
-        topTextSize = font.getsize(topString)
-        bottomTextSize = font.getsize(bottomString)
-
-    # find top centered position for top text
-    topTextPositionX = (imageSize[0] / 2) - (topTextSize[0] / 2)
-    topTextPositionY = 0
-    topTextPosition = (topTextPositionX, topTextPositionY)
-
-    # find bottom centered position for bottom text
-    bottomTextPositionX = (imageSize[0] / 2) - (bottomTextSize[0] / 2)
-    bottomTextPositionY = imageSize[1] - bottomTextSize[1]
-    bottomTextPosition = (bottomTextPositionX, bottomTextPositionY)
-    draw = ImageDraw.Draw(img)
-    # draw outlines
-    # there may be a better way
-    outlineRange = int(fontSize / 15)
-    for x in range(-outlineRange, outlineRange + 1):
-        for y in range(-outlineRange, outlineRange + 1):
-            draw.text(
-                (topTextPosition[0] + x, topTextPosition[1] + y),
-                topString,
-                (0, 0, 0),
-                font=font,
-            )
-            draw.text(
-                (bottomTextPosition[0] + x, bottomTextPosition[1] + y),
-                bottomString,
-                (0, 0, 0),
-                font=font,
-            )
-    draw.text(topTextPosition, topString, (255, 255, 255), font=font)
-    draw.text(bottomTextPosition, bottomString, (255, 255, 255), font=font)
-    img.save(endname)
-
-
-# polls
-
-
-def Build_Poll(options):
-    i = 0
-    poll = []
-    for option in options:
-        i = i + 1
-        poll.append(PollAnswer(option, bytes(i)))
-    return poll

@@ -18,16 +18,16 @@ from userbot.utils.tools import check_media
 THUMB_IMAGE_PATH = "./thumb_image.jpg"
 
 
-@register(outgoing=True, pattern=r"^\.memify(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.mms(?: |$)(.*)")
 async def mim(event):
     if not event.reply_to_msg_id:
         await event.edit(
-            "`Syntax: reply to an image with .memify` 'text on top' ; 'text on bottom' "
+            "`Syntax: reply to an image with .mmf` 'text on top' ; 'text on bottom' "
         )
         return
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        await event.edit("```reply to a image/sticker/gif```")
+        await event.edit("```reply to a image/sti[Bcker/gif```")
         return
     await bot.download_file(reply_message.media)
     if event.is_reply:
@@ -72,7 +72,7 @@ async def draw_meme_text(image_path, text):
         upper_text = text
         lower_text = ""
     draw = ImageDraw.Draw(img)
-    current_h, pad = 10, 5
+    current_h, pad = 10, 8
     if upper_text:
         for u_text in textwrap.wrap(upper_text, width=15):
             u_width, u_height = draw.textsize(u_text, font=m_font)
@@ -166,8 +166,152 @@ async def draw_meme_text(image_path, text):
     img.save(webp_file, "WebP")
     return webp_file
 
+@register(outgoing=True, pattern=r"^\.mmf(?: |$)(.*)")
+async def mim(event):
+    if not event.reply_to_msg_id:
+        await event.edit(
+            "`Syntax: reply to an image with .mmf` 'text on top' ; 'text on bottom' "
+        )
+        return
+    reply_message = await event.get_reply_message()
+    if not reply_message.media:
+        await event.edit("```reply to a image/sti[Bcker/gif```")
+        return
+    await bot.download_file(reply_message.media)
+    if event.is_reply:
+        data = await check_media(reply_message)
+        if isinstance(data, bool):
+            await event.edit("`Unsupported Files...`")
+            return
+
+        await event.edit("```Transfiguration Time! Mwahaha Memifying this image! (」ﾟﾛﾟ)｣ ```")
+        await asyncio.sleep(3)
+        text = event.pattern_match.group(1)
+        if event.reply_to_msg_id:
+            file_name = "meme.png"
+            to_download_directory = TEMP_DOWNLOAD_DIRECTORY
+            downloaded_file_name = os.path.join(
+                to_download_directory, file_name)
+            downloaded_file_name = await bot.download_media(
+                reply_message,
+                downloaded_file_name,
+            )
+            dls_loc = downloaded_file_name
+        jpg_file = await draw_meme_text(dls_loc, text)
+        await event.client.send_file(
+            event.chat_id, jpg_file, reply_to=event.reply_to_msg_id
+        )
+        await event.delete()
+        os.remove(jpg_file)
+
+
+async def draw_meme_text(image_path, text):
+    img = Image.open(image_path)
+    os.remove(image_path)
+    i_width, i_height = img.size
+    m_font = ImageFont.truetype(
+        "resources/MutantAcademyStyle.ttf", int((70 / 640) * i_width)
+    )
+    if ";" in text:
+        upper_text, lower_text = text.split(";")
+    else:
+        upper_text = text
+        lower_text = ""
+    draw = ImageDraw.Draw(img)
+    current_h, pad = 10, 8
+    if upper_text:
+        for u_text in textwrap.wrap(upper_text, width=15):
+            u_width, u_height = draw.textsize(u_text, font=m_font)
+
+            draw.text(
+                xy=(((i_width - u_width) / 2) - 1, int((current_h / 640) * i_width)),
+                text=u_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
+            draw.text(
+                xy=(((i_width - u_width) / 2) + 1, int((current_h / 640) * i_width)),
+                text=u_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
+            draw.text(
+                xy=((i_width - u_width) / 2, int(((current_h / 640) * i_width)) - 1),
+                text=u_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
+            draw.text(
+                xy=(((i_width - u_width) / 2), int(((current_h / 640) * i_width)) + 1),
+                text=u_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
+
+            draw.text(
+                xy=((i_width - u_width) / 2, int((current_h / 640) * i_width)),
+                text=u_text,
+                font=m_font,
+                fill=(255, 255, 255),
+            )
+            current_h += u_height + pad
+    if lower_text:
+        for l_text in textwrap.wrap(lower_text, width=15):
+            u_width, u_height = draw.textsize(l_text, font=m_font)
+
+            draw.text(
+                xy=(
+                    ((i_width - u_width) / 2) - 1,
+                    i_height - u_height - int((20 / 640) * i_width),
+                ),
+                text=l_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
+            draw.text(
+                xy=(
+                    ((i_width - u_width) / 2) + 1,
+                    i_height - u_height - int((20 / 640) * i_width),
+                ),
+                text=l_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
+            draw.text(
+                xy=(
+                    (i_width - u_width) / 2,
+                    (i_height - u_height - int((20 / 640) * i_width)) - 1,
+                ),
+                text=l_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
+            draw.text(
+                xy=(
+                    (i_width - u_width) / 2,
+                    (i_height - u_height - int((20 / 640) * i_width)) + 1,
+                ),
+                text=l_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
+
+            draw.text(
+                xy=(
+                    (i_width - u_width) / 2,
+                    i_height - u_height - int((20 / 640) * i_width),
+                ),
+                text=l_text,
+                font=m_font,
+                fill=(255, 255, 255),
+            )
+            current_h += u_height + pad
+
+    meme_name = "memify.jpg"
+    jpg_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY, meme_name)
+    img.save(jpg_file, "jpg")
+    return jpg_file
+
 CMD_HELP.update({
-    "memify": ">`.memify` texttop ; textbottom"
-    "\nUsage: Reply a sticker/image and send with cmd."
-    "\n\n>`.mem` your text"
-    "\nUsage: Reply a sticker/image/gif and get meme from bot"})
+    "memify": ">`.mmf` or `.mms` texttop ; textbottom"
+    "\nUsage: Reply a sticker/image and send with cmd and get meme in image or\nSticker format."})
