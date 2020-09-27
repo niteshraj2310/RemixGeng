@@ -7,6 +7,7 @@
 
 
 import json
+import aiohttp
 from requests import get
 from datetime import datetime
 from pytz import country_timezones as c_tz
@@ -89,6 +90,7 @@ async def get_weather(weather):
     max_temp = result['main']['temp_max']
     feel = result["main"]["feels_like"]
     pressure = result["main"]["pressure"]
+    cloud = result["clouds"]["all"]
     desc = result['weather'][0]
     desc = desc['main']
     country = result['sys']['country']
