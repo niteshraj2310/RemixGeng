@@ -11,22 +11,18 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon import events
 import asyncio
 import glob
-import shutil
 from userbot.events import register
-from userbot import bot, CMD_HELP, GOOGLE_CHROME_BIN, TEMP_DOWNLOAD_DIRECTORY, bot
+from userbot import CMD_HELP, GOOGLE_CHROME_BIN, bot, bot
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 import os
-import subprocess
 import time
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
-from asyncio.exceptions import TimeoutError
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
-from pylast import User
 from selenium import webdriver
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
+from telethon.tl.types import DocumentAttributeVideo
 from userbot.utils import progress
 import pybase64
 
