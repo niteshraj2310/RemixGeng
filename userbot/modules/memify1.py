@@ -27,7 +27,7 @@ async def mim(event):
         return
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        await event.edit("```reply to a image/sti[Bcker/gif```")
+        await event.edit("```reply to a image/sticker/gif```")
         return
     await bot.download_file(reply_message.media)
     if event.is_reply:
@@ -197,12 +197,12 @@ async def mim(event):
                 downloaded_file_name,
             )
             dls_loc = downloaded_file_name
-        jpg_file = await draw_meme_text(dls_loc, text)
+        jpeg_file = await draw_meme_text(dls_loc, text)
         await event.client.send_file(
-            event.chat_id, jpg_file, reply_to=event.reply_to_msg_id
+            event.chat_id, jpeg_file, reply_to=event.reply_to_msg_id
         )
         await event.delete()
-        os.remove(jpg_file)
+        os.remove(jpeg_file)
 
 
 async def draw_meme_text(image_path, text):
@@ -307,10 +307,10 @@ async def draw_meme_text(image_path, text):
             )
             current_h += u_height + pad
 
-    meme_name = "memify.jpg"
-    jpg_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY, meme_name)
-    img.save(jpg_file, "jpg")
-    return jpg_file
+    meme_name = "memify.jpeg"
+    jpeg_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY, meme_name)
+    img.save(jpeg_file, "jpeg")
+    return jpeg_file
 
 CMD_HELP.update({
     "memify": ">`.mmf` or `.mms` texttop ; textbottom"
