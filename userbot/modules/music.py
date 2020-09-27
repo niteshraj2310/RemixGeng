@@ -5,8 +5,8 @@ import asyncio
 from userbot.events import register
 from userbot import bot, CMD_HELP
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-#Copyright (C) 2020 azrim.
-#imported .song and .vsong form catuserbot
+# Copyright (C) 2020 azrim.
+# imported .song and .vsong form catuserbot
 
 from telethon import events
 import asyncio
@@ -30,6 +30,7 @@ from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
 from userbot.utils import progress
 import pybase64
 
+
 async def catmusic(cat, QUALITY, hello):
     search = cat
     chrome_options = webdriver.ChromeOptions()
@@ -52,23 +53,20 @@ async def catmusic(cat, QUALITY, hello):
         return
     try:
         command = (
-            'youtube-dl -o "./temp/%(title)s.%(ext)s" --extract-audio --audio-format mp3 --audio-quality '
-            + QUALITY
-            + " "
-            + video_link
-        )
+            'youtube-dl -o "./temp/%(title)s.%(ext)s" --extract-audio --audio-format mp3 --audio-quality ' +
+            QUALITY +
+            " " +
+            video_link)
         os.system(command)
     except Exception as e:
         return await hello.edit(f"`Error:\n {e}`")
     try:
         thumb = (
-            'youtube-dl -o "./temp/%(title)s.%(ext)s" --write-thumbnail --skip-download '
-            + video_link
-        )
+            'youtube-dl -o "./temp/%(title)s.%(ext)s" --write-thumbnail --skip-download ' +
+            video_link)
         os.system(thumb)
     except Exception as e:
         return await hello.edit(f"`Error:\n {e}`")
-
 
 
 @register(outgoing=True, pattern="^.song(?: |$)(.*)")
@@ -120,6 +118,7 @@ async def _(event):
     os.system("rm -rf ./temp/*.jpg")
     os.system("rm -rf ./temp/*.webp")
 
+
 @register(outgoing=True, pattern="^.song360(?: |$)(.*)")
 async def _(event):
     reply_to_id = event.message.id
@@ -168,6 +167,7 @@ async def _(event):
     os.system("rm -rf ./temp/*.mp3")
     os.system("rm -rf ./temp/*.jpg")
     os.system("rm -rf ./temp/*.webp")
+
 
 async def getmusicvideo(cat):
     video_link = ""
@@ -260,6 +260,7 @@ async def _(event):
         os.system("rm -rf *.mp4")
         os.system("rm -rf *.webm")
         return
+
 
 @register(outgoing=True, pattern="^.spd(?: |$)(.*)")
 async def _(event):

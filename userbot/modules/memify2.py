@@ -11,7 +11,7 @@ import textwrap
 
 from PIL import Image, ImageDraw, ImageFont
 
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
+from userbot import TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
 from userbot.utils.tools import check_media
 
