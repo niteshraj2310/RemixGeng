@@ -129,12 +129,13 @@ async def get_weather(weather):
         +
         f"**Max. Temp.:** `{celsius(max_temp)}°C | {fahrenheit(max_temp)}°F`\n"
         + f"**Humidity:** `{humidity}%`\n" +
-        f"**Pressure** `{pressure} hPa`\n"+
-        f"**Clouds:** `{cloud} %`\n"+
+        f"**Pressure** `{pressure} hPa`\n" +
+        f"**Clouds:** `{cloud} %`\n" +
         f"**Wind:** `{kmph[0]} kmh | {mph[0]} mph, {findir}`\n" +
         f"**Sunrise:** `{sun(sunrise)}`\n" +
         f"**Sunset:** `{sun(sunset)}`\n\n" + f"**{desc}**\n" +
         f"`{cityname}, {fullc_n}`\n" + f"`{time}`")
+
 
 @register(outgoing=True, pattern="^.wttr(?: |$)(.*)")
 async def _(event):

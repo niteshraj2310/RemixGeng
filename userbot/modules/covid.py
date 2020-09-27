@@ -7,6 +7,7 @@ from covid import Covid
 from userbot import CMD_HELP
 from userbot.events import register
 
+
 def format_integer(number, thousand_separator="."):
     def reverse(string):
         string = "".join(reversed(string))
@@ -26,6 +27,7 @@ def format_integer(number, thousand_separator="."):
             result = char + result
     return result
 
+
 @register(outgoing=True, pattern="^.covid (.*)")
 async def corona(event):
     await event.edit("`Processing...`")
@@ -33,7 +35,7 @@ async def corona(event):
     covid = Covid(source="worldometers")
     country_data = covid.get_status_by_country_name(country)
     if country_data:
-        output_text =  f"`⚠️Confirmed   : {format_integer(country_data['confirmed'])}`\n"
+        output_text = f"`⚠️Confirmed   : {format_integer(country_data['confirmed'])}`\n"
         output_text += f"`☢️Active      : {format_integer(country_data['active'])}`\n"
         output_text += f"`🤕Critical    : {format_integer(country_data['critical'])}`\n"
         output_text += f"`😟New Deaths  : {format_integer(country_data['new_deaths'])}`\n\n"
@@ -47,6 +49,7 @@ async def corona(event):
 
     await event.edit(f"`Corona Virus Info in {country}:`\n\n{output_text}")
 
+
 @register(outgoing=True, pattern="^.covid$")
 async def corona(event):
     await event.edit("`Processing...`")
@@ -54,7 +57,7 @@ async def corona(event):
     covid = Covid(source="worldometers")
     country_data = covid.get_status_by_country_name(country)
     if country_data:
-        output_text =  f"`⚠️Confirmed   : {format_integer(country_data['confirmed'])}`\n"
+        output_text = f"`⚠️Confirmed   : {format_integer(country_data['confirmed'])}`\n"
         output_text += f"`☢️Active      : {format_integer(country_data['active'])}`\n"
         output_text += f"`🤕Critical    : {format_integer(country_data['critical'])}`\n"
         output_text += f"`😟New Deaths  : {format_integer(country_data['new_deaths'])}`\n\n"
@@ -69,11 +72,7 @@ async def corona(event):
     await event.edit(f"`Corona Virus Info in {country}:`\n\n{output_text}")
 
 
-CMD_HELP.update({
-        "covid":
-        "`.covid `**<country>**"
-        "\n`Usage: Get an information about covid-19 data in your country.`\n\n"
-        "`.covid`"
-        "\n`Usage: Get an information about covid-19 data in Worldwide.`\n"
-
-    })
+CMD_HELP.update({"covid": "`.covid `**<country>**"
+                 "\n`Usage: Get an information about covid-19 data in your country.`\n\n"
+                 "`.covid`"
+                 "\n`Usage: Get an information about covid-19 data in Worldwide.`\n"})
