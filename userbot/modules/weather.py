@@ -154,7 +154,5 @@ async def _(event):
 CMD_HELP.update({
     "weather":
     "`.weather` <city> or `.weather` <city>, <country name/code>\
-    \nUsage: Gets the weather of a city.\
-    \n`.wttr` "city name".\
-    \nUsage: Gets an img output of weather of given city."
+    \nUsage: Gets the weather of a city."
 })
