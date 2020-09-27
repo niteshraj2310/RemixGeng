@@ -1,6 +1,5 @@
 # We're using Ubuntu 20.10
 FROM nitesh231/docker:groovy
-
 #
 # Clone repo and prepare working directory
 #
@@ -10,7 +9,5 @@ WORKDIR /root/userbot
 
 # Install python requirements
 RUN pip3 install -r https://raw.githubusercontent.com/niteshraj2310/RemixGeng/sql-extended/requirements.txt
-
 #
-
 CMD ["python3","-m","userbot"]

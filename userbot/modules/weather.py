@@ -87,6 +87,8 @@ async def get_weather(weather):
     humidity = result['main']['humidity']
     min_temp = result['main']['temp_min']
     max_temp = result['main']['temp_max']
+    feel = result["main"]["feels_like"]
+    pressure = result["main"]["pressure"]
     desc = result['weather'][0]
     desc = desc['main']
     country = result['sys']['country']
@@ -121,18 +123,38 @@ async def get_weather(weather):
     await weather.edit(
         f"**Temperature:** `{celsius(curtemp)}°C | {fahrenheit(curtemp)}°F`\n"
         +
+        f"**Feels Like** `{celsius(feel)}°C | {fahrenheit(feel)}°F`\n"
+        +
         f"**Min. Temp.:** `{celsius(min_temp)}°C | {fahrenheit(min_temp)}°F`\n"
         +
         f"**Max. Temp.:** `{celsius(max_temp)}°C | {fahrenheit(max_temp)}°F`\n"
         + f"**Humidity:** `{humidity}%`\n" +
+        f"**Pressure** `{pressure} hPa`\n"+
+        f"**Clouds:** `{cloud} %`\n"+
         f"**Wind:** `{kmph[0]} kmh | {mph[0]} mph, {findir}`\n" +
         f"**Sunrise:** `{sun(sunrise)}`\n" +
         f"**Sunset:** `{sun(sunset)}`\n\n" + f"**{desc}**\n" +
         f"`{cityname}, {fullc_n}`\n" + f"`{time}`")
 
+@register(outgoing=True, pattern="^.wttr(?: |$)(.*)")
+async def _(event):
+    if event.fwd_from:
+        return
+    sample_url = "https://wttr.in/{}.png"
+    # logger.info(sample_url)
+    input_str = event.pattern_match.group(1)
+    async with aiohttp.ClientSession() as session:
+        response_api_zero = await session.get(sample_url.format(input_str))
+        # logger.info(response_api_zero)
+        response_api = await response_api_zero.read()
+        with io.BytesIO(response_api) as out_file:
+            await event.reply(file=out_file)
+    await event.edit(input_str)
 
 CMD_HELP.update({
     "weather":
     "`.weather` <city> or `.weather` <city>, <country name/code>\
-    \nUsage: Gets the weather of a city."
+    \nUsage: Gets the weather of a city.\
+    \n`.wttr` "city name".\
+    \nUsage: Gets an img output of weather of given city."
 })

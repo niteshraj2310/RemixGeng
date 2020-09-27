@@ -6,6 +6,9 @@
 import asyncio
 import hashlib
 import os
+from os.path import basename, join
+import math
+from os import getcwd
 import os.path
 import re
 import shlex
@@ -18,9 +21,7 @@ from telethon.tl.types import ChannelParticipantCreator
 from telethon.tl.types import DocumentAttributeFilename
 from userbot import bot
 from userbot import LOGS
-
-MARGINS = [50, 150, 250, 350, 450]
-
+from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator, DocumentAttributeFilename
 
 async def md5(fname: str) -> str:
     hash_md5 = hashlib.md5()
@@ -110,17 +111,22 @@ async def take_screen_shot(video_file: str, duration: int,
         LOGS.error(err)
     return thumb_image_path if os.path.exists(thumb_image_path) else None
 
-
 async def check_media(reply_message):
     if reply_message and reply_message.media:
         if reply_message.photo:
             data = reply_message.photo
         elif reply_message.document:
-            if (DocumentAttributeFilename(file_name="AnimatedSticker.tgs") in
-                    reply_message.media.document.attributes):
+            if (
+                DocumentAttributeFilename(file_name="AnimatedSticker.tgs")
+                in reply_message.media.document.attributes
+            ):
                 return False
-            if (reply_message.gif or reply_message.video or reply_message.audio
-                    or reply_message.voice):
+            if (
+                reply_message.gif
+                or reply_message.video
+                or reply_message.audio
+                or reply_message.voice
+            ):
                 return False
             data = reply_message.media.document
         else:

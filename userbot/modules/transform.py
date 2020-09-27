@@ -9,7 +9,7 @@ from userbot import bot
 from userbot import CMD_HELP
 from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
-from userbot.utils.tools import check_media
+from userbot.utils import check_media
 
 Converted = TEMP_DOWNLOAD_DIRECTORY + "sticker.webp"
 
@@ -109,15 +109,18 @@ async def rotate(event):
 
 
 CMD_HELP.update({
-    "transform": "`.ghost`"
-    "\nUsage: Enchance your image to become a ghost!."
-    "\n\n`.flip`"
-    "\nUsage: To flip your image"
-    "\n\n`.mirror`"
-    "\nUsage: To mirror your image"
-    "\n\n`.bw`"
-    "\nUsage: To Change your colorized image to b/w image!"
-    "\n\n`.poster`"
-    "\nUsage: To posterize your image!"
-    "\n\n`.rotate <value>`"
-    "\nUsage: To rotate your image\nThe value is range 1-360 if not it'll give default value which is 90"})
+        "transform": "`.ghost`"
+        "\nUsage: Enchance your image to become a ghost!."
+        "\n\n`.flip`"
+        "\nUsage: To flip your image"
+        "\n\n`.mirror`"
+        "\nUsage: To mirror your image"
+        "\n\n`.bw`"
+        "\nUsage: To Change your colorized image to b/w image!"
+        "\n\n`.poster`"
+        "\nUsage: To posterize your image!"
+        "\n\n`.rotate <value>`"
+        "\nUsage: To rotate your image\nThe value is range 1-360 if not it'll give default value which is 90"
+        "\n\n`.mmf toptext ; bottomtext`"
+        "\nUsage:mmf creates a sticker meme with give text at specific locations and sends."})
+

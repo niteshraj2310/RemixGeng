@@ -14,5 +14,4 @@ from .tools import (
     human_to_bytes,
     take_screen_shot,
     runcmd,
-    md5
-)
+    md5,check_media)

@@ -92,11 +92,11 @@ async def get_dogbin_content(dog_url):
     format_view = f"{DOGBIN_URL}v/"
 
     if message.startswith(format_view):
-        message = message[len(format_view):]
+        message = message[len(format_view) :]
     elif message.startswith(format_normal):
-        message = message[len(format_normal):]
+        message = message[len(format_normal) :]
     elif message.startswith("del.dog/"):
-        message = message[len("del.dog/"):]
+        message = message[len("del.dog/") :]
     else:
         return await dog_url.edit("`Is that even a dogbin url?`")
 
@@ -122,7 +122,6 @@ async def get_dogbin_content(dog_url):
     reply_text = (
         "`Fetched dogbin URL content successfully!`"
         "\n\n`Content:` " + resp.text)
-
     await dog_url.edit(reply_text)
     if BOTLOG:
         await dog_url.client.send_message(
