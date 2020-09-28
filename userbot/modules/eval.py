@@ -9,7 +9,7 @@ import asyncio
 from getpass import getuser
 from os import remove
 from sys import executable
-from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID
+from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, TERM_ALIAS
 from userbot.events import register
 
 
@@ -135,7 +135,7 @@ execute. Use .help exec for an example.```")
 @register(outgoing=True, pattern="^.term(?: |$)(.*)")
 async def terminal_runner(term):
     """ For .term command, runs bash commands and scripts on your server. """
-    curruser = getuser()
+    curruser = TERM_ALIAS
     command = term.pattern_match.group(1)
     try:
         from os import geteuid
@@ -144,19 +144,15 @@ async def terminal_runner(term):
         uid = "This ain't it chief!"
 
     if term.is_channel and not term.is_group:
-        await term.edit("`Term commands aren't permitted on channels!`")
-        return
+        return await term.edit("`Term commands aren't permitted on channels!`")
 
     if not command:
-        await term.edit("``` Give a command or use .help hacker for \
-            an example.```")
-        return
+        return await term.edit("``` Give a command or use .help term for an example.```")
 
     if command in ("userbot.session", "config.env"):
-        await term.edit("`That's a dangerous operation! Not Permitted!`")
-        return
+        return await term.edit("`That's a dangerous operation! Not Permitted!`")
 
-    process = await asyncio.create_subprocess_exec(
+    process = await asyncio.create_subprocess_shell(
         command,
         stdout=asyncio.subprocess.PIPE,
         stderr=asyncio.subprocess.PIPE)
@@ -181,12 +177,13 @@ async def terminal_runner(term):
         await term.edit("`" f"{curruser}:~# {command}" f"\n{result}" "`")
     else:
         await term.edit("`" f"{curruser}:~$ {command}" f"\n{result}" "`")
-
+'''
     if BOTLOG:
         await term.client.send_message(
             BOTLOG_CHATID,
             "Terminal Command " + command + " was executed sucessfully",
         )
+'''
 
 
 CMD_HELP.update({
