@@ -21,8 +21,6 @@ from userbot import bot
 from userbot import LOGS
 from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator, DocumentAttributeFilename
 from userbot import TEMP_DOWNLOAD_DIRECTORY
-from userbot.utils import take_screen_shot, runcmd, progress
-
 
 async def md5(fname: str) -> str:
     hash_md5 = hashlib.md5()
