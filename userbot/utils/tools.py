@@ -174,7 +174,7 @@ async def media_to_image(event):
             raise Exception(stdout + stderr)
         dls_loc = png_file
     elif replied.sticker and replied.sticker.file_name.endswith(".webp"):
-        stkr_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY, , "stkr.png")
+        stkr_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY, "stkr.png")
         os.rename(dls_loc, stkr_file)
         if not os.path.lexists(stkr_file):
             await event.edit("```Sticker not found...```")
@@ -182,7 +182,7 @@ async def media_to_image(event):
         dls_loc = stkr_file
     elif replied.animation or replied.video:
         await event.edit("`Converting Media To Image ...`")
-        jpg_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY, , "image.jpg")
+        jpg_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY, "image.jpg")
         await take_screen_shot(dls_loc, 0, jpg_file)
         os.remove(dls_loc)
         if not os.path.lexists(jpg_file):
