@@ -1,7 +1,4 @@
 import os
-import re
-import html
-import random
 import shlex
 import asyncio
 from os.path import basename

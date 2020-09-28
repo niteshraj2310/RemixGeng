@@ -20,8 +20,6 @@ from telethon.tl.types import DocumentAttributeFilename
 from userbot import bot
 from userbot import LOGS
 from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator, DocumentAttributeFilename
-import html
-import random
 from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.utils import take_screen_shot, runcmd, progress
 
