@@ -172,6 +172,7 @@ async def _(event):
         await asyncio.sleep(7)
         await event.delete()
 
+
 @register(outgoing=True, pattern=r"^\.addzip(?: |$)(.*)")
 async def addzip(add):
     """ Copyright (c) 2020 azrim @github"""
