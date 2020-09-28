@@ -20,7 +20,9 @@ from telethon.tl.types import DocumentAttributeFilename
 from userbot import bot
 from userbot import LOGS
 from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator, DocumentAttributeFilename
-
+import html, random
+from userbot import TEMP_DOWNLOAD_DIRECTORY
+from userbot.utils import take_screen_shot, runcmd, progress
 
 async def md5(fname: str) -> str:
     hash_md5 = hashlib.md5()
@@ -138,3 +140,49 @@ async def check_media(reply_message):
         return False
     else:
         return data
+
+# For Downloading & Checking Media then Converting to Image.
+# RETURNS an "Image".
+"""Grabbed from USERGE"""
+
+async def media_to_image(meassage):
+    replied = event.reply_to_message
+    if not (replied.photo or replied.sticker or replied.animation or r                 >
+        await event.edit("`Media Type Is Invalid ! See HELP.`")
+        return
+    if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
+        os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
+    await event.edit("`Ah Shit, Here We Go Again ...`")
+    dls = await event.client.download_media(
+        message=event.reply_to_message,
+        file_name=TEMP_DOWNLOAD_DIRECTORY,
+        progress=progress,
+        progress_args=(event, "`Trying to Posses given content`")
+    )
+    dls_loc = os.path.join(TEMP_DOWNLOAD_DIRECTORY, os.path.basename(d                 >
+    if replied.sticker and replied.sticker.file_name.endswith(".tgs"):
+        await event.edit("Converting Animated Sticker To Image...")
+        png_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY, "image.png")
+        cmd = f"lottie_convert.py --frame 0 -if lottie -of png {dls_lo                 >
+        stdout, stderr = (await runcmd(cmd))[:2]
+        os.remove(dls_loc)                                                                      if not os.path.lexists(png_file):
+            await event.edit("This sticker is Gey, Task Failed Success                 >            raise Exception(stdout + stderr)
+        dls_loc = png_file
+    elif replied.sticker and replied.sticker.file_name.endswith(".webp                 >
+        stkr_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY,, "stkr.png")
+        os.rename(dls_loc, stkr_file)
+        if not os.path.lexists(stkr_file):
+            await event.edit("```Sticker not found...```")
+            return
+        dls_loc = stkr_file
+    elif replied.animation or replied.video:                                                    await event.edit("`Converting Media To Image ...`")
+        jpg_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY,, "image.jpg")
+        await take_screen_shot(dls_loc, 0, jpg_file)
+        os.remove(dls_loc)
+        if not os.path.lexists(jpg_file):
+            await event.edit("This Gif is Gey (｡ì _ í｡), Task Failed S                 >
+            return
+        dls_loc = jpg_file
+    await event.edit("`Almost Done ...`")
+    return dls_loc
+    await event.delete()
