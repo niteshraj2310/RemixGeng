@@ -5,7 +5,7 @@
 #
 """ Userbot module for getting the weather of a city. """
 
-
+import io
 import json
 import aiohttp
 from requests import get
