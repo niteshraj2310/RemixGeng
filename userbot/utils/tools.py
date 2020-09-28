@@ -148,7 +148,6 @@ async def check_media(reply_message):
 """Grabbed from USERGE"""
 
 
-
 async def media_to_image(event):
     replied = event.reply_to_message
     if not (replied.photo or replied.sticker or replied.animation or replied.video):
