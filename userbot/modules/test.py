@@ -2,11 +2,7 @@ import asyncio
 import os
 import time
 from datetime import datetime
-from io import BytesIO
 
-from telethon import types
-from telethon.errors import PhotoInvalidDimensionsError
-from telethon.tl.functions.messages import SendMediaRequest
 
 from userbot import TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.utils import progress
@@ -44,6 +40,7 @@ async def _(event):
             await event.edit("```Ooof i can't handel dat```")
             await event.delete()
 
+
 @register(outgoing=True, pattern=r"^\.stik(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
@@ -76,6 +73,7 @@ async def _(event):
             await event.edit("```Ooff i can't Handel Dat```")
             await event.delete()
 
+
 @register(outgoing=True, pattern=r"^\.tft(?: |$)(.*)")
 async def get(event):
     name = event.text[5:]
@@ -89,6 +87,7 @@ async def get(event):
         await event.delete()
         await bot.send_file(event.chat_id, name, force_document=True)
         os.remove(name)
+
 
 @register(outgoing=True, pattern=r"^\.conv(?: |$)(.*)")
 async def _(event):
@@ -106,7 +105,7 @@ async def _(event):
         await event.edit("`U DUMB DUDE`")
         return
     if input_str == "mp3":
-        await event.edit( "`converting...`")
+        await event.edit("`converting...`")
     elif input_str == "voice":
         await event.edit("`converting...`")
     else:
@@ -119,9 +118,9 @@ async def _(event):
             reply_message,
             TEMP_DOWNLOAD_DIRECTORY,
             progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-              progress(d, t, event, c_time, "trying to download")
+                progress(d, t, event, c_time, "trying to download")
             ),
-         )
+        )
     except Exception as e:  # pylint:disable=C0103,W0703
         await event.edit(str(e))
     else:
@@ -137,7 +136,8 @@ async def _(event):
         voice_note = False
         supports_streaming = False
         if input_str == "voice":
-            new_required_file_caption = "voice_" + str(round(time.time())) + ".opus"
+            new_required_file_caption = "voice_" + \
+                str(round(time.time())) + ".opus"
             new_required_file_name = (
                 TEMP_DOWNLOAD_DIRECTORY + "/" + new_required_file_caption
             )
@@ -158,7 +158,8 @@ async def _(event):
             voice_note = True
             supports_streaming = True
         elif input_str == "mp3":
-            new_required_file_caption = "mp3_" + str(round(time.time())) + ".mp3"
+            new_required_file_caption = "mp3_" + \
+                str(round(time.time())) + ".mp3"
             new_required_file_name = (
                 TEMP_DOWNLOAD_DIRECTORY + "/" + new_required_file_caption
             )

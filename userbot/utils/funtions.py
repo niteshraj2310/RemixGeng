@@ -1,4 +1,7 @@
-import os, re, html, random
+import os
+import re
+import html
+import random
 import shlex
 import asyncio
 from os.path import basename
@@ -8,6 +11,7 @@ from userbot.utils import take_screen_shot, runcmd, progress
 
 # For using gif , animated stickers and videos in some parts , this
 # function takes  take a screenshot and stores ported from userge
+
 
 async def take_screen_shot(video_file: str, duration: int, path: str = '') -> Optional[str]:
     print(
@@ -26,6 +30,7 @@ async def take_screen_shot(video_file: str, duration: int, path: str = '') -> Op
 # For Downloading & Checking Media then Converting to Image.
 # RETURNS an "Image".
 """Grabbed from USERGE"""
+
 
 async def media_to_image(event):
     replied = event.reply_to_message
@@ -53,7 +58,7 @@ async def media_to_image(event):
             raise Exception(stdout + stderr)
         dls_loc = png_file
     elif replied.sticker and replied.sticker.file_name.endswith(".webp"):
-        stkr_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY,, "stkr.png")
+        stkr_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY, , "stkr.png")
         os.rename(dls_loc, stkr_file)
         if not os.path.lexists(stkr_file):
             await event.edit("```Sticker not found...```")
@@ -61,7 +66,7 @@ async def media_to_image(event):
         dls_loc = stkr_file
     elif replied.animation or replied.video:
         await event.edit("`Converting Media To Image ...`")
-        jpg_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY,, "image.jpg")
+        jpg_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY, , "image.jpg")
         await take_screen_shot(dls_loc, 0, jpg_file)
         os.remove(dls_loc)
         if not os.path.lexists(jpg_file):
@@ -73,6 +78,7 @@ async def media_to_image(event):
     await event.delete()
 
 # executing of terminal commands
+
 
 async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
     args = shlex.split(cmd)
