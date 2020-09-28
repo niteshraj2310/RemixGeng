@@ -3,7 +3,7 @@ import os
 import time
 from datetime import datetime
 
-
+from userbot.events import register
 from userbot import TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.utils import progress
 
