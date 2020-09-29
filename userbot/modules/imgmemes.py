@@ -103,6 +103,7 @@ async def phss(uplded, input, name):
     img.save("alf.webp", "webp")
     return "alf.webp"
 
+
 async def trumptweet(text):
     r = requests.get(
         f"https://nekobot.xyz/api/imagegen?type=trumptweet&text={text}"
@@ -116,6 +117,7 @@ async def trumptweet(text):
     img = Image.open("gpx.png").convert("RGB")
     img.save("gpx.webp", "webp")
     return "gpx.webp"
+
 
 async def changemymind(text):
     r = requests.get(
@@ -131,6 +133,7 @@ async def changemymind(text):
     img.save("gpx.webp", "webp")
     return "gpx.webp"
 
+
 async def kannagen(text):
     r = requests.get(
         f"https://nekobot.xyz/api/imagegen?type=kannagen&text={text}"
@@ -144,6 +147,7 @@ async def kannagen(text):
     img = Image.open("gpx.png").convert("RGB")
     img.save("gpx.webp", "webp")
     return "gpx.webp"
+
 
 async def moditweet(text):
     r = requests.get(
@@ -172,6 +176,7 @@ async def tweets(text1, text2):
     img = Image.open("gpx.png").convert("RGB")
     img.save("gpx.webp", "webp")
     return "gpx.webp"
+
 
 async def get_user_from_event(event):
     if event.reply_to_msg_id:
@@ -207,6 +212,7 @@ async def trump(event):
     await event.client.send_file(event.chat_id, img, reply_to=reply_to_id)
     await event.delete()
     await purge()
+
 
 @register(pattern="^.modi(?: |$)(.*)", outgoing=True)
 async def nekobot(event):
@@ -269,6 +275,7 @@ async def kanna(event):
     await event.delete()
     await purge()
 
+
 @register(outgoing=True, pattern=r"\.tweet(?: |$)(.*)")
 async def tweet(event):
     text = event.pattern_match.group(1)
@@ -296,6 +303,7 @@ async def tweet(event):
     await event.client.send_file(event.chat_id, img, reply_to=reply_to_id)
     await event.delete()
     await purge()
+
 
 @register(pattern="^.threat(?: |$)(.*)", outgoing=True)
 async def nekobot(event):
@@ -473,4 +481,3 @@ async def phcomment(event):
         return await event.edit("`Reply message has no text!`")
     await event.delete()
     await purge()
-
