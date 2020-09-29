@@ -8,23 +8,24 @@ from PIL import Image, ImageOps, ImageFont, ImageDraw
 import numpy as np
 from colour import Color
 import random
-from userbot import bot , TEMP_DOWNLOAD_DIRECTORY
+from userbot import bot, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
+
 
 @register(outgoing=True, pattern=r"^\.(ascii|asciialt)$")
 async def ascii_(event):
     if not event.reply_to_msg_id:
         await event.edit("
-Reply To Message Dummy
-")
+                         Reply To Message Dummy
+                         ")
     if event.reply_to_msg_id:
-       await event.reply(file='CAADAQADhgADwKwII4f61VT65CNGFgQ')
+        await event.reply(file='CAADAQADhgADwKwII4f61VT65CNGFgQ')
     return
     cmd = event.pattern_match.group(1)
     if cmd == "ascii":
-       dls_loc = await media_to_image(event)
+        dls_loc = await media_to_image(event)
     if not dls_loc:
-       return
+        return
     c_list = random_color()
     color1 = c_list[0]
     color2 = c_list[1]
@@ -58,7 +59,8 @@ def asciiart(in_f, SC, GCF, color1, color2, bgcolor, ascii_type):
     img = np.sum(np.asarray(img), axis=2)
     img -= img.min()
     img = (1.0 - img / img.max()) ** GCF * (chars.size - 1)
-    lines = ("\n".join(("".join(r) for r in chars[img.astype(int)]))).split("\n")
+    lines = ("\n".join(("".join(r)
+                        for r in chars[img.astype(int)]))).split("\n")
     nbins = len(lines)
     colorRange = list(Color(color1).range_to(Color(color2), nbins))
     newImg_width = letter_width * widthByLetter
@@ -80,4 +82,4 @@ def asciiart(in_f, SC, GCF, color1, color2, bgcolor, ascii_type):
 def random_color():
     number_of_colors = 2
     return ['#' + ''.join([random.choice('0123456789ABCDEF') for j in
-             range(6)]) for i in range(number_of_colors)]
+                           range(6)]) for i in range(number_of_colors)]
