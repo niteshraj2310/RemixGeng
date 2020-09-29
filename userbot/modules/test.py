@@ -2,13 +2,13 @@ import asyncio
 import os
 import time
 from datetime import datetime
-
+import logging
 from userbot.events import register
 from userbot import TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.utils import progress
 
 
-@register(outgoing=True, pattern=r"^\.imst(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.imgs(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -89,7 +89,7 @@ async def get(event):
         os.remove(name)
 
 
-@register(outgoing=True, pattern=r"^\.conv(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.nfc(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -109,7 +109,7 @@ async def _(event):
     elif input_str == "voice":
         await event.edit("`converting...`")
     else:
-        await event.edit("try `.conv voice` or`.conv mp3`")
+        await event.edit("try `.nfc voice` or`.nfc mp3`")
         return
     try:
         start = datetime.now()
@@ -176,7 +176,7 @@ async def _(event):
             await event.edit("not supported")
             os.remove(downloaded_file_name)
             return
-        logger.info(command_to_run)
+        logging.info(command_to_run)
         # TODO: re-write create_subprocess_exec 😉
         process = await asyncio.create_subprocess_exec(
             *command_to_run,

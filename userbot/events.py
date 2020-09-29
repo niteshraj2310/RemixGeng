@@ -151,7 +151,7 @@ def register(**args):
                             "`Sorry,userbot has crashed.\
                         \nCheck botlog group for error logs.`"
                         )
-                        await asyncio.sleep(3.5)
+                        await asyncio.sleep(1.5)
                         await sorry_msg.delete()
 
                     await check.client.send_file(send_to,
