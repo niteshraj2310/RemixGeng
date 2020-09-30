@@ -73,6 +73,7 @@ async def mim(event):
     os.system("rm -rf *.png")
     os.remove(webp_file)
 
+
 async def draw_meme_text(image_path, text):
     img = Image.open(image_path)
     os.remove(image_path)

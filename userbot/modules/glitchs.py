@@ -8,28 +8,22 @@
 # Based code + improve from AdekMaulana and aidilaryanto
 
 import asyncio
-import io
 import os
-import random
-import re
-import textwrap
 import time
-from asyncio.exceptions import TimeoutError
-from random import randint, uniform
 
 from glitch_this import ImageGlitcher
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
-from PIL import Image, ImageDraw, ImageEnhance, ImageFont, ImageOps
-from telethon import events, functions, types
-from telethon.errors.rpcerrorlist import YouBlockedUserError
+from PIL import Image
+from telethon import functions, types
 from telethon.tl.types import DocumentAttributeFilename
 
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
+from userbot import TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
 from userbot.utils import progress
 
 Glitched = TEMP_DOWNLOAD_DIRECTORY + "glitch.gif"
+
 
 @register(outgoing=True, pattern=r"^\.glit(?: |$)(.*)")
 async def glitch(event):

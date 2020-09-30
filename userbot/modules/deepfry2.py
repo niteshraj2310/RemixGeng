@@ -22,7 +22,7 @@ from userbot import bot
 from PIL import Image, ImageEnhance, ImageOps
 from telethon.tl.types import DocumentAttributeFilename
 from userbot.events import register
-from userbot.utils import progress
+
 
 @register(pattern=r"^\.deepfry(?: |$)(.*)", outgoing=True)
 async def deepfryer(event):
