@@ -23,7 +23,6 @@ from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.types import DocumentAttributeVideo
 from userbot.utils import progress
-import pybase64
 
 
 async def catmusic(cat, QUALITY, hello):
