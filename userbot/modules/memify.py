@@ -68,7 +68,6 @@ async def mim(event):
     os.system("rm -rf *.tgs")
     os.system("rm -rf *.mp4")
     os.remove(webp_file)
-    os.remove(downloaded_file_name)
 
 
 async def draw_meme_text(image_path, text):
