@@ -112,34 +112,6 @@ async def take_screen_shot(video_file: str, duration: int,
     return thumb_image_path if os.path.exists(thumb_image_path) else None
 
 
-async def check_media(reply_message):
-    if reply_message and reply_message.media:
-        if reply_message.photo:
-            data = reply_message.photo
-        elif reply_message.document:
-            if (
-                DocumentAttributeFilename(file_name="AnimatedSticker.tgs")
-                in reply_message.media.document.attributes
-            ):
-                return False
-            if (
-                reply_message.gif
-                or reply_message.video
-                or reply_message.audio
-                or reply_message.voice
-            ):
-                return False
-            data = reply_message.media.document
-        else:
-            return False
-    else:
-        return False
-
-    if not data or data is None:
-        return False
-    else:
-        return data
-
 # For Downloading & Checking Media then Converting to Image.
 # RETURNS an "Image".
 """Grabbed from USERGE"""

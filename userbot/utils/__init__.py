@@ -15,5 +15,4 @@ from .tools import (
     media_to_image,
     take_screen_shot,
     runcmd,
-    md5,
-    check_media)
+    md5)

@@ -8,15 +8,15 @@
 import asyncio
 import os
 import textwrap
-
+from telethon.tl.types import DocumentAttributeFilename
 from PIL import Image, ImageDraw, ImageFont
-
+from hachoir.metadata import extractMetadata
+from hachoir.parser import createParser
 from userbot import TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
-from userbot.utils import check_media
+from userbot.utils import progress
 
 THUMB_IMAGE_PATH = "./thumb_image.jpg"
-
 
 @register(outgoing=True, pattern=r"^\.mmf(?: |$)(.*)")
 async def mim(event):
@@ -25,22 +25,35 @@ async def mim(event):
             "`Syntax: reply to an image with .mmf` 'text on top' ; 'text on bottom' "
         )
         return
-
     reply_message = await event.get_reply_message()
     if not reply_message.media:
         await event.edit("```reply to a image/sticker/gif```")
         return
-    if event.is_reply:
-        data = await check_media(reply_message)
-        if isinstance(data, bool):
-            await event.edit("`Unsupported Files...`")
-            return
-    await event.edit("`Downloading media..`")
-    downloaded_file_name = os.path.join(TEMP_DOWNLOAD_DIRECTORY, "meme.jpg")
-    dls_loc = await bot.download_media(
-        reply_message,
-        downloaded_file_name,
-    )
+    await event.edit("`Downloading Media..`")
+    if (
+        DocumentAttributeFilename(file_name="AnimatedSticker.tgs")
+        in reply_message.media.document.attributes
+    ):
+        await bot.download_media(
+            reply_message,
+            "meme.tgs",
+        )
+        os.system("lottie_convert.py meme.tgs meme.png")
+        dls_loc = "meme.png"
+    elif reply_message.video:
+        video = await bot.download_media(
+            reply_message,
+            "meme.mp4",
+        )
+        extractMetadata(createParser(video))
+        os.system("ffmpeg -i meme.mp4 -vframes 1 -an -s 480x360 -ss 1 meme.png")
+        dls_loc = "meme.png"
+    else:
+        downloaded_file_name = os.path.join(TEMP_DOWNLOAD_DIRECTORY, "meme.png")
+        dls_loc = await bot.download_media(
+            reply_message,
+            downloaded_file_name,
+        )
     await event.edit(
         "```Transfiguration Time! Mwahaha Memifying this image! (」ﾟﾛﾟ)｣ ```"
     )
@@ -51,7 +64,10 @@ async def mim(event):
         event.chat_id, webp_file, reply_to=event.reply_to_msg_id
     )
     await event.delete()
+    os.system("rm -rf *.tgs")
+    os.system("rm -rf *.mp4")
     os.remove(webp_file)
+    os.remove(downloaded_file_name)
 
 
 async def draw_meme_text(image_path, text):

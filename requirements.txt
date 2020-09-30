@@ -89,3 +89,4 @@ lottie
 glitch_this
 vcsi
 colour
+cairosvg
