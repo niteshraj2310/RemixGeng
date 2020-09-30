@@ -20,9 +20,8 @@ from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from PIL import Image, ImageEnhance, ImageOps
 from telethon.tl.types import DocumentAttributeFilename
-
+from userbot import bot
 from userbot.events import register
-
 
 @register(pattern=r"^\.deepfry(?: |$)(.*)", outgoing=True)
 async def deepfryer(event):
