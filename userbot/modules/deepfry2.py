@@ -18,9 +18,9 @@ import io
 from random import randint, uniform
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
+from userbot import bot
 from PIL import Image, ImageEnhance, ImageOps
 from telethon.tl.types import DocumentAttributeFilename
-from userbot import bot
 from userbot.events import register
 
 
