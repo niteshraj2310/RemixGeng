@@ -5,13 +5,14 @@
 #
 # Port to userbot by @MoveAngel
 
+import requests
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from asyncio.exceptions import TimeoutError
 from userbot.events import register
 from userbot import bot, CMD_HELP
 from userbot.events import register
 from asyncio.exceptions import TimeoutError
-
+from telethon import events
 
 @register(outgoing=True, pattern=r"^\.sm(?: |$)(.*)")
 async def lastname(steal):
