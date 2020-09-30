@@ -30,7 +30,12 @@ async def mim(event):
         await event.edit("```reply to a image/sticker/gif```")
         return
     await event.edit("`Downloading Media..`")
-    if (
+    if reply_message.photo:
+        dls_loc = await bot.download_media(
+            reply_message,
+            "meme.png",
+        )
+    elif (
         DocumentAttributeFilename(file_name="AnimatedSticker.tgs")
         in reply_message.media.document.attributes
     ):
@@ -49,11 +54,9 @@ async def mim(event):
         os.system("ffmpeg -i meme.mp4 -vframes 1 -an -s 480x360 -ss 1 meme.png")
         dls_loc = "meme.png"
     else:
-        downloaded_file_name = os.path.join(
-            TEMP_DOWNLOAD_DIRECTORY, "meme.png")
         dls_loc = await bot.download_media(
             reply_message,
-            downloaded_file_name,
+            "meme.png",
         )
     await event.edit(
         "```Transfiguration Time! Mwahaha Memifying this image! (」ﾟﾛﾟ)｣ ```"
@@ -67,8 +70,8 @@ async def mim(event):
     await event.delete()
     os.system("rm -rf *.tgs")
     os.system("rm -rf *.mp4")
+    os.system("rm -rf *.png")
     os.remove(webp_file)
-
 
 async def draw_meme_text(image_path, text):
     img = Image.open(image_path)

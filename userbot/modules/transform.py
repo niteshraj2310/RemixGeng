@@ -24,7 +24,12 @@ async def transform(event):
         await event.edit("`reply to a image/sticker`")
         return
     await event.edit("`Downloading Media..`")
-    if (
+    if reply_message.photo:
+        transform = await bot.download_media(
+            reply_message,
+            "transform.png",
+        )
+    elif (
         DocumentAttributeFilename(file_name="AnimatedSticker.tgs")
         in reply_message.media.document.attributes
     ):
@@ -86,7 +91,12 @@ async def rotate(event):
         await event.edit("`reply to a image/sticker`")
         return
     await event.edit("`Downloading Media..`")
-    if (
+    if reply_message.photo:
+        rotate = await bot.download_media(
+            reply_message,
+            "transform.png",
+        )
+    elif (
         DocumentAttributeFilename(file_name="AnimatedSticker.tgs")
         in reply_message.media.document.attributes
     ):
@@ -131,18 +141,19 @@ async def rotate(event):
     os.remove(Converted)
 
 
-CMD_HELP.update({
-    "transform": "`.ghost`"
-    "\nUsage: Enchance your image to become a ghost!."
-    "\n\n`.flip`"
-    "\nUsage: To flip your image"
-    "\n\n`.mirror`"
-    "\nUsage: To mirror your image"
-    "\n\n`.bw`"
-    "\nUsage: To Change your colorized image to b/w image!"
-    "\n\n`.poster`"
-    "\nUsage: To posterize your image!"
-    "\n\n`.rotate <value>`"
-    "\nUsage: To rotate your image\nThe value is range 1-360 if not it'll give default value which is 90"
-    "\n\n`.mmf toptext ; bottomtext`"
-    "\nUsage:mmf creates a sticker meme with give text at specific locations and sends."})
+CMD_HELP.update(
+    {
+        "transform": ">`.ghost`"
+        "\nUsage: Enchance your image to become a ghost!."
+        "\n\n>`.flip`"
+        "\nUsage: To flip your image"
+        "\n\n>`.mirror`"
+        "\nUsage: To mirror your image"
+        "\n\n>`.bw`"
+        "\nUsage: To Change your colorized image to b/w image!"
+        "\n\n>`.poster`"
+        "\nUsage: To posterize your image!"
+        "\n\n>`.rotate <value>`"
+        "\nUsage: To rotate your image\n* The value is range 1-360 if not it'll give default value which is 90"
+    }
+)

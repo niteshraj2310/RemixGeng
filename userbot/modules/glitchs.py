@@ -3,27 +3,35 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
+# Multifunction memes
+#
 # Based code + improve from AdekMaulana and aidilaryanto
 
 import asyncio
+import io
 import os
+import random
+import re
+import textwrap
 import time
+from asyncio.exceptions import TimeoutError
+from random import randint, uniform
 
 from glitch_this import ImageGlitcher
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
-from PIL import Image
-from telethon import functions, types
+from PIL import Image, ImageDraw, ImageEnhance, ImageFont, ImageOps
+from telethon import events, functions, types
+from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.types import DocumentAttributeFilename
 
-from userbot import TEMP_DOWNLOAD_DIRECTORY, bot
+from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
 from userbot.utils import progress
 
 Glitched = TEMP_DOWNLOAD_DIRECTORY + "glitch.gif"
 
-
-@register(outgoing=True, pattern=r"^\.gtch(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.glit(?: |$)(.*)")
 async def glitch(event):
     if not event.reply_to_msg_id:
         await event.edit("`I Wont Glitch A Ghost!`")
@@ -33,7 +41,12 @@ async def glitch(event):
         await event.edit("`reply to a image/sticker`")
         return
     await event.edit("`Downloading Media..`")
-    if (
+    if reply_message.photo:
+        glitch_file = await bot.download_media(
+            reply_message,
+            "glitch.png",
+        )
+    elif (
         DocumentAttributeFilename(file_name="AnimatedSticker.tgs")
         in reply_message.media.document.attributes
     ):

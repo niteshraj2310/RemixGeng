@@ -22,7 +22,7 @@ from userbot import bot
 from PIL import Image, ImageEnhance, ImageOps
 from telethon.tl.types import DocumentAttributeFilename
 from userbot.events import register
-
+from userbot.utils import progress
 
 @register(pattern=r"^\.deepfry(?: |$)(.*)", outgoing=True)
 async def deepfryer(event):
@@ -35,7 +35,12 @@ async def deepfryer(event):
     reply_message = await event.get_reply_message()
     image = io.BytesIO()
     await event.edit("`Downloading media..`")
-    if (
+    if reply_message.photo:
+        image = await bot.download_media(
+            reply_message,
+            "df.png",
+        )
+    elif (
         DocumentAttributeFilename(file_name="AnimatedSticker.tgs")
         in reply_message.media.document.attributes
     ):
