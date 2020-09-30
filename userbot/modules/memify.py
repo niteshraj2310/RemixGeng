@@ -14,9 +14,9 @@ from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from userbot import TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
-from userbot.utils import progress
 
 THUMB_IMAGE_PATH = "./thumb_image.jpg"
+
 
 @register(outgoing=True, pattern=r"^\.mmf(?: |$)(.*)")
 async def mim(event):
@@ -49,7 +49,8 @@ async def mim(event):
         os.system("ffmpeg -i meme.mp4 -vframes 1 -an -s 480x360 -ss 1 meme.png")
         dls_loc = "meme.png"
     else:
-        downloaded_file_name = os.path.join(TEMP_DOWNLOAD_DIRECTORY, "meme.png")
+        downloaded_file_name = os.path.join(
+            TEMP_DOWNLOAD_DIRECTORY, "meme.png")
         dls_loc = await bot.download_media(
             reply_message,
             downloaded_file_name,

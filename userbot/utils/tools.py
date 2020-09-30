@@ -16,10 +16,9 @@ from typing import Tuple
 from telethon.tl.functions.channels import GetParticipantRequest
 from telethon.tl.types import ChannelParticipantAdmin
 from telethon.tl.types import ChannelParticipantCreator
-from telethon.tl.types import DocumentAttributeFilename
 from userbot import bot
 from userbot import LOGS
-from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator, DocumentAttributeFilename
+from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator
 from userbot import TEMP_DOWNLOAD_DIRECTORY
 
 
