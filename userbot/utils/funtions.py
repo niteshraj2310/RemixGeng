@@ -1,28 +1,34 @@
+import asyncio
 import os
 import shlex
-import asyncio
 from os.path import basename
-from typing import Optional, Tuple
+from typing import Optional
+from typing import Tuple
+
 from userbot import TEMP_DOWNLOAD_DIRECTORY
-from userbot.utils import take_screen_shot, runcmd, progress
+from userbot.utils import progress
+from userbot.utils import runcmd
+from userbot.utils import take_screen_shot
+
 
 # For using gif , animated stickers and videos in some parts , this
 # function takes  take a screenshot and stores ported from userge
-
-
-async def take_screen_shot(video_file: str, duration: int, path: str = '') -> Optional[str]:
+async def take_screen_shot(video_file: str, duration: int,
+                           path: str = "") -> Optional[str]:
     print(
-        '[[[Extracting a frame from %s ||| Video duration => %s]]]',
+        "[[[Extracting a frame from %s ||| Video duration => %s]]]",
         video_file,
-        duration)
+        duration,
+    )
     ttl = duration // 2
-    thumb_image_path = path or os.path.join(
-        "./temp/", f"{basename(video_file)}.jpg")
+    thumb_image_path = path or os.path.join("./temp/",
+                                            f"{basename(video_file)}.jpg")
     command = f"ffmpeg -ss {ttl} -i '{video_file}' -vframes 1 '{thumb_image_path}'"
     err = (await runcmd(command))[1]
     if err:
         print(err)
     return thumb_image_path if os.path.exists(thumb_image_path) else None
+
 
 # For Downloading & Checking Media then Converting to Image.
 # RETURNS an "Image".
@@ -31,7 +37,8 @@ async def take_screen_shot(video_file: str, duration: int, path: str = '') -> Op
 
 async def media_to_image(event):
     replied = event.reply_to_message
-    if not (replied.photo or replied.sticker or replied.animation or replied.video):
+    if not (replied.photo or replied.sticker or replied.animation
+            or replied.video):
         await event.edit("`Media Type Is Invalid ! See HELP.`")
         return
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
@@ -41,7 +48,7 @@ async def media_to_image(event):
         message=event.reply_to_message,
         file_name=TEMP_DOWNLOAD_DIRECTORY,
         progress=progress,
-        progress_args=(event, "`Trying to Posses given content`")
+        progress_args=(event, "`Trying to Posses given content`"),
     )
     dls_loc = os.path.join(TEMP_DOWNLOAD_DIRECTORY, os.path.basename(dls))
     if replied.sticker and replied.sticker.file_name.endswith(".tgs"):
@@ -51,7 +58,8 @@ async def media_to_image(event):
         stdout, stderr = (await runcmd(cmd))[:2]
         os.remove(dls_loc)
         if not os.path.lexists(png_file):
-            await event.edit("This sticker is Gey, Task Failed Successfully ≧ω≦")
+            await event.edit(
+                "This sticker is Gey, Task Failed Successfully ≧ω≦")
             raise Exception(stdout + stderr)
         dls_loc = png_file
     elif replied.sticker and replied.sticker.file_name.endswith(".webp"):
@@ -67,22 +75,25 @@ async def media_to_image(event):
         await take_screen_shot(dls_loc, 0, jpg_file)
         os.remove(dls_loc)
         if not os.path.lexists(jpg_file):
-            await event.edit("This Gif is Gey (｡ì _ í｡), Task Failed Successfully !")
+            await event.edit(
+                "This Gif is Gey (｡ì _ í｡), Task Failed Successfully !")
             return
         dls_loc = jpg_file
     await event.edit("`Almost Done ...`")
     return dls_loc
+
 
 # executing of terminal commands
 
 
 async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
     args = shlex.split(cmd)
-    process = await asyncio.create_subprocess_exec(*args,
-                                                   stdout=asyncio.subprocess.PIPE,
-                                                   stderr=asyncio.subprocess.PIPE)
+    process = await asyncio.create_subprocess_exec(
+        *args, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
     stdout, stderr = await process.communicate()
-    return (stdout.decode('utf-8', 'replace').strip(),
-            stderr.decode('utf-8', 'replace').strip(),
-            process.returncode,
-            process.pid)
+    return (
+        stdout.decode("utf-8", "replace").strip(),
+        stderr.decode("utf-8", "replace").strip(),
+        process.returncode,
+        process.pid,
+    )

@@ -2,8 +2,8 @@
 #
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
-
 from covid import Covid
+
 from userbot import CMD_HELP
 from userbot.events import register
 
@@ -37,11 +37,15 @@ async def corona(event):
         output_text = f"`⚠️Confirmed   : {format_integer(country_data['confirmed'])}`\n"
         output_text += f"`☢️Active      : {format_integer(country_data['active'])}`\n"
         output_text += f"`🤕Critical    : {format_integer(country_data['critical'])}`\n"
-        output_text += f"`😟New Deaths  : {format_integer(country_data['new_deaths'])}`\n\n"
+        output_text += (
+            f"`😟New Deaths  : {format_integer(country_data['new_deaths'])}`\n\n"
+        )
         output_text += f"`⚰️Deaths      : {format_integer(country_data['deaths'])}`\n"
         output_text += f"`😔New Cases   : {format_integer(country_data['new_cases'])}`\n"
         output_text += f"`😇Recovered   : {format_integer(country_data['recovered'])}`\n"
-        output_text += f"`🧪Total tests : {format_integer(country_data['total_tests'])}`\n\n"
+        output_text += (
+            f"`🧪Total tests : {format_integer(country_data['total_tests'])}`\n\n"
+        )
         output_text += f"Data provided by [Worldometer](https://www.worldometers.info/coronavirus/country/{country})"
     else:
         output_text = "No information yet about this country!"
@@ -59,7 +63,9 @@ async def corona(event):
         output_text = f"`⚠️Confirmed   : {format_integer(country_data['confirmed'])}`\n"
         output_text += f"`☢️Active      : {format_integer(country_data['active'])}`\n"
         output_text += f"`🤕Critical    : {format_integer(country_data['critical'])}`\n"
-        output_text += f"`😟New Deaths  : {format_integer(country_data['new_deaths'])}`\n\n"
+        output_text += (
+            f"`😟New Deaths  : {format_integer(country_data['new_deaths'])}`\n\n"
+        )
         output_text += f"`⚰️Deaths      : {format_integer(country_data['deaths'])}`\n"
         output_text += f"`😔New Cases   : {format_integer(country_data['new_cases'])}`\n"
         output_text += f"`😇Recovered   : {format_integer(country_data['recovered'])}`\n"
@@ -71,7 +77,10 @@ async def corona(event):
     await event.edit(f"`Corona Virus Info in {country}:`\n\n{output_text}")
 
 
-CMD_HELP.update({"covid": "`.covid `**<country>**"
-                 "\n`Usage: Get an information about covid-19 data in your country.`\n\n"
-                 "`.covid`"
-                 "\n`Usage: Get an information about covid-19 data in Worldwide.`\n"})
+CMD_HELP.update({
+    "covid":
+    "`.covid `**<country>**"
+    "\n`Usage: Get an information about covid-19 data in your country.`\n\n"
+    "`.covid`"
+    "\n`Usage: Get an information about covid-19 data in Worldwide.`\n"
+})
