@@ -26,9 +26,9 @@ async def quotess(qotli):
         return
     chat = "@QuotLyBot"
     reply_message.sender
-    if reply_message.sender.bot:
-        await qotli.edit("```Reply to actual NIBBA's  message.```")
-        return
+  # if reply_message.sender.bot:
+      # await qotli.edit("```Reply to actual NIBBA's  message.```")
+      # return
     try:
         await qotli.edit("`Making a Quote Plox Wait..`")
         async with bot.conversation(chat) as conv:
