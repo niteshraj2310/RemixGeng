@@ -1,29 +1,24 @@
 # Originally from Bothub
 # Port to UserBot by @heyworld
-from telethon import events
-import asyncio
-from userbot.events import register
-from userbot import bot, CMD_HELP
-from telethon.errors.rpcerrorlist import YouBlockedUserError
-
-# Copyright (C) 2020 azrim.
-# imported .song and .vsong form catuserbot
-
-from telethon import events
 import asyncio
 import glob
-from userbot.events import register
-from userbot import CMD_HELP, GOOGLE_CHROME_BIN, bot, bot
-from telethon.errors.rpcerrorlist import YouBlockedUserError
 import os
 import time
+
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from selenium import webdriver
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.types import DocumentAttributeVideo
+
+from userbot import CMD_HELP, GOOGLE_CHROME_BIN, bot
+from userbot.events import register
 from userbot.utils import progress
+
+# Copyright (C) 2020 azrim.
+# imported .song and .vsong form catuserbot
+
 
 
 async def catmusic(cat, QUALITY, hello):
