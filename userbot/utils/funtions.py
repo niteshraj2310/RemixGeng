@@ -13,16 +13,16 @@ from userbot.utils import take_screen_shot
 
 # For using gif , animated stickers and videos in some parts , this
 # function takes  take a screenshot and stores ported from userge
-async def take_screen_shot(
-    video_file: str, duration: int, path: str = ""
-) -> Optional[str]:
+async def take_screen_shot(video_file: str, duration: int,
+                           path: str = "") -> Optional[str]:
     print(
         "[[[Extracting a frame from %s ||| Video duration => %s]]]",
         video_file,
         duration,
     )
     ttl = duration // 2
-    thumb_image_path = path or os.path.join("./temp/", f"{basename(video_file)}.jpg")
+    thumb_image_path = path or os.path.join("./temp/",
+                                            f"{basename(video_file)}.jpg")
     command = f"ffmpeg -ss {ttl} -i '{video_file}' -vframes 1 '{thumb_image_path}'"
     err = (await runcmd(command))[1]
     if err:
@@ -37,7 +37,8 @@ async def take_screen_shot(
 
 async def media_to_image(event):
     replied = event.reply_to_message
-    if not (replied.photo or replied.sticker or replied.animation or replied.video):
+    if not (replied.photo or replied.sticker or replied.animation
+            or replied.video):
         await event.edit("`Media Type Is Invalid ! See HELP.`")
         return
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
@@ -57,7 +58,8 @@ async def media_to_image(event):
         stdout, stderr = (await runcmd(cmd))[:2]
         os.remove(dls_loc)
         if not os.path.lexists(png_file):
-            await event.edit("This sticker is Gey, Task Failed Successfully ≧ω≦")
+            await event.edit(
+                "This sticker is Gey, Task Failed Successfully ≧ω≦")
             raise Exception(stdout + stderr)
         dls_loc = png_file
     elif replied.sticker and replied.sticker.file_name.endswith(".webp"):
@@ -73,7 +75,8 @@ async def media_to_image(event):
         await take_screen_shot(dls_loc, 0, jpg_file)
         os.remove(dls_loc)
         if not os.path.lexists(jpg_file):
-            await event.edit("This Gif is Gey (｡ì _ í｡), Task Failed Successfully !")
+            await event.edit(
+                "This Gif is Gey (｡ì _ í｡), Task Failed Successfully !")
             return
         dls_loc = jpg_file
     await event.edit("`Almost Done ...`")
@@ -86,8 +89,7 @@ async def media_to_image(event):
 async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
     args = shlex.split(cmd)
     process = await asyncio.create_subprocess_exec(
-        *args, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
-    )
+        *args, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
     stdout, stderr = await process.communicate()
     return (
         stdout.decode("utf-8", "replace").strip(),
