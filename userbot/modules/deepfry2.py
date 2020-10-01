@@ -15,6 +15,7 @@
 """ Userbot module for frying stuff. ported by @NeoMatrix90 """
 
 import io
+import os
 from random import randint, uniform
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
