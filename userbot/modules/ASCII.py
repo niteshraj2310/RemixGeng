@@ -14,6 +14,7 @@ import random
 from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
+
 @register(outgoing=True, pattern=r"^\.(ascii|asciialt)$")
 async def ascii_(event):
     if not event.reply_to_msg_id:
@@ -41,6 +42,7 @@ async def ascii_(event):
     await event.delete()
     os.remove(img_file)
     os.remove(dls_loc)
+
 
 def asciiart(in_f, SC, GCF, color1, color2, bgcolor, ascii_type):
     chars = np.asarray(list(' .,:irs?@9B&#'))
@@ -78,6 +80,7 @@ def asciiart(in_f, SC, GCF, color1, color2, bgcolor, ascii_type):
     img_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY, image_name)
     newImg.save(img_file)
     return img_file
+
 
 def random_color():
     number_of_colors = 2
