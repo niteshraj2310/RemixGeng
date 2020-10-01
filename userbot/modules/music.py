@@ -43,17 +43,19 @@ async def catmusic(cat, QUALITY, hello):
         return
     try:
         command = (
-            'youtube-dl -o "./temp/%(title)s.%(ext)s" --extract-audio --audio-format mp3 --audio-quality ' +
-            QUALITY +
-            " " +
-            video_link)
+            'youtube-dl -o "./temp/%(title)s.%(ext)s" --extract-audio --audio-format mp3 --audio-quality '
+            + QUALITY
+            + " "
+            + video_link
+        )
         os.system(command)
     except Exception as e:
         return await hello.edit(f"`Error:\n {e}`")
     try:
         thumb = (
-            'youtube-dl -o "./temp/%(title)s.%(ext)s" --write-thumbnail --skip-download ' +
-            video_link)
+            'youtube-dl -o "./temp/%(title)s.%(ext)s" --write-thumbnail --skip-download '
+            + video_link
+        )
         os.system(thumb)
     except Exception as e:
         return await hello.edit(f"`Error:\n {e}`")
@@ -196,8 +198,7 @@ async def _(event):
         if metadata.has("height"):
             height = metadata.get("height")
         os.system("cp *mp4 thumb.mp4")
-        os.system(
-            "ffmpeg -i thumb.mp4 -vframes 1 -an -s 480x360 -ss 5 thumb.jpg")
+        os.system("ffmpeg -i thumb.mp4 -vframes 1 -an -s 480x360 -ss 5 thumb.jpg")
         thumb_image = "thumb.jpg"
         c_time = time.time()
         await event.client.send_file(
@@ -218,8 +219,9 @@ async def _(event):
                     supports_streaming=True,
                 )
             ],
-            progress_callback=lambda d, t: asyncio.get_event_loop().
-            create_task(progress(d, t, event, c_time, "[UPLOAD]", loa)),
+            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+                progress(d, t, event, c_time, "[UPLOAD]", loa)
+            ),
         )
         await event.edit(f"**{query}** `Uploaded Successfully..!`")
         os.remove(thumb_image)
@@ -244,10 +246,12 @@ async def _(event):
     async with bot.conversation(chat) as conv:
         await asyncio.sleep(2)
         await event.edit(
-            "`Downloading Music It may take some time So Stay Tuned .....`")
+            "`Downloading Music It may take some time So Stay Tuned .....`"
+        )
         try:
             response = conv.wait_event(
-                events.NewMessage(incoming=True, from_users=752979930))
+                events.NewMessage(incoming=True, from_users=752979930)
+            )
             await bot.send_message(chat, link)
             respond = await response
         except YouBlockedUserError:
@@ -282,8 +286,7 @@ async def WooMai(netase):
         await netase.edit("`Sending Your Music...`")
         await asyncio.sleep(3)
         await bot.send_file(netase.chat_id, respond)
-    await netase.client.delete_messages(conv.chat_id,
-                                        [msg.id, response.id, respond.id])
+    await netase.client.delete_messages(conv.chat_id, [msg.id, response.id, respond.id])
     await netase.delete()
 
 
@@ -293,8 +296,7 @@ async def DeezLoader(Deezlod):
         return
     d_link = Deezlod.pattern_match.group(1)
     if ".com" not in d_link:
-        await Deezlod.edit(
-            "` I need a link to download something pro.`**(._.)**")
+        await Deezlod.edit("` I need a link to download something pro.`**(._.)**")
     else:
         await Deezlod.edit("**Initiating Download!**")
     chat = "@DeezLoadBot"
@@ -309,19 +311,18 @@ async def DeezLoader(Deezlod):
             """ - don't spam notif - """
             await bot.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await Deezlod.edit("**Error:** `unblock` @DeezLoadBot `and retry!`"
-                               )
+            await Deezlod.edit("**Error:** `unblock` @DeezLoadBot `and retry!`")
             return
         await bot.send_file(Deezlod.chat_id, song, caption=details.text)
         await Deezlod.client.delete_messages(
-            conv.chat_id,
-            [msg_start.id, response.id, r.id, msg.id, details.id, song.id])
+            conv.chat_id, [msg_start.id, response.id, r.id, msg.id, details.id, song.id]
+        )
         await Deezlod.delete()
 
 
-CMD_HELP.update({
-    "music":
-    "`.spd`<Artist - Song Title>\
+CMD_HELP.update(
+    {
+        "music": "`.spd`<Artist - Song Title>\
             \nUsage:For searching songs from Spotify.\
             \n\n`.song` or `.vsong`\
             \nUsage:for downloading music\
@@ -334,4 +335,5 @@ CMD_HELP.update({
             \n\nWell deezer is not available in India so create an deezer account using vpn. Set `DEEZER_ARL_TOKEN` in vars to make this work.\
             \n\n**Format**= `FLAC`, `MP3_320`, `MP3_256`, `MP3_128`.\
             \n\n\n Guide:Video guide of arl token: [here](https://www.youtube.com/watch?v=O6PRT47_yds&feature=youtu.be) or Read [This](https://notabug.org/RemixDevs/DeezloaderRemix/wiki/Login+via+userToken)."
-})
+    }
+)
