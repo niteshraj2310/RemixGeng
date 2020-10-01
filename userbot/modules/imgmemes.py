@@ -112,7 +112,7 @@ async def phss(uplded, input, name):
 async def trumptweet(text):
     r = requests.get(
         f"https://nekobot.xyz/api/imagegen?type=trumptweet&text={text}").json(
-    )
+        )
     geng = r.get("message")
     kapak = url(geng)
     if not kapak:
