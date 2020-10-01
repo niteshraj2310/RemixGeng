@@ -43,15 +43,17 @@ async def catmusic(cat, QUALITY, hello):
         return
     try:
         command = (
-            'youtube-dl -o "./temp/%(title)s.%(ext)s" --extract-audio --audio-format mp3 --audio-quality '
-            + QUALITY + " " + video_link)
+            'youtube-dl -o "./temp/%(title)s.%(ext)s" --extract-audio --audio-format mp3 --audio-quality ' +
+            QUALITY +
+            " " +
+            video_link)
         os.system(command)
     except Exception as e:
         return await hello.edit(f"`Error:\n {e}`")
     try:
         thumb = (
-            'youtube-dl -o "./temp/%(title)s.%(ext)s" --write-thumbnail --skip-download '
-            + video_link)
+            'youtube-dl -o "./temp/%(title)s.%(ext)s" --write-thumbnail --skip-download ' +
+            video_link)
         os.system(thumb)
     except Exception as e:
         return await hello.edit(f"`Error:\n {e}`")
