@@ -2,13 +2,10 @@ import asyncio
 import os
 import shlex
 from os.path import basename
-from typing import Optional
-from typing import Tuple
+from typing import Optional, Tuple
 
 from userbot import TEMP_DOWNLOAD_DIRECTORY
-from userbot.utils import progress
-from userbot.utils import runcmd
-from userbot.utils import take_screen_shot
+from userbot.utils import progress, runcmd, take_screen_shot
 
 
 # For using gif , animated stickers and videos in some parts , this

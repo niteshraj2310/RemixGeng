@@ -4,8 +4,7 @@ import os
 import time
 from datetime import datetime
 
-from userbot import bot
-from userbot import TEMP_DOWNLOAD_DIRECTORY
+from userbot import TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
 from userbot.utils import progress
 
