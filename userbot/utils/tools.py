@@ -159,4 +159,3 @@ async def media_to_image(event):
         dls_loc = jpg_file
     await event.edit("`Almost Done ...`")
     return dls_loc
-    await event.delete()

@@ -10,8 +10,7 @@ from userbot.events import register
 
 def format_integer(number, thousand_separator="."):
     def reverse(string):
-        string = "".join(reversed(string))
-        return string
+        return "".join(reversed(string))
 
     s = reverse(str(number))
     count = 0

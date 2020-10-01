@@ -15,11 +15,11 @@ async def _(event):
     reply_to_id = event.message.id
     if event.reply_to_msg_id:
         reply_to_id = event.reply_to_msg_id
-    filename = "stkr.jpg"
     await event.edit("```Converting.....```")
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
     if event.reply_to_msg_id:
+        filename = "stkr.jpg"
         file_name = filename
         reply_message = await event.get_reply_message()
         to_download_directory = TEMP_DOWNLOAD_DIRECTORY
@@ -35,10 +35,10 @@ async def _(event):
                 reply_to=reply_to_id,
             )
             os.remove(downloaded_file_name)
-            await event.delete()
         else:
             await event.edit("```Ooof i can't handel dat```")
-            await event.delete()
+
+        await event.delete()
 
 
 @register(outgoing=True, pattern=r"^\.stik(?: |$)(.*)")
@@ -48,11 +48,11 @@ async def _(event):
     reply_to_id = event.message.id
     if event.reply_to_msg_id:
         reply_to_id = event.reply_to_msg_id
-    filename = "kek.webp"
     await event.edit("```Converting.....```")
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
     if event.reply_to_msg_id:
+        filename = "kek.webp"
         file_name = filename
         reply_message = await event.get_reply_message()
         to_download_directory = TEMP_DOWNLOAD_DIRECTORY
@@ -68,10 +68,10 @@ async def _(event):
                 reply_to=reply_to_id,
             )
             os.remove(downloaded_file_name)
-            await event.delete()
         else:
             await event.edit("```Ooff i can't Handel Dat```")
-            await event.delete()
+
+        await event.delete()
 
 
 @register(outgoing=True, pattern=r"^\.tft(?: |$)(.*)")
@@ -104,9 +104,7 @@ async def _(event):
     if input_str is None:
         await event.edit("`U DUMB DUDE`")
         return
-    if input_str == "mp3":
-        await event.edit("`converting...`")
-    elif input_str == "voice":
+    if input_str in ["mp3", "voice"]:
         await event.edit("`converting...`")
     else:
         await event.edit("try `.nfc voice` or`.nfc mp3`")
@@ -132,7 +130,6 @@ async def _(event):
         new_required_file_name = ""
         new_required_file_caption = ""
         command_to_run = []
-        force_document = False
         voice_note = False
         supports_streaming = False
         if input_str == "voice":
@@ -191,6 +188,7 @@ async def _(event):
         os.remove(downloaded_file_name)
         if os.path.exists(new_required_file_name):
             end_two = datetime.now()
+            force_document = False
             await bot.send_file(
                 entity=event.chat_id,
                 file=new_required_file_name,
