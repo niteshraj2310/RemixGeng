@@ -5,20 +5,19 @@
 #
 import asyncio
 import hashlib
-import os
-from os.path import basename
 import os.path
 import re
 import shlex
 from os.path import basename
 from typing import Optional
 from typing import Tuple
+
 from telethon.tl.functions.channels import GetParticipantRequest
 from telethon.tl.types import ChannelParticipantAdmin
 from telethon.tl.types import ChannelParticipantCreator
+
 from userbot import bot
 from userbot import LOGS
-from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator
 from userbot import TEMP_DOWNLOAD_DIRECTORY
 
 
@@ -118,7 +117,8 @@ async def take_screen_shot(video_file: str, duration: int,
 
 async def media_to_image(event):
     replied = event.reply_to_message
-    if not (replied.photo or replied.sticker or replied.animation or replied.video):
+    if not (replied.photo or replied.sticker or replied.animation
+            or replied.video):
         await event.edit("`Media Type Is Invalid ! See HELP.`")
         return
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
@@ -128,7 +128,7 @@ async def media_to_image(event):
         message=event.reply_to_message,
         file_name=TEMP_DOWNLOAD_DIRECTORY,
         progress=progress,
-        progress_args=(event, "`Trying to Posses given content`")
+        progress_args=(event, "`Trying to Posses given content`"),
     )
     dls_loc = os.path.join(TEMP_DOWNLOAD_DIRECTORY, os.path.basename(dls))
     if replied.sticker and replied.sticker.file_name.endswith(".tgs"):
@@ -138,7 +138,8 @@ async def media_to_image(event):
         stdout, stderr = (await runcmd(cmd))[:2]
         os.remove(dls_loc)
         if not os.path.lexists(png_file):
-            await event.edit("This sticker is Gey, Task Failed Successfully ≧ω≦")
+            await event.edit(
+                "This sticker is Gey, Task Failed Successfully ≧ω≦")
             raise Exception(stdout + stderr)
         dls_loc = png_file
     elif replied.sticker and replied.sticker.file_name.endswith(".webp"):
@@ -154,9 +155,9 @@ async def media_to_image(event):
         await take_screen_shot(dls_loc, 0, jpg_file)
         os.remove(dls_loc)
         if not os.path.lexists(jpg_file):
-            await event.edit("This Gif is Gey (｡ì _ í｡), Task Failed Successfully !")
+            await event.edit(
+                "This Gif is Gey (｡ì _ í｡), Task Failed Successfully !")
             return
         dls_loc = jpg_file
     await event.edit("`Almost Done ...`")
     return dls_loc
-    await event.delete()

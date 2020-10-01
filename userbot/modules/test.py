@@ -1,10 +1,12 @@
 import asyncio
+import logging
 import os
 import time
 from datetime import datetime
-import logging
+
+from userbot import bot
+from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
-from userbot import TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.utils import progress
 
 
@@ -15,18 +17,17 @@ async def _(event):
     reply_to_id = event.message.id
     if event.reply_to_msg_id:
         reply_to_id = event.reply_to_msg_id
-    filename = "stkr.jpg"
     await event.edit("```Converting.....```")
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
     if event.reply_to_msg_id:
+        filename = "stkr.jpg"
         file_name = filename
         reply_message = await event.get_reply_message()
         to_download_directory = TEMP_DOWNLOAD_DIRECTORY
         downloaded_file_name = os.path.join(to_download_directory, file_name)
         downloaded_file_name = await bot.download_media(
-            reply_message, downloaded_file_name
-        )
+            reply_message, downloaded_file_name)
         if os.path.exists(downloaded_file_name):
             picc = await bot.send_file(
                 event.chat_id,
@@ -35,10 +36,10 @@ async def _(event):
                 reply_to=reply_to_id,
             )
             os.remove(downloaded_file_name)
-            await event.delete()
         else:
             await event.edit("```Ooof i can't handel dat```")
-            await event.delete()
+
+        await event.delete()
 
 
 @register(outgoing=True, pattern=r"^\.stik(?: |$)(.*)")
@@ -48,18 +49,17 @@ async def _(event):
     reply_to_id = event.message.id
     if event.reply_to_msg_id:
         reply_to_id = event.reply_to_msg_id
-    filename = "kek.webp"
     await event.edit("```Converting.....```")
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
     if event.reply_to_msg_id:
+        filename = "kek.webp"
         file_name = filename
         reply_message = await event.get_reply_message()
         to_download_directory = TEMP_DOWNLOAD_DIRECTORY
         downloaded_file_name = os.path.join(to_download_directory, file_name)
         downloaded_file_name = await bot.download_media(
-            reply_message, downloaded_file_name
-        )
+            reply_message, downloaded_file_name)
         if os.path.exists(downloaded_file_name):
             picc = await bot.send_file(
                 event.chat_id,
@@ -68,10 +68,10 @@ async def _(event):
                 reply_to=reply_to_id,
             )
             os.remove(downloaded_file_name)
-            await event.delete()
         else:
             await event.edit("```Ooff i can't Handel Dat```")
-            await event.delete()
+
+        await event.delete()
 
 
 @register(outgoing=True, pattern=r"^\.tft(?: |$)(.*)")
@@ -104,9 +104,7 @@ async def _(event):
     if input_str is None:
         await event.edit("`U DUMB DUDE`")
         return
-    if input_str == "mp3":
-        await event.edit("`converting...`")
-    elif input_str == "voice":
+    if input_str in ["mp3", "voice"]:
         await event.edit("`converting...`")
     else:
         await event.edit("try `.nfc voice` or`.nfc mp3`")
@@ -117,30 +115,26 @@ async def _(event):
         downloaded_file_name = await bot.download_media(
             reply_message,
             TEMP_DOWNLOAD_DIRECTORY,
-            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                progress(d, t, event, c_time, "trying to download")
-            ),
+            progress_callback=lambda d, t: asyncio.get_event_loop().
+            create_task(progress(d, t, event, c_time, "trying to download")),
         )
     except Exception as e:  # pylint:disable=C0103,W0703
         await event.edit(str(e))
     else:
         end = datetime.now()
         ms = (end - start).seconds
-        await event.edit(
-            "Downloaded to `{}` in {} seconds.".format(downloaded_file_name, ms)
-        )
+        await event.edit("Downloaded to `{}` in {} seconds.".format(
+            downloaded_file_name, ms))
         new_required_file_name = ""
         new_required_file_caption = ""
         command_to_run = []
-        force_document = False
         voice_note = False
         supports_streaming = False
         if input_str == "voice":
-            new_required_file_caption = "voice_" + \
-                str(round(time.time())) + ".opus"
-            new_required_file_name = (
-                TEMP_DOWNLOAD_DIRECTORY + "/" + new_required_file_caption
-            )
+            new_required_file_caption = "voice_" + str(round(
+                time.time())) + ".opus"
+            new_required_file_name = (TEMP_DOWNLOAD_DIRECTORY + "/" +
+                                      new_required_file_caption)
             command_to_run = [
                 "ffmpeg",
                 "-i",
@@ -158,11 +152,10 @@ async def _(event):
             voice_note = True
             supports_streaming = True
         elif input_str == "mp3":
-            new_required_file_caption = "mp3_" + \
-                str(round(time.time())) + ".mp3"
-            new_required_file_name = (
-                TEMP_DOWNLOAD_DIRECTORY + "/" + new_required_file_caption
-            )
+            new_required_file_caption = "mp3_" + str(round(
+                time.time())) + ".mp3"
+            new_required_file_name = (TEMP_DOWNLOAD_DIRECTORY + "/" +
+                                      new_required_file_caption)
             command_to_run = [
                 "ffmpeg",
                 "-i",
@@ -191,6 +184,7 @@ async def _(event):
         os.remove(downloaded_file_name)
         if os.path.exists(new_required_file_name):
             end_two = datetime.now()
+            force_document = False
             await bot.send_file(
                 entity=event.chat_id,
                 file=new_required_file_name,
@@ -199,9 +193,8 @@ async def _(event):
                 force_document=force_document,
                 voice_note=voice_note,
                 supports_streaming=supports_streaming,
-                progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                    progress(d, t, event, c_time, "trying to upload")
-                ),
+                progress_callback=lambda d, t: asyncio.get_event_loop().
+                create_task(progress(d, t, event, c_time, "trying to upload")),
             )
             (end_two - end).seconds
             os.remove(new_required_file_name)

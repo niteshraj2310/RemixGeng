@@ -1,16 +1,20 @@
 # imported from catuserbot by @RoyalBoyPriyanshu and @DeletedUser420 also
 # thanks  @AbhinavShinde
 """  Some Modules Imported by @Nitesh_231 :) & Again @heyworld roks *_* """
-
 import os
-import requests
 import re
+
+import requests
 from html_telegraph_poster.upload_images import upload_image
-from telegraph import upload_file, exceptions
 from PIL import Image
+from telegraph import exceptions
+from telegraph import upload_file
 from validators.url import url
+
+from userbot import bot
+from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
-from userbot import TEMP_DOWNLOAD_DIRECTORY, bot
+
 EMOJI_PATTERN = re.compile(
     "["
     "\U0001F1E0-\U0001F1FF"  # flags (iOS)
@@ -29,8 +33,8 @@ EMOJI_PATTERN = re.compile(
 
 def convert_toimage(image):
     img = Image.open(image)
-    if img.mode != 'RGB':
-        img = img.convert('RGB')
+    if img.mode != "RGB":
+        img = img.convert("RGB")
     img.save("temp.jpg", "jpeg")
     os.remove(image)
     return "temp.jpg"
@@ -38,7 +42,7 @@ def convert_toimage(image):
 
 def deEmojify(inputString: str) -> str:
     """Remove emojis and other non-safe characters from string"""
-    return re.sub(EMOJI_PATTERN, '', inputString)
+    return re.sub(EMOJI_PATTERN, "", inputString)
 
 
 async def threats(text):
@@ -51,8 +55,8 @@ async def threats(text):
     with open("temp.png", "wb") as f:
         f.write(requests.get(sandy).content)
     img = Image.open("temp.png")
-    if img.mode != 'RGB':
-        img = img.convert('RGB')
+    if img.mode != "RGB":
+        img = img.convert("RGB")
     img.save("temp.jpg", "jpeg")
     return "temp.jpg"
 
@@ -67,15 +71,16 @@ async def trash(text):
     with open("temp.png", "wb") as f:
         f.write(requests.get(sandy).content)
     img = Image.open("temp.png")
-    if img.mode != 'RGB':
-        img = img.convert('RGB')
+    if img.mode != "RGB":
+        img = img.convert("RGB")
     img.save("temp.jpg", "jpeg")
     return "temp.jpg"
 
 
 async def trap(text1, text2, text3):
     r = requests.get(
-        f"https://nekobot.xyz/api/imagegen?type=trap&name={text1}&author={text2}&image={text3}").json()
+        f"https://nekobot.xyz/api/imagegen?type=trap&name={text1}&author={text2}&image={text3}"
+    ).json()
     sandy = r.get("message")
     caturl = url(sandy)
     if not caturl:
@@ -83,8 +88,8 @@ async def trap(text1, text2, text3):
     with open("temp.png", "wb") as f:
         f.write(requests.get(sandy).content)
     img = Image.open("temp.png")
-    if img.mode != 'RGB':
-        img = img.convert('RGB')
+    if img.mode != "RGB":
+        img = img.convert("RGB")
     img.save("temp.jpg", "jpeg")
     return "temp.jpg"
 
@@ -106,8 +111,8 @@ async def phss(uplded, input, name):
 
 async def trumptweet(text):
     r = requests.get(
-        f"https://nekobot.xyz/api/imagegen?type=trumptweet&text={text}"
-    ).json()
+        f"https://nekobot.xyz/api/imagegen?type=trumptweet&text={text}").json(
+        )
     geng = r.get("message")
     kapak = url(geng)
     if not kapak:
@@ -136,8 +141,7 @@ async def changemymind(text):
 
 async def kannagen(text):
     r = requests.get(
-        f"https://nekobot.xyz/api/imagegen?type=kannagen&text={text}"
-    ).json()
+        f"https://nekobot.xyz/api/imagegen?type=kannagen&text={text}").json()
     geng = r.get("message")
     kapak = url(geng)
     if not kapak:
@@ -151,7 +155,8 @@ async def kannagen(text):
 
 async def moditweet(text):
     r = requests.get(
-        f"https://nekobot.xyz/api/imagegen?type=tweet&text={text}&username=narendramodi").json()
+        f"https://nekobot.xyz/api/imagegen?type=tweet&text={text}&username=narendramodi"
+    ).json()
     sandy = r.get("message")
     caturl = url(sandy)
     if not caturl:
@@ -288,15 +293,18 @@ async def tweet(event):
             if not reply_to_id.media:
                 text = reply_to_id.message
             else:
-                await event.edit("`What should i tweet? Give your username and tweet!`")
+                await event.edit(
+                    "`What should i tweet? Give your username and tweet!`")
                 return
         else:
-            await event.edit("What should i tweet? Give your username and tweet!`")
+            await event.edit(
+                "What should i tweet? Give your username and tweet!`")
             return
     if "." in text:
         username, text = text.split(".")
     else:
-        await event.edit("`What should i tweet? Give your username and tweet!`")
+        await event.edit("`What should i tweet? Give your username and tweet!`"
+                         )
     await event.edit(f"`Requesting {username} to tweet...`")
     text = deEmojify(text)
     img = await tweets(text, username)
@@ -318,13 +326,15 @@ async def nekobot(event):
     else:
         await event.edit("reply to a supported media file")
         return
-    download_location = await bot.download_media(replied, TEMP_DOWNLOAD_DIRECTORY)
+    download_location = await bot.download_media(replied,
+                                                 TEMP_DOWNLOAD_DIRECTORY)
     if download_location.endswith((".webp")):
         download_location = convert_toimage(download_location)
     size = os.stat(download_location).st_size
     if download_location.endswith((".jpg", ".jpeg", ".png", ".bmp", ".ico")):
         if size > 5242880:
-            await event.edit("the replied file size is not supported it must me below 5 mb")
+            await event.edit(
+                "the replied file size is not supported it must me below 5 mb")
             os.remove(download_location)
             return
         await event.edit("generating image..")
@@ -358,13 +368,15 @@ async def nekobot(event):
     else:
         await event.edit("reply to a supported media file")
         return
-    download_location = await bot.download_media(replied, TEMP_DOWNLOAD_DIRECTORY)
+    download_location = await bot.download_media(replied,
+                                                 TEMP_DOWNLOAD_DIRECTORY)
     if download_location.endswith((".webp")):
         download_location = convert_toimage(download_location)
     size = os.stat(download_location).st_size
     if download_location.endswith((".jpg", ".jpeg", ".png", ".bmp", ".ico")):
         if size > 5242880:
-            await event.edit("the replied file size is not supported it must me below 5 mb")
+            await event.edit(
+                "the replied file size is not supported it must me below 5 mb")
             os.remove(download_location)
             return
         await event.edit("generating image..")
@@ -392,7 +404,9 @@ async def nekobot(e):
     if "|" in input_str:
         text1, text2 = input_str.split("|")
     else:
-        await e.edit("Usage : reply to image or sticker with `.trap (name of the person to trap)|(trapper name)`")
+        await e.edit(
+            "Usage : reply to image or sticker with `.trap (name of the person to trap)|(trapper name)`"
+        )
         return
     replied = await e.get_reply_message()
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
@@ -405,13 +419,15 @@ async def nekobot(e):
     else:
         await e.edit("reply to a supported media file")
         return
-    download_location = await bot.download_media(replied, TEMP_DOWNLOAD_DIRECTORY)
+    download_location = await bot.download_media(replied,
+                                                 TEMP_DOWNLOAD_DIRECTORY)
     if download_location.endswith((".webp")):
         download_location = convert_toimage(download_location)
     size = os.stat(download_location).st_size
     if download_location.endswith((".jpg", ".jpeg", ".png", ".bmp", ".ico")):
         if size > 5242880:
-            await e.edit("the replied file size is not supported it must me below 5 mb")
+            await e.edit(
+                "the replied file size is not supported it must me below 5 mb")
             os.remove(download_location)
             return
         await e.edit("generating image..")
@@ -444,10 +460,7 @@ async def phcomment(event):
                 name = user.first_name + " " + user.last_name
             else:
                 name = user.first_name
-            if text:
-                text = text
-            else:
-                text = str(reply.message)
+            text = text if text else str(reply.message)
         elif text:
             user = await bot.get_me()
             if user.last_name:
