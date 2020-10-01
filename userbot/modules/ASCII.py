@@ -20,10 +20,10 @@ async def ascii_(event):
     if not event.reply_to_msg_id:
         await event.edit("```Reply To Message Dummy```")
     if event.reply_to_msg_id:
-    #   await event.reply(file='CAADAQADhgADwKwII4f61VT65CNGFgQ')
-       try:
-        await event.edit("`Crashin in a minute wait plox..`")
-        return
+        #   await event.reply(file='CAADAQADhgADwKwII4f61VT65CNGFgQ')
+        try:
+            await event.edit("`Crashin in a minute wait plox..`")
+            return
     cmd = event.pattern_match.group(1)
     if cmd == "ascii":
         dls_loc = await media_to_image(event)
