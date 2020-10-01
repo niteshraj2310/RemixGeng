@@ -24,7 +24,7 @@ async def ascii_(event):
        try:
         await event.edit("`Crashin in a minute wait plox..`")
         return
-    cmd = event.pattern_match.group(1)
+       cmd = event.pattern_match.group(1)
     if cmd == "ascii":
         dls_loc = await media_to_image(event)
     if not dls_loc:
