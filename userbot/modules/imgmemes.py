@@ -11,6 +11,7 @@ from PIL import Image
 from validators.url import url
 from userbot.events import register
 from userbot import TEMP_DOWNLOAD_DIRECTORY, bot
+
 EMOJI_PATTERN = re.compile(
     "["
     "\U0001F1E0-\U0001F1FF"  # flags (iOS)
@@ -24,13 +25,14 @@ EMOJI_PATTERN = re.compile(
     "\U0001FA00-\U0001FA6F"  # Chess Symbols
     "\U0001FA70-\U0001FAFF"  # Symbols and Pictographs Extended-A
     "\U00002702-\U000027B0"  # Dingbats
-    "]+")
+    "]+"
+)
 
 
 def convert_toimage(image):
     img = Image.open(image)
-    if img.mode != 'RGB':
-        img = img.convert('RGB')
+    if img.mode != "RGB":
+        img = img.convert("RGB")
     img.save("temp.jpg", "jpeg")
     os.remove(image)
     return "temp.jpg"
@@ -38,12 +40,11 @@ def convert_toimage(image):
 
 def deEmojify(inputString: str) -> str:
     """Remove emojis and other non-safe characters from string"""
-    return re.sub(EMOJI_PATTERN, '', inputString)
+    return re.sub(EMOJI_PATTERN, "", inputString)
 
 
 async def threats(text):
-    r = requests.get(
-        f"https://nekobot.xyz/api/imagegen?type=threats&url={text}").json()
+    r = requests.get(f"https://nekobot.xyz/api/imagegen?type=threats&url={text}").json()
     sandy = r.get("message")
     caturl = url(sandy)
     if not caturl:
@@ -51,15 +52,14 @@ async def threats(text):
     with open("temp.png", "wb") as f:
         f.write(requests.get(sandy).content)
     img = Image.open("temp.png")
-    if img.mode != 'RGB':
-        img = img.convert('RGB')
+    if img.mode != "RGB":
+        img = img.convert("RGB")
     img.save("temp.jpg", "jpeg")
     return "temp.jpg"
 
 
 async def trash(text):
-    r = requests.get(
-        f"https://nekobot.xyz/api/imagegen?type=trash&url={text}").json()
+    r = requests.get(f"https://nekobot.xyz/api/imagegen?type=trash&url={text}").json()
     sandy = r.get("message")
     caturl = url(sandy)
     if not caturl:
@@ -67,15 +67,16 @@ async def trash(text):
     with open("temp.png", "wb") as f:
         f.write(requests.get(sandy).content)
     img = Image.open("temp.png")
-    if img.mode != 'RGB':
-        img = img.convert('RGB')
+    if img.mode != "RGB":
+        img = img.convert("RGB")
     img.save("temp.jpg", "jpeg")
     return "temp.jpg"
 
 
 async def trap(text1, text2, text3):
     r = requests.get(
-        f"https://nekobot.xyz/api/imagegen?type=trap&name={text1}&author={text2}&image={text3}").json()
+        f"https://nekobot.xyz/api/imagegen?type=trap&name={text1}&author={text2}&image={text3}"
+    ).json()
     sandy = r.get("message")
     caturl = url(sandy)
     if not caturl:
@@ -83,8 +84,8 @@ async def trap(text1, text2, text3):
     with open("temp.png", "wb") as f:
         f.write(requests.get(sandy).content)
     img = Image.open("temp.png")
-    if img.mode != 'RGB':
-        img = img.convert('RGB')
+    if img.mode != "RGB":
+        img = img.convert("RGB")
     img.save("temp.jpg", "jpeg")
     return "temp.jpg"
 
@@ -151,7 +152,8 @@ async def kannagen(text):
 
 async def moditweet(text):
     r = requests.get(
-        f"https://nekobot.xyz/api/imagegen?type=tweet&text={text}&username=narendramodi").json()
+        f"https://nekobot.xyz/api/imagegen?type=tweet&text={text}&username=narendramodi"
+    ).json()
     sandy = r.get("message")
     caturl = url(sandy)
     if not caturl:
@@ -324,7 +326,9 @@ async def nekobot(event):
     size = os.stat(download_location).st_size
     if download_location.endswith((".jpg", ".jpeg", ".png", ".bmp", ".ico")):
         if size > 5242880:
-            await event.edit("the replied file size is not supported it must me below 5 mb")
+            await event.edit(
+                "the replied file size is not supported it must me below 5 mb"
+            )
             os.remove(download_location)
             return
         await event.edit("generating image..")
@@ -364,7 +368,9 @@ async def nekobot(event):
     size = os.stat(download_location).st_size
     if download_location.endswith((".jpg", ".jpeg", ".png", ".bmp", ".ico")):
         if size > 5242880:
-            await event.edit("the replied file size is not supported it must me below 5 mb")
+            await event.edit(
+                "the replied file size is not supported it must me below 5 mb"
+            )
             os.remove(download_location)
             return
         await event.edit("generating image..")
@@ -392,7 +398,9 @@ async def nekobot(e):
     if "|" in input_str:
         text1, text2 = input_str.split("|")
     else:
-        await e.edit("Usage : reply to image or sticker with `.trap (name of the person to trap)|(trapper name)`")
+        await e.edit(
+            "Usage : reply to image or sticker with `.trap (name of the person to trap)|(trapper name)`"
+        )
         return
     replied = await e.get_reply_message()
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):

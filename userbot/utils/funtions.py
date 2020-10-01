@@ -10,19 +10,22 @@ from userbot.utils import take_screen_shot, runcmd, progress
 # function takes  take a screenshot and stores ported from userge
 
 
-async def take_screen_shot(video_file: str, duration: int, path: str = '') -> Optional[str]:
+async def take_screen_shot(
+    video_file: str, duration: int, path: str = ""
+) -> Optional[str]:
     print(
-        '[[[Extracting a frame from %s ||| Video duration => %s]]]',
+        "[[[Extracting a frame from %s ||| Video duration => %s]]]",
         video_file,
-        duration)
+        duration,
+    )
     ttl = duration // 2
-    thumb_image_path = path or os.path.join(
-        "./temp/", f"{basename(video_file)}.jpg")
+    thumb_image_path = path or os.path.join("./temp/", f"{basename(video_file)}.jpg")
     command = f"ffmpeg -ss {ttl} -i '{video_file}' -vframes 1 '{thumb_image_path}'"
     err = (await runcmd(command))[1]
     if err:
         print(err)
     return thumb_image_path if os.path.exists(thumb_image_path) else None
+
 
 # For Downloading & Checking Media then Converting to Image.
 # RETURNS an "Image".
@@ -41,7 +44,7 @@ async def media_to_image(event):
         message=event.reply_to_message,
         file_name=TEMP_DOWNLOAD_DIRECTORY,
         progress=progress,
-        progress_args=(event, "`Trying to Posses given content`")
+        progress_args=(event, "`Trying to Posses given content`"),
     )
     dls_loc = os.path.join(TEMP_DOWNLOAD_DIRECTORY, os.path.basename(dls))
     if replied.sticker and replied.sticker.file_name.endswith(".tgs"):
@@ -73,16 +76,19 @@ async def media_to_image(event):
     await event.edit("`Almost Done ...`")
     return dls_loc
 
+
 # executing of terminal commands
 
 
 async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
     args = shlex.split(cmd)
-    process = await asyncio.create_subprocess_exec(*args,
-                                                   stdout=asyncio.subprocess.PIPE,
-                                                   stderr=asyncio.subprocess.PIPE)
+    process = await asyncio.create_subprocess_exec(
+        *args, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+    )
     stdout, stderr = await process.communicate()
-    return (stdout.decode('utf-8', 'replace').strip(),
-            stderr.decode('utf-8', 'replace').strip(),
-            process.returncode,
-            process.pid)
+    return (
+        stdout.decode("utf-8", "replace").strip(),
+        stderr.decode("utf-8", "replace").strip(),
+        process.returncode,
+        process.pid,
+    )

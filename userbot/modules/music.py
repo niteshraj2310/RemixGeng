@@ -5,6 +5,7 @@ import asyncio
 from userbot.events import register
 from userbot import bot, CMD_HELP
 from telethon.errors.rpcerrorlist import YouBlockedUserError
+
 # Copyright (C) 2020 azrim.
 # imported .song and .vsong form catuserbot
 
@@ -47,17 +48,19 @@ async def catmusic(cat, QUALITY, hello):
         return
     try:
         command = (
-            'youtube-dl -o "./temp/%(title)s.%(ext)s" --extract-audio --audio-format mp3 --audio-quality ' +
-            QUALITY +
-            " " +
-            video_link)
+            'youtube-dl -o "./temp/%(title)s.%(ext)s" --extract-audio --audio-format mp3 --audio-quality '
+            + QUALITY
+            + " "
+            + video_link
+        )
         os.system(command)
     except Exception as e:
         return await hello.edit(f"`Error:\n {e}`")
     try:
         thumb = (
-            'youtube-dl -o "./temp/%(title)s.%(ext)s" --write-thumbnail --skip-download ' +
-            video_link)
+            'youtube-dl -o "./temp/%(title)s.%(ext)s" --write-thumbnail --skip-download '
+            + video_link
+        )
         os.system(thumb)
     except Exception as e:
         return await hello.edit(f"`Error:\n {e}`")
@@ -247,16 +250,19 @@ async def _(event):
     await event.edit("```Getting Your Music```")
     async with bot.conversation(chat) as conv:
         await asyncio.sleep(2)
-        await event.edit("`Downloading Music It may take some time So Stay Tuned .....`")
+        await event.edit(
+            "`Downloading Music It may take some time So Stay Tuned .....`"
+        )
         try:
             response = conv.wait_event(
-                events.NewMessage(
-                    incoming=True,
-                    from_users=752979930))
+                events.NewMessage(incoming=True, from_users=752979930)
+            )
             await bot.send_message(chat, link)
             respond = await response
         except YouBlockedUserError:
-            await event.reply("```Please unblock @SpotifyMusicDownloaderBot and try again```")
+            await event.reply(
+                "```Please unblock @SpotifyMusicDownloaderBot and try again```"
+            )
             return
         await event.delete()
         await bot.forward_messages(event.chat_id, respond.message)
@@ -285,8 +291,7 @@ async def WooMai(netase):
         await netase.edit("`Sending Your Music...`")
         await asyncio.sleep(3)
         await bot.send_file(netase.chat_id, respond)
-    await netase.client.delete_messages(conv.chat_id,
-                                        [msg.id, response.id, respond.id])
+    await netase.client.delete_messages(conv.chat_id, [msg.id, response.id, respond.id])
     await netase.delete()
 
 
@@ -314,13 +319,15 @@ async def DeezLoader(Deezlod):
             await Deezlod.edit("**Error:** `unblock` @DeezLoadBot `and retry!`")
             return
         await bot.send_file(Deezlod.chat_id, song, caption=details.text)
-        await Deezlod.client.delete_messages(conv.chat_id,
-                                             [msg_start.id, response.id, r.id, msg.id, details.id, song.id])
+        await Deezlod.client.delete_messages(
+            conv.chat_id, [msg_start.id, response.id, r.id, msg.id, details.id, song.id]
+        )
         await Deezlod.delete()
 
-CMD_HELP.update({
-    "music":
-        "`.spd`<Artist - Song Title>\
+
+CMD_HELP.update(
+    {
+        "music": "`.spd`<Artist - Song Title>\
             \nUsage:For searching songs from Spotify.\
             \n\n`.song` or `.vsong`\
             \nUsage:for downloading music\
@@ -333,4 +340,5 @@ CMD_HELP.update({
             \n\nWell deezer is not available in India so create an deezer account using vpn. Set `DEEZER_ARL_TOKEN` in vars to make this work.\
             \n\n**Format**= `FLAC`, `MP3_320`, `MP3_256`, `MP3_128`.\
             \n\n\n Guide:Video guide of arl token: [here](https://www.youtube.com/watch?v=O6PRT47_yds&feature=youtu.be) or Read [This](https://notabug.org/RemixDevs/DeezloaderRemix/wiki/Login+via+userToken)."
-})
+    }
+)
