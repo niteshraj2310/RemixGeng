@@ -24,9 +24,9 @@ async def lastname(steal):
     chat = "@SangMataInfo_bot"
     user_id = message.sender.id
     id = f"/search_id {user_id}"
-    if message.sender.bot:
-        await steal.edit("`Reply to actual users message.`")
-        return
+ #  if message.sender.bot:
+ #      await steal.edit("`Reply to actual users message.`")
+ #      return
     await steal.edit("`Sit tight while I steal some data from NASA`")
     try:
         async with bot.conversation(chat) as conv:

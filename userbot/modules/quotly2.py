@@ -1,4 +1,5 @@
-"""ported from Catuserbot, module modified by  @Nitesh_231"""
+# ported from Catuserbot, module modified by  @Nitesh_231
+# Original Sauce """https://github.com/erenmetesar"""
 
 import logging
 import json
@@ -414,7 +415,7 @@ async def emoji_fetch(emoji):
     if emoji in emojis:
         img = emojis[emoji]
         return await transparent(urllib.request.urlretrieve(img, "./temp/emoji.png")[0])
-    img = emojis["⛔"]
+    img = emojis["🚫"]
     return await transparent(urllib.request.urlretrieve(img, "./temp/emoji.png")[0])
 
 
