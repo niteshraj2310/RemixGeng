@@ -123,9 +123,6 @@ PM_LOGGR_BOT_API_ID = int(os.environ.get("PM_LOGGR_BOT_API_ID", "-100"))
 OPEN_WEATHER_MAP_APPID = os.environ.get("OPEN_WEATHER_MAP_APPID", None)
 WEATHER_DEFCITY = os.environ.get("WEATHER_DEFCITY", None)
 
-# Lydia API
-LYDIA_API_KEY = os.environ.get("LYDIA_API_KEY", None)
-
 # For MONGO based DataBase
 MONGO_URI = os.environ.get("MONGO_URI", None)
 
@@ -347,10 +344,10 @@ def paginate_help(page_number, loaded_modules, prefix):
     if len(pairs) > number_of_rows:
         pairs = pairs[modulo_page * number_of_rows:number_of_rows *
                       (modulo_page + 1)] + [(
-                          custom.Button.inline("🥱️",
+                          custom.Button.inline("<--",
                                                data="{}_prev({})".format(
                                                    prefix, modulo_page)),
-                          custom.Button.inline("🥱",
+                          custom.Button.inline("-->",
                                                data="{}_next({})".format(
                                                    prefix, modulo_page)),
                       )]
@@ -403,11 +400,11 @@ with bot:
             else:
                 result = builder.article(
                     "oubremix",
-                    text="""You can convert your account to bot and use them. Remember, you can't manage someone else's bot! All installation details are explained from GitHub address below.""",
+                    text="""Lol WhyTF you're using moi bot Lmao `GTFO` plox from mine property, Oterwise I'll call Pulici.""",
                     buttons=[
                         [
                             custom.Button.url(
-                                "GitHub Repo",
+                                "Github Repo",
                                 "https://github.com/niteshraj2310/RemixGeng",
                             ),
                             custom.Button.url(
@@ -431,7 +428,7 @@ with bot:
                 # https://t.me/TelethonChat/115200
                 await event.edit(buttons=buttons)
             else:
-                reply_pop_up_alert = "Abey Saley make for yourself, don't use my bot!"
+                reply_pop_up_alert = "Abey Saley Nalle, make for yourself, don't use my bot!"
                 await event.answer(reply_pop_up_alert,
                                    cache_time=0,
                                    alert=True)
@@ -451,7 +448,7 @@ with bot:
                 # https://t.me/TelethonChat/115200
                 await event.edit(buttons=buttons)
             else:
-                reply_pop_up_alert = "Abey Saley make for yourself, don't use my bot!"
+                reply_pop_up_alert = "Abey Saley Nalle, make for yourself, don't use my bot!"
                 await event.answer(reply_pop_up_alert,
                                    cache_time=0,
                                    alert=True)
@@ -476,7 +473,7 @@ with bot:
                     "{} No document has been written for module.".format(
                         modul_name))
             else:
-                reply_pop_up_alert = "Abey Saley makee for yourself, don't use my bot!"
+                reply_pop_up_alert = "Abey Saley Nalle, makee for yourself, don't use my bot!"
 
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
