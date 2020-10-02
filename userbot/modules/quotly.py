@@ -21,9 +21,9 @@ async def quotess(qotli):
         await qotli.edit("```Reply to any user message u NUB.```")
         return
     reply_message = await qotli.get_reply_message()
-    if not reply_message.text:
-        await qotli.edit("```Reply to text message BISH!```")
-        return
+  # if not reply_message.text:
+  #     await qotli.edit("```Reply to text message BISH!```")
+  #     return
     chat = "@QuotLyBot"
     reply_message.sender
   # if reply_message.sender.bot:
