@@ -5,8 +5,6 @@ from os.path import basename
 from typing import Optional
 from typing import Tuple
 
-from userbot import TEMP_DOWNLOAD_DIRECTORY
-from userbot.utils import progress
 from userbot.utils import runcmd
 from userbot.utils import take_screen_shot
 
