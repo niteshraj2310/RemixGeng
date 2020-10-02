@@ -18,7 +18,6 @@ from telethon.tl.types import ChannelParticipantCreator
 
 from userbot import bot
 from userbot import LOGS
-from userbot import TEMP_DOWNLOAD_DIRECTORY
 
 
 async def md5(fname: str) -> str:
