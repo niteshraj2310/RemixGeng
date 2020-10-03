@@ -80,7 +80,7 @@ async def deepfryer(event):
     os.system("rm -rf *.mp4")
     os.system("rm -rf *.tgs")
     os.system("rm -rf *.png")
-
+    await event.delete()
 
 async def deepfry(img: Image) -> Image:
     colours = (
