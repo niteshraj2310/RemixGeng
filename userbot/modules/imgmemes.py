@@ -104,9 +104,9 @@ async def phss(uplded, input, name):
         return "check syntax once more"
     with open("alf.png", "wb") as f:
         f.write(requests.get(alf).content)
-    img = Image.open("alf.png").convert("RGB")
-    img.save("alf.webp", "webp")
-    return "alf.webp"
+    img = Image.open("alf.jpg").convert("RGB")
+    img.save("alf.jpg", "jpeg")
+    return "alf.jpg"
 
 
 async def trumptweet(text):
@@ -120,8 +120,8 @@ async def trumptweet(text):
     with open("gpx.png", "wb") as f:
         f.write(requests.get(geng).content)
     img = Image.open("gpx.png").convert("RGB")
-    img.save("gpx.webp", "webp")
-    return "gpx.webp"
+    img.save("gpx.jpg", "jpeg")
+    return "gpx.jpg"
 
 
 async def changemymind(text):
@@ -135,8 +135,8 @@ async def changemymind(text):
     with open("gpx.png", "wb") as f:
         f.write(requests.get(geng).content)
     img = Image.open("gpx.png").convert("RGB")
-    img.save("gpx.webp", "webp")
-    return "gpx.webp"
+    img.save("gpx.jpg", "jpeg")
+    return "gpx.jpg"
 
 
 async def kannagen(text):
@@ -149,8 +149,8 @@ async def kannagen(text):
     with open("gpx.png", "wb") as f:
         f.write(requests.get(geng).content)
     img = Image.open("gpx.png").convert("RGB")
-    img.save("gpx.webp", "webp")
-    return "gpx.webp"
+    img.save("gpx.jpg", "jpeg")
+    return "gpx.jpg"
 
 
 async def moditweet(text):
@@ -179,8 +179,8 @@ async def tweets(text1, text2):
     with open("gpx.png", "wb") as f:
         f.write(requests.get(geng).content)
     img = Image.open("gpx.png").convert("RGB")
-    img.save("gpx.webp", "webp")
-    return "gpx.webp"
+    img.save("gpx.jpg", "jpeg")
+    return "gpx.jpg"
 
 
 async def get_user_from_event(event):
