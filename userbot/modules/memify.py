@@ -189,7 +189,7 @@ async def mim(event):
             "`Syntax: reply to an image with .mmf` 'text on top' ; 'text on bottom' "
         )
         return
-    reply_message = await event.get_reply_message()                                                      if not reply_message.media:
+    reply_message = await event.get_reply_message() if not reply_message.media:
         await event.edit("```reply to a image/sticker/gif```")
         return
     await event.edit("`Downloading Media..`")
