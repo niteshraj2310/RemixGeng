@@ -82,6 +82,7 @@ async def deepfryer(event):
     os.system("rm -rf *.png")
     await event.delete()
 
+
 async def deepfry(img: Image) -> Image:
     colours = (
         (randint(50, 200), randint(40, 170), randint(40, 190)),
