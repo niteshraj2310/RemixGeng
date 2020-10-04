@@ -340,7 +340,7 @@ async def draw_meme(image_path, text):
             )
             current_h += u_height + pad
 
-    photu = "memify.jpg"
+    photu = "memify.jpeg"
     photo = os.path.join(TEMP_DOWNLOAD_DIRECTORY, photu)
     img.save(photo, "jpeg")
     return photo

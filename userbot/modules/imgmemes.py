@@ -104,7 +104,7 @@ async def phss(uplded, input, name):
         return "check syntax once more"
     with open("alf.png", "wb") as f:
         f.write(requests.get(alf).content)
-    img = Image.open("alf.jpg").convert("RGB")
+    img = Image.open("alf.png").convert("RGB")
     img.save("alf.jpg", "jpeg")
     return "alf.jpg"
 
@@ -149,8 +149,8 @@ async def kannagen(text):
     with open("gpx.png", "wb") as f:
         f.write(requests.get(geng).content)
     img = Image.open("gpx.png").convert("RGB")
-    img.save("gpx.jpg", "jpeg")
-    return "gpx.jpg"
+    img.save("gpx.webp", "webp")
+    return "gpx.webp"
 
 
 async def moditweet(text):
