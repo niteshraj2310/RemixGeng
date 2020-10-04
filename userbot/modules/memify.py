@@ -87,7 +87,7 @@ async def draw_meme_text(image_path, text):
         upper_text = text
         lower_text = ""
     draw = ImageDraw.Draw(img)
-    current_h, pad = 10, 5
+    current_h, pad = 10, 10
     if upper_text:
         for u_text in textwrap.wrap(upper_text, width=15):
             u_width, u_height = draw.textsize(u_text, font=m_font)
@@ -251,7 +251,7 @@ async def draw_meme(image_path, text):
         upper_text = text
         lower_text = ""
     draw = ImageDraw.Draw(img)
-    current_h, pad = 10, 5
+    current_h, pad = 10, 9
     if upper_text:
         for u_text in textwrap.wrap(upper_text, width=15):
             u_width, u_height = draw.textsize(u_text, font=m_font)
