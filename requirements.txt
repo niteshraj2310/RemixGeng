@@ -89,3 +89,4 @@ glitch_this
 vcsi
 colour
 cairosvg
+colour
