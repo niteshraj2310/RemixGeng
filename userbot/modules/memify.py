@@ -243,7 +243,7 @@ async def draw_meme(image_path, text):
     os.remove(image_path)
     i_width, i_height = img.size
     m_font = ImageFont.truetype(
-        "resources/MutantAcademyStyle.ttf", int((70 / 640) * i_width)
+        "resources/FFF_Tusj.ttf", int((70 / 640) * i_width)
     )
     if ";" in text:
         upper_text, lower_text = text.split(";")
