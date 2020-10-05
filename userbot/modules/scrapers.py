@@ -37,7 +37,7 @@ from gtts import gTTS
 from gtts.lang import tts_langs
 from humanize import naturalsize
 from requests import get
-from search_engine_parser import YahooSearch  #GoogleSearch
+from search_engine_parser import YahooSearch  # GoogleSearch
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from telethon.tl.types import DocumentAttributeAudio
