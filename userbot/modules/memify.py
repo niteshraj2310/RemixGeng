@@ -243,7 +243,7 @@ async def draw_meme(image_path, text):
     os.remove(image_path)
     i_width, i_height = img.size
     m_font = ImageFont.truetype(
-        "resources/FFF_Tusj.ttf", int((70 / 640) * i_width)
+        "resources/HOLY-RAVttf", int((70 / 640) * i_width)
     )
     if ";" in text:
         upper_text, lower_text = text.split(";")
@@ -289,7 +289,7 @@ async def draw_meme(image_path, text):
             )
             current_h += u_height + pad
     if lower_text:
-        for l_text in textwrap.wrap(lower_text, width=15):
+        for l_text in textwrap.wrap(lower_text, width=20):
             u_width, u_height = draw.textsize(l_text, font=m_font)
 
             draw.text(
