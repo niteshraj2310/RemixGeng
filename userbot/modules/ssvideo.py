@@ -44,7 +44,7 @@ async def ssvideo(framecap):
         ),
     )
     try:
-        await framecap.edit("`Proccessing...`")
+        await framecap.edit("`Processing...`")
         command = f"vcsi -g {frame}x{frame} {ss} -o ss.png "
         os.system(command)
         await framecap.client.send_file(
@@ -55,7 +55,7 @@ async def ssvideo(framecap):
         await framecap.delete()
     except BaseException as e:
         await framecap.edit(f"{e}")
-    os.system("rm -rf *.png *.mp4")
+    os.system("rm *.png *.mp4")
 
 
 CMD_HELP.update({

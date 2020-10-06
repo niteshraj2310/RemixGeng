@@ -14,7 +14,6 @@ from asyncio.exceptions import TimeoutError
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from pylast import User
-from selenium import webdriver
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.types import DocumentAttributeVideo
 
@@ -24,20 +23,13 @@ from userbot import GOOGLE_CHROME_BIN
 from userbot import lastfm
 from userbot import LASTFM_USERNAME
 from userbot.events import register
-from userbot.utils import progress
+from userbot.utils import chrome, progress
 
 
 async def getmusicvideo(cat):
     video_link = ""
     search = cat
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument("--ignore-certificate-errors")
-    chrome_options.add_argument("--test-type")
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.binary_location = GOOGLE_CHROME_BIN
-    driver = webdriver.Chrome(chrome_options=chrome_options)
+    driver = await chrome()
     driver.get("https://www.youtube.com/results?search_query=" + search)
     user_data = driver.find_elements_by_xpath('//*[@id="video-title"]')
     for i in user_data:
@@ -150,14 +142,9 @@ async def _(event):
         )
         await event.edit(f"**{query}** `Uploaded Successfully..!`")
         os.remove(thumb_image)
-        os.system("rm -rf *.mkv")
-        os.system("rm -rf *.mp4")
-        os.system("rm -rf *.webm")
+        os.system("rm *.mkv *.mp4 *.webm")
     except BaseException:
-        os.remove(thumb_image)
-        os.system("rm -rf *.mkv")
-        os.system("rm -rf *.mp4")
-        os.system("rm -rf *.webm")
+        os.system("rm *.mkv *.mp4 *.webm")
         return
 
 

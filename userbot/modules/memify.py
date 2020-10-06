@@ -22,7 +22,7 @@ THUMB_IMAGE_PATH = "./thumb_image.jpg"
 async def mim(event):
     if not event.reply_to_msg_id:
         await event.edit(
-            "`Syntax: reply to an image with .mmf` 'text on top' ; 'text on bottom' "
+            "`Syntax: reply to an image with .mms` 'text on top' ; 'text on bottom' "
         )
         return
     reply_message = await event.get_reply_message()
@@ -68,9 +68,7 @@ async def mim(event):
         event.chat_id, webp_file, reply_to=event.reply_to_msg_id
     )
     await event.delete()
-    os.system("rm -rf *.tgs")
-    os.system("rm -rf *.mp4")
-    os.system("rm -rf *.png")
+    os.system("rm *.tgs *.mp4 *.png")
     os.remove(webp_file)
 
 
@@ -232,9 +230,7 @@ async def mim(event):
         event.chat_id, photo, reply_to=event.reply_to_msg_id
     )
     await event.delete()
-    os.system("rm -rf *.tgs")
-    os.system("rm -rf *.mp4")
-    os.system("rm -rf *.png")
+    os.system("rm *.tgs *.mp4 *.png")
     os.remove(photo)
 
 
@@ -243,7 +239,7 @@ async def draw_meme(image_path, text):
     os.remove(image_path)
     i_width, i_height = img.size
     m_font = ImageFont.truetype(
-        "resources/HOLY-RAVttf", int((70 / 640) * i_width)
+        "resources/MADISI__.ttf", int((70 / 640) * i_width)
     )
     if ";" in text:
         upper_text, lower_text = text.split(";")
@@ -251,11 +247,10 @@ async def draw_meme(image_path, text):
         upper_text = text
         lower_text = ""
     draw = ImageDraw.Draw(img)
-    current_h, pad = 10, 9
+    current_h, pad = 10, 5
     if upper_text:
         for u_text in textwrap.wrap(upper_text, width=15):
             u_width, u_height = draw.textsize(u_text, font=m_font)
-
             draw.text(
                 xy=(((i_width - u_width) / 2) - 1, int((current_h / 640) * i_width)),
                 text=u_text,
@@ -280,7 +275,6 @@ async def draw_meme(image_path, text):
                 font=m_font,
                 fill=(0, 0, 0),
             )
-
             draw.text(
                 xy=((i_width - u_width) / 2, int((current_h / 640) * i_width)),
                 text=u_text,
@@ -289,9 +283,8 @@ async def draw_meme(image_path, text):
             )
             current_h += u_height + pad
     if lower_text:
-        for l_text in textwrap.wrap(lower_text, width=20):
+        for l_text in textwrap.wrap(lower_text, width=15):
             u_width, u_height = draw.textsize(l_text, font=m_font)
-
             draw.text(
                 xy=(
                     ((i_width - u_width) / 2) - 1,
@@ -328,7 +321,6 @@ async def draw_meme(image_path, text):
                 font=m_font,
                 fill=(0, 0, 0),
             )
-
             draw.text(
                 xy=(
                     (i_width - u_width) / 2,

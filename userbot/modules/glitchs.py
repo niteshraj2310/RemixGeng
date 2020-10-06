@@ -108,5 +108,4 @@ async def glitch(event):
         )
     )
     os.remove(glitch_file)
-    os.system("rm -rf *.tgs")
-    os.system("rm -rf *.mp4")
+    os.system("rm *.tgs *.mp4")
