@@ -7,7 +7,7 @@ from telethon import events
 import requests
 import aiohttp
 from userbot.events import register
-from userbot import CMD_HELP
+from userbot import CMD_HELP, bot
 
 
 @register(pattern=r".git (.*)", outgoing=True)
