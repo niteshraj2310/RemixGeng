@@ -3,7 +3,6 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 
-from telethon import events
 import requests
 import aiohttp
 from userbot.events import register
@@ -21,7 +20,6 @@ async def github(event):
                 return
 
             result = await request.json()
-            avatar_url = ("avatar_url")
             url = result.get("html_url", None)
             name = result.get("name", None)
             company = result.get("company", None)
@@ -52,7 +50,6 @@ async def github(event):
                     REPLY += f"[{result[nr].get('name', None)}]({result[nr].get('html_url', None)})\n"
 
                 await event.edit(REPLY)
-
 
 
 @register(pattern=r".github (.*)", outgoing=True)
@@ -90,7 +87,6 @@ Profile Created: {}""".format(name, html_url, gh_type, company, blog, location, 
         await event.delete()
     else:
         await event.edit("`{}`: {}".format(input_str, r.text))
-
 
 
 CMD_HELP.update({
