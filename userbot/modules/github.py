@@ -3,6 +3,8 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 
+from telethon import events
+import requests
 import aiohttp
 from userbot.events import register
 from userbot import CMD_HELP
@@ -19,7 +21,7 @@ async def github(event):
                 return
 
             result = await request.json()
-
+            avatar_url = ("avatar_url")
             url = result.get("html_url", None)
             name = result.get("name", None)
             company = result.get("company", None)
@@ -50,6 +52,45 @@ async def github(event):
                     REPLY += f"[{result[nr].get('name', None)}]({result[nr].get('html_url', None)})\n"
 
                 await event.edit(REPLY)
+
+
+
+@register(pattern=r".github (.*)", outgoing=True)
+async def _(event):
+    if event.fwd_from:
+        return
+    input_str = event.pattern_match.group(1)
+    url = "https://api.github.com/users/{}".format(input_str)
+    r = requests.get(url)
+    if r.status_code != 404:
+        b = r.json()
+        avatar_url = b["avatar_url"]
+        html_url = b["html_url"]
+        gh_type = b["type"]
+        name = b["name"]
+        company = b["company"]
+        blog = b["blog"]
+        location = b["location"]
+        bio = b["bio"]
+        created_at = b["created_at"]
+        await bot.send_file(
+            event.chat_id,
+            caption="""Name: [{}]({})
+Type: {}
+Company: {}
+Blog: {}
+Location: {}
+Bio: {}
+Profile Created: {}""".format(name, html_url, gh_type, company, blog, location, bio, created_at),
+            file=avatar_url,
+            force_document=False,
+            allow_cache=False,
+            reply_to=event
+        )
+        await event.delete()
+    else:
+        await event.edit("`{}`: {}".format(input_str, r.text))
+
 
 
 CMD_HELP.update({
