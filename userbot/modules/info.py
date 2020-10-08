@@ -4,7 +4,8 @@
 # All rights reserved.
 
 import os
-from userbot import runcmd,TEMP_DOWNLOAD_DIRECTORY, bot
+from userbot import TEMP_DOWNLOAD_DIRECTORY, bot
+from userbot.utils import runcmd
 from userbot.events import register
 import textwrap
 import bs4
