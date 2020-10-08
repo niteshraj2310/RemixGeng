@@ -1,5 +1,6 @@
 import asyncio
 import os
+import logging
 from random import choice, randint
 
 import requests
@@ -8,6 +9,11 @@ from PIL import Image
 
 from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
+
+logging.basicConfig(
+    format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s", level=logging.WARNING
+)
+logger = logging.getLogger(__name__)
 
 down_p = str(TEMP_DOWNLOAD_DIRECTORY.rstrip("/"))
 
