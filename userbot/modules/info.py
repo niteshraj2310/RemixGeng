@@ -4,13 +4,10 @@
 # All rights reserved.
 
 import os
-from userbot import runcmd,TEMP_DOWNLOAD_DIRECTORY, bot
+from userbot import TEMP_DOWNLOAD_DIRECTORY, runcmd
 from userbot.events import register
-import textwrap
-import bs4
-import jikanpy
-import requests
 from html_telegraph_poster import TelegraphPoster
+
 
 def post_to_telegraph(anime_title, html_format_content):
     post_client = TelegraphPoster(use_api=True)
@@ -18,9 +15,12 @@ def post_to_telegraph(anime_title, html_format_content):
     bish = "https://t.me/Cheems_69"
     post_client.create_api_token(auth_name)
     post_page = post_client.post(
-        title=anime_title, author=auth_name, author_url=bish, text=html_format_content
-    )
+        title=anime_title,
+        author=auth_name,
+        author_url=bish,
+        text=html_format_content)
     return post_page["url"]
+
 
 @register(outgoing=True, pattern=r"^\.media ?(.*)")
 async def mediainfo(event):
@@ -34,7 +34,7 @@ async def mediainfo(event):
         if reply.media and reply.media.document:
             X_MEDIA = reply.media.document.mime_type
             hmm = reply.media.document.stringify()
-    except:
+    except BaseException:
         if reply.media and reply.media.photo:
             X_MEDIA = "photo"
             hmm = reply.media.photo.stringify()
