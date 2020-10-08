@@ -4,7 +4,7 @@
 # All rights reserved.
 
 import os
-from userbot import TEMP_DOWNLOAD_DIRECTORY, bot
+from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.utils import runcmd
 from userbot.events import register
 from html_telegraph_poster import TelegraphPoster
