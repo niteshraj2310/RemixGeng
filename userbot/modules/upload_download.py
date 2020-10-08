@@ -26,7 +26,7 @@ from userbot.utils import humanbytes, progress
 
 @register(pattern=r"\.dl(?: |$)(.*)", outgoing=True)
 async def download(target_file):
-    await target_file.edit("Processing ...")
+    await target_file.edit("```Processing ...```")
     input_str = target_file.pattern_match.group(1)
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
@@ -106,7 +106,7 @@ async def download(target_file):
 async def uploadir(udir_event):
     input_str = udir_event.pattern_match.group(1)
     if os.path.exists(input_str):
-        await udir_event.edit("Processing ...")
+        await udir_event.edit("```Processing ...```")
         lst_of_files = []
         for r, d, f in os.walk(input_str):
             for file in f:
@@ -180,7 +180,7 @@ async def uploadir(udir_event):
 
 @register(pattern=r"\.upl (.*)", outgoing=True)
 async def upload(u_event):
-    await u_event.edit("Processing ...")
+    await u_event.edit("```Processing ...```")
     input_str = u_event.pattern_match.group(1)
     if input_str in ("userbot.session", "config.env"):
         return await u_event.edit("`That's a dangerous operation! Not Permitted!`")
@@ -196,9 +196,9 @@ async def upload(u_event):
                 progress(d, t, u_event, c_time, "[UPLOAD]", input_str)
             ),
         )
-        await u_event.edit("Uploaded successfully !!")
+        await u_event.edit("```Uploaded successfully !!```")
     else:
-        await u_event.edit("404: File Not Found")
+        await u_event.edit("404 `GTFO!` File Not Found")
 
 
 def get_video_thumb(file, output=None, width=90):
@@ -251,7 +251,7 @@ def extract_w_h(file):
 
 @register(pattern=r"^\.uploadas(stream|vn|all) (.*)", outgoing=True)
 async def uploadas(uas_event):
-    await uas_event.edit("Processing ...")
+    await uas_event.edit("`Processing ...`")
     type_of_upload = uas_event.pattern_match.group(1)
     supports_streaming = False
     round_message = False
@@ -333,7 +333,7 @@ async def uploadas(uas_event):
             elif spam_big_messages:
                 return await uas_event.edit("TBD: Not (yet) Implemented")
             os.remove(thumb)
-            await uas_event.edit("Uploaded successfully !!")
+            await uas_event.edit("`Uploaded successfully !!`")
         except FileNotFoundError as err:
             await uas_event.edit(str(err))
     else:
