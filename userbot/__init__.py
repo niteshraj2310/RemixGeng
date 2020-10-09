@@ -208,6 +208,9 @@ DEEZER_ARL_TOKEN = os.environ.get("DEEZER_ARL_TOKEN", None)
 # Wolfram Alpha API
 WOLFRAM_ID = os.environ.get("WOLFRAM_ID") or None
 
+# Deep Api
+DEEP_AI = os.environ.get("DEEP_AI") or None
+
 # Inline bot helper
 BOT_TOKEN = os.environ.get("BOT_TOKEN") or None
 BOT_USERNAME = os.environ.get("BOT_USERNAME") or None
