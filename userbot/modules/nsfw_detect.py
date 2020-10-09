@@ -10,6 +10,7 @@ from userbot import DEEP_AI, bot
 import requests
 from userbot.events import register
 
+
 @register(outgoing=True, pattern="^.detect(?: |$)(.*)")
 async def detect_(message):
     """detect nsfw"""
