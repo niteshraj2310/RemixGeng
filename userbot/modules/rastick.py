@@ -114,7 +114,6 @@ async def rastick(animu):
         return await animu.edit(
             "`You cannot send inline results in this chat (caused by SendInlineBotResultRequest)`"
         )
-    await sleep(1)
     await animu.delete()
 
 
@@ -143,5 +142,4 @@ async def rollstick(tem):
         return await tem.edit(
             "`You cannot send inline results in this chat (caused by SendInlineBotResultRequest)`"
         )
-    await sleep(2)
     await tem.delete()

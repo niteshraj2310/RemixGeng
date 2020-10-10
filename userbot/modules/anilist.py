@@ -174,11 +174,7 @@ async def callAPI(search_str):
     """
     variables = {"search": search_str}
     url = "https://graphql.anilist.co"
-    response = requests.post(
-        url,
-        json={
-            "query": query,
-            "variables": variables})
+    response = requests.post(url, json={"query": query, "variables": variables})
     return response.text
 
 
@@ -188,29 +184,28 @@ async def formatJSON(outData):
     res = list(jsonData.keys())
     if "errors" in res:
         msg += f"**Error** : `{jsonData['errors'][0]['message']}`"
-        return msg
-    jsonData = jsonData["data"]["Media"]
-    if "bannerImage" in jsonData.keys():
-        msg += f"[〽️]({jsonData['bannerImage']})"
     else:
-        msg += "〽️"
-    title = jsonData["title"]["romaji"]
-    link = f"https://anilist.co/anime/{jsonData['id']}"
-    msg += f"[{title}]({link})"
-    msg += f"\n\n**Type** : {jsonData['format']}"
-    msg += f"\n**Genres** : "
-    for g in jsonData["genres"]:
-        msg += g + " "
-    msg += f"\n**Status** : {jsonData['status']}"
-    msg += f"\n**Episode** : {jsonData['episodes']}"
-    msg += f"\n**Year** : {jsonData['startDate']['year']}"
-    msg += f"\n**Score** : {jsonData['averageScore']}"
-    msg += f"\n**Duration** : {jsonData['duration']} min\n\n"
-    # https://t.me/catuserbot_support/19496
-    cat = f"{jsonData['description']}"
-    msg += " __" + re.sub("<br>", "\n", cat) + "__"
-    return msg
+        jsonData = jsonData["data"]["Media"]
+        if "bannerImage" in jsonData.keys():
+            msg += f"[〽️]({jsonData['bannerImage']})"
+        else:
+            msg += "〽️"
+        title = jsonData["title"]["romaji"]
+        link = f"https://anilist.co/anime/{jsonData['id']}"
+        msg += f"[{title}]({link})"
+        msg += f"\n\n**Type** : {jsonData['format']}"
+        msg += "\n**Genres** : "
+        for g in jsonData["genres"]:
+            msg += g + " "
+        msg += f"\n**Status** : {jsonData['status']}"
+        msg += f"\n**Episode** : {jsonData['episodes']}"
+        msg += f"\n**Year** : {jsonData['startDate']['year']}"
+        msg += f"\n**Score** : {jsonData['averageScore']}"
+        msg += f"\n**Duration** : {jsonData['duration']} min\n\n"
+        cat = f"{jsonData['description']}"
+        msg += " __" + re.sub("<br>", "\n", cat) + "__"
 
+    return msg
 
 url = "https://graphql.anilist.co"
 
