@@ -174,7 +174,11 @@ async def callAPI(search_str):
     """
     variables = {"search": search_str}
     url = "https://graphql.anilist.co"
-    response = requests.post(url, json={"query": query, "variables": variables})
+    response = requests.post(
+        url,
+        json={
+            "query": query,
+            "variables": variables})
     return response.text
 
 

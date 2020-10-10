@@ -2,7 +2,6 @@ import random
 import re
 
 from userbot import bot
-from asyncio import sleep
 from userbot.events import register
 EMOJI_PATTERN = re.compile(
     "["

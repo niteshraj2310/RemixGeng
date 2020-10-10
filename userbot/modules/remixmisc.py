@@ -892,6 +892,7 @@ async def potocmd(event):
             return
             await event.delete()
 
+
 @register(outgoing=True, pattern="^.res(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
