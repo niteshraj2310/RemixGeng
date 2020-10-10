@@ -5,14 +5,27 @@
 
 import asyncio
 import html
+import json
+import re
 import textwrap
+from io import BytesIO, StringIO
+from urllib.parse import quote as urlencode
 
+import aiohttp
 import bs4
 import jikanpy
+import pendulum
 import requests
 from html_telegraph_poster import TelegraphPoster
 from jikanpy import Jikan
 from jikanpy.exceptions import APIException
+from telethon.errors.rpcerrorlist import FilePartsInvalidError
+from telethon.tl.types import (
+    DocumentAttributeAnimated,
+    DocumentAttributeFilename,
+    MessageMediaDocument,
+)
+from telethon.utils import is_image, is_video
 
 from userbot import CMD_HELP
 from userbot.events import register
@@ -54,8 +67,9 @@ def getBannerLink(mal, kitsu_search=True):
     }
     """
     data = {"query": query, "variables": {"idMal": int(mal)}}
-    image = requests.post("https://graphql.anilist.co",
-                          json=data).json()["data"]["Media"]["bannerImage"]
+    image = requests.post("https://graphql.anilist.co", json=data).json()["data"][
+        "Media"
+    ]["bannerImage"]
     if image:
         return image
     return getPosterLink(mal)
@@ -92,8 +106,7 @@ def get_anime_manga(mal_id, search_type, _user_id):
     if alternative_names:
         alternative_names_string = ", ".join(alternative_names)
         caption += f"\n<b>Also known as</b>: <code>{alternative_names_string}</code>"
-    genre_string = ", ".join(genre_info["name"]
-                             for genre_info in result["genres"])
+    genre_string = ", ".join(genre_info["name"] for genre_info in result["genres"])
     if result["synopsis"] is not None:
         synopsis = result["synopsis"].split(" ", 60)
         try:
@@ -147,8 +160,7 @@ def get_poster(query):
     soup = bs4.BeautifulSoup(page.content, "lxml")
     odds = soup.findAll("tr", "odd")
     # Fetching the first post from search
-    page_link = "http://www.imdb.com/" + \
-        odds[0].findNext("td").findNext("td").a["href"]
+    page_link = "http://www.imdb.com/" + odds[0].findNext("td").findNext("td").a["href"]
     page1 = requests.get(page_link)
     soup = bs4.BeautifulSoup(page1.content, "lxml")
     # Poster Link
@@ -160,28 +172,17 @@ def get_poster(query):
 
 def post_to_telegraph(anime_title, html_format_content):
     post_client = TelegraphPoster(use_api=True)
-    auth_name = "@GengKapak"
-    bish = "https://t.me/GengKapak"
+    auth_name = "@Cheems_69"
+    bish = "https://t.me/Cheems_69"
     post_client.create_api_token(auth_name)
     post_page = post_client.post(
-        title=anime_title,
-        author=auth_name,
-        author_url=bish,
-        text=html_format_content)
+        title=anime_title, author=auth_name, author_url=bish, text=html_format_content
+    )
     return post_page["url"]
 
 
 def replace_text(text):
-    return text.replace(
-        '"',
-        "").replace(
-        "\\r",
-        "").replace(
-            "\\n",
-            "").replace(
-                "\\",
-        "")
-
+    return text.replace('"', "").replace("\\r", "").replace("\\n", "").replace("\\", "")
 
 @register(outgoing=True, pattern=r"^\.anime ?(.*)")
 async def anime(event):
@@ -523,15 +524,14 @@ async def get_anime(message):
 
 
 @register(outgoing=True, pattern=r"^\.smanga ?(.*)")
-async def manga(message):
+async def smanga(message):
     search_query = message.pattern_match.group(1)
     await message.get_reply_message()
     await message.edit("`Searching Manga..`")
     jikan = jikanpy.jikan.Jikan()
     search_result = jikan.search("manga", search_query)
     first_mal_id = search_result["results"][0]["mal_id"]
-    caption, image = get_anime_manga(
-        first_mal_id, "anime_manga", message.chat_id)
+    caption, image = get_anime_manga(first_mal_id, "anime_manga", message.chat_id)
     await message.delete()
     await message.client.send_file(
         message.chat_id, file=image, caption=caption, parse_mode="HTML"
@@ -539,15 +539,14 @@ async def manga(message):
 
 
 @register(outgoing=True, pattern=r"^\.sanime ?(.*)")
-async def anime(message):
+async def sanime(message):
     search_query = message.pattern_match.group(1)
     await message.get_reply_message()
     await message.edit("`Searching Anime..`")
     jikan = jikanpy.jikan.Jikan()
     search_result = jikan.search("anime", search_query)
     first_mal_id = search_result["results"][0]["mal_id"]
-    caption, image = get_anime_manga(
-        first_mal_id, "anime_anime", message.chat_id)
+    caption, image = get_anime_manga(first_mal_id, "anime_anime", message.chat_id)
     try:
         await message.delete()
         await message.client.send_file(
@@ -558,6 +557,91 @@ async def anime(message):
         await message.client.send_file(
             message.chat_id, file=image, caption=caption, parse_mode="HTML"
         )
+
+
+@register(outgoing=True, pattern=r"^\.whatanime")
+async def whatanime(e):
+    media = e.media
+    if not media:
+        r = await e.get_reply_message()
+        media = getattr(r, "media", None)
+    if not media:
+        await e.edit("`Media required`")
+        return
+    ig = is_gif(media) or is_video(media)
+    if not is_image(media) and not ig:
+        await e.edit("`Media must be an image or gif or video`")
+        return
+    filename = "file.jpg"
+    if not ig and isinstance(media, MessageMediaDocument):
+        attribs = media.document.attributes
+        for i in attribs:
+            if isinstance(i, DocumentAttributeFilename):
+                filename = i.file_name
+                break
+    await e.edit("`Downloading image..`")
+    content = await e.client.download_media(media, bytes, thumb=-1 if ig else None)
+    await e.edit("`Searching for result..`")
+    file = memory_file(filename, content)
+    async with aiohttp.ClientSession() as session:
+        url = "https://trace.moe/api/search"
+        async with session.post(url, data={"image": file}) as raw_resp0:
+            resp0 = await raw_resp0.text()
+        js0 = json.loads(resp0)["docs"]
+        if not js0:
+            await e.edit("`No results found.`")
+            return
+        js0 = js0[0]
+        text = f'<b>{html.escape(js0["title_romaji"])}'
+        if js0["title_native"]:
+            text += f' ({html.escape(js0["title_native"])})'
+        text += "</b>\n"
+        if js0["episode"]:
+            text += f'<b>Episode:</b> {html.escape(str(js0["episode"]))}\n'
+        percent = round(js0["similarity"] * 100, 2)
+        text += f"<b>Similarity:</b> {percent}%\n"
+        dt = pendulum.from_timestamp(js0["at"])
+        text += f"<b>At:</b> {html.escape(dt.to_time_string())}"
+        await e.edit(text, parse_mode="html")
+        dt0 = pendulum.from_timestamp(js0["from"])
+        dt1 = pendulum.from_timestamp(js0["to"])
+        ctext = (
+            f"{html.escape(dt0.to_time_string())} - {html.escape(dt1.to_time_string())}"
+        )
+        url = (
+            "https://media.trace.moe/video/"
+            f'{urlencode(str(js0["anilist_id"]))}' + "/"
+            f'{urlencode(js0["filename"])}'
+            f'?t={urlencode(str(js0["at"]))}'
+            f'&token={urlencode(js0["tokenthumb"])}'
+        )
+        async with session.get(url) as raw_resp1:
+            file = memory_file("preview.mp4", await raw_resp1.read())
+        try:
+            await e.reply(ctext, file=file, parse_mode="html")
+        except FilePartsInvalidError:
+            await e.reply("`Cannot send preview.`")
+
+
+def memory_file(name=None, contents=None, *, bytes=True):
+    if isinstance(contents, str) and bytes:
+        contents = contents.encode()
+    file = BytesIO() if bytes else StringIO()
+    if name:
+        file.name = name
+    if contents:
+        file.write(contents)
+        file.seek(0)
+    return file
+
+
+def is_gif(file):
+    # ngl this should be fixed, telethon.utils.is_gif but working
+    # lazy to go to github and make an issue kek
+    if not is_video(file):
+        return False
+    return DocumentAttributeAnimated() in getattr(file, "document", file).attributes
+
 
 
 CMD_HELP.update({
