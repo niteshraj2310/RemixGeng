@@ -14,6 +14,15 @@ from validators.url import url
 from userbot import bot
 from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
+import asyncio
+import os 
+from PIL import Image, ImageDraw, ImageFont
+from telethon.tl.types import DocumentAttributeFilename
+from wget import download
+
+from userbot import CMD_HELP, bot
+from userbot.events import register
+from userbot.utils import googleimagesdownload
 
 EMOJI_PATTERN = re.compile(
     "["
@@ -493,3 +502,38 @@ async def phcomment(event):
         return await event.edit("`Reply message has no text!`")
     await event.delete()
     await purge()
+
+@register(outgoing=True, pattern="^.fgs ((.*) ; (.*))")
+async def FakeGoogleSearch(event):
+    """ Get a user-customised google search meme! """
+    input_str = event.pattern_match.group(1)
+    if input_str is None:
+        await event.edit("No input found!", del_in=5)
+        return
+    if ";" in input_str:
+        search, result = input_str.split(";", 1)
+    else:
+        await event.edit("Invalid Input! Check help for more info!", del_in=5)
+        return
+
+    await event.edit('Connecting to `https://www.google.com/` ...')
+    await asyncio.sleep(2)
+    img='https://i.imgur.com/wNFr5X2.jpg'
+    r=download(img)
+    photo=Image.open(r)
+    drawing=ImageDraw.Draw(photo)
+    blue=(0,0,255)
+    black=(0,0,0)
+    font1=ImageFont.truetype("resources/CoCoBiker-Regular.ttf",20)
+    font2=ImageFont.truetype("resources/OutrunFuture-Regular.ttf",23)
+    drawing.text((450, 258), result, fill=blue, font=font1)
+    drawing.text((270, 37), search, fill=black, font=font2)
+    photo.save("downloads/test.jpg")
+    reply = event.pattern_match.group(2)
+    await event.delete()
+    reply_id = event.pattern_match.group(3) if reply else None
+    await event.client.send_file(
+        event.chat_id,
+        'downloads/test.jpg',
+        reply_to_message_id=reply_id)
+    os.remove('downloads/test.jpg')
