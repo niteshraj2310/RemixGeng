@@ -10,6 +10,7 @@ from userbot.events import register
 from userbot.utils import progress
 from PyDictionary import PyDictionary
 
+
 @register(outgoing=True, pattern=r"^\.def(?: |$)(.*)")
 async def _(event):
     word = event.pattern_match.group(1)
