@@ -54,6 +54,7 @@ lyricsgenius
 redis>=3.5.3
 PyDrive2
 pyDownload
+PyDictionary
 beautifulsoup4>=4.9.3
 youtube-dl>=2020.9.20
 PyGithub
