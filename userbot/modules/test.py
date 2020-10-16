@@ -10,6 +10,7 @@ from userbot.events import register
 from userbot.utils import progress
 from PyDictionary import PyDictionary
 
+
 @register(outgoing=True, pattern=r"^\.meaning(?: |$)(.*)")
 async def _(event):
     word = event.pattern_match.group(1)
@@ -24,6 +25,7 @@ async def _(event):
         await event.edit(output)
     except Exception:
         await event.edit(f"Couldn't fetch meaning of {word}")
+
 
 @register(outgoing=True, pattern=r"^\.imgs(?: |$)(.*)")
 async def _(event):
