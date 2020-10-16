@@ -10,17 +10,17 @@ from userbot.events import register
 from userbot.utils import progress
 from PyDictionary import PyDictionary
 
-@register(outgoing=True, pattern=r"^\.meaning(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.def(?: |$)(.*)")
 async def _(event):
     word = event.pattern_match.group(1)
     dictionary = PyDictionary()
     words = dictionary.meaning(word)
-    output = f"**Word :** __{word}__\n\n"
+    output = f"**Word :** `{word}`\n\n"
     try:
         for a, b in words.items():
-            output += f"**{a}**\n"
+            output += f"**{a}**:\n"
             for i in b:
-                output += f"☞__{i}__\n"
+                output += f">`{i}`\n"
         await event.edit(output)
     except Exception:
         await event.edit(f"Couldn't fetch meaning of {word}")
