@@ -25,6 +25,7 @@ async def _(event):
     except Exception:
         await event.edit(f"Couldn't fetch meaning of {word}")
 
+
 @register(outgoing=True, pattern=r"^\.imgs(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
