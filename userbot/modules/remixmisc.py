@@ -1783,7 +1783,9 @@ CMD_HELP.update({
 If nothing is mentioned then by default it is 2\
 \n\n`.glitchs` reply to media file\
 \nUsage:glitches the given mediafile(gif , stickers , image, videos) to a sticker and glitch range is from 1 to 8.\
-If nothing is mentioned then by default it is 2."
+If nothing is mentioned then by default it is 2.\
+\n\n`.confs`\
+\n\nUsage:Counts number of files in chat."
 })
 
 CMD_HELP.update({
