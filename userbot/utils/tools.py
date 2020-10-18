@@ -18,20 +18,13 @@ from telethon.tl.types import ChannelParticipantCreator
 
 from userbot import bot
 from userbot import LOGS
-import sys
-import time
-from typing import Tuple, Union, Optional
+from typing import Optional, Tuple
 from userbot import bot, LOGS
 
-from telethon import errors
-from telethon.tl import types
-from telethon.utils import get_display_name
-from telethon import events
 from telethon.tl.tlobject import TLObject
-from telethon.tl.functions.messages import GetPeerDialogsRequest
 from telethon.tl.functions.channels import GetParticipantRequest
-from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator, DocumentAttributeFilename, MessageEntityPre
-from telethon.utils import add_surrogate
+from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator
+
 
 async def md5(fname: str) -> str:
     hash_md5 = hashlib.md5()
@@ -120,6 +113,7 @@ async def take_screen_shot(video_file: str, duration: int,
     if err:
         LOGS.error(err)
     return thumb_image_path if os.path.exists(thumb_image_path) else None
+
 
 def yaml_format(obj, indent=0, max_str_len=256, max_byte_len=64):
     """

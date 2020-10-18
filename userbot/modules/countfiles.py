@@ -1,10 +1,11 @@
-#imported from uniborg by @heyworld
+# imported from uniborg by @heyworld
 """Count Number of Files in a Chat
 Original Module Credits: https://t.me/UniBorg/127"""
-from userbot import bot, CMD_HELP
 from userbot.events import register
 from userbot.utils import humanbytes
 from userbot.utils.tools import (yaml_format, parse_pre)
+
+
 @register(outgoing=True, pattern="^.confs(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
@@ -18,7 +19,6 @@ async def _(event):
         "depending on the number of messages "
         "in the chat ..."
     )
-    mus = 0
     hmm = {}
     async for message in event.client.iter_messages(
         entity=entity,
