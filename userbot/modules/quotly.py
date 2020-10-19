@@ -12,6 +12,7 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
 
+
 @register(outgoing=True, pattern=r"^\.q(?: |$)(.*)")
 async def quotess(qotli):
     if qotli.fwd_from:
@@ -29,9 +30,9 @@ async def quotess(qotli):
 #       await qotli.edit("```Reply to actual users message.```")
 #        return
 #    try:
-        await qotli.edit("`Processing..`")
-        async with bot.conversation(chat) as conv:
-            try:
+     await qotli.edit("`Processing..`")
+      async with bot.conversation(chat) as conv:
+           try:
                 response = conv.wait_event(
                     events.NewMessage(incoming=True, from_users=1031952739)
                 )
