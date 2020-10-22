@@ -1,7 +1,6 @@
 """ Userbot module for other small commands. """
-from userbot import CMD_HELP, ALIVE_NAME
+from userbot import ALIVE_NAME, CMD_HELP
 from userbot.events import register
-
 
 # ================= CONSTANT =================
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
@@ -17,20 +16,23 @@ async def usit(e):
         "\n[Kali Linux Method](https://telegra.ph/How-to-keep-OpenUserBot-repo-updated-while-keeping-your-changes-through-Termux-method-04-01)"
         "\n[Ubuntu Linux Method](https://telegra.ph/How-to-keep-OUB-repo-updated-while-keeping-your-changes-through-Ubuntu-Terminal-method-04-01-2)"
         "\n[Gdrive Tutorial](https://telegra.ph/How-To-Setup-Google-Drive-04-03)"
-        "\n[video-tutorial](https://youtu.be/us1O-AnWmHA)")
+        "\n[video-tutorial](https://youtu.be/us1O-AnWmHA)"
+    )
 
 
 @register(outgoing=True, pattern="^.remixvar$")
 async def var(m):
     await m.edit(
         f"Here's a list of VARS for {DEFAULTUSER} on **oub-remix**:\n"
-        "\n[HEROKU VARS](https://raw.githubusercontent.com/niteshraj2310/RemixGeng/sql-extended/varshelper.txt)")
+        "\n[HEROKU VARS](https://raw.githubusercontent.com/niteshraj2310/RemixGeng/sql-extended/varshelper.txt)"
+    )
 
 
-CMD_HELP.update({
-    "remixhelper":
-    "`.remixhelp`\
+CMD_HELP.update(
+    {
+        "remixhelper": "`.remixhelp`\
 \nUsage: Provide links to update repo guides while you keep your changes on the floor.\
 \n`.remixvar`\
 \nUsage: Provide vars to cross check for you."
-})
+    }
+)

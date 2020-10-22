@@ -5,9 +5,10 @@
 #
 """ Userbot help command """
 
+import asyncio
+
 from userbot import CMD_HELP
 from userbot.events import register
-import asyncio
 
 modules = CMD_HELP
 
@@ -22,9 +23,11 @@ async def help(event):
         else:
             await event.edit("**Module doesn't exist or Module name is invalid**")
     else:
-        await event.edit(f"**All modules are listed below**\
+        await event.edit(
+            f"**All modules are listed below**\
             \nUsage: Type `.help <module name>` to know how it works\
-            \nModules loaded: {len(modules)}")
+            \nModules loaded: {len(modules)}"
+        )
         string = ""
         for i in sorted(CMD_HELP):
             string += "`" + str(i)

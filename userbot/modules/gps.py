@@ -1,8 +1,9 @@
 # credits: who need dat dude😂
 from geopy.geocoders import Nominatim
 from telethon.tl import types
-from userbot.events import register
+
 from userbot import CMD_HELP
+from userbot.events import register
 
 
 @register(outgoing=True, pattern="^.gps(?: |$)(.*)")
@@ -26,21 +27,16 @@ async def gps(event):
         lon = geoloc.longitude
         lat = geoloc.latitude
         await reply_to_id.reply(
-            input_str,
-            file=types.InputMediaGeoPoint(
-                types.InputGeoPoint(
-                    lat, lon
-                )
-            )
+            input_str, file=types.InputMediaGeoPoint(types.InputGeoPoint(lat, lon))
         )
         await event.delete()
     else:
         await event.edit("i coudn't find it")
 
-CMD_HELP.update({
 
-    "gps":
-        ".gps \
+CMD_HELP.update(
+    {
+        "gps": ".gps \
           \nUsage: Search any destination beyond dis universe 😂.\n"
-
-})
+    }
+)

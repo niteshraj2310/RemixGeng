@@ -7,6 +7,7 @@
 
 import io
 import re
+
 import userbot.modules.sql_helper.blacklist_sql as sql
 from userbot import CMD_HELP
 from userbot.events import register
@@ -37,7 +38,11 @@ async def on_add_black_list(addbl):
 
     for trigger in to_blacklist:
         sql.add_to_blacklist(addbl.chat_id, trigger.lower())
-    await addbl.edit("Added {} triggers to the blacklist in the current chat".format(len(to_blacklist)))
+    await addbl.edit(
+        "Added {} triggers to the blacklist in the current chat".format(
+            len(to_blacklist)
+        )
+    )
 
 
 @register(outgoing=True, pattern="^.listbl(?: |$)(.*)")
@@ -58,7 +63,7 @@ async def on_view_blacklist(listbl):
                 force_document=True,
                 allow_cache=False,
                 caption="BlackLists in the Current Chat",
-                reply_to=listbl
+                reply_to=listbl,
             )
             await listbl.delete()
     else:
@@ -78,9 +83,10 @@ async def on_delete_blacklist(rmbl):
             successful += 1
     await rmbl.edit(f"Removed {successful} / {len(to_unblacklist)} from the blacklist")
 
-CMD_HELP.update({
-    "blacklist":
-    ".listbl\
+
+CMD_HELP.update(
+    {
+        "blacklist": ".listbl\
     \nUsage: Lists all active userbot blacklist in a chat.\
     \n\n.addbl <keyword>\
     \nUsage: Saves the message to the 'blacklist keyword'.\
@@ -88,4 +94,5 @@ CMD_HELP.update({
     \n\n.rmbl <keyword>\
     \nUsage: Stops the specified blacklist.\
 	\n btw you need permissions **Delete Messages** of admin."
-})
+    }
+)

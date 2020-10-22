@@ -3,6 +3,7 @@ import re
 
 from userbot import bot
 from userbot.events import register
+
 EMOJI_PATTERN = re.compile(
     "["
     "\U0001F1E0-\U0001F1FF"  # flags (iOS)
@@ -126,9 +127,7 @@ async def rollstick(tem):
             await tem.edit("`No text given, hence HONKA will say fuq Off.`")
             return
 
-    fries = await bot.inline_query(
-        "honka_says_bot", f"{(deEmojify(text))}.."
-    )
+    fries = await bot.inline_query("honka_says_bot", f"{(deEmojify(text))}..")
     try:
         await fries[0].click(
             tem.chat_id,

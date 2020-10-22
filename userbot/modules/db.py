@@ -6,7 +6,7 @@
 """ Userbot module for getting information about the server. """
 from platform import uname
 
-from userbot import is_mongo_alive, is_redis_alive, ALIVE_NAME, BOT_VER
+from userbot import ALIVE_NAME, BOT_VER, is_mongo_alive, is_redis_alive
 from userbot.events import register
 
 # ================= CONSTANT =================
@@ -24,8 +24,10 @@ async def amireallydbs(dbs):
         db = "Redis Cache seems to be failing!"
     else:
         db = "Databases functioning normally!"
-    await dbs.edit(""
-                   f"`User:` {DEFAULTUSER} \n"
-                   f"`Database status: {db}\n`"
-                   f"`OUB-REMIX: {BOT_VER}`"
-                   "")
+    await dbs.edit(
+        ""
+        f"`User:` {DEFAULTUSER} \n"
+        f"`Database status: {db}\n`"
+        f"`OUB-REMIX: {BOT_VER}`"
+        ""
+    )

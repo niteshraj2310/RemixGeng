@@ -5,6 +5,7 @@
 #
 
 import pyfiglet
+
 from userbot import CMD_HELP
 from userbot.events import register
 
@@ -26,7 +27,8 @@ async def figlet(fg):
         "dotm": "dotmatrix",
         "bubble": "bubble",
         "bulb": "bulbhead",
-        "digi": "digital"}
+        "digi": "digital",
+    }
     input_str = fg.pattern_match.group(1)
     if "." in input_str:
         text, cmd = input_str.split(".", maxsplit=1)
@@ -47,10 +49,12 @@ async def figlet(fg):
         result = pyfiglet.figlet_format(text)
     await fg.edit("‌‌‎`{}`".format(result))
 
-CMD_HELP.update({
-    "figlet":
-        ".figlet"
-    "\nUsage: Enhance ur text to strip line with anvil."
-    "\n\nExample: `.figlet whatever.slant`"
-    "\nSTYLE LIST: `slant`, `3D`, `5line`, `alpha`, `banner`, `doh`, `iso`, `letter`, `allig`, `dotm`, `bubble`, `bulb`, `digi`"
-})
+
+CMD_HELP.update(
+    {
+        "figlet": ".figlet"
+        "\nUsage: Enhance ur text to strip line with anvil."
+        "\n\nExample: `.figlet whatever.slant`"
+        "\nSTYLE LIST: `slant`, `3D`, `5line`, `alpha`, `banner`, `doh`, `iso`, `letter`, `allig`, `dotm`, `bubble`, `bulb`, `digi`"
+    }
+)

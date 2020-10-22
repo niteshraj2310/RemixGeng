@@ -9,8 +9,9 @@ import json
 import re
 
 import requests
-from userbot.events import register
+
 from userbot import bot
+from userbot.events import register
 
 
 def time_formatter(milliseconds: int) -> str:
@@ -174,11 +175,7 @@ async def callAPI(search_str):
     """
     variables = {"search": search_str}
     url = "https://graphql.anilist.co"
-    response = requests.post(
-        url,
-        json={
-            "query": query,
-            "variables": variables})
+    response = requests.post(url, json={"query": query, "variables": variables})
     return response.text
 
 
@@ -211,6 +208,7 @@ async def formatJSON(outData):
 
     return msg
 
+
 url = "https://graphql.anilist.co"
 
 
@@ -222,13 +220,10 @@ async def anilist(event):
         reply_to_id = event.reply_to_msg_id
     variables = {"query": search}
     json = (
-        requests.post(
-            url,
-            json={
-                "query": character_query,
-                "variables": variables}) .json()["data"] .get(
-            "Character",
-            None))
+        requests.post(url, json={"query": character_query, "variables": variables})
+        .json()["data"]
+        .get("Character", None)
+    )
     if json:
         msg = f"**{json.get('name').get('full')}**\n"
         description = f"{json['description']}"
@@ -278,9 +273,9 @@ async def anilist(event):
     )
     ms_g = ""
     if json:
-        title, title_native = json["title"].get(
-            "romaji", False), json["title"].get(
-            "native", False)
+        title, title_native = json["title"].get("romaji", False), json["title"].get(
+            "native", False
+        )
         start_date, status, score = (
             json["startDate"].get("year", False),
             json.get("status", False),

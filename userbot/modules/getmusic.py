@@ -17,10 +17,7 @@ from pylast import User
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.types import DocumentAttributeVideo
 
-from userbot import bot
-from userbot import CMD_HELP
-from userbot import lastfm
-from userbot import LASTFM_USERNAME
+from userbot import CMD_HELP, LASTFM_USERNAME, bot, lastfm
 from userbot.events import register
 from userbot.utils import chrome, progress
 
@@ -66,14 +63,14 @@ async def _(event):
                 """- don't spam notif -"""
                 await bot.send_read_acknowledge(conv.chat_id)
             except YouBlockedUserError:
-                await event.reply(
-                    "```Please unblock @WooMaiBot and try again```")
+                await event.reply("```Please unblock @WooMaiBot and try again```")
                 return
             await event.edit("`Sending Your Music...`")
             await asyncio.sleep(3)
             await bot.send_file(event.chat_id, respond)
-        await event.client.delete_messages(conv.chat_id,
-                                           [msg.id, response.id, respond.id])
+        await event.client.delete_messages(
+            conv.chat_id, [msg.id, response.id, respond.id]
+        )
         await event.delete()
     except TimeoutError:
         return await event.edit("`Error: `@WooMaiBot` is not responding!.`")
@@ -114,8 +111,7 @@ async def _(event):
         if metadata.has("height"):
             height = metadata.get("height")
         os.system("cp *mp4 thumb.mp4")
-        os.system(
-            "ffmpeg -i thumb.mp4 -vframes 1 -an -s 480x360 -ss 5 thumb.jpg")
+        os.system("ffmpeg -i thumb.mp4 -vframes 1 -an -s 480x360 -ss 5 thumb.jpg")
         thumb_image = "thumb.jpg"
         c_time = time.time()
         await event.client.send_file(
@@ -136,8 +132,9 @@ async def _(event):
                     supports_streaming=True,
                 )
             ],
-            progress_callback=lambda d, t: asyncio.get_event_loop().
-            create_task(progress(d, t, event, c_time, "[UPLOAD]", loa)),
+            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+                progress(d, t, event, c_time, "[UPLOAD]", loa)
+            ),
         )
         await event.edit(f"**{query}** `Uploaded Successfully..!`")
         os.remove(thumb_image)
@@ -147,10 +144,11 @@ async def _(event):
         return
 
 
-CMD_HELP.update({
-    "getmusic":
-    "\n\n.songn now"
-    "\nUsage: Download current LastFM scrobble with @WooMaiBot"
-    "\n\n.vs <Artist - Song Title>"
-    "\nUsage: Finding and uploading videoclip.\n"
-})
+CMD_HELP.update(
+    {
+        "getmusic": "\n\n.songn now"
+        "\nUsage: Download current LastFM scrobble with @WooMaiBot"
+        "\n\n.vs <Artist - Song Title>"
+        "\nUsage: Finding and uploading videoclip.\n"
+    }
+)

@@ -1,24 +1,41 @@
 # imported from github.com/ravana69/PornHub to userbot by @heyworld
 # please don't nuke my credits 😓
-import requests
-import bs4
-import os
 import asyncio
-import time
 import html
+import logging
+import os
+import time
+from datetime import datetime
+from urllib.parse import quote
+
+import bs4
+import requests
 from justwatch import JustWatch, justwatchapi
 from telethon import *
-from userbot.events import register
-from userbot import CMD_HELP, bot, TEMP_DOWNLOAD_DIRECTORY, DEFAULT_BIO, ALIVE_NAME, WATCH_COUNTRY
 from telethon import events
-from telethon.tl import functions
-from urllib.parse import quote
-from datetime import datetime
-from telethon.tl.types import UserStatusEmpty, UserStatusLastMonth, UserStatusLastWeek, UserStatusOffline, UserStatusOnline, UserStatusRecently, ChatBannedRights
-from telethon.tl.functions.users import GetFullUserRequest
-from telethon.tl.types import MessageEntityMentionName
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-import logging
+from telethon.tl import functions
+from telethon.tl.functions.users import GetFullUserRequest
+from telethon.tl.types import (
+    ChatBannedRights,
+    MessageEntityMentionName,
+    UserStatusEmpty,
+    UserStatusLastMonth,
+    UserStatusLastWeek,
+    UserStatusOffline,
+    UserStatusOnline,
+    UserStatusRecently,
+)
+
+from userbot import (
+    ALIVE_NAME,
+    CMD_HELP,
+    DEFAULT_BIO,
+    TEMP_DOWNLOAD_DIRECTORY,
+    WATCH_COUNTRY,
+    bot,
+)
+from userbot.events import register
 
 justwatchapi.__dict__["HEADER"] = {
     "User-Agent": "JustWatch client (github.com/dawoudt/JustWatchAPI)"
@@ -332,32 +349,33 @@ musicalfont = [
 ]
 
 normiefont = [
-    'a',
-    'b',
-    'c',
-    'd',
-    'e',
-    'f',
-    'g',
-    'h',
-    'i',
-    'j',
-    'k',
-    'l',
-    'm',
-    'n',
-    'o',
-    'p',
-    'q',
-    'r',
-    's',
-    't',
-    'u',
-    'v',
-    'w',
-    'x',
-    'y',
-    'z']
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+]
 
 upsidefont = [
     "a",
@@ -431,86 +449,89 @@ upsidefont = [
     "?",
 ]
 weebyfont = [
-    '卂',
-    '乃',
-    '匚',
-    '刀',
-    '乇',
-    '下',
-    '厶',
-    '卄',
-    '工',
-    '丁',
-    '长',
-    '乚',
-    '从',
-    '𠘨',
-    '口',
-    '尸',
-    '㔿',
-    '尺',
-    '丂',
-    '丅',
-    '凵',
-    'リ',
-    '山',
-    '乂',
-    '丫',
-    '乙']
+    "卂",
+    "乃",
+    "匚",
+    "刀",
+    "乇",
+    "下",
+    "厶",
+    "卄",
+    "工",
+    "丁",
+    "长",
+    "乚",
+    "从",
+    "𠘨",
+    "口",
+    "尸",
+    "㔿",
+    "尺",
+    "丂",
+    "丅",
+    "凵",
+    "リ",
+    "山",
+    "乂",
+    "丫",
+    "乙",
+]
 circlyfont = [
-    '🅐',
-    '🅑',
-    '🅒',
-    '🅓',
-    '🅔',
-    '🅕',
-    '🅖',
-    '🅗',
-    '🅘',
-    '🅙',
-    '🅚',
-    '🅛',
-    '🅜',
-    '🅝',
-    '🅞',
-    '🅟',
-    '🅠',
-    '🅡',
-    '🅢',
-    '🅣',
-    '🅤',
-    '🅥',
-    '🅦',
-    '🅧',
-    '🅨',
-    '🅩']
+    "🅐",
+    "🅑",
+    "🅒",
+    "🅓",
+    "🅔",
+    "🅕",
+    "🅖",
+    "🅗",
+    "🅘",
+    "🅙",
+    "🅚",
+    "🅛",
+    "🅜",
+    "🅝",
+    "🅞",
+    "🅟",
+    "🅠",
+    "🅡",
+    "🅢",
+    "🅣",
+    "🅤",
+    "🅥",
+    "🅦",
+    "🅧",
+    "🅨",
+    "🅩",
+]
 oldengfont = [
-    '𝔄',
-    '𝔅',
-    'ℭ',
-    '𝔇',
-    '𝔈',
-    '𝔉',
-    '𝔊',
-    'ℌ',
-    'ℑ',
-    '𝔍',
-    '𝔎',
-    '𝔏',
-    '𝔐',
-    '𝔑',
-    '𝔒',
-    '𝔓',
-    '𝔔',
-    'ℜ',
-    '𝔖',
-    '𝔗',
-    '𝔘',
-    '𝔙',
-    '𝔚',
-    '𝔛',
-    '𝔜',
-    'ℨ']
+    "𝔄",
+    "𝔅",
+    "ℭ",
+    "𝔇",
+    "𝔈",
+    "𝔉",
+    "𝔊",
+    "ℌ",
+    "ℑ",
+    "𝔍",
+    "𝔎",
+    "𝔏",
+    "𝔐",
+    "𝔑",
+    "𝔒",
+    "𝔓",
+    "𝔔",
+    "ℜ",
+    "𝔖",
+    "𝔗",
+    "𝔘",
+    "𝔙",
+    "𝔚",
+    "𝔛",
+    "𝔜",
+    "ℨ",
+]
 
 logger = logging.getLogger(__name__)
 
@@ -526,45 +547,64 @@ if 1 == 1:
 async def apk(e):
     try:
         app_name = e.pattern_match.group(1)
-        remove_space = app_name.split(' ')
-        final_name = '+'.join(remove_space)
+        remove_space = app_name.split(" ")
+        final_name = "+".join(remove_space)
         page = requests.get(
-            "https://play.google.com/store/search?q=" +
-            final_name +
-            "&c=apps")
+            "https://play.google.com/store/search?q=" + final_name + "&c=apps"
+        )
         str(page.status_code)
-        soup = bs4.BeautifulSoup(page.content, 'lxml', from_encoding='utf-8')
+        soup = bs4.BeautifulSoup(page.content, "lxml", from_encoding="utf-8")
         results = soup.findAll("div", "ZmHEEd")
-        app_name = results[0].findNext(
-            'div', 'Vpfmgd').findNext(
-            'div', 'WsMG1c nnK0zc').text
-        app_dev = results[0].findNext(
-            'div', 'Vpfmgd').findNext(
-            'div', 'KoLSrc').text
-        app_dev_link = "https://play.google.com" + \
-            results[0].findNext(
-                'div', 'Vpfmgd').findNext(
-                'a', 'mnKHRc')['href']
-        app_rating = results[0].findNext(
-            'div', 'Vpfmgd').findNext(
-            'div', 'pf5lIe').find('div')['aria-label']
-        app_link = "https://play.google.com" + \
-            results[0].findNext(
-                'div', 'Vpfmgd').findNext(
-                'div', 'vU6FJ p63iDd').a['href']
-        app_icon = results[0].findNext(
-            'div', 'Vpfmgd').findNext(
-            'div', 'uzcko').img['data-src']
+        app_name = (
+            results[0].findNext("div", "Vpfmgd").findNext("div", "WsMG1c nnK0zc").text
+        )
+        app_dev = results[0].findNext("div", "Vpfmgd").findNext("div", "KoLSrc").text
+        app_dev_link = (
+            "https://play.google.com"
+            + results[0].findNext("div", "Vpfmgd").findNext("a", "mnKHRc")["href"]
+        )
+        app_rating = (
+            results[0]
+            .findNext("div", "Vpfmgd")
+            .findNext("div", "pf5lIe")
+            .find("div")["aria-label"]
+        )
+        app_link = (
+            "https://play.google.com"
+            + results[0]
+            .findNext("div", "Vpfmgd")
+            .findNext("div", "vU6FJ p63iDd")
+            .a["href"]
+        )
+        app_icon = (
+            results[0]
+            .findNext("div", "Vpfmgd")
+            .findNext("div", "uzcko")
+            .img["data-src"]
+        )
         app_details = "<a href='" + app_icon + "'>📲&#8203;</a>"
         app_details += " <b>" + app_name + "</b>"
-        app_details += "\n\n<code>Developer :</code> <a href='" + \
-            app_dev_link + "'>" + app_dev + "</a>"
-        app_details += "\n<code>Rating :</code> " + app_rating.replace("Rated ", "⭐ ").replace(
-            " out of ", "/").replace(" stars", "", 1).replace(" stars", "⭐ ").replace("five", "5")
-        app_details += "\n<code>Features :</code> <a href='" + \
-            app_link + "'>View in Play Store</a>"
+        app_details += (
+            "\n\n<code>Developer :</code> <a href='"
+            + app_dev_link
+            + "'>"
+            + app_dev
+            + "</a>"
+        )
+        app_details += "\n<code>Rating :</code> " + app_rating.replace(
+            "Rated ", "⭐ "
+        ).replace(" out of ", "/").replace(" stars", "", 1).replace(
+            " stars", "⭐ "
+        ).replace(
+            "five", "5"
+        )
+        app_details += (
+            "\n<code>Features :</code> <a href='"
+            + app_link
+            + "'>View in Play Store</a>"
+        )
         app_details += "\n\n===> # 厶 尸 丂   乚 工 丅 乇 <==="
-        await e.edit(app_details, link_preview=True, parse_mode='HTML')
+        await e.edit(app_details, link_preview=True, parse_mode="HTML")
     except IndexError:
         await e.edit("No result found in search. Please enter **Valid app name**")
     except Exception as err:
@@ -577,11 +617,15 @@ async def _(event):
         return
     c = await event.get_chat()
     if c.admin_rights or c.creator:
-        a = await bot.get_admin_log(event.chat_id, limit=1, search="", edit=False, delete=True)
+        a = await bot.get_admin_log(
+            event.chat_id, limit=1, search="", edit=False, delete=True
+        )
         for i in a:
             await event.reply(i.original.action.message)
     else:
-        await event.edit("You need administrative permissions in order to do this command")
+        await event.edit(
+            "You need administrative permissions in order to do this command"
+        )
         await asyncio.sleep(3)
         await event.delete()
 
@@ -597,15 +641,17 @@ async def _(event):
     term1part1 = final_input[0]
     term1part2 = final_input[1]
     term1 = str(term1part1) + str(term1part2)
-    final_term1 = (int(term1))
+    final_term1 = int(term1)
     operator = str(final_input[2])
     term2part1 = final_input[3]
     term2part2 = final_input[4]
     term2 = str(term2part1) + str(term2part2)
-    final_term2 = (int(term2))
+    final_term2 = int(term2)
     # actual calculations go here
     if input == "help":
-        await event.edit("Syntax .calc <term1><operator><term2>\nFor eg .calc 02*02 or 99*99 (the zeros are important) (two terms and two digits max)")
+        await event.edit(
+            "Syntax .calc <term1><operator><term2>\nFor eg .calc 02*02 or 99*99 (the zeros are important) (two terms and two digits max)"
+        )
     elif operator == "*":
         await event.edit("Solution -->\n" + exp + "\n" + str(final_term1 * final_term2))
     elif operator == "-":
@@ -632,11 +678,7 @@ async def _(event):
         else:
             xkcd_search_url = "https://relevantxkcd.appspot.com/process?"
             queryresult = requests.get(
-                xkcd_search_url,
-                params={
-                    "action": "xkcd",
-                    "query": quote(input_str)
-                }
+                xkcd_search_url, params={"action": "xkcd", "query": quote(input_str)}
             ).text
             xkcd_id = queryresult.split(" ")[2].lstrip("\n")
     if xkcd_id is None:
@@ -661,7 +703,9 @@ Title: {}
 Alt: {}
 Day: {}
 Month: {}
-Year: {}""".format(img, input_str, xkcd_link, safe_title, alt, day, month, year)
+Year: {}""".format(
+            img, input_str, xkcd_link, safe_title, alt, day, month, year
+        )
         await event.edit(output_str, link_preview=True)
     else:
         await event.edit("xkcd n.{} not found!".format(xkcd_id))
@@ -697,10 +741,7 @@ async def _(event):
         #
         # Note that it's "reversed". You must set to ``True`` the permissions
         # you want to REMOVE, and leave as ``None`` those you want to KEEP.
-        rights = ChatBannedRights(
-            until_date=None,
-            view_messages=True
-        )
+        rights = ChatBannedRights(until_date=None, view_messages=True)
         if isinstance(i.status, UserStatusEmpty):
             y += 1
             if "y" in input_str:
@@ -795,7 +836,8 @@ Bots: {}
 None: {}"""
         await event.edit(required_string.format(c, p, d, y, m, w, o, q, r, b, n))
         await asyncio.sleep(5)
-    await event.edit("""Total= {} users
+    await event.edit(
+        """Total= {} users
 Number Of Deleted Accounts= {}
 Status: Empty= {}
       : Last Month= {}
@@ -804,7 +846,10 @@ Status: Empty= {}
       : Online= {}
       : Recently= {}
 Number Of Bots= {}
-Unidentified= {}""".format(p, d, y, m, w, o, q, r, b, n))
+Unidentified= {}""".format(
+            p, d, y, m, w, o, q, r, b, n
+        )
+    )
 
 
 async def ban_user(chat_id, i, rights):
@@ -822,7 +867,9 @@ async def _(event):
     thumb = None
     if os.path.exists(thumb_image_path):
         thumb = thumb_image_path
-    await event.edit("`Rename & Upload in process 🙄🙇‍♂️🙇‍♂️🙇‍♀️ It might take some time if file size is big`")
+    await event.edit(
+        "`Rename & Upload in process 🙄🙇‍♂️🙇‍♂️🙇‍♀️ It might take some time if file size is big`"
+    )
     input_str = event.pattern_match.group(1)
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
@@ -852,11 +899,17 @@ async def _(event):
             end_two = datetime.now()
             os.remove(downloaded_file_name)
             ms_two = (end_two - end).seconds
-            await event.edit("Downloaded in {} seconds. Uploaded in {} seconds.".format(ms_one, ms_two))
+            await event.edit(
+                "Downloaded in {} seconds. Uploaded in {} seconds.".format(
+                    ms_one, ms_two
+                )
+            )
         else:
             await event.edit("File Not Found {}".format(input_str))
     else:
-        await event.edit("Syntax // .rnupload filename.extension as reply to a Telegram media")
+        await event.edit(
+            "Syntax // .rnupload filename.extension as reply to a Telegram media"
+        )
 
 
 @register(outgoing=True, pattern="^.grab(?: |$)(.*)")
@@ -910,9 +963,8 @@ async def _(event):
     async with event.client.conversation(chat) as conv:
         try:
             response = conv.wait_event(
-                events.NewMessage(
-                    incoming=True,
-                    from_users=894227130))
+                events.NewMessage(incoming=True, from_users=894227130)
+            )
             await event.client.forward_messages(chat, reply_message)
             response = await response
         except YouBlockedUserError:
@@ -935,7 +987,9 @@ async def _(event):
         await event.edit(str(error_i_a))
         return False
     user_id = replied_user.user.id
-    profile_pic = await event.client.download_profile_photo(user_id, TEMP_DOWNLOAD_DIRECTORY)
+    profile_pic = await event.client.download_profile_photo(
+        user_id, TEMP_DOWNLOAD_DIRECTORY
+    )
     # some people have weird HTML in their names
     first_name = html.escape(replied_user.user.first_name)
     # https://stackoverflow.com/a/5072031/4723940
@@ -955,19 +1009,11 @@ async def _(event):
     user_bio = replied_user.about
     if user_bio is not None:
         user_bio = html.escape(replied_user.about)
-    await bot(functions.account.UpdateProfileRequest(
-        first_name=first_name
-    ))
-    await bot(functions.account.UpdateProfileRequest(
-        last_name=last_name
-    ))
-    await bot(functions.account.UpdateProfileRequest(
-        about=user_bio
-    ))
+    await bot(functions.account.UpdateProfileRequest(first_name=first_name))
+    await bot(functions.account.UpdateProfileRequest(last_name=last_name))
+    await bot(functions.account.UpdateProfileRequest(about=user_bio))
     pfile = await bot.upload_file(profile_pic)  # pylint:disable=E060
-    await bot(functions.photos.UploadProfilePhotoRequest(  # pylint:disable=E0602
-        pfile
-    ))
+    await bot(functions.photos.UploadProfilePhotoRequest(pfile))  # pylint:disable=E0602
     # message_id_to_reply = event.message.reply_to_msg_id
     # if not message_id_to_reply:
     #    message_id_to_reply = event.message.id
@@ -978,9 +1024,7 @@ async def _(event):
     #  )
     await event.delete()
     await bot.send_message(
-        event.chat_id,
-        "**cloned like pero.**",
-        reply_to=reply_message
+        event.chat_id, "**cloned like pero.**", reply_to=reply_message
     )
 
 
@@ -990,14 +1034,13 @@ async def get_full_user(event):
         if previous_message.forward:
             replied_user = await event.client(
                 GetFullUserRequest(
-                    previous_message.forward.from_id or previous_message.forward.channel_id
+                    previous_message.forward.from_id
+                    or previous_message.forward.channel_id
                 )
             )
         else:
             replied_user = await event.client(
-                GetFullUserRequest(
-                    previous_message.from_id
-                )
+                GetFullUserRequest(previous_message.from_id)
             )
         return replied_user, None
     else:
@@ -1009,9 +1052,7 @@ async def get_full_user(event):
         if event.message.entities is not None:
             mention_entity = event.message.entities
             probable_user_mention_entity = mention_entity[0]
-            if isinstance(
-                    probable_user_mention_entity,
-                    MessageEntityMentionName):
+            if isinstance(probable_user_mention_entity, MessageEntityMentionName):
                 user_id = probable_user_mention_entity.user_id
                 replied_user = await event.client(GetFullUserRequest(user_id))
                 return replied_user, None
@@ -1153,6 +1194,7 @@ async def _(event):
     )
     await event.delete()
 
+
 # credits:
 # Ported from Saitama Bot.
 # By :- @PhycoNinja13b
@@ -1169,7 +1211,7 @@ async def weebify(event):
     if not args:
         await event.edit("`What I am Supposed to Weebify U Dumb`")
         return
-    string = ' '.join(args).lower()
+    string = " ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
             weebycharacter = weebyfont[normiefont.index(normiecharacter)]
@@ -1178,32 +1220,33 @@ async def weebify(event):
 
 
 boldfont = [
-    '𝗮',
-    '𝗯',
-    '𝗰',
-    '𝗱',
-    '𝗲',
-    '𝗳',
-    '𝗴',
-    '𝗵',
-    '𝗶',
-    '𝗷',
-    '𝗸',
-    '𝗹',
-    '𝗺',
-    '𝗻',
-    '𝗼',
-    '𝗽',
-    '𝗾',
-    '𝗿',
-    '𝘀',
-    '𝘁',
-    '𝘂',
-    '𝘃',
-    '𝘄',
-    '𝘅',
-    '𝘆',
-    '𝘇']
+    "𝗮",
+    "𝗯",
+    "𝗰",
+    "𝗱",
+    "𝗲",
+    "𝗳",
+    "𝗴",
+    "𝗵",
+    "𝗶",
+    "𝗷",
+    "𝗸",
+    "𝗹",
+    "𝗺",
+    "𝗻",
+    "𝗼",
+    "𝗽",
+    "𝗾",
+    "𝗿",
+    "𝘀",
+    "𝘁",
+    "𝘂",
+    "𝘃",
+    "𝘄",
+    "𝘅",
+    "𝘆",
+    "𝘇",
+]
 
 
 @register(outgoing=True, pattern="^.bold(?: |$)(.*)")
@@ -1216,7 +1259,7 @@ async def thicc(bolded):
     if not args:
         await bolded.edit("`What I am Supposed to bold for U Dumb`")
         return
-    string = ''.join(args).lower()
+    string = "".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
             boldcharacter = boldfont[normiefont.index(normiecharacter)]
@@ -1225,32 +1268,33 @@ async def thicc(bolded):
 
 
 medievalbold = [
-    '𝖆',
-    '𝖇',
-    '𝖈',
-    '𝖉',
-    '𝖊',
-    '𝖋',
-    '𝖌',
-    '𝖍',
-    '𝖎',
-    '𝖏',
-    '𝖐',
-    '𝖑',
-    '𝖒',
-    '𝖓',
-    '𝖔',
-    '𝖕',
-    '𝖖',
-    '𝖗',
-    '𝖘',
-    '𝖙',
-    '𝖚',
-    '𝖛',
-    '𝖜',
-    '𝖝',
-    '𝖞',
-    '𝖟']
+    "𝖆",
+    "𝖇",
+    "𝖈",
+    "𝖉",
+    "𝖊",
+    "𝖋",
+    "𝖌",
+    "𝖍",
+    "𝖎",
+    "𝖏",
+    "𝖐",
+    "𝖑",
+    "𝖒",
+    "𝖓",
+    "𝖔",
+    "𝖕",
+    "𝖖",
+    "𝖗",
+    "𝖘",
+    "𝖙",
+    "𝖚",
+    "𝖛",
+    "𝖜",
+    "𝖝",
+    "𝖞",
+    "𝖟",
+]
 
 
 @register(outgoing=True, pattern="^.medibold(?: |$)(.*)")
@@ -1263,7 +1307,7 @@ async def mediv(medievalx):
     if not args:
         await medievalx.edit("`What I am Supposed to medieval bold for U Dumb`")
         return
-    string = ''.join(args).lower()
+    string = "".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
             medievalcharacter = medievalbold[normiefont.index(normiecharacter)]
@@ -1272,32 +1316,33 @@ async def mediv(medievalx):
 
 
 doublestruckt = [
-    '𝕒',
-    '𝕓',
-    '𝕔',
-    '𝕕',
-    '𝕖',
-    '𝕗',
-    '𝕘',
-    '𝕙',
-    '𝕚',
-    '𝕛',
-    '𝕜',
-    '𝕝',
-    '𝕞',
-    '𝕟',
-    '𝕠',
-    '𝕡',
-    '𝕢',
-    '𝕣',
-    '𝕤',
-    '𝕥',
-    '𝕦',
-    '𝕧',
-    '𝕨',
-    '𝕩',
-    '𝕪',
-    '𝕫']
+    "𝕒",
+    "𝕓",
+    "𝕔",
+    "𝕕",
+    "𝕖",
+    "𝕗",
+    "𝕘",
+    "𝕙",
+    "𝕚",
+    "𝕛",
+    "𝕜",
+    "𝕝",
+    "𝕞",
+    "𝕟",
+    "𝕠",
+    "𝕡",
+    "𝕢",
+    "𝕣",
+    "𝕤",
+    "𝕥",
+    "𝕦",
+    "𝕧",
+    "𝕨",
+    "𝕩",
+    "𝕪",
+    "𝕫",
+]
 
 
 @register(outgoing=True, pattern="^.doublestruck(?: |$)(.*)")
@@ -1310,7 +1355,7 @@ async def doublex(doublestrucktx):
     if not args:
         await doublestrucktx.edit("`What I am Supposed to double struck for U Dumb`")
         return
-    string = ''.join(args).lower()
+    string = "".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
             strucktcharacter = doublestruckt[normiefont.index(normiecharacter)]
@@ -1319,32 +1364,33 @@ async def doublex(doublestrucktx):
 
 
 cursiveboldx = [
-    '𝓪',
-    '𝓫',
-    '𝓬',
-    '𝓭',
-    '𝓮',
-    '𝓯',
-    '𝓰',
-    '𝓱',
-    '𝓲',
-    '𝓳',
-    '𝓴',
-    '𝓵',
-    '𝓶',
-    '𝓷',
-    '𝓸',
-    '𝓹',
-    '𝓺',
-    '𝓻',
-    '𝓼',
-    '𝓽',
-    '𝓾',
-    '𝓿',
-    '𝔀',
-    '𝔁',
-    '𝔂',
-    '𝔃']
+    "𝓪",
+    "𝓫",
+    "𝓬",
+    "𝓭",
+    "𝓮",
+    "𝓯",
+    "𝓰",
+    "𝓱",
+    "𝓲",
+    "𝓳",
+    "𝓴",
+    "𝓵",
+    "𝓶",
+    "𝓷",
+    "𝓸",
+    "𝓹",
+    "𝓺",
+    "𝓻",
+    "𝓼",
+    "𝓽",
+    "𝓾",
+    "𝓿",
+    "𝔀",
+    "𝔁",
+    "𝔂",
+    "𝔃",
+]
 
 
 @register(outgoing=True, pattern="^.curbold(?: |$)(.*)")
@@ -1357,42 +1403,42 @@ async def cursive2(cursivebolded):
     if not args:
         await cursivebolded.edit("`What I am Supposed to cursive bold for U Dumb`")
         return
-    string = ''.join(args).lower()
+    string = "".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            cursiveboldcharacter = cursiveboldx[normiefont.index(
-                normiecharacter)]
+            cursiveboldcharacter = cursiveboldx[normiefont.index(normiecharacter)]
             string = string.replace(normiecharacter, cursiveboldcharacter)
     await cursivebolded.edit(string)
 
 
 medival2 = [
-    '𝔞',
-    '𝔟',
-    '𝔠',
-    '𝔡',
-    '𝔢',
-    '𝔣',
-    '𝔤',
-    '𝔥',
-    '𝔦',
-    '𝔧',
-    '𝔨',
-    '𝔩',
-    '𝔪',
-    '𝔫',
-    '𝔬',
-    '𝔭',
-    '𝔮',
-    '𝔯',
-    '𝔰',
-    '𝔱',
-    '𝔲',
-    '𝔳',
-    '𝔴',
-    '𝔵',
-    '𝔶',
-    '𝔷']
+    "𝔞",
+    "𝔟",
+    "𝔠",
+    "𝔡",
+    "𝔢",
+    "𝔣",
+    "𝔤",
+    "𝔥",
+    "𝔦",
+    "𝔧",
+    "𝔨",
+    "𝔩",
+    "𝔪",
+    "𝔫",
+    "𝔬",
+    "𝔭",
+    "𝔮",
+    "𝔯",
+    "𝔰",
+    "𝔱",
+    "𝔲",
+    "𝔳",
+    "𝔴",
+    "𝔵",
+    "𝔶",
+    "𝔷",
+]
 
 
 @register(outgoing=True, pattern="^.medi(?: |$)(.*)")
@@ -1405,7 +1451,7 @@ async def medival22(medivallite):
     if not args:
         await medivallite.edit("`What I am Supposed to medival for U Dumb`")
         return
-    string = ''.join(args).lower()
+    string = "".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
             medivalxxcharacter = medival2[normiefont.index(normiecharacter)]
@@ -1414,32 +1460,33 @@ async def medival22(medivallite):
 
 
 cursive = [
-    '𝒶',
-    '𝒷',
-    '𝒸',
-    '𝒹',
-    '𝑒',
-    '𝒻',
-    '𝑔',
-    '𝒽',
-    '𝒾',
-    '𝒿',
-    '𝓀',
-    '𝓁',
-    '𝓂',
-    '𝓃',
-    '𝑜',
-    '𝓅',
-    '𝓆',
-    '𝓇',
-    '𝓈',
-    '𝓉',
-    '𝓊',
-    '𝓋',
-    '𝓌',
-    '𝓍',
-    '𝓎',
-    '𝓏']
+    "𝒶",
+    "𝒷",
+    "𝒸",
+    "𝒹",
+    "𝑒",
+    "𝒻",
+    "𝑔",
+    "𝒽",
+    "𝒾",
+    "𝒿",
+    "𝓀",
+    "𝓁",
+    "𝓂",
+    "𝓃",
+    "𝑜",
+    "𝓅",
+    "𝓆",
+    "𝓇",
+    "𝓈",
+    "𝓉",
+    "𝓊",
+    "𝓋",
+    "𝓌",
+    "𝓍",
+    "𝓎",
+    "𝓏",
+]
 
 
 @register(outgoing=True, pattern="^.cur(?: |$)(.*)")
@@ -1452,7 +1499,7 @@ async def xcursive(cursivelite):
     if not args:
         await cursivelite.edit("`What I am Supposed to cursive for U Dumb`")
         return
-    string = ''.join(args).lower()
+    string = "".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
             cursivecharacter = cursive[normiefont.index(normiecharacter)]
@@ -1472,8 +1519,7 @@ async def stylish_generator(event):
     string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            egyptfontcharacter = egyptfontfont[normiefont.index(
-                normiecharacter)]
+            egyptfontcharacter = egyptfontfont[normiefont.index(normiecharacter)]
             string = string.replace(normiecharacter, egyptfontcharacter)
     await event.edit(string)
 
@@ -1490,8 +1536,7 @@ async def stylish_generator(event):
     string = "  ".join(args).lower()
     for upsidecharacter in string:
         if upsidecharacter in upsidefont:
-            downsidecharacter = downsidefont[upsidefont.index(
-                upsidecharacter)]
+            downsidecharacter = downsidefont[upsidefont.index(upsidecharacter)]
             string = string.replace(upsidecharacter, downsidecharacter)
     await event.edit(string)
 
@@ -1508,8 +1553,7 @@ async def stylish_generator(event):
     string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            subscriptcharacter = subscriptfont[normiefont.index(
-                normiecharacter)]
+            subscriptcharacter = subscriptfont[normiefont.index(normiecharacter)]
             string = string.replace(normiecharacter, subscriptcharacter)
     await event.edit(string)
 
@@ -1526,8 +1570,7 @@ async def stylish_generator(event):
     string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            superscriptcharacter = superscriptfont[normiefont.index(
-                normiecharacter)]
+            superscriptcharacter = superscriptfont[normiefont.index(normiecharacter)]
             string = string.replace(normiecharacter, superscriptcharacter)
     await event.edit(string)
 
@@ -1542,7 +1585,7 @@ async def circly(event):
     if not args:
         await event.edit("`What I am Supposed to circlyfy U Dumb`")
         return
-    string = '  '.join(args).lower()
+    string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
             circlycharacter = circlyfont[normiefont.index(normiecharacter)]
@@ -1562,8 +1605,7 @@ async def stylish_generator(event):
     string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            hwcapitalcharacter = hwcapitalfont[normiefont.index(
-                normiecharacter)]
+            hwcapitalcharacter = hwcapitalfont[normiefont.index(normiecharacter)]
             string = string.replace(normiecharacter, hwcapitalcharacter)
     await event.edit(string)
 
@@ -1580,8 +1622,7 @@ async def stylish_generator(event):
     string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            doubletextcharacter = doubletextfont[normiefont.index(
-                normiecharacter)]
+            doubletextcharacter = doubletextfont[normiefont.index(normiecharacter)]
             string = string.replace(normiecharacter, doubletextcharacter)
     await event.edit(string)
 
@@ -1632,8 +1673,7 @@ async def stylish_generator(event):
     string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            smallcapscharacter = smallcapsfont[normiefont.index(
-                normiecharacter)]
+            smallcapscharacter = smallcapsfont[normiefont.index(normiecharacter)]
             string = string.replace(normiecharacter, smallcapscharacter)
     await event.edit(string)
 
@@ -1684,8 +1724,9 @@ async def stylish_generator(event):
     string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            littleboxtextcharacter = littleboxtextfont[normiefont.index(
-                normiecharacter)]
+            littleboxtextcharacter = littleboxtextfont[
+                normiefont.index(normiecharacter)
+            ]
             string = string.replace(normiecharacter, littleboxtextcharacter)
     await event.edit(string)
 
@@ -1702,8 +1743,7 @@ async def stylish_generator(event):
     string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            smothtextcharacter = smothtextfont[normiefont.index(
-                normiecharacter)]
+            smothtextcharacter = smothtextfont[normiefont.index(normiecharacter)]
             string = string.replace(normiecharacter, smothtextcharacter)
     await event.edit(string)
 
@@ -1718,7 +1758,7 @@ async def oldy(event):
     if not args:
         await event.edit("`What, I am Supposed To Work with text only`")
         return
-    string = '  '.join(args).lower()
+    string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
             oldycharacter = oldengfont[normiefont.index(normiecharacter)]
@@ -1733,14 +1773,19 @@ async def _(event):
     name = f"{ALIVE_NAME}"
     bio = f"{DEFAULT_BIO}"
     n = 1
-    await bot(functions.photos.DeletePhotosRequest(await event.client.get_profile_photos("me", limit=n)))
+    await bot(
+        functions.photos.DeletePhotosRequest(
+            await event.client.get_profile_photos("me", limit=n)
+        )
+    )
     await bot(functions.account.UpdateProfileRequest(about=bio))
     await bot(functions.account.UpdateProfileRequest(first_name=name))
     await event.edit("succesfully reverted to your account back")
 
-CMD_HELP.update({
-    "remixmisc":
-    "`.app`\
+
+CMD_HELP.update(
+    {
+        "remixmisc": "`.app`\
 \nUsage: type .app name and get app details.\
 \n\n`.undlt`\
 \nUsage: undo deleted message but u need admin permission.\
@@ -1786,14 +1831,16 @@ If nothing is mentioned then by default it is 2\
 If nothing is mentioned then by default it is 2.\
 \n\n`.confs`\
 \n\nUsage:Counts number of files in chat."
-})
+    }
+)
 
-CMD_HELP.update({
-    "fonts":
-    ".circlify :- circlifies text \
+CMD_HELP.update(
+    {
+        "fonts": ".circlify :- circlifies text \
 \n.oldeng :- old eng font\
 \n\n`.weeb` <text>\
 \nUsage:weebify a text\
 \n\nIt contains (`.bold <text>`,`.cur <text>`,`.curbold <text>`,`.medi <text>`,`.medibold <text>`,`.doublestruck <text>`,`.egyptf <text>`,`.downside <text>`,`.subscript <text>`,`.supscript <text>`,`.handcf <text>`,`.doublef <text>` ,`.songf <text>`,`.ancientf <text>`,`.smallf <text>`,`.bobbf <text>`,`.tanf <text>`,`.boxf <text>`,`.Smoothf <text>`)\
 \nUsage:makes your text <bold,cursive,cursivebold,medival,medivalbold,gayishbold>"
-})
+    }
+)

@@ -6,12 +6,12 @@
 """A module for helping ban group join spammers."""
 
 from asyncio import sleep
-from requests import get
 
+from requests import get
 from telethon.events import ChatAction
 from telethon.tl.types import ChannelParticipantsAdmins, Message
 
-from userbot import BOTLOG, BOTLOG_CHATID, ANTI_SPAMBOT, ANTI_SPAMBOT_SHOUT, bot
+from userbot import ANTI_SPAMBOT, ANTI_SPAMBOT_SHOUT, BOTLOG, BOTLOG_CHATID, bot
 
 
 @bot.on(ChatAction)
@@ -33,7 +33,8 @@ async def ANTI_SPAMBOT(welcm):
                     return
 
             async for admin in bot.iter_participants(
-                    welcm.chat_id, filter=ChannelParticipantsAdmins):
+                welcm.chat_id, filter=ChannelParticipantsAdmins
+            ):
                 if admin.id == adder:
                     ignore = True
                     break
@@ -55,8 +56,9 @@ async def ANTI_SPAMBOT(welcm):
                 return
 
             for user_id in users:
-                async for message in bot.iter_messages(welcm.chat_id,
-                                                       from_user=user_id):
+                async for message in bot.iter_messages(
+                    welcm.chat_id, from_user=user_id
+                ):
 
                     correct_type = isinstance(message, Message)
                     if not message or not correct_type:
@@ -71,14 +73,10 @@ async def ANTI_SPAMBOT(welcm):
                     check_user = await welcm.client.get_entity(user_id)
 
                     # DEBUGGING. LEAVING IT HERE FOR SOME TIME ###
-                    print(
-                        f"User Joined: {check_user.first_name} [ID: {check_user.id}]"
-                    )
+                    print(f"User Joined: {check_user.first_name} [ID: {check_user.id}]")
                     print(f"Chat: {welcm.chat.title}")
                     print(f"Time: {join_time}")
-                    print(
-                        f"Message Sent: {message.text}\n\n[Time: {message_date}]"
-                    )
+                    print(f"Message Sent: {message.text}\n\n[Time: {message_date}]")
                     ##############################################
 
                     try:
@@ -88,10 +86,11 @@ async def ANTI_SPAMBOT(welcm):
                         data = r.json()
                     except BaseException:
                         print(
-                            "CAS check failed, falling back to legacy anti_spambot behaviour.")
+                            "CAS check failed, falling back to legacy anti_spambot behaviour."
+                        )
                         data = None
 
-                    if data and data['ok']:
+                    if data and data["ok"]:
                         reason = f"[Banned by Combot Anti Spam](https://cas.chat/query?u={check_user.id})"
                         spambot = True
                     elif "t.cn/" in message.text:
@@ -119,7 +118,8 @@ async def ANTI_SPAMBOT(welcm):
                             "Info",
                             "Bitcoin",
                             "N-95",
-                                "Seller"):
+                            "Seller",
+                        ):
                             if users.last_name == "Bot":
                                 reason = "Known spambot"
                                 spambot = True
@@ -141,7 +141,8 @@ async def ANTI_SPAMBOT(welcm):
                             "@admins\n"
                             "`ANTI SPAMBOT DETECTOR!\n"
                             "THIS USER MATCHES MY ALGORITHMS AS A SPAMBOT!`"
-                            f"REASON: {reason}")
+                            f"REASON: {reason}"
+                        )
                         kicked = False
                         reported = True
                 else:
@@ -155,7 +156,8 @@ async def ANTI_SPAMBOT(welcm):
                         )
 
                         await welcm.client.kick_participant(
-                            welcm.chat_id, check_user.id)
+                            welcm.chat_id, check_user.id
+                        )
                         kicked = True
                         reported = False
 
@@ -165,22 +167,26 @@ async def ANTI_SPAMBOT(welcm):
                                 "@admins\n"
                                 "`ANTI SPAMBOT DETECTOR!\n"
                                 "THIS USER MATCHES MY ALGORITHMS AS A SPAMBOT!`"
-                                f"REASON: {reason}")
+                                f"REASON: {reason}"
+                            )
                             kicked = False
                             reported = True
 
                 if BOTLOG:
                     if kicked or reported:
                         await welcm.client.send_message(
-                            BOTLOG_CHATID, "#ANTI_SPAMBOT REPORT\n"
+                            BOTLOG_CHATID,
+                            "#ANTI_SPAMBOT REPORT\n"
                             f"USER: [{check_user.first_name}](tg://user?id={check_user.id})\n"
                             f"USER ID: `{check_user.id}`\n"
                             f"CHAT: {welcm.chat.title}\n"
                             f"CHAT ID: `{welcm.chat_id}`\n"
                             f"REASON: {reason}\n"
-                            f"MESSAGE:\n\n{message.text}")
+                            f"MESSAGE:\n\n{message.text}",
+                        )
     except ValueError:
         pass
+
 
 # you don't need help modules. if you need spam should enable it in config
 # vars.

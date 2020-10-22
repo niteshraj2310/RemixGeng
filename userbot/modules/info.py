@@ -4,10 +4,13 @@
 # All rights reserved.
 
 import os
-from userbot import TEMP_DOWNLOAD_DIRECTORY
-from userbot.utils import runcmd
-from userbot.events import register
+
 from html_telegraph_poster import TelegraphPoster
+
+from userbot import TEMP_DOWNLOAD_DIRECTORY
+from userbot.events import register
+from userbot.utils import runcmd
+
 
 def post_to_telegraph(anime_title, html_format_content):
     post_client = TelegraphPoster(use_api=True)
@@ -15,10 +18,8 @@ def post_to_telegraph(anime_title, html_format_content):
     bish = "https://t.me/Cheems_69"
     post_client.create_api_token(auth_name)
     post_page = post_client.post(
-        title=anime_title,
-        author=auth_name,
-        author_url=bish,
-        text=html_format_content)
+        title=anime_title, author=auth_name, author_url=bish, text=html_format_content
+    )
     return post_page["url"]
 
 

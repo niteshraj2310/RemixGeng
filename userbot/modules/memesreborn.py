@@ -6,15 +6,16 @@
 # custom cmds by @Nitesh_231 for personal use 👀
 
 """ Userbot module for having some fun with people. """
-import html
 import asyncio
+import html
 import os
-from PIL import Image, ImageColor
 from random import choice, randint
 from re import sub
-from userbot import CMD_HELP, LOGS
+
+from PIL import Image, ImageColor
+
+from userbot import CMD_HELP, LOGS, bot
 from userbot.events import register
-from userbot import bot
 
 # ================= CONSTANT =================
 
@@ -71,7 +72,8 @@ FUK_STRINGS = [
     "`Aaisi Londiya Chodiye, L*nd Ka Aapa Khoye, Auro Se Chudi Na Ho, Biwi Wo Hi Hoye`",
     "`Nachoo Bhosdike Nachoo`",
     "`Jinda toh jaat ke baal bhi hai`",
-    "`Sab ko pta tu randi ka baccha hai (its just a joke)`"]
+    "`Sab ko pta tu randi ka baccha hai (its just a joke)`",
+]
 
 THANOS_STRINGS = [
     "`Mashoor Rand, Ne Arz Kiya Hai. Aane Wale Aate Hai, Jaane Wale Jaate Hai. Yaade Bas Unki Reh Jaati Hai, Jo G**Nd Sujaa Ke Jaate Hai`",
@@ -262,15 +264,17 @@ async def emoji_penis(titit):
 @register(outgoing=True, pattern="^.gtfo$")
 async def gtfo(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`\n███████████████████████████████ `"
-                     "`\n█▀▀▀▀▀▀▀█▀▀▀▀▀▀█▀▀▀▀▀▀▀█▀▀▀▀▀▀█ `"
-                     "`\n█───────█──────█───────█──────█ `"
-                     "`\n█──███──███──███──███▄▄█──██──█ `"
-                     "`\n█──███▄▄███──███─────███──██──█ `"
-                     "`\n█──██───███──███──██████──██──█ `"
-                     "`\n█──▀▀▀──███──███──██████──────█ `"
-                     "`\n█▄▄▄▄▄▄▄███▄▄███▄▄██████▄▄▄▄▄▄█ `"
-                     "`\n███████████████████████████████ `")
+        await e.edit(
+            "`\n███████████████████████████████ `"
+            "`\n█▀▀▀▀▀▀▀█▀▀▀▀▀▀█▀▀▀▀▀▀▀█▀▀▀▀▀▀█ `"
+            "`\n█───────█──────█───────█──────█ `"
+            "`\n█──███──███──███──███▄▄█──██──█ `"
+            "`\n█──███▄▄███──███─────███──██──█ `"
+            "`\n█──██───███──███──██████──██──█ `"
+            "`\n█──▀▀▀──███──███──██████──────█ `"
+            "`\n█▄▄▄▄▄▄▄███▄▄███▄▄██████▄▄▄▄▄▄█ `"
+            "`\n███████████████████████████████ `"
+        )
 
 
 @register(outgoing=True, pattern=r"^.F")
@@ -279,9 +283,9 @@ async def fcmd(e):
         return
     message = e.text
 
-    if message[-1] == 'p' and message[-2] == 'F':
+    if message[-1] == "p" and message[-2] == "F":
         await e.edit("🤦‍♂")
-    elif message[-1] == 'F':
+    elif message[-1] == "F":
         await e.edit("┏━━━┓\n┃┏━━┛\n┃┗━━┓\n┃┏━━┛\n┃┃\n┗┛")
 
     else:
@@ -297,7 +301,7 @@ async def fcmd(e):
 async def pressf(f):
     """Pays respects"""
     args = f.text.split()
-    arg = (f.text.split(' ', 1))[1] if len(args) > 1 else None
+    arg = (f.text.split(" ", 1))[1] if len(args) > 1 else None
     if len(args) == 1:
         r = randint(0, 3)
         LOGS.info(r)
@@ -318,8 +322,7 @@ async def pressf(f):
 
 @register(outgoing=True, pattern="^.paw$")
 async def paw(pawed):
-    if not pawed.text[0].isalpha() and pawed.text[0] not in (
-            "/", "#", "@", "!"):
+    if not pawed.text[0].isalpha() and pawed.text[0] not in ("/", "#", "@", "!"):
         await pawed.edit("`(=ↀωↀ=)`")
 
 
@@ -352,19 +355,21 @@ async def _(event):
                 "remix.png",
                 force_document=False,
                 caption=input_str,
-                reply_to=message_id
+                reply_to=message_id,
             )
             os.remove("remix.png")
             await event.delete()
     else:
         await event.edit("Syntax: `.color <color_code>` example : `.color #ff0000`")
 
-CMD_HELP.update({
-    "memesreborn":
-    "`.fuk`\
+
+CMD_HELP.update(
+    {
+        "memesreborn": "`.fuk`\
 \nUsage: Greet Evrii Nibba in da house.\
 \n\n`.iwi`\
 \nUsage: gib text and see magik.\
 \n\n`.rape .thanos .chu .abuse .abusehard`\
 \nUsage: See it yourself nibba🌚."
-})
+    }
+)

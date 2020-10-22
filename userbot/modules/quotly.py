@@ -7,8 +7,10 @@
 
 import os
 from asyncio.exceptions import TimeoutError
+
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
+
 from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
 
@@ -61,9 +63,12 @@ async def quotess(qotli):
         await qotli.edit("`@QuotlyBot isnt responding`")
         await qotli.client.delete_messages(conv.chat_id, [msg.id])
 
-CMD_HELP.update({
-    "quotly":
-    "`.q`\
+
+CMD_HELP.update(
+    {
+        "quotly": "`.q`\
 \nUsage: Enhance ur text to sticker.\
 \n\n`.pch`\
-\nUsage: Better than quotly."})
+\nUsage: Better than quotly."
+    }
+)

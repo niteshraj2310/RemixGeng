@@ -7,11 +7,13 @@ imported by @Nitesh_231 for USERBOT kek :) @heyworld roks🤘
 """
 
 import os
-from PIL import Image
-from userbot.utils import take_screen_shot, runcmd
+
 from glitch_this import ImageGlitcher
+from PIL import Image
+
 from userbot import LOGS, bot
 from userbot.events import register
+from userbot.utils import runcmd, take_screen_shot
 
 
 @register(pattern="^.(glitch|glitchs)(?: |$)(.*)", outgoing=True)
@@ -27,7 +29,7 @@ async def glitch(event):
         os.mkdir("./temp/")
     reply_to_id = event.reply_to_msg_id
     remixsticker = await reply.download_media(file="./temp/")
-    if not remixsticker.endswith(('.mp4', '.webp', '.tgs', '.png', '.jpg')):
+    if not remixsticker.endswith((".mp4", ".webp", ".tgs", ".png", ".jpg")):
         os.remove(remixsticker)
         await event.edit("`Media not found...`")
         return
@@ -72,29 +74,23 @@ async def glitch(event):
         glitched = "./temp/" + "glitched.webp"
         glitch_img = glitcher.glitch_image(img, input, color_offset=True)
         glitch_img.save(glitched)
-        await bot.send_file(
-            event.chat_id,
-            glitched,
-            reply_to_message_id=reply_to_id)
+        await bot.send_file(event.chat_id, glitched, reply_to_message_id=reply_to_id)
         os.remove(glitched)
         await event.delete()
     elif cmd == "glitch":
         Glitched = "./temp/" + "glitch.gif"
-        glitch_img = glitcher.glitch_image(
-            img, input, color_offset=True, gif=True)
+        glitch_img = glitcher.glitch_image(img, input, color_offset=True, gif=True)
         DURATION = 200
         LOOP = 0
         glitch_img[0].save(
             Glitched,
-            format='GIF',
+            format="GIF",
             append_images=glitch_img[1:],
             save_all=True,
             duration=DURATION,
-            loop=LOOP)
-        await bot.send_file(
-            event.chat_id,
-            Glitched,
-            reply_to_message_id=reply_to_id)
+            loop=LOOP,
+        )
+        await bot.send_file(event.chat_id, Glitched, reply_to_message_id=reply_to_id)
         os.remove(Glitched)
         await event.delete()
     for files in (remixsticker, glitch_file):

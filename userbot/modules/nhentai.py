@@ -6,7 +6,8 @@
 
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from userbot import bot, CMD_HELP
+
+from userbot import CMD_HELP, bot
 from userbot.events import register
 
 
@@ -20,9 +21,8 @@ async def _(event):
     async with bot.conversation(chat) as conv:
         try:
             response = conv.wait_event(
-                events.NewMessage(
-                    incoming=True,
-                    from_users=424466890))
+                events.NewMessage(incoming=True, from_users=424466890)
+            )
             await bot.send_message(chat, link)
             response = await response
         except YouBlockedUserError:
@@ -34,8 +34,10 @@ async def _(event):
             await event.delete()
             await bot.send_message(event.chat_id, response.message)
 
-CMD_HELP.update({
-    "nhentai":
-    ".nhentai <link / code> \
+
+CMD_HELP.update(
+    {
+        "nhentai": ".nhentai <link / code> \
         \nUsage: view nhentai in telegra.ph XD\n"
-})
+    }
+)

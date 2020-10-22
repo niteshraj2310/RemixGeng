@@ -2,16 +2,16 @@
 # \nCode by @Hack12R
 # type `.degi` and `.nehi` to see the fun.
 # """
-#from uniborg.util import admin_cmd
+# from uniborg.util import admin_cmd
 import asyncio
-from userbot.events import register
+
 from userbot import CMD_HELP
+from userbot.events import register
 
 
 @register(outgoing=True, pattern="^.degi$")
 async def _(event):
-    if not event.text[0].isalpha() and event.text[0] not in (
-            "/", "#", "@", "!"):
+    if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
         await event.edit("Wo")
         await asyncio.sleep(0.7)
         await event.edit("Degi")
@@ -39,8 +39,9 @@ async def _(event):
     await asyncio.sleep(999)
 
 
-CMD_HELP.update({
-    "degi":
-    ".degi or .nehi\
+CMD_HELP.update(
+    {
+        "degi": ".degi or .nehi\
 \nUsage: Sabka Katega."
-})
+    }
+)
