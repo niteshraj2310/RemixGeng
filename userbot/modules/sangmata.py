@@ -4,12 +4,12 @@
 # you may not use this file except in compliance with the License.
 #
 # Port to userbot by @MoveAngel
-
 from asyncio.exceptions import TimeoutError
 
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-from userbot import CMD_HELP, bot
+from userbot import bot
+from userbot import CMD_HELP
 from userbot.events import register
 
 
