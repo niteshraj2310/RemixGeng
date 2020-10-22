@@ -35,27 +35,24 @@ async def lastname(steal):
                 r = await conv.get_response()
                 response = await conv.get_response()
             except YouBlockedUserError:
-                await steal.reply("`Please unblock @sangmatainfo_bot and try again`")
+                await steal.reply(
+                    "`Please unblock @sangmatainfo_bot and try again`")
                 return
             if response.text.startswith("No records found"):
                 await steal.edit("`No records found for this user`")
-                await steal.client.delete_messages(
-                    conv.chat_id, [msg.id, r.id, response.id]
-                )
+                await steal.client.delete_messages(conv.chat_id,
+                                                   [msg.id, r.id, response.id])
                 return
             else:
                 respond = await conv.get_response()
                 await steal.edit(f"{response.message}")
             await steal.client.delete_messages(
-                conv.chat_id, [msg.id, r.id, response.id, respond.id]
-            )
+                conv.chat_id, [msg.id, r.id, response.id, respond.id])
     except TimeoutError:
-        return await steal.edit("`Error: `@SangMataInfo_bot` is not responding!.`")
+        return await steal.edit(
+            "`Error: `@SangMataInfo_bot` is not responding!.`")
 
 
 CMD_HELP.update(
-    {
-        "sangmata": "`.sm`\
-          \nUsage: Steal ur or friend name."
-    }
-)
+    {"sangmata": "`.sm`\
+          \nUsage: Steal ur or friend name."})
