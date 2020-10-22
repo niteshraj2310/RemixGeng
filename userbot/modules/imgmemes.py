@@ -15,12 +15,8 @@ from userbot import bot
 from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 import asyncio
-import os
-from PIL import Image, ImageDraw, ImageFont
+from PIL import ImageDraw, ImageFont
 from wget import download
-
-from userbot import bot
-from userbot.events import register
 
 EMOJI_PATTERN = re.compile(
     "["

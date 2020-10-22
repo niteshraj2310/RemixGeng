@@ -18,12 +18,9 @@ from telethon.tl.types import ChannelParticipantCreator
 
 from userbot import bot
 from userbot import LOGS
-from typing import Optional, Tuple
-from userbot import bot, LOGS
 
 from telethon.tl.tlobject import TLObject
-from telethon.tl.functions.channels import GetParticipantRequest
-from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator, MessageEntityPre
+from telethon.tl.types import MessageEntityPre
 
 
 async def md5(fname: str) -> str:

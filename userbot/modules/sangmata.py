@@ -9,8 +9,6 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from asyncio.exceptions import TimeoutError
 from userbot.events import register
 from userbot import bot, CMD_HELP
-from userbot.events import register
-from asyncio.exceptions import TimeoutError
 
 
 @register(outgoing=True, pattern=r"^\.sm(?: |$)(.*)")
