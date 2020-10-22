@@ -1,25 +1,22 @@
 # imported from catuserbot by @RoyalBoyPriyanshu and @DeletedUser420 also
 # thanks  @AbhinavShinde
 """  Some Modules Imported by @Nitesh_231 :) & Again @heyworld roks *_* """
+import asyncio
 import os
 import re
 
 import requests
 from html_telegraph_poster.upload_images import upload_image
 from PIL import Image
+from PIL import ImageDraw
+from PIL import ImageFont
 from telegraph import exceptions
 from telegraph import upload_file
 from validators.url import url
-
-from userbot import bot
-from userbot import TEMP_DOWNLOAD_DIRECTORY
-from userbot.events import register
-import asyncio
-import os
-from PIL import Image, ImageDraw, ImageFont
 from wget import download
 
 from userbot import bot
+from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 EMOJI_PATTERN = re.compile(
@@ -119,7 +116,7 @@ async def phss(uplded, input, name):
 async def trumptweet(text):
     r = requests.get(
         f"https://nekobot.xyz/api/imagegen?type=trumptweet&text={text}").json(
-    )
+        )
     geng = r.get("message")
     kapak = url(geng)
     if not kapak:
@@ -515,9 +512,9 @@ async def FakeGoogleSearch(event):
         await event.edit("Invalid Input! Check help for more info!", del_in=5)
         return
 
-    await event.edit('Connecting to `https://www.google.com/` ...')
+    await event.edit("Connecting to `https://www.google.com/` ...")
     await asyncio.sleep(2)
-    img = 'https://i.imgur.com/wNFr5X2.jpg'
+    img = "https://i.imgur.com/wNFr5X2.jpg"
     r = download(img)
     photo = Image.open(r)
     drawing = ImageDraw.Draw(photo)
@@ -531,8 +528,7 @@ async def FakeGoogleSearch(event):
     reply = event.pattern_match.group(2)
     await event.delete()
     reply_id = event.pattern_match.group(3) if reply else None
-    await event.client.send_file(
-        event.chat_id,
-        'downloads/test.jpg',
-        reply_to_message_id=reply_id)
-    os.remove('downloads/test.jpg')
+    await event.client.send_file(event.chat_id,
+                                 "downloads/test.jpg",
+                                 reply_to_message_id=reply_id)
+    os.remove("downloads/test.jpg")
