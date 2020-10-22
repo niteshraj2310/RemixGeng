@@ -35,7 +35,7 @@ def humanbytes(size: int) -> str:
     if size is None or isinstance(size, str):
         return ""
 
-    power = 2**10
+    power = 2 ** 10
     raised_to_pow = 0
     dict_power_n = {0: "", 1: "Ki", 2: "Mi", 3: "Gi", 4: "Ti"}
     while size > power:
@@ -48,21 +48,23 @@ def time_formatter(seconds: int) -> str:
     minutes, seconds = divmod(seconds, 60)
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
-    tmp = (((str(days) + " day(s), ") if days else "") +
-           ((str(hours) + " hour(s), ") if hours else "") +
-           ((str(minutes) + " minute(s), ") if minutes else "") +
-           ((str(seconds) + " second(s), ") if seconds else ""))
+    tmp = (
+        ((str(days) + " day(s), ") if days else "")
+        + ((str(hours) + " hour(s), ") if hours else "")
+        + ((str(minutes) + " minute(s), ") if minutes else "")
+        + ((str(seconds) + " second(s), ") if seconds else "")
+    )
     return tmp[:-2]
 
 
 def human_to_bytes(size: str) -> int:
     units = {
-        "M": 2**20,
-        "MB": 2**20,
-        "G": 2**30,
-        "GB": 2**30,
-        "T": 2**40,
-        "TB": 2**40,
+        "M": 2 ** 20,
+        "MB": 2 ** 20,
+        "G": 2 ** 30,
+        "GB": 2 ** 30,
+        "T": 2 ** 40,
+        "TB": 2 ** 40,
     }
 
     size = size.upper()
@@ -75,16 +77,17 @@ def human_to_bytes(size: str) -> int:
 async def is_admin(chat_id, user_id):
     req_jo = await bot(GetParticipantRequest(channel=chat_id, user_id=user_id))
     chat_participant = req_jo.participant
-    return isinstance(chat_participant,
-                      ChannelParticipantCreator) or isinstance(
-                          chat_participant, ChannelParticipantAdmin)
+    return isinstance(chat_participant, ChannelParticipantCreator) or isinstance(
+        chat_participant, ChannelParticipantAdmin
+    )
 
 
 async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
     """ run command in terminal """
     args = shlex.split(cmd)
     process = await asyncio.create_subprocess_exec(
-        *args, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
+        *args, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+    )
     stdout, stderr = await process.communicate()
     return (
         stdout.decode("utf-8", "replace").strip(),
@@ -94,8 +97,9 @@ async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
     )
 
 
-async def take_screen_shot(video_file: str, duration: int,
-                           path: str = "") -> Optional[str]:
+async def take_screen_shot(
+    video_file: str, duration: int, path: str = ""
+) -> Optional[str]:
     """ take a screenshot """
     LOGS.info(
         "[[[Extracting a frame from %s ||| Video duration => %s]]]",
@@ -103,8 +107,7 @@ async def take_screen_shot(video_file: str, duration: int,
         duration,
     )
     ttl = duration // 2
-    thumb_image_path = path or os.path.join("./temp/",
-                                            f"{basename(video_file)}.jpg")
+    thumb_image_path = path or os.path.join("./temp/", f"{basename(video_file)}.jpg")
     command = f"ffmpeg -ss {ttl} -i '{video_file}' -vframes 1 '{thumb_image_path}'"
     err = (await runcmd(command))[1]
     if err:
@@ -115,10 +118,9 @@ async def take_screen_shot(video_file: str, duration: int,
 def parse_pre(text):
     text = text.strip()
     return (
-        text, [
-            MessageEntityPre(
-                offset=0, length=len(
-                    add_surrogate(text)), language='')])
+        text,
+        [MessageEntityPre(offset=0, length=len(add_surrogate(text)), language="")],
+    )
 
 
 def yaml_format(obj, indent=0, max_str_len=256, max_byte_len=64):
@@ -132,26 +134,26 @@ def yaml_format(obj, indent=0, max_str_len=256, max_byte_len=64):
 
     if isinstance(obj, dict):
         if not obj:
-            return 'dict:'
+            return "dict:"
         items = obj.items()
         has_items = len(items) > 1
         has_multiple_items = len(items) > 2
-        result.append(obj.get('_', 'dict') + (':' if has_items else ''))
+        result.append(obj.get("_", "dict") + (":" if has_items else ""))
         if has_multiple_items:
-            result.append('\n')
+            result.append("\n")
             indent += 2
         for k, v in items:
-            if k == '_' or v is None:
+            if k == "_" or v is None:
                 continue
             formatted = yaml_format(v, indent)
             if not formatted.strip():
                 continue
-            result.append(' ' * (indent if has_multiple_items else 1))
-            result.append(f'{k}:')
+            result.append(" " * (indent if has_multiple_items else 1))
+            result.append(f"{k}:")
             if not formatted[0].isspace():
-                result.append(' ')
-            result.append(f'{formatted}')
-            result.append('\n')
+                result.append(" ")
+            result.append(f"{formatted}")
+            result.append("\n")
         if has_items:
             result.pop()
         if has_multiple_items:
@@ -160,28 +162,29 @@ def yaml_format(obj, indent=0, max_str_len=256, max_byte_len=64):
         # truncate long strings and display elipsis
         result = repr(obj[:max_str_len])
         if len(obj) > max_str_len:
-            result += '…'
+            result += "…"
         return result
     elif isinstance(obj, bytes):
         # repr() bytes if it's printable, hex like "FF EE BB" otherwise
-        if all(0x20 <= c < 0x7f for c in obj):
+        if all(0x20 <= c < 0x7F for c in obj):
             return repr(obj)
         else:
-            return ('<…>' if len(obj) > max_byte_len else
-                    ' '.join(f'{b:02X}' for b in obj))
+            return (
+                "<…>" if len(obj) > max_byte_len else " ".join(f"{b:02X}" for b in obj)
+            )
     elif isinstance(obj, datetime.datetime):
         # ISO-8601 without timezone offset (telethon dates are always UTC)
-        return obj.strftime('%Y-%m-%d %H:%M:%S')
-    elif hasattr(obj, '__iter__'):
+        return obj.strftime("%Y-%m-%d %H:%M:%S")
+    elif hasattr(obj, "__iter__"):
         # display iterables one after another at the base indentation level
-        result.append('\n')
+        result.append("\n")
         indent += 2
         for x in obj:
             result.append(f"{' ' * indent}- {yaml_format(x, indent + 2)}")
-            result.append('\n')
+            result.append("\n")
         result.pop()
         indent -= 2
     else:
         return repr(obj)
 
-    return ''.join(result)
+    return "".join(result)

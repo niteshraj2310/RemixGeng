@@ -22,9 +22,9 @@ async def lastname(steal):
     chat = "@SangMataInfo_bot"
     user_id = message.sender.id
     id = f"/search_id {user_id}"
- #  if message.sender.bot:
- #      await steal.edit("`Reply to actual users message.`")
- #      return
+    #  if message.sender.bot:
+    #      await steal.edit("`Reply to actual users message.`")
+    #      return
     await steal.edit("`Sit tight while I steal some data from NASA`")
     try:
         async with bot.conversation(chat) as conv:
@@ -50,8 +50,10 @@ async def lastname(steal):
     except TimeoutError:
         return await steal.edit("`Error: `@SangMataInfo_bot` is not responding!.`")
 
-CMD_HELP.update({
-    "sangmata":
-        "`.sm`\
+
+CMD_HELP.update(
+    {
+        "sangmata": "`.sm`\
           \nUsage: Steal ur or friend name."
-})
+    }
+)

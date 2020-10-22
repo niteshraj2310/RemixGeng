@@ -96,19 +96,20 @@ async def _(event):
             downloaded_file_name = await bot.download_media(
                 reply_message,
                 TEMP_DOWNLOAD_DIRECTORY,
-
             )
         except Exception as e:  # pylint:disable=C0103,W0703
             await mone.edit(str(e))
         else:
             end = datetime.now()
             ms = (end - start).seconds
-            await mone.edit("Stored the zip to `{}` in {} seconds.".format(downloaded_file_name, ms))
+            await mone.edit(
+                "Stored the zip to `{}` in {} seconds.".format(downloaded_file_name, ms)
+            )
 
-        with zipfile.ZipFile(downloaded_file_name, 'r') as zip_ref:
+        with zipfile.ZipFile(downloaded_file_name, "r") as zip_ref:
             zip_ref.extractall(extracted)
         filename = sorted(get_lst_of_files(extracted, []))
-        #filename = filename + "/"
+        # filename = filename + "/"
         await event.edit("Unzipping now")
         # r=root, d=directories, f = files
         for single_file in filename:
@@ -124,10 +125,9 @@ async def _(event):
                     width = 0
                     height = 0
                     if metadata.has("duration"):
-                        duration = metadata.get('duration').seconds
+                        duration = metadata.get("duration").seconds
                     if os.path.exists(thumb_image_path):
-                        metadata = extractMetadata(
-                            createParser(thumb_image_path))
+                        metadata = extractMetadata(createParser(thumb_image_path))
                         if metadata.has("width"):
                             width = metadata.get("width")
                         if metadata.has("height"):
@@ -138,7 +138,7 @@ async def _(event):
                             w=width,
                             h=height,
                             round_message=False,
-                            supports_streaming=True
+                            supports_streaming=True,
                         )
                     ]
                 try:
@@ -148,7 +148,8 @@ async def _(event):
                         caption=f"UnZipped `{caption_rts}`",
                         force_document=force_document,
                         supports_streaming=supports_streaming,
-                        allow_cache=False, reply_to=event.message.id,
+                        allow_cache=False,
+                        reply_to=event.message.id,
                         attributes=document_attributes,
                         # progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
                         #     progress(d, t, event, c_time, "trying to upload")
@@ -158,7 +159,7 @@ async def _(event):
                     await bot.send_message(
                         event.chat_id,
                         "{} caused `{}`".format(caption_rts, str(e)),
-                        reply_to=event.message.id
+                        reply_to=event.message.id,
                     )
                     # some media were having some issues
                     continue
@@ -211,7 +212,7 @@ async def upload_zip(up):
     input_str = up.pattern_match.group(1)
     curdate = today.strftime("%m%d%y")
     title = str(input_str) if input_str else "zipfile" + f"{curdate}"
-    zipf = zipfile.ZipFile(title + '.zip', 'w', zipfile.ZIP_DEFLATED)
+    zipf = zipfile.ZipFile(title + ".zip", "w", zipfile.ZIP_DEFLATED)
     zipdir(ZIP_DOWNLOAD_DIRECTORY, zipf)
     zipf.close()
     c_time = time.time()
@@ -256,9 +257,9 @@ def zipdir(path, ziph):
             os.remove(os.path.join(root, file))
 
 
-CMD_HELP.update({
-    "zipfile":
-        "`.compress` **[optional: <reply to file>]**\
+CMD_HELP.update(
+    {
+        "zipfile": "`.compress` **[optional: <reply to file>]**\
             \nUsage: make files to zip.\
             \n`.unzip` **<reply to zipped file>**\
             \nUsage: unzip the zipped files.\
@@ -268,4 +269,5 @@ CMD_HELP.update({
             \nUsage: upload zip list.\
             \n`.rmzip` **[optional: <zip title>]**\
             \nUsage: clear zip list."
-})
+    }
+)
