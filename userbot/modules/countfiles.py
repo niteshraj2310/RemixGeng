@@ -5,7 +5,6 @@ from userbot.events import register
 from userbot.utils import humanbytes
 from userbot.utils.tools import (yaml_format, parse_pre)
 
-
 @register(outgoing=True, pattern="^.confs(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
