@@ -13,14 +13,13 @@ from typing import Optional
 from typing import Tuple
 
 from telethon.tl.functions.channels import GetParticipantRequest
+from telethon.tl.tlobject import TLObject
 from telethon.tl.types import ChannelParticipantAdmin
 from telethon.tl.types import ChannelParticipantCreator
+from telethon.tl.types import MessageEntityPre
 
 from userbot import bot
 from userbot import LOGS
-
-from telethon.tl.tlobject import TLObject
-from telethon.tl.types import MessageEntityPre
 
 
 async def md5(fname: str) -> str:
@@ -115,10 +114,13 @@ async def take_screen_shot(video_file: str, duration: int,
 def parse_pre(text):
     text = text.strip()
     return (
-        text, [
-            MessageEntityPre(
-                offset=0, length=len(
-                    add_surrogate(text)), language='')])
+        text,
+        [
+            MessageEntityPre(offset=0,
+                             length=len(add_surrogate(text)),
+                             language="")
+        ],
+    )
 
 
 def yaml_format(obj, indent=0, max_str_len=256, max_byte_len=64):
@@ -132,26 +134,26 @@ def yaml_format(obj, indent=0, max_str_len=256, max_byte_len=64):
 
     if isinstance(obj, dict):
         if not obj:
-            return 'dict:'
+            return "dict:"
         items = obj.items()
         has_items = len(items) > 1
         has_multiple_items = len(items) > 2
-        result.append(obj.get('_', 'dict') + (':' if has_items else ''))
+        result.append(obj.get("_", "dict") + (":" if has_items else ""))
         if has_multiple_items:
-            result.append('\n')
+            result.append("\n")
             indent += 2
         for k, v in items:
-            if k == '_' or v is None:
+            if k == "_" or v is None:
                 continue
             formatted = yaml_format(v, indent)
             if not formatted.strip():
                 continue
-            result.append(' ' * (indent if has_multiple_items else 1))
-            result.append(f'{k}:')
+            result.append(" " * (indent if has_multiple_items else 1))
+            result.append(f"{k}:")
             if not formatted[0].isspace():
-                result.append(' ')
-            result.append(f'{formatted}')
-            result.append('\n')
+                result.append(" ")
+            result.append(f"{formatted}")
+            result.append("\n")
         if has_items:
             result.pop()
         if has_multiple_items:
@@ -160,28 +162,28 @@ def yaml_format(obj, indent=0, max_str_len=256, max_byte_len=64):
         # truncate long strings and display elipsis
         result = repr(obj[:max_str_len])
         if len(obj) > max_str_len:
-            result += '…'
+            result += "…"
         return result
     elif isinstance(obj, bytes):
         # repr() bytes if it's printable, hex like "FF EE BB" otherwise
-        if all(0x20 <= c < 0x7f for c in obj):
+        if all(0x20 <= c < 0x7F for c in obj):
             return repr(obj)
         else:
-            return ('<…>' if len(obj) > max_byte_len else
-                    ' '.join(f'{b:02X}' for b in obj))
+            return ("<…>" if len(obj) > max_byte_len else " ".join(
+                f"{b:02X}" for b in obj))
     elif isinstance(obj, datetime.datetime):
         # ISO-8601 without timezone offset (telethon dates are always UTC)
-        return obj.strftime('%Y-%m-%d %H:%M:%S')
-    elif hasattr(obj, '__iter__'):
+        return obj.strftime("%Y-%m-%d %H:%M:%S")
+    elif hasattr(obj, "__iter__"):
         # display iterables one after another at the base indentation level
-        result.append('\n')
+        result.append("\n")
         indent += 2
         for x in obj:
             result.append(f"{' ' * indent}- {yaml_format(x, indent + 2)}")
-            result.append('\n')
+            result.append("\n")
         result.pop()
         indent -= 2
     else:
         return repr(obj)
 
-    return ''.join(result)
+    return "".join(result)

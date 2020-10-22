@@ -4,11 +4,13 @@
 # you may not use this file except in compliance with the License.
 #
 # Port to userbot by @MoveAngel
+from asyncio.exceptions import TimeoutError
 
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from asyncio.exceptions import TimeoutError
+
+from userbot import bot
+from userbot import CMD_HELP
 from userbot.events import register
-from userbot import bot, CMD_HELP
 
 
 @register(outgoing=True, pattern=r"^\.sm(?: |$)(.*)")
@@ -22,9 +24,9 @@ async def lastname(steal):
     chat = "@SangMataInfo_bot"
     user_id = message.sender.id
     id = f"/search_id {user_id}"
- #  if message.sender.bot:
- #      await steal.edit("`Reply to actual users message.`")
- #      return
+    #  if message.sender.bot:
+    #      await steal.edit("`Reply to actual users message.`")
+    #      return
     await steal.edit("`Sit tight while I steal some data from NASA`")
     try:
         async with bot.conversation(chat) as conv:
@@ -33,25 +35,24 @@ async def lastname(steal):
                 r = await conv.get_response()
                 response = await conv.get_response()
             except YouBlockedUserError:
-                await steal.reply("`Please unblock @sangmatainfo_bot and try again`")
+                await steal.reply(
+                    "`Please unblock @sangmatainfo_bot and try again`")
                 return
             if response.text.startswith("No records found"):
                 await steal.edit("`No records found for this user`")
-                await steal.client.delete_messages(
-                    conv.chat_id, [msg.id, r.id, response.id]
-                )
+                await steal.client.delete_messages(conv.chat_id,
+                                                   [msg.id, r.id, response.id])
                 return
             else:
                 respond = await conv.get_response()
                 await steal.edit(f"{response.message}")
             await steal.client.delete_messages(
-                conv.chat_id, [msg.id, r.id, response.id, respond.id]
-            )
+                conv.chat_id, [msg.id, r.id, response.id, respond.id])
     except TimeoutError:
-        return await steal.edit("`Error: `@SangMataInfo_bot` is not responding!.`")
+        return await steal.edit(
+            "`Error: `@SangMataInfo_bot` is not responding!.`")
 
-CMD_HELP.update({
-    "sangmata":
-        "`.sm`\
-          \nUsage: Steal ur or friend name."
-})
+
+CMD_HELP.update(
+    {"sangmata": "`.sm`\
+          \nUsage: Steal ur or friend name."})
