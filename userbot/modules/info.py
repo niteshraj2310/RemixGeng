@@ -9,7 +9,6 @@ from userbot.utils import runcmd
 from userbot.events import register
 from html_telegraph_poster import TelegraphPoster
 
-
 def post_to_telegraph(anime_title, html_format_content):
     post_client = TelegraphPoster(use_api=True)
     auth_name = "@Cheems_69"

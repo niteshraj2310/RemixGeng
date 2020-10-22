@@ -8,7 +8,6 @@ from userbot.events import register
 from userbot.utils import humanbytes
 from requests import get
 
-
 def subprocess_run(cmd):
     subproc = Popen(cmd, stdout=PIPE, stderr=PIPE,
                     shell=True, universal_newlines=True)
@@ -17,7 +16,6 @@ def subprocess_run(cmd):
     if exitCode != 0:
         return
     return talk
-
 
 # Get best trackers for improved download speeds, thanks K-E-N-W-A-Y.
 trackers_list = get(
