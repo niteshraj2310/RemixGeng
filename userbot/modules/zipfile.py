@@ -8,18 +8,19 @@
 """ `UNZIPPER`  Coded by @By_Azade code rewritten my SnapDragon7410 """
 
 import asyncio
-import zipfile
-from userbot.events import register
-from datetime import date
-import time
 import os
-from userbot import TEMP_DOWNLOAD_DIRECTORY, ZIP_DOWNLOAD_DIRECTORY, bot, CMD_HELP
+import time
+import zipfile
+from datetime import date, datetime
 
-from telethon.tl.types import DocumentAttributeVideo
-from userbot.utils import progress
-from datetime import datetime
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
+from telethon.tl.types import DocumentAttributeVideo
+
+from userbot import (CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, ZIP_DOWNLOAD_DIRECTORY,
+                     bot)
+from userbot.events import register
+from userbot.utils import progress
 
 thumb_image_path = TEMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
 extracted = TEMP_DOWNLOAD_DIRECTORY + "extracted/"
