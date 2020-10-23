@@ -3,7 +3,6 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-"""A module for helping ban group join spammers."""
 
 from asyncio import sleep
 
@@ -11,13 +10,21 @@ from requests import get
 from telethon.events import ChatAction
 from telethon.tl.types import ChannelParticipantsAdmins, Message
 
-from userbot import ANTI_SPAMBOT, ANTI_SPAMBOT_SHOUT, BOTLOG, BOTLOG_CHATID, bot
+from userbot import (
+    ANTI_SPAMBOT,
+    ANTI_SPAMBOT_SHOUT,
+    BOTLOG,
+    BOTLOG_CHATID,
+    CMD_HELP,
+    bot,
+)
 
 
 @bot.on(ChatAction)
-async def ANTI_SPAMBOT(welcm):
-    """Ban a recently joined user if it matches the spammer checking algorithm."""
+async def ANTI_SPAMBOTS(welcm):
     try:
+        """Ban a recently joined user if it
+        matches the spammer checking algorithm."""
         if not ANTI_SPAMBOT:
             return
         if welcm.user_joined or welcm.user_added:
@@ -91,7 +98,7 @@ async def ANTI_SPAMBOT(welcm):
                         data = None
 
                     if data and data["ok"]:
-                        reason = f"[Banned by Combot Anti Spam](https://cas.chat/query?u={check_user.id})"
+                        reason = f"[Banned by Combot Anti Spam](https://combot.org/cas/query?u={check_user.id})"
                         spambot = True
                     elif "t.cn/" in message.text:
                         reason = "Match on `t.cn` URLs"
@@ -177,7 +184,7 @@ async def ANTI_SPAMBOT(welcm):
                         await welcm.client.send_message(
                             BOTLOG_CHATID,
                             "#ANTI_SPAMBOT REPORT\n"
-                            f"USER: [{check_user.first_name}](tg://user?id={check_user.id})\n"
+                            f"USER: [{users.first_name}](tg://user?id={check_user.id})\n"
                             f"USER ID: `{check_user.id}`\n"
                             f"CHAT: {welcm.chat.title}\n"
                             f"CHAT ID: `{welcm.chat_id}`\n"
@@ -186,7 +193,6 @@ async def ANTI_SPAMBOT(welcm):
                         )
     except ValueError:
         pass
-
 
 # you don't need help modules. if you need spam should enable it in config
 # vars.
