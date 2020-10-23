@@ -10,8 +10,8 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/9h1i5ng3bjqgq11j?svg=true)](https://ci.appveyor.com/project/niteshraj2310/remixgeng-w0cvp)
 [![StyleCI](https://github.styleci.io/repos/279673883/shield?branch=sql-extended)](https://github.styleci.io/repos/279673883?branch=sql-extended)
 ### `GitHub Integration`
-![FailedChecker](https://github.com/niteshraj2310/RemixGeng/workflows/FailedChecker/badge.svg?branch=sql-extended)
-![CodeQL](https://github.com/niteshraj2310/RemixGeng/workflows/CodeQL/badge.svg?branch=sql-extended)  ![PyLint](https://github.com/niteshraj2310/RemixGeng/workflows/PyLint/badge.svg)  ![CI](https://github.com/niteshraj2310/RemixGeng/workflows/CI/badge.svg)
+![FailedChecker](https://github.com/niteshraj2310/RemixGeng/workflows/FailedChecker/badge.svg?branch=sql-extended)  ![ErrorChecking](https://github.com/niteshraj2310/RemixGeng/workflows/ErrorChecking/badge.svg)
+![CodeQL](https://github.com/niteshraj2310/RemixGeng/workflows/CodeQL/badge.svg?branch=sql-extended)  ![pylint](https://github.com/niteshraj2310/RemixGeng/workflows/pylint/badge.svg)  ![CI](https://github.com/niteshraj2310/RemixGeng/workflows/CI/badge.svg)
 
 ### `Docker Status`
 <a herf="https://hub.docker.com/r/nitesh231/groovy"><img src="https://img.shields.io/docker/image-size/nitesh231/docker/groovy?color=green&label=Docker%20Size&style=for-the-badge&logo=docker&logoColor=white" alt="docker" /></a>
