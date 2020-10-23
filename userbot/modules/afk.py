@@ -13,7 +13,7 @@ from random import choice, randint
 from telethon.events import StopPropagation
 from telethon.tl.functions.account import UpdateProfileRequest
 
-from userbot import AFKREASON, BOTLOG, BOTLOG_CHATID, CMD_HELP, PM_AUTO_BAN, bot
+from userbot import AFKREASON, BOTLOG, BOTLOG_CHATID, COUNT_MSG, ISAFK, CMD_HELP, PM_AUTO_BAN, USERS, bot #noqa
 from userbot.events import register
 
 # ========================= CONSTANTS ============================
