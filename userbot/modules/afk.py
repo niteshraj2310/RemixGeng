@@ -13,11 +13,11 @@ from random import choice, randint
 from telethon.events import StopPropagation
 from telethon.tl.functions.account import UpdateProfileRequest
 
+from userbot import CMD_HELP  # noqa
 from userbot import (
     AFKREASON,
     BOTLOG,
     BOTLOG_CHATID,
-    CMD_HELP,  # noqa
     COUNT_MSG,
     ISAFK,
     PM_AUTO_BAN,
