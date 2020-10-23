@@ -13,17 +13,17 @@ from random import choice, randint
 from telethon.events import StopPropagation
 from telethon.tl.functions.account import UpdateProfileRequest
 
-from userbot import CMD_HELP  # noqa
-from userbot import (
+from userbot import(
     AFKREASON,
     BOTLOG,
     BOTLOG_CHATID,
     COUNT_MSG,
     ISAFK,
+    CMD_HELP,
     PM_AUTO_BAN,
     USERS,
-    bot,
-)
+    bot,)
+
 from userbot.events import register
 
 # ========================= CONSTANTS ============================
@@ -90,12 +90,12 @@ async def set_afk(afk_e):
     if user.last_name:
         await afk_e.client(
             UpdateProfileRequest(
-                first_name=user.first_name, last_name=user.last_name + " [ 卂 下 长 ]"
+                first_name=user.first_name, last_name=user.last_name + "[ 卂 下 长 ]"
             )
         )
     else:
         await afk_e.client(
-            UpdateProfileRequest(first_name=user.first_name, last_name=" [ 卂 下 长 ]")
+            UpdateProfileRequest(first_name=user.first_name, last_name="[ 卂 下 长 ]")
         )
     if BOTLOG:
         await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\nYou went AFK!")
@@ -117,7 +117,7 @@ async def type_afk_is_not_true(notafk):
     global afk_end
     user = await bot.get_me()
     last = user.last_name
-    last1 = last[:-12] if last and last.endswith(" [ 卂 下 长 ]") else ""
+    last1 = last[:-12] if last and last.endswith("[ 卂 下 长 ]") else ""
     back_alive = datetime.now()
     afk_end = back_alive.replace(microsecond=0)
     if ISAFK:
