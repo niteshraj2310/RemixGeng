@@ -9,24 +9,21 @@ from datetime import datetime
 from math import sqrt
 
 from emoji import emojize
-from telethon import functions
+from telethon import events, functions
 from telethon.errors import (
     ChannelInvalidError,
     ChannelPrivateError,
     ChannelPublicGroupNaError,
 )
-from telethon import events
-from telethon.tl.functions.users import GetFullUserRequest
-import os
-from telethon.tl.types import MessageEntityMentionName
-from telethon.utils import get_input_location
 from telethon.tl.functions.channels import GetFullChannelRequest, GetParticipantsRequest
 from telethon.tl.functions.messages import GetFullChatRequest, GetHistoryRequest
+from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import (
     ChannelParticipantAdmin,
     ChannelParticipantsAdmins,
     ChannelParticipantsBots,
     MessageActionChannelMigrateFrom,
+    MessageEntityMentionName,
 )
 from telethon.utils import get_input_location, pack_bot_file_id
 
@@ -77,42 +74,41 @@ async def permalink(mention):
 @bot.on(events.NewMessage(pattern="^.mention ?(.*)", outgoing=True))
 @bot.on(events.MessageEdited(pattern="^.mention ?(.*)", outgoing=True))
 async def mention(e):
-	if e.fwd_from:
-		return
-	input_str = e.pattern_match.group(1)
+    if e.fwd_from:
+        return
+    input_str = e.pattern_match.group(1)
 
-	if e.reply_to_msg_id:
-		previous_message = await e.get_reply_message()
-		if previous_message.forward:
-			replied_user = await bot(GetFullUserRequest(previous_message.forward.from_id))
-		else:
-			replied_user = await bot(GetFullUserRequest(previous_message.from_id))
-	else:
-		if e.message.entities is not None:
-			mention_entity = e.message.entities
-			probable_user_mention_entity = mention_entity[0]
-			if type(probable_user_mention_entity) == MessageEntityMentionName:
-				user_id = probable_user_mention_entity.user_id
-				replied_user = await bot(GetFullUserRequest(user_id))
-		else:
-			try:
-				user_object = await bot.get_entity(input_str)
-				user_id = user_object.id
-				replied_user = await bot(GetFullUserRequest(user_id))
-			except Exception as e:
-				await e.edit(str(e))
-				return None
+    if e.reply_to_msg_id:
+        previous_message = await e.get_reply_message()
+        if previous_message.forward:
+            replied_user = await bot(
+                GetFullUserRequest(previous_message.forward.from_id)
+            )
+        else:
+            replied_user = await bot(GetFullUserRequest(previous_message.from_id))
+    else:
+        if e.message.entities is not None:
+            mention_entity = e.message.entities
+            probable_user_mention_entity = mention_entity[0]
+            if type(probable_user_mention_entity) == MessageEntityMentionName:
+                user_id = probable_user_mention_entity.user_id
+                replied_user = await bot(GetFullUserRequest(user_id))
+        else:
+            try:
+                user_object = await bot.get_entity(input_str)
+                user_id = user_object.id
+                replied_user = await bot(GetFullUserRequest(user_id))
+            except Exception as e:
+                await e.edit(str(e))
+                return None
 
-	user_id = replied_user.user.id
-	caption = """<a href='tg://user?id={}'>{}</a>""".format(user_id, input_str)
-	await bot.send_message(
-		e.chat_id,
-		caption,
-		parse_mode="HTML",
-		force_document=False,
-		silent=True
-		)
-	await e.delete()
+    user_id = replied_user.user.id
+    caption = """<a href='tg://user?id={}'>{}</a>""".format(user_id, input_str)
+    await bot.send_message(
+        e.chat_id, caption, parse_mode="HTML", force_document=False, silent=True
+    )
+    await e.delete()
+
 
 @register(outgoing=True, pattern="^.getbot(?: |$)(.*)")
 async def _(event):
@@ -170,8 +166,9 @@ async def log(log_text):
 @register(outgoing=True, pattern="^.kickme$")
 async def kickme(leave):
     """ Basically it's .kickme command """
-        await leave.edit("`Nope, no, no, I go away`")
-        await bot(LeaveChannelRequest(leave.chat_id))
+    await leave.edit("`Nope, no, no, I go away`")
+    await bot(LeaveChannelRequest(leave.chat_id))
+
 
 @register(outgoing=True, pattern="^.unmutechat$")
 async def unmute_chat(unm_e):
