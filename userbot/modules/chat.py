@@ -90,7 +90,7 @@ async def mention(e):
         if e.message.entities is not None:
             mention_entity = e.message.entities
             probable_user_mention_entity = mention_entity[0]
-            if type(probable_user_mention_entity) == MessageEntityMentionName:
+            if isinstance(probable_user_mention_entity, MessageEntityMentionName):
                 user_id = probable_user_mention_entity.user_id
                 replied_user = await bot(GetFullUserRequest(user_id))
         else:
