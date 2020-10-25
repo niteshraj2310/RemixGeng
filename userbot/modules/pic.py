@@ -12,7 +12,7 @@ from telethon import types
 from telethon.errors import PhotoInvalidDimensionsError
 from telethon.tl.functions.messages import SendMediaRequest
 
-from userbot import CMD_HELP, bot
+from userbot import CMD_HELP
 from userbot.events import register
 
 
@@ -50,6 +50,7 @@ async def on_file_to_photo(pics):
         )
     except PhotoInvalidDimensionsError:
         return
+
 
 CMD_HELP.update(
     {
