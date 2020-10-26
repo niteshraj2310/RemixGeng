@@ -19,7 +19,8 @@ import requests
 from bs4 import BeautifulSoup
 from PIL import Image
 
-from userbot import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, GIT_REPO_NAME, bot
+from userbot import (ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP,
+                     GIT_REPO_NAME, bot)
 from userbot.events import register
 from userbot.utils import time_formatter
 
