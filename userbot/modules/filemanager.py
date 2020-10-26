@@ -1,8 +1,8 @@
 import io
-import os
 import os.path
 import time
-from os.path import exists, isdir
+from os.path import exists
+from os.path import isdir
 
 from userbot.events import register
 from userbot.utils import humanbytes

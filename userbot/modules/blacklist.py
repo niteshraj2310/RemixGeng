@@ -4,7 +4,6 @@
 # you may not use this file except in compliance with the License.
 #
 # Port From UniBorg to UserBot by keselekpermen69
-
 import io
 import re
 

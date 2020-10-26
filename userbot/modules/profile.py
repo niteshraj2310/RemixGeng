@@ -4,23 +4,27 @@
 # you may not use this file except in compliance with the License.
 #
 """ Userbot module for changing your Telegram profile details+ now u can steal personal details of user. """
-
 import logging
 import os
 
 from telethon.errors.rpcerrorlist import UsernameOccupiedError
 from telethon.tl import functions
-from telethon.tl.functions.account import (UpdateProfileRequest,
-                                           UpdateUsernameRequest)
+from telethon.tl.functions.account import UpdateProfileRequest
+from telethon.tl.functions.account import UpdateUsernameRequest
 from telethon.tl.functions.channels import GetAdminedPublicChannelsRequest
-from telethon.tl.functions.photos import (DeletePhotosRequest,
-                                          GetUserPhotosRequest)
+from telethon.tl.functions.photos import DeletePhotosRequest
+from telethon.tl.functions.photos import GetUserPhotosRequest
 from telethon.tl.functions.users import GetFullUserRequest
-from telethon.tl.types import (Channel, Chat, InputPhoto,
-                               MessageEntityMentionName, User)
+from telethon.tl.types import Channel
+from telethon.tl.types import Chat
+from telethon.tl.types import InputPhoto
+from telethon.tl.types import MessageEntityMentionName
+from telethon.tl.types import User
 from telethon.utils import get_input_location
 
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
+from userbot import bot
+from userbot import CMD_HELP
+from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 # ====================== CONSTANT ===============================

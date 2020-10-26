@@ -5,12 +5,13 @@
 # custom cmds by @heyworld to make it look more gayish
 # Thanks to @AbhinavShinde for strings
 """ Userbot module for having some fun with people. """
-
 import asyncio
 import time
 from asyncio import sleep
 from collections import deque
-from random import choice, getrandbits, randint
+from random import choice
+from random import getrandbits
+from random import randint
 from re import sub
 
 import requests

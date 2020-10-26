@@ -4,7 +4,6 @@
 # you may not use this file except in compliance with the License.
 #
 """ Userbot module containing hash and encode/decode commands. """
-
 from subprocess import PIPE
 from subprocess import run as runapp
 
