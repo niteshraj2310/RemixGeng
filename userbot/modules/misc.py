@@ -43,8 +43,7 @@ async def randomise(items):
         return
     index = randint(1, len(itemo) - 1)
     await items.edit(
-        "**Query: **\n`" + items.text[8:] +
-        "`\n**Output: **\n`" + itemo[index] + "`"
+        "**Query: **\n`" + items.text[8:] + "`\n**Output: **\n`" + itemo[index] + "`"
     )
 
 
@@ -203,10 +202,8 @@ async def okgoogle(img):
         image.close()
         # https://stackoverflow.com/questions/23270175/google-reverse-image-search-using-post-request#28792943
         searchUrl = "https://www.google.com/searchbyimage/upload"
-        multipart = {"encoded_image": (
-            name, open(name, "rb")), "image_content": ""}
-        response = requests.post(
-            searchUrl, files=multipart, allow_redirects=False)
+        multipart = {"encoded_image": (name, open(name, "rb")), "image_content": ""}
+        response = requests.post(searchUrl, files=multipart, allow_redirects=False)
         fetchUrl = response.headers["Location"]
 
         if response != 400:

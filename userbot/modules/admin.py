@@ -1033,8 +1033,7 @@ async def locks(event):
     )
     try:
         await event.client(
-            EditChatDefaultBannedRightsRequest(
-                peer=peer_id, banned_rights=lock_rights)
+            EditChatDefaultBannedRightsRequest(peer=peer_id, banned_rights=lock_rights)
         )
         await event.edit(f"`Locked {what} for this chat !!`")
     except BaseException as e:
@@ -1174,8 +1173,7 @@ async def _(event):
             reply_message.from_id, num_warns, limit
         )
         if warn_reason:
-            reply += "\nReason for last warn:\n{}".format(
-                html.escape(warn_reason))
+            reply += "\nReason for last warn:\n{}".format(html.escape(warn_reason))
     #
     await event.edit(reply, parse_mode="html")
 
