@@ -1606,8 +1606,10 @@ class googleimagesdownload:
                             print(e)
                         with open("logs/" + search_keyword[i] + ".json",
                                   "w") as json_file:
-                            json.dump(
-                                items, json_file, indent=4, sort_keys=True)
+                            json.dump(items,
+                                      json_file,
+                                      indent=4,
+                                      sort_keys=True)
                     # Related images
                     if arguments["related_images"]:
                         print(

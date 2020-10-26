@@ -537,7 +537,6 @@ logger = logging.getLogger(__name__)
 
 thumb_image_path = TEMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
 
-
 if 1 == 1:
     name = "Profile Photos"
     client = bot

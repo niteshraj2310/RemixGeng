@@ -4,7 +4,6 @@
 # you may not use this file except in compliance with the License.
 #
 """ Userbot module for executing code and terminal commands from Telegram. """
-
 import asyncio
 from os import remove
 from sys import executable
@@ -188,7 +187,6 @@ async def terminal_runner(term):
             "Terminal Command " + command + " was executed sucessfully",
         )
 """
-
 
 CMD_HELP.update(
     {

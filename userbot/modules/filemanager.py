@@ -1,5 +1,4 @@
 import io
-import os
 import os.path
 import time
 from os.path import exists, isdir

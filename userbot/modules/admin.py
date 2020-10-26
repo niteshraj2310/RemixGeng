@@ -7,7 +7,6 @@
 Userbot module to help you manage a group
 
 """
-
 import html
 from asyncio import sleep
 from os import remove
@@ -554,6 +553,7 @@ async def rm_deletedacc(show):
         if del_u > 0:
             del_status = f"`Found` **{del_u}** `ghost/deleted/zombie account(s) in this group,\
             \nclean them by using``.zombies clean`"
+
         await show.edit(del_status)
         return
 
