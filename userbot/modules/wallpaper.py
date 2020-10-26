@@ -13,8 +13,8 @@ from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 logging.basicConfig(
-    format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s", level=logging.WARNING
-)
+    format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s",
+    level=logging.WARNING)
 logger = logging.getLogger(__name__)
 
 down_p = str(TEMP_DOWNLOAD_DIRECTORY.rstrip("/"))
@@ -128,6 +128,8 @@ async def walld(strin: str):
     return tit_link
 
 
-CMD_HELP.update(
-    {"wallpaper": ">`.wall` <query>." "\nUsage: Search some wallpaper picture."}
-)
+CMD_HELP.update({
+    "wallpaper":
+    ">`.wall` <query>."
+    "\nUsage: Search some wallpaper picture."
+})
