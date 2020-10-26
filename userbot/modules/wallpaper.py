@@ -1,20 +1,18 @@
 import asyncio
 import logging
 import os
-from random import choice
-from random import randint
+from random import choice, randint
 
 import requests
 from bs4 import BeautifulSoup as soup
 from PIL import Image
 
-from userbot import CMD_HELP
-from userbot import TEMP_DOWNLOAD_DIRECTORY
+from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 logging.basicConfig(
-    format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s",
-    level=logging.WARNING)
+    format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s", level=logging.WARNING
+)
 logger = logging.getLogger(__name__)
 
 down_p = str(TEMP_DOWNLOAD_DIRECTORY.rstrip("/"))
@@ -128,8 +126,6 @@ async def walld(strin: str):
     return tit_link
 
 
-CMD_HELP.update({
-    "wallpaper":
-    ">`.wall` <query>."
-    "\nUsage: Search some wallpaper picture."
-})
+CMD_HELP.update(
+    {"wallpaper": ">`.wall` <query>." "\nUsage: Search some wallpaper picture."}
+)

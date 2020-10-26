@@ -3,8 +3,7 @@
 Original Module Credits: https://t.me/UniBorg/127"""
 from userbot.events import register
 from userbot.utils import humanbytes
-from userbot.utils.tools import parse_pre
-from userbot.utils.tools import yaml_format
+from userbot.utils.tools import parse_pre, yaml_format
 
 
 @register(outgoing=True, pattern="^.confs(?: |$)(.*)")
@@ -15,9 +14,11 @@ async def _(event):
     input_str = event.pattern_match.group(1)
     if input_str:
         entity = input_str
-    status_message = await event.reply("... this might take some time "
-                                       "depending on the number of messages "
-                                       "in the chat ...")
+    status_message = await event.reply(
+        "... this might take some time "
+        "depending on the number of messages "
+        "in the chat ..."
+    )
     hmm = {}
     async for message in event.client.iter_messages(entity=entity, limit=None):
         if message and message.file:

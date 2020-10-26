@@ -1,8 +1,7 @@
 import io
 import os.path
 import time
-from os.path import exists
-from os.path import isdir
+from os.path import exists, isdir
 
 from userbot.events import register
 from userbot.utils import humanbytes
@@ -38,13 +37,16 @@ async def lst(event):
                 if contents.endswith((".opus")):
                     files += "🎙 " + f"`{contents}`\n"
                 elif contents.endswith(
-                    (".mkv", ".mp4", ".webm", ".avi", ".mov", ".flv")):
+                    (".mkv", ".mp4", ".webm", ".avi", ".mov", ".flv")
+                ):
                     files += "🎞 " + f"`{contents}`\n"
                 elif contents.endswith(
-                    (".zip", ".tar", ".tar.gz", ".rar", ".7z", ".xz")):
+                    (".zip", ".tar", ".tar.gz", ".rar", ".7z", ".xz")
+                ):
                     files += "🗜 " + f"`{contents}`\n"
-                elif contents.endswith((".jpg", ".jpeg", ".png", ".gif",
-                                        ".bmp", ".ico", ".webp")):
+                elif contents.endswith(
+                    (".jpg", ".jpeg", ".png", ".gif", ".bmp", ".ico", ".webp")
+                ):
                     files += "🖼 " + f"`{contents}`\n"
                 elif contents.endswith((".exe", ".deb")):
                     files += "⚙️ " + f"`{contents}`\n"
@@ -70,8 +72,7 @@ async def lst(event):
             mode = "🎞 "
         elif path.endswith((".zip", ".tar", ".tar.gz", ".rar", ".7z", ".xz")):
             mode = "🗜 "
-        elif path.endswith(
-            (".jpg", ".jpeg", ".png", ".gif", ".bmp", ".ico", ".webp")):
+        elif path.endswith((".jpg", ".jpeg", ".png", ".gif", ".bmp", ".ico", ".webp")):
             mode = "🖼 "
         elif path.endswith((".exe", ".deb")):
             mode = "⚙️ "
