@@ -4,7 +4,6 @@
 # you may not use this file except in compliance with the License.
 #
 """ Userbot module for getting the weather of a city. """
-
 import io
 import json
 from datetime import datetime
@@ -21,10 +20,10 @@ from userbot import WEATHER_DEFCITY
 from userbot.events import register
 
 # ===== CONSTANT =====
-DEFCITY = WEATHER_DEFCITY if WEATHER_DEFCITY else None
+DEFCITY = WEATHER_DEFCITY or None
+
+
 # ====================
-
-
 async def get_tz(con):
     """ Get time zone of the given country. """
     """ Credits: @aragon12 and @zakaryan2004. """

@@ -3,7 +3,6 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-
 import asyncio
 import errno
 import json
@@ -90,7 +89,7 @@ async def mega_downloader(megadl):
     start = time.time()
     while not downloader.isFinished():
         status = downloader.get_status().capitalize()
-        total_length = downloader.filesize if downloader.filesize else None
+        total_length = downloader.filesize or None
         downloaded = downloader.get_dl_size()
         percentage = int(downloader.get_progress() * 100)
         speed = downloader.get_speed(human=True)

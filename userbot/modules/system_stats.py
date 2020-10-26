@@ -4,7 +4,6 @@
 # you may not use this file except in compliance with the License.
 #
 """ Userbot module for getting information about the server. """
-
 import asyncio
 import platform
 import sys
@@ -24,9 +23,9 @@ from userbot.events import register
 
 # ================= CONSTANT =================
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
+
+
 # ============================================
-
-
 async def get_readable_time(seconds: int) -> str:
     count = 0
     up_time = ""
@@ -187,9 +186,8 @@ async def pipcheck(pip):
         if pipout:
             if len(pipout) > 4096:
                 await pip.edit("`Output too large, sending as file`")
-                file = open("output.txt", "w+")
-                file.write(pipout)
-                file.close()
+                with open("output.txt", "w+") as file:
+                    file.write(pipout)
                 await pip.client.send_file(
                     pip.chat_id,
                     "output.txt",

@@ -537,7 +537,6 @@ logger = logging.getLogger(__name__)
 
 thumb_image_path = TEMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
 
-
 if 1 == 1:
     name = "Profile Photos"
     client = bot
@@ -943,7 +942,6 @@ async def potocmd(event):
         else:
             await event.edit("`No photo found of that Nigga , now u Die`")
             return
-            await event.delete()
 
 
 @register(outgoing=True, pattern="^.res(?: |$)(.*)")

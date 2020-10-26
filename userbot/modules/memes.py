@@ -5,7 +5,6 @@
 # custom cmds by @heyworld to make it look more gayish
 # Thanks to @AbhinavShinde for strings
 """ Userbot module for having some fun with people. """
-
 import asyncio
 import time
 from asyncio import sleep
@@ -899,7 +898,7 @@ async def lol(lel):
 @register(outgoing=True, pattern="^.(yes|no|maybe|decide)$")
 async def decide(event):
     decision = event.pattern_match.group(1).lower()
-    message_id = event.reply_to_msg_id if event.reply_to_msg_id else None
+    message_id = event.reply_to_msg_id or None
     if decision != "decide":
         r = requests.get(f"https://yesno.wtf/api?force={decision}").json()
     else:

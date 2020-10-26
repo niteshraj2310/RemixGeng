@@ -10,7 +10,6 @@
 # 114994699218449095458463470499996630
 #
 # വിവരണം അടിച്ചുമാറ്റിക്കൊണ്ട് പോകുന്നവർ ക്രെഡിറ്റ് വെച്ചാൽ സന്തോഷമേ ഉള്ളു..!
-
 import asyncio
 import logging
 import os
@@ -289,6 +288,6 @@ async def upload_google_photos(event):
 def file_ops(file_path):
     file_size = os.stat(file_path).st_size
     mime_type = guess_type(file_path)[0]
-    mime_type = mime_type if mime_type else "text/plain"
+    mime_type = mime_type or "text/plain"
     file_name = file_path.split("/")[-1]
     return file_name, mime_type, file_size

@@ -3,7 +3,6 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-
 from asyncio import sleep
 from os import environ
 from re import sub
@@ -44,7 +43,7 @@ ARTIST = 0
 SONG = 0
 USER_ID = 0
 
-BIOPREFIX = BIO_PREFIX if BIO_PREFIX else None
+BIOPREFIX = BIO_PREFIX or None
 LASTFMCHECK = False
 RUNNING = False
 LastLog = False
