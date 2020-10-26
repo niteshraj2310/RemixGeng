@@ -226,7 +226,7 @@ async def okgoogle(img):
             await img.edit("`Couldn't find anything for your uglyass.`")
             return
 
-        lim = img.pattern_match.group(1) if img.pattern_match.group(1) else 3
+        lim = img.pattern_match.group(1) or 3
         images = await scam(match, lim)
         yeet = []
         for i in images:

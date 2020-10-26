@@ -943,7 +943,6 @@ async def potocmd(event):
         else:
             await event.edit("`No photo found of that Nigga , now u Die`")
             return
-            await event.delete()
 
 
 @register(outgoing=True, pattern="^.res(?: |$)(.*)")
