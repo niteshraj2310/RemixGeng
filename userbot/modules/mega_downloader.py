@@ -78,7 +78,8 @@ async def mega_downloader(megadl):
     file_path = TEMP_DOWNLOAD_DIRECTORY + file_name
     if os.path.isfile(file_path):
         try:
-            raise FileExistsError(errno.EEXIST, os.strerror(errno.EEXIST), file_path)
+            raise FileExistsError(
+                errno.EEXIST, os.strerror(errno.EEXIST), file_path)
         except FileExistsError as e:
             return await megadl.edit(f"`{str(e)}`")
     downloader = SmartDL(file_url, temp_file_path, progress_bar=False)
@@ -159,7 +160,8 @@ async def decrypt_file(megadl, file_path, temp_file_path, hex_key, hex_raw_key):
     if await subprocess_run(megadl, cmd):
         os.remove(temp_file_path)
     else:
-        raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), file_path)
+        raise FileNotFoundError(
+            errno.ENOENT, os.strerror(errno.ENOENT), file_path)
     return
 
 

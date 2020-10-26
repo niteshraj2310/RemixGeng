@@ -47,7 +47,8 @@ def deEmojify(inputString: str) -> str:
 
 
 async def threats(text):
-    r = requests.get(f"https://nekobot.xyz/api/imagegen?type=threats&url={text}").json()
+    r = requests.get(
+        f"https://nekobot.xyz/api/imagegen?type=threats&url={text}").json()
     sandy = r.get("message")
     caturl = url(sandy)
     if not caturl:
@@ -62,7 +63,8 @@ async def threats(text):
 
 
 async def trash(text):
-    r = requests.get(f"https://nekobot.xyz/api/imagegen?type=trash&url={text}").json()
+    r = requests.get(
+        f"https://nekobot.xyz/api/imagegen?type=trash&url={text}").json()
     sandy = r.get("message")
     caturl = url(sandy)
     if not caturl:

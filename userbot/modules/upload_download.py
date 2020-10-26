@@ -74,7 +74,8 @@ async def download(target_file):
                 LOGS.info(str(e))
         if downloader.isSuccessful():
             await target_file.edit(
-                "Downloaded to `{}` successfully !!".format(downloaded_file_name)
+                "Downloaded to `{}` successfully !!".format(
+                    downloaded_file_name)
             )
         else:
             await target_file.edit("Incorrect URL\n{}".format(url))
@@ -92,7 +93,8 @@ async def download(target_file):
             await target_file.edit(str(e))
         else:
             await target_file.edit(
-                "Downloaded to `{}` successfully !!".format(downloaded_file_name)
+                "Downloaded to `{}` successfully !!".format(
+                    downloaded_file_name)
             )
     else:
         await target_file.edit("Reply to a message to download to my local server.")
@@ -130,7 +132,8 @@ async def uploadir(udir_event):
                         allow_cache=False,
                         reply_to=udir_event.message.id,
                         progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                            progress(d, t, udir_event, c_time, "[UPLOAD]", single_file)
+                            progress(d, t, udir_event, c_time,
+                                     "[UPLOAD]", single_file)
                         ),
                     )
                 else:
@@ -164,7 +167,8 @@ async def uploadir(udir_event):
                             )
                         ],
                         progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                            progress(d, t, udir_event, c_time, "[UPLOAD]", single_file)
+                            progress(d, t, udir_event, c_time,
+                                     "[UPLOAD]", single_file)
                         ),
                     )
                 os.remove(single_file)
@@ -206,7 +210,8 @@ def get_video_thumb(file, output=None, width=90):
             file,
             "-ss",
             str(
-                int((0, metadata.get("duration").seconds)[metadata.has("duration")] / 2)
+                int((0, metadata.get("duration").seconds)
+                    [metadata.has("duration")] / 2)
             ),
             "-filter:v",
             "scale={}:-1".format(width),
@@ -236,7 +241,8 @@ def extract_w_h(file):
     ]
     # https://stackoverflow.com/a/11236144/4723940
     try:
-        t_response = subprocess.check_output(command_to_run, stderr=subprocess.STDOUT)
+        t_response = subprocess.check_output(
+            command_to_run, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as exc:
         LOGS.warning(exc)
     else:
@@ -303,7 +309,8 @@ async def uploadas(uas_event):
                         )
                     ],
                     progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                        progress(d, t, uas_event, c_time, "[UPLOAD]", file_name)
+                        progress(d, t, uas_event, c_time,
+                                 "[UPLOAD]", file_name)
                     ),
                 )
             elif round_message:
@@ -325,7 +332,8 @@ async def uploadas(uas_event):
                         )
                     ],
                     progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                        progress(d, t, uas_event, c_time, "[UPLOAD]", file_name)
+                        progress(d, t, uas_event, c_time,
+                                 "[UPLOAD]", file_name)
                     ),
                 )
             elif spam_big_messages:
