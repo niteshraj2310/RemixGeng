@@ -1605,8 +1605,9 @@ class googleimagesdownload:
                         except OSError as e:
                             print(e)
                         with open("logs/" + search_keyword[i] + ".json",
-                                         "w") as json_file:
-                            json.dump(items, json_file, indent=4, sort_keys=True)
+                                  "w") as json_file:
+                            json.dump(
+                                items, json_file, indent=4, sort_keys=True)
                     # Related images
                     if arguments["related_images"]:
                         print(
