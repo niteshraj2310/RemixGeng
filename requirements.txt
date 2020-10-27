@@ -18,6 +18,7 @@ asyncurban
 google-api-python-client
 google-auth-oauthlib
 googletrans
+python-telegram-bot==12.8
 google_images_download
 gTTS
 gTTS-token
