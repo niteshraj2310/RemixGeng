@@ -173,10 +173,10 @@ async def mention_afk(mention):
     afk_end = back_alivee.replace(microsecond=0)
     afk_since = "**a while ago**"
     try:
-       if (await mention.get_sender()).bot:
-           return
-    except:
-       pass
+        if (await mention.get_sender()).bot:
+            return
+    except BaseException:
+        pass
     if mention.message.mentioned and ISAFK:
         now = datetime.now()
         datime_since_afk = now - afk_time  # pylint:disable=E0602
