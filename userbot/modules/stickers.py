@@ -10,6 +10,8 @@ import io
 import math
 import urllib.request
 
+import requests
+from bs4 import BeautifulSoup as bs
 from PIL import Image
 from telethon.tl.functions.account import UpdateNotifySettingsRequest
 from telethon.tl.functions.messages import GetStickerSetRequest
@@ -18,8 +20,7 @@ from telethon.tl.types import (
     InputPeerNotifySettings,
     InputStickerSetID,
 )
-import requests
-from bs4 import BeautifulSoup as bs
+
 from userbot import CMD_HELP, bot
 from userbot.events import register
 
@@ -27,6 +28,7 @@ PACK_FULL = "Whoa! That's probably enough stickers for one pack, give it a break
 A pack can't have more than 120 stickers at the moment."
 PACK_DOESNT_EXIST = "  A <strong>Telegram</strong> user has created the <strong>Sticker&nbsp;Set</strong>."
 combot_stickers_url = "https://combot.org/telegram/stickers?q="
+
 
 @register(outgoing=True, pattern="^.kang($| )?((?![0-9]).+?)? ?([0-9]*)?")
 async def kang(event):
@@ -317,6 +319,7 @@ async def get_pack_info(event):
 
     await event.edit(OUTPUT)
 
+
 @register(outgoing=True, pattern=r"^\.stickers ?(.*)")
 async def cb_sticker(event):
     split = event.pattern_match.group(1)
@@ -326,7 +329,7 @@ async def cb_sticker(event):
     await event.edit("`Searching sticker packs`")
     text = requests.get(combot_stickers_url + split).text
     soup = bs(text, "lxml")
-    results = soup.find_all("div", {'class': "sticker-pack__header"})
+    results = soup.find_all("div", {"class": "sticker-pack__header"})
     if not results:
         await event.edit("`No results found :(.`")
         return
@@ -334,10 +337,11 @@ async def cb_sticker(event):
     for pack in results:
         if pack.button:
             packtitle = (pack.find("div", "sticker-pack__title")).get_text()
-            packlink = (pack.a).get('href')
-            packid = (pack.button).get('data-popup')
+            packlink = (pack.a).get("href")
+            packid = (pack.button).get("data-popup")
             reply += f"\n **• ID: **`{packid}`\n [{packtitle}]({packlink})"
     await event.edit(reply)
+
 
 @register(outgoing=True, pattern="^.getsticker$")
 async def sticker_to_png(sticker):
