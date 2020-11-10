@@ -8,9 +8,8 @@
 
 import glob
 import os
-import time
 import sys
-
+import time
 from logging import getLogger
 from os import path
 
@@ -35,15 +34,21 @@ async def universe_checker(msg):
             await msg.edit("No uninstallable modules present! Process halted!")
             return
         if len(cmd_args) == 1:
-            await msg.edit("Please specify a module name, I cannot uninstall __nothing__!")
+            await msg.edit(
+                "Please specify a module name, I cannot uninstall __nothing__!"
+            )
             return
-        del(cmd_args[0])
-        mods_uninstall = cmd_args[0].split()
+        del cmd_args[0]
+        cmd_args[0].split()
         modNames = cmd_args[0].lower()
-        if path.exists('./userbot/modules_user/' + modNames):
+        if path.exists("./userbot/modules_user/" + modNames):
             await msg.edit("`Uninstalling {}...`".format(modNames))
         else:
-            await msg.edit("`{}` is not a valid Userspace module name! Process halted!".format(modNames))
+            await msg.edit(
+                "`{}` is not a valid Userspace module name! Process halted!".format(
+                    modNames
+                )
+            )
             return
         os.remove(USER_MODULES_DIR + modNames)
         log.info(f"Modules '{modNames}' has been uninstalled from userspace")
@@ -63,6 +68,9 @@ async def universe_checker(msg):
 CMD_HELP.update(
     {
         "package manager": [
-            'Package Manager',
+            "Package Manager",
             "`pkg uninstall` <py file name>: Remove user modules (modules loaded with the .sideload command)\n\n"
-            "**All commands can be used with** `.`"]})
+            "**All commands can be used with** `.`",
+        ]
+    }
+)

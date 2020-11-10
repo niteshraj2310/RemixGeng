@@ -6,14 +6,13 @@
 # You may not use this file or any of the content within it, unless in
 # compliance with the PE License
 
-import sys
 import os
+import sys
 import time
-
 from logging import getLogger
 
-from userbot.events import register
 from userbot import CMD_HELP
+from userbot.events import register
 
 log = getLogger(__name__)
 USER_MODULES_DIR = "./userbot/modules_user/"
@@ -40,7 +39,11 @@ async def sideload(event):
         await event.edit("`Downloading...`")
         if os.path.isfile(dest_path) and OVR_WRT_CAUT:
             log.info(f"Module '{file.name[:-3]}' installed already")
-            await event.edit("There is already a userspace module named `{}`. If you wish to overwrite this, please run the command with the `force` argument!".format(file.name))
+            await event.edit(
+                "There is already a userspace module named `{}`. If you wish to overwrite this, please run the command with the `force` argument!".format(
+                    file.name
+                )
+            )
             return
         await event.client.download_media(message=msg, file=dest_path)
         log.info(f"Module '{file.name[:-3]}' has been installed to userpace")
@@ -60,8 +63,11 @@ async def sideload(event):
 CMD_HELP.update(
     {
         "sideloader": [
-            'Sideloader',
+            "Sideloader",
             "`sideload`: [in response to a compatible py file] load modules to user space.\n\n"
             "**WARRANTY:** Keep in mind that loading incompatible modules may break your userbot and you will need manual removal of the module.\n"
             "__NO SUPPORT WILL BE OFFERED TO UNOFFICIAL MODULES!__\n\n"
-            "**All commands can be used with** `.`"]})
+            "**All commands can be used with** `.`",
+        ]
+    }
+)

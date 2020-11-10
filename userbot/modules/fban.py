@@ -233,4 +233,3 @@ CMD_HELP.update(
         "\nUsage: Lists all connected federations by specified name."
     }
 )
-

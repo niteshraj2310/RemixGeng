@@ -1203,6 +1203,7 @@ async def _(event):
     else:
         await event.edit("This user hasn't got any warnings!")
 
+
 @register(outgoing=True, pattern="^.strongwarn(?: |$)(.*)")
 async def set_warn_strength(event):
     chat = await event.get_chat()
