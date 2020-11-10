@@ -19,7 +19,7 @@ async def fban(event):
         return await event.edit("**Running on Non-SQL mode!**")
 
     if (reply_msg := await event.get_reply_message()) :
-        fban_id = reply_msg.from_id
+        fban_id = reply_msg.sender_id
         reason = event.pattern_match.group(1)
     else:
         pattern = str(event.pattern_match.group(1)).split()
@@ -92,7 +92,7 @@ async def unfban(event):
         return await event.edit("**Running on Non-SQL mode!**")
 
     if (reply_msg := await event.get_reply_message()) :
-        unfban_id = reply_msg.from_id
+        unfban_id = reply_msg.sender_id
         reason = event.pattern_match.group(1)
     else:
         pattern = str(event.pattern_match.group(1)).split()
@@ -233,3 +233,4 @@ CMD_HELP.update(
         "\nUsage: Lists all connected federations by specified name."
     }
 )
+

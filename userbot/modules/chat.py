@@ -43,13 +43,13 @@ async def _(event):
             bot_api_file_id = pack_bot_file_id(r_msg.media)
             await event.edit(
                 "Current Chat ID: `{}`\nFrom User ID: `{}`\nBot API File ID: `{}`".format(
-                    str(event.chat_id), str(r_msg.from_id), bot_api_file_id
+                    str(event.chat_id), str(r_msg.sender_id), bot_api_file_id
                 )
             )
         else:
             await event.edit(
                 "Current Chat ID: `{}`\nFrom User ID: `{}`".format(
-                    str(event.chat_id), str(r_msg.from_id)
+                    str(event.chat_id), str(r_msg.sender_id)
                 )
             )
     else:
@@ -82,10 +82,10 @@ async def mention(e):
         previous_message = await e.get_reply_message()
         if previous_message.forward:
             replied_user = await bot(
-                GetFullUserRequest(previous_message.forward.from_id)
+                GetFullUserRequest(previous_message.forward.sender_id)
             )
         else:
-            replied_user = await bot(GetFullUserRequest(previous_message.from_id))
+            replied_user = await bot(GetFullUserRequest(previous_message.sender_id))
     else:
         if e.message.entities is not None:
             mention_entity = e.message.entities
