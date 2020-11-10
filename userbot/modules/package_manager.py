@@ -26,7 +26,7 @@ else:
     EXECUTABLE = '"' + sys.executable + '"'
 
 
-@register(outgoing=True, group_only=True, pattern=r"^\.pkg(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.pkg(?: |$)(.*)")
 async def universe_checker(msg):
     cmd_args = msg.pattern_match.group(1).split(" ", 1)
     if cmd_args[0].lower() == "uninstall":
