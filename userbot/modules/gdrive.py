@@ -1357,4 +1357,5 @@ CMD_HELP.update(
         "\nfor `.gdlist` you can combine -l and -p flags with or without name "
         "at the same time, it must be `-l` flags first before use `-p` flags.\n"
         "And by default it lists from latest 'modifiedTime' and then folders."
-    })
+    }
+)
