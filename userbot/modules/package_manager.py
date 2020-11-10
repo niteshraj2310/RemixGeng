@@ -64,7 +64,10 @@ async def universe_checker(msg):
         await msg.edit("Invalid argument! Make sure it is **uninstall**!")
         return
 
-CMD_HELP.update({
-"package manager":
-"`pkg uninstall` <py file name>: Remove user modules (modules loaded with the `.sideload` command)\
-\n**All commands can be used with** `.`"})
+
+CMD_HELP.update(
+    {
+        "package manager": "`pkg uninstall` <py file name>: Remove user modules (modules loaded with the `.sideload` command)\
+\n**All commands can be used with** `.`"
+    }
+)
