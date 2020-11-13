@@ -29,7 +29,7 @@ trackers = f"[{trackers_list}]"
 cmd = f"aria2c \
 --enable-rpc \
 --rpc-listen-all=false \
---rpc-listen-port 8210 \
+--rpc-listen-port 6800 \
 --max-connection-per-server=10 \
 --rpc-max-request-size=1024M \
 --seed-time=0.01 \
@@ -47,7 +47,7 @@ if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
     os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
 download_path = os.getcwd() + TEMP_DOWNLOAD_DIRECTORY.strip(".")
 
-aria2 = aria2p.API(aria2p.Client(host="http://localhost", port=8210, secret=""))
+aria2 = aria2p.API(aria2p.Client(host="http://localhost", port=6800, secret=""))
 
 aria2.set_global_options({"dir": download_path})
 
@@ -131,7 +131,6 @@ async def resume_all(event):
     await event.edit("`Downloads resumed.`")
     await sleep(2.5)
     await event.delete()
-
 
 @register(outgoing=True, pattern="^.ashow(?: |$)(.*)")
 async def show_all(event):
