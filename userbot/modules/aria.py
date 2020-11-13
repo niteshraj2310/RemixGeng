@@ -132,6 +132,7 @@ async def resume_all(event):
     await sleep(2.5)
     await event.delete()
 
+
 @register(outgoing=True, pattern="^.ashow(?: |$)(.*)")
 async def show_all(event):
     downloads = aria2.get_downloads()
