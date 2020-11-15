@@ -8,7 +8,7 @@ import asyncio
 from os import remove
 from sys import executable
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, TERM_ALIAS
+from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
 from userbot.events import register
 
 
@@ -41,7 +41,8 @@ async def evaluate(query):
                         query.chat_id,
                         "output.txt",
                         reply_to=query.id,
-                        caption="`Output too large, sending as file`",)
+                        caption="`Output too large, sending as file`",
+                    )
                     remove("output.txt")
                     return
                 await query.edit(
@@ -186,6 +187,7 @@ async def terminal_runner(term):
             BOTLOG_CHATID,
             "Terminal Command " + command + " was executed sucessfully",
         )
+
 
 CMD_HELP.update(
     {
