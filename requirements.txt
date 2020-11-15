@@ -42,7 +42,6 @@ requests
 search-engine-parser
 speedtest-cli
 sqlalchemy
-telethon
 telethon-session-sqlalchemy
 urbandict
 wikipedia
