@@ -7,7 +7,7 @@
 import asyncio
 from os import remove
 from sys import executable
-
+from getpass import getuser
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
 from userbot.events import register
 
@@ -73,7 +73,6 @@ async def evaluate(query):
 async def run(run_q):
     """ For .exec command, which executes the dynamically created program """
     code = run_q.pattern_match.group(1)
-
     if run_q.is_channel and not run_q.is_group:
         await run_q.edit("`Exec isn't permitted on channels!`")
         return

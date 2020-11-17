@@ -683,41 +683,28 @@ async def getadmin(event):
 
 @register(outgoing=True, pattern="^.pin(?: |$)(.*)")
 async def pin(msg):
-    """ For .pin command, pins the replied/tagged message on the top the chat. """
-    # Admin or creator check
-    chat = await msg.get_chat()
-    admin = chat.admin_rights
-    creator = chat.creator
-
-    # If not admin and not creator, return
-    if not admin and not creator:
-        await msg.edit(NO_ADMIN)
-        return
-
+    if not msg.is_private:
+        chat = await msg.get_chat()
+        admin = chat.admin_rights
+        creator = chat.creator
+        if not admin and not creator:
+            return await msg.edit(NO_ADMIN)
     to_pin = msg.reply_to_msg_id
-
     if not to_pin:
-        await msg.edit("`Reply to a message to pin it.`")
-        return
-
+        return await msg.edit("`Reply to a message to pin it.`")
     options = msg.pattern_match.group(1)
-
-    is_silent = True
-
-    if options.lower() == "loud":
-        is_silent = False
-
+    is_silent = False
+    if options == "loud":
+        is_silent = True
     try:
-        await msg.client(UpdatePinnedMessageRequest(msg.to_id, to_pin, is_silent))
+        await msg.client.pin_message(msg.chat_id, to_pin, notify=is_silent)
     except BadRequestError:
-        await msg.edit(NO_PERM)
-        return
-
+        return await msg.edit(NO_PERM)
+    except Exception as e:
+        return await msg.edit(f"`{str(e)}`")
     await msg.edit("`Pinned Successfully!`")
-
     user = await get_user_from_id(msg.sender_id, msg)
-
-    if BOTLOG:
+    if BOTLOG and not msg.is_private:
         await msg.client.send_message(
             BOTLOG_CHATID,
             "#PIN\n"
@@ -726,6 +713,48 @@ async def pin(msg):
             f"LOUD: {not is_silent}",
         )
 
+@register(outgoing=True, pattern="^.unpin(?: |$)(.*)")
+async def pin(msg):
+    if not msg.is_private:
+        chat = await msg.get_chat()
+        admin = chat.admin_rights
+        creator = chat.creator
+        if not admin and not creator:
+            await msg.edit(NO_ADMIN)
+            return
+    to_unpin = msg.reply_to_msg_id
+    options = (msg.pattern_match.group(1)).strip()
+    if not to_unpin and options != "all":
+        await msg.edit("Reply to a message to unpin it or use .unpin all")
+        return
+    if to_unpin and not options:
+        try:
+            await msg.client.unpin_message(msg.chat_id, to_unpin)
+        except BadRequestError:
+            return await msg.edit( NO_PERM)
+        except Exception as e:
+            return await msg.edit( f"{str(e)}")
+    elif options == "all":
+        try:
+            await msg.client.unpin_message(msg.chat_id)
+        except BadRequestError:
+            return await msg.edit( NO_PERM)
+        except Exception as e:
+            return await msg.edit( f"{str(e)}")
+    else:
+        return await msg.edit(
+            "Reply to a message to unpin it or use .unpin all"
+        )
+    await msg.edit( "Unpinned Successfully!")
+    user = await get_user_from_id(msg.sender_id, msg)
+    if BOTLOG and not msg.is_private:
+        await msg.client.send_message(
+            BOTLOG_CHATID,
+            "#UNPIN\n"
+            f"Admin: [{user.first_name}](tg://user?id={user.id})\n"
+            f"Chat: {msg.chat.title}(`{msg.chat_id}`)\n",
+
+        )
 
 @register(outgoing=True, pattern="^.kick(?: |$)(.*)")
 async def kick(usr):
