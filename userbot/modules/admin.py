@@ -24,10 +24,7 @@ from telethon.tl.functions.channels import (
     EditBannedRequest,
     EditPhotoRequest,
 )
-from telethon.tl.functions.messages import (
-    EditChatDefaultBannedRightsRequest,
-    UpdatePinnedMessageRequest,
-)
+from telethon.tl.functions.messages import EditChatDefaultBannedRightsRequest
 from telethon.tl.types import (
     ChannelParticipantAdmin,
     ChannelParticipantCreator,
@@ -713,6 +710,7 @@ async def pin(msg):
             f"LOUD: {not is_silent}",
         )
 
+
 @register(outgoing=True, pattern="^.unpin(?: |$)(.*)")
 async def pin(msg):
     if not msg.is_private:
@@ -731,21 +729,19 @@ async def pin(msg):
         try:
             await msg.client.unpin_message(msg.chat_id, to_unpin)
         except BadRequestError:
-            return await msg.edit( NO_PERM)
+            return await msg.edit(NO_PERM)
         except Exception as e:
-            return await msg.edit( f"{str(e)}")
+            return await msg.edit(f"{str(e)}")
     elif options == "all":
         try:
             await msg.client.unpin_message(msg.chat_id)
         except BadRequestError:
-            return await msg.edit( NO_PERM)
+            return await msg.edit(NO_PERM)
         except Exception as e:
-            return await msg.edit( f"{str(e)}")
+            return await msg.edit(f"{str(e)}")
     else:
-        return await msg.edit(
-            "Reply to a message to unpin it or use .unpin all"
-        )
-    await msg.edit( "Unpinned Successfully!")
+        return await msg.edit("Reply to a message to unpin it or use .unpin all")
+    await msg.edit("Unpinned Successfully!")
     user = await get_user_from_id(msg.sender_id, msg)
     if BOTLOG and not msg.is_private:
         await msg.client.send_message(
@@ -753,8 +749,8 @@ async def pin(msg):
             "#UNPIN\n"
             f"Admin: [{user.first_name}](tg://user?id={user.id})\n"
             f"Chat: {msg.chat.title}(`{msg.chat_id}`)\n",
-
         )
+
 
 @register(outgoing=True, pattern="^.kick(?: |$)(.*)")
 async def kick(usr):

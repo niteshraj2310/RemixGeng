@@ -5,9 +5,10 @@
 #
 """ Userbot module for executing code and terminal commands from Telegram. """
 import asyncio
+from getpass import getuser
 from os import remove
 from sys import executable
-from getpass import getuser
+
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
 from userbot.events import register
 
