@@ -700,7 +700,6 @@ async def pin(msg):
     except Exception as e:
         return await msg.edit(f"`{str(e)}`")
     await msg.edit("`Pinned Successfully!`")
-    await msg.delete(3)
     user = await get_user_from_id(msg.sender_id, msg)
     if BOTLOG and not msg.is_private:
         await msg.client.send_message(
@@ -724,7 +723,7 @@ async def pin(msg):
     to_unpin = msg.reply_to_msg_id
     options = (msg.pattern_match.group(1)).strip()
     if not to_unpin and options != "all":
-        await msg.edit("__Reply to a message to unpin it.__ **or use** `.unpin all`")
+        await msg.edit("__Reply to a message to unpin it__ **or use** `.unpin all`")
         return
     if to_unpin and not options:
         try:
@@ -743,7 +742,6 @@ async def pin(msg):
     else:
         return await msg.edit("__Reply to a message to unpin it.__ **or use** `.unpin all`")
     await msg.edit("`Unpinned Successfully!`")
-    await msg.delete(3)
     user = await get_user_from_id(msg.sender_id, msg)
     if BOTLOG and not msg.is_private:
         await msg.client.send_message(
