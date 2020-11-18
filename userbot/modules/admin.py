@@ -740,7 +740,9 @@ async def pin(msg):
         except Exception as e:
             return await msg.edit(f"{str(e)}")
     else:
-        return await msg.edit("__Reply to a message to unpin it.__ **or use** `.unpin all`")
+        return await msg.edit(
+            "__Reply to a message to unpin it.__ **or use** `.unpin all`"
+        )
     await msg.edit("`Unpinned Successfully!`")
     user = await get_user_from_id(msg.sender_id, msg)
     if BOTLOG and not msg.is_private:
@@ -1152,6 +1154,7 @@ async def rem_locks(event):
 
 
 # imported from uniborg by @heyworld
+
 
 @register(outgoing=True, pattern="^.warn(?: |$)(.*)")
 async def _(event):
