@@ -700,11 +700,12 @@ async def pin(msg):
     except Exception as e:
         return await msg.edit(f"`{str(e)}`")
     await msg.edit("`Pinned Successfully!`")
+    await msg.delete(3)
     user = await get_user_from_id(msg.sender_id, msg)
     if BOTLOG and not msg.is_private:
         await msg.client.send_message(
             BOTLOG_CHATID,
-            "#PIN\n"
+            "**#PIN**\n"
             f"ADMIN: [{user.first_name}](tg://user?id={user.id})\n"
             f"CHAT: {msg.chat.title}(`{msg.chat_id}`)\n"
             f"LOUD: {not is_silent}",
@@ -723,7 +724,7 @@ async def pin(msg):
     to_unpin = msg.reply_to_msg_id
     options = (msg.pattern_match.group(1)).strip()
     if not to_unpin and options != "all":
-        await msg.edit("Reply to a message to unpin it or use .unpin all")
+        await msg.edit("__Reply to a message to unpin it.__ **or use** `.unpin all`")
         return
     if to_unpin and not options:
         try:
@@ -740,15 +741,16 @@ async def pin(msg):
         except Exception as e:
             return await msg.edit(f"{str(e)}")
     else:
-        return await msg.edit("Reply to a message to unpin it or use .unpin all")
-    await msg.edit("Unpinned Successfully!")
+        return await msg.edit("__Reply to a message to unpin it.__ **or use** `.unpin all`")
+    await msg.edit("`Unpinned Successfully!`")
+    await msg.delete(3)
     user = await get_user_from_id(msg.sender_id, msg)
     if BOTLOG and not msg.is_private:
         await msg.client.send_message(
             BOTLOG_CHATID,
-            "#UNPIN\n"
-            f"Admin: [{user.first_name}](tg://user?id={user.id})\n"
-            f"Chat: {msg.chat.title}(`{msg.chat_id}`)\n",
+            "**#UNPIN**\n"
+            f"ADMIN: [{user.first_name}](tg://user?id={user.id})\n"
+            f"CHAT: {msg.chat.title}(`{msg.chat_id}`)\n",
         )
 
 
@@ -769,9 +771,7 @@ async def kick(usr):
     if not user:
         await usr.edit("`Couldn't fetch user.`")
         return
-
     await usr.edit("`Kicking...`")
-
     try:
         await usr.client.kick_participant(usr.chat_id, user.id)
         await sleep(0.5)
@@ -1154,7 +1154,6 @@ async def rem_locks(event):
 
 
 # imported from uniborg by @heyworld
-
 
 @register(outgoing=True, pattern="^.warn(?: |$)(.*)")
 async def _(event):
