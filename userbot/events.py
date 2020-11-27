@@ -10,13 +10,12 @@ import sys
 from asyncio import create_subprocess_shell as asyncsubshell
 from asyncio import subprocess as asyncsub
 from os import remove
-import asyncio
 from time import gmtime, strftime
 from traceback import format_exc
 
 from telethon import events
 
-from userbot import bot, BOTLOG_CHATID, LOGSPAMMER
+from userbot import LOGSPAMMER, bot
 
 
 def register(**args):
@@ -66,9 +65,9 @@ def register(**args):
                 # Ignore edits that take place in channels.
                 return
             if not LOGSPAMMER:
-                send_to = check.chat_id
+                check.chat_id
             else:
-                send_to = BOTLOG_CHATID
+                pass
 
             if not trigger_on_fwd and check.fwd_from:
                 return
