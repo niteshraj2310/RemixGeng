@@ -1,5 +1,5 @@
-[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/niteshraj2310/RemixGeng)
-[![Build Status](https://img.shields.io/travis/niteshraj2310/RemixGeng.svg?branch=sql-extended?label=Travis%20CI&logo=travis&style=flat-square)](https://travis-ci.com/niteshraj2310/RemixGeng)&nbsp;
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/n[Aiteshraj2310/RemixGeng)
+[![Build Status](https://travis-ci.com/niteshraj2310/RemixGeng.svg?branch=sql-extended)](https://travis-ci.com/niteshraj2310/RemixGeng)
 [![code style: black](https://img.shields.io/static/v1?label=code%20style&message=black&color=black&style=flat-square)](https://github.com/psf/black)
 <a href="https://github.com/niteshraj2310/RemixGeng/watchers"><img src="https://img.shields.io/github/watchers/niteshraj2310/RemixGeng?label=Watch&style=flat-square&logo=github&color=violet" alt="Watch" /></a>
 <a href="https://github.com/niteshraj2310/RemixGeng/commits/sql-extended"><img src="https://img.shields.io/github/last-commit/niteshraj2310/RemixGeng/sql-extended?label=Last%20Commit&style=flat-square&logo=github&color=Green" alt="Commit" /></a>
