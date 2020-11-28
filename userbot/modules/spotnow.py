@@ -1,11 +1,12 @@
 # Ported by Aidil Aryanto
-
 import os
 from asyncio.exceptions import TimeoutError
 
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
+from userbot import bot
+from userbot import CMD_HELP
+from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 

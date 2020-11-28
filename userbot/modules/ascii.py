@@ -7,10 +7,13 @@ import numpy as np
 from colour import Color
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image
+from PIL import ImageDraw
+from PIL import ImageFont
 from telethon.tl.types import DocumentAttributeFilename
 
-from userbot import CMD_HELP, bot
+from userbot import bot
+from userbot import CMD_HELP
 from userbot.events import register
 
 bground = "black"

@@ -13,7 +13,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 import asyncio
 import base64
 import io
@@ -25,7 +24,10 @@ import pickle
 import re
 import time
 from mimetypes import guess_type
-from os.path import getctime, isdir, isfile, join
+from os.path import getctime
+from os.path import isdir
+from os.path import isfile
+from os.path import join
 
 import requests
 from bs4 import BeautifulSoup
@@ -33,16 +35,26 @@ from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from googleapiclient.http import MediaFileUpload, MediaIoBaseDownload
+from googleapiclient.http import MediaFileUpload
+from googleapiclient.http import MediaIoBaseDownload
 from telethon import events
 
 import userbot.modules.sql_helper.google_drive_sql as helper
-from userbot import (BOTLOG_CHATID, CMD_HELP, G_DRIVE_CLIENT_ID,
-                     G_DRIVE_CLIENT_SECRET, G_DRIVE_DATA, G_DRIVE_FOLDER_ID,
-                     LOGS, TEMP_DOWNLOAD_DIRECTORY)
+from userbot import BOTLOG_CHATID
+from userbot import CMD_HELP
+from userbot import G_DRIVE_CLIENT_ID
+from userbot import G_DRIVE_CLIENT_SECRET
+from userbot import G_DRIVE_DATA
+from userbot import G_DRIVE_FOLDER_ID
+from userbot import LOGS
+from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
-from userbot.modules.aria import aria2, check_metadata
-from userbot.utils import human_to_bytes, humanbytes, progress, time_formatter
+from userbot.modules.aria import aria2
+from userbot.modules.aria import check_metadata
+from userbot.utils import human_to_bytes
+from userbot.utils import humanbytes
+from userbot.utils import progress
+from userbot.utils import time_formatter
 from userbot.utils.exceptions import CancelProcess
 
 # =========================================================== #
