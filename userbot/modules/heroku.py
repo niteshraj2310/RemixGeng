@@ -67,9 +67,8 @@ async def variable(var):
                     )
                     await var.edit("`Received to BOTLOG_CHATID...`")
                     return True
-                else:
-                    await var.edit("`Please set BOTLOG to True...`")
-                    return False
+                await var.edit("`Please set BOTLOG to True...`")
+                return False
             else:
                 await var.edit("`Information don't exists...`")
                 return True
@@ -84,9 +83,8 @@ async def variable(var):
                 )
                 await var.edit("`Received to BOTLOG_CHATID...`")
                 return True
-            else:
-                await var.edit("`Please set BOTLOG to True...`")
-                return False
+            await var.edit("`Please set BOTLOG to True...`")
+            return False
     elif exe == "del":
         await var.edit("`Deleting information...`")
         variable = var.pattern_match.group(2)
@@ -354,8 +352,7 @@ async def dyno_manage(dyno):
             )
         if msg:
             return await dyno.edit(msg)
-        else:
-            return
+        return
     elif exe in ["cancel deploy", "cancel build"]:
         """ - Only cancel 1 recent builds from activity - """
         build_id = dyno.pattern_match.group(2)
