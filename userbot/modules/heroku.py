@@ -17,16 +17,9 @@ import aiohttp
 import heroku3
 import requests
 
-from userbot import (
-    BOTLOG,
-    BOTLOG_CHATID,
-    CMD_HELP,
-    HEROKU_API_KEY,
-    HEROKU_API_KEY_FALLBACK,
-    HEROKU_APP_NAME,
-    fallback,
-    heroku,
-)
+from userbot import (BOTLOG, BOTLOG_CHATID, CMD_HELP, HEROKU_API_KEY,
+                     HEROKU_API_KEY_FALLBACK, HEROKU_APP_NAME, fallback,
+                     heroku)
 from userbot.events import register
 
 useragent = (
