@@ -948,21 +948,23 @@ async def _(message):
     u, t, g, o, s, n = inp.split(), "🗑", "<(^_^ <)", "(> ^_^)>", "⠀ ", "\n"
     h = [(u[0], u[1], u[2]), (u[0], u[1], ""), (u[0], "", "")]
     for something in reversed(
-        list((
-            [
-                "".join(x)
-                for x in (
-                    f + (s, g, s + s * f.count(""), t),
-                    f + (g, s * 2 + s * f.count(""), t),
-                    f[:i] + (o, f[i], s * 2 + s * f.count(""), t),
-                    f[:i] + (s + s * f.count(""), o, f[i], s, t),
-                    f[:i] + (s * 2 + s * f.count(""), o, f[i], t),
-                    f[:i] + (s * 3 + s * f.count(""), o, t),
-                    f[:i] + (s * 3 + s * f.count(""), g, t),
-                )
-            ]
-            for i, f in enumerate(reversed(h))
-        ))
+        list(
+            (
+                [
+                    "".join(x)
+                    for x in (
+                        f + (s, g, s + s * f.count(""), t),
+                        f + (g, s * 2 + s * f.count(""), t),
+                        f[:i] + (o, f[i], s * 2 + s * f.count(""), t),
+                        f[:i] + (s + s * f.count(""), o, f[i], s, t),
+                        f[:i] + (s * 2 + s * f.count(""), o, f[i], t),
+                        f[:i] + (s * 3 + s * f.count(""), o, t),
+                        f[:i] + (s * 3 + s * f.count(""), g, t),
+                    )
+                ]
+                for i, f in enumerate(reversed(h))
+            )
+        )
     ):
         for something_else in something:
             await asyncio.sleep(0.3)
@@ -2410,8 +2412,7 @@ async def _(event):
 
         await event.edit(input_str)
 
-        animation_chars = ["🐵", "🙉", "🙈", "🙊",
-                           "🖕‎🐵🖕", "**OPPA MONEKEYY Style....**"]
+        animation_chars = ["🐵", "🙉", "🙈", "🙊", "🖕‎🐵🖕", "**OPPA MONEKEYY Style....**"]
 
         animation_interval = 2
 
