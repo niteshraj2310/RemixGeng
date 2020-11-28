@@ -32,21 +32,21 @@ async def sideload(event):
         msg = await event.get_reply_message()
         file = msg.file
         if not file.name.endswith(".py"):
-            await event.edit("This is not a valid .py file! Cannot sideload this!")
+            await event.edit(
+                "This is not a valid .py file! Cannot sideload this!")
             return
         dest_path = USER_MODULES_DIR + file.name
         await event.edit("`Downloading...`")
         if os.path.isfile(dest_path) and OVR_WRT_CAUT:
             log.info(f"Module '{file.name[:-3]}' installed already")
             await event.edit(
-                "There is already a userspace module named `{}`. If you wish to overwrite this, please run the command with the `force` argument!".format(
-                    file.name
-                )
-            )
+                "There is already a userspace module named `{}`. If you wish to overwrite this, please run the command with the `force` argument!"
+                .format(file.name))
             return
         await event.client.download_media(message=msg, file=dest_path)
         log.info(f"Module '{file.name[:-3]}' has been installed to userpace")
-        await event.edit("Successfully installed `{}`! Rebooting...".format(file.name))
+        await event.edit("Successfully installed `{}`! Rebooting...".format(
+            file.name))
         log.info("Rebooting userbot...")
         time.sleep(1)
         args = [EXECUTABLE, "-m", "userbot"]
@@ -58,11 +58,10 @@ async def sideload(event):
     return
 
 
-CMD_HELP.update(
-    {
-        "sideloader": "`sideload`: [in response to a compatible py file] load modules to user space.\
+CMD_HELP.update({
+    "sideloader":
+    "`sideload`: [in response to a compatible py file] load modules to user space.\
 \n**WARRANTY:** Keep in mind that loading incompatible modules may break your userbot and you will need manual removal of the module.\
 __NO SUPPORT WILL BE OFFERED TO UNOFFICIAL MODULES!__\
 \n**All commands can be used with** `.`"
-    }
-)
+})
