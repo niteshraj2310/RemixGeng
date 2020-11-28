@@ -55,9 +55,8 @@ async def sideload(event):
         os.execle(sys.executable, *args, os.environ)
         await event.client.disconnect()
         return
-    else:
-        await event.edit("Please reply to a valid file!")
-        return
+    await event.edit("Please reply to a valid file!")
+    return
 
 
 CMD_HELP.update(

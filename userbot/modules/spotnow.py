@@ -35,18 +35,17 @@ async def _(event):
                 await event.edit("`You're listening to those annoying ads.`")
                 await event.client.delete_messages(conv.chat_id, [msg.id, response.id])
                 return
-            else:
-                downloaded_file_name = await event.client.download_media(
-                    response.media, TEMP_DOWNLOAD_DIRECTORY
-                )
-                link = response.reply_markup.rows[0].buttons[0].url
-                await event.client.send_file(
-                    event.chat_id,
-                    downloaded_file_name,
-                    force_document=False,
-                    caption=f"[Play on Spotify]({link})",
-                )
-                await event.client.delete_messages(conv.chat_id, [msg.id, response.id])
+            downloaded_file_name = await event.client.download_media(
+                response.media, TEMP_DOWNLOAD_DIRECTORY
+            )
+            link = response.reply_markup.rows[0].buttons[0].url
+            await event.client.send_file(
+                event.chat_id,
+                downloaded_file_name,
+                force_document=False,
+                caption=f"[Play on Spotify]({link})",
+            )
+            await event.client.delete_messages(conv.chat_id, [msg.id, response.id])
         await event.delete()
         return os.remove(downloaded_file_name)
     except TimeoutError:

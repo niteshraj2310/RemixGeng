@@ -60,9 +60,8 @@ async def universe_checker(msg):
         os.execle(sys.executable, *args, os.environ)
         await msg.client.disconnect()
         return
-    else:
-        await msg.edit("Invalid argument! Make sure it is **uninstall**!")
-        return
+    await msg.edit("Invalid argument! Make sure it is **uninstall**!")
+    return
 
 
 CMD_HELP.update(
