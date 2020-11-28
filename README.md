@@ -1,5 +1,5 @@
-[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/niteshraj2310/RemixGeng) <a href="https://deepsource.io/gh/niteshraj2310/RemixGeng/?ref=repository-badge" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://static.deepsource.io/deepsource-badge-light-mini.svg"></a>
-[![Build Status](https://img.shields.io/travis/niteshraj2310/RemixGeng.svg?branch=sql-extended?label=Travis%20CI&logo=travis&style=flat-square)](https://travis-ci.org/niteshraj2310/RemixGeng)&nbsp;
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/niteshraj2310/RemixGeng)
+[![Build Status](https://img.shields.io/travis/niteshraj2310/RemixGeng.svg?branch=sql-extended?label=Travis%20CI&logo=travis&style=flat-square)](https://travis-ci.com/niteshraj2310/RemixGeng)&nbsp;
 [![code style: black](https://img.shields.io/static/v1?label=code%20style&message=black&color=black&style=flat-square)](https://github.com/psf/black)
 <a href="https://github.com/niteshraj2310/RemixGeng/watchers"><img src="https://img.shields.io/github/watchers/niteshraj2310/RemixGeng?label=Watch&style=flat-square&logo=github&color=violet" alt="Watch" /></a>
 <a href="https://github.com/niteshraj2310/RemixGeng/commits/sql-extended"><img src="https://img.shields.io/github/last-commit/niteshraj2310/RemixGeng/sql-extended?label=Last%20Commit&style=flat-square&logo=github&color=Green" alt="Commit" /></a>
@@ -10,6 +10,9 @@
 [![codebeat badge](https://codebeat.co/badges/049f1ac3-dfc2-4ee6-93a3-e40c1569313f)](https://codebeat.co/projects/github-com-niteshraj2310-remixgeng-sql-extended)
 [![Build status](https://ci.appveyor.com/api/projects/status/9h1i5ng3bjqgq11j?svg=true)](https://ci.appveyor.com/project/niteshraj2310/remixgeng-w0cvp)
 [![StyleCI](https://github.styleci.io/repos/279673883/shield?branch=sql-extended)](https://github.styleci.io/repos/279673883?branch=sql-extended)
+
+[![DeepSource](https://deepsource.io/gh/niteshraj2310/RemixGeng.svg/?label=active+issues&show_trend=true)](https://deepsource.io/gh/niteshraj2310/RemixGeng/?ref=repository-badge)
+[![DeepSource](https://deepsource.io/gh/niteshraj2310/RemixGeng.svg/?label=resolved+issues&show_trend=true)](https://deepsource.io/gh/niteshraj2310/RemixGeng/?ref=repository-badge)
 ### `GitHub Integration`
 ![FailedChecker](https://github.com/niteshraj2310/RemixGeng/workflows/FailedChecker/badge.svg?branch=sql-extended)  ![ErrorChecking](https://github.com/niteshraj2310/RemixGeng/workflows/ErrorChecking/badge.svg)
 ![CodeQL](https://github.com/niteshraj2310/RemixGeng/workflows/CodeQL/badge.svg?branch=sql-extended)  ![pylint](https://github.com/niteshraj2310/RemixGeng/workflows/pylint/badge.svg)  ![CI](https://github.com/niteshraj2310/RemixGeng/workflows/CI/badge.svg)

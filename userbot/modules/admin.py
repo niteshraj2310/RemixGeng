@@ -147,7 +147,7 @@ async def promote(promt):
     await promt.edit("`Wait plox Promoting...`")
     user, rank = await get_user_from_event(promt)
     if not rank:
-        rank = "Administrator"  # Just in case.
+        rank = "Admeme"  # Just in case.
     if not user:
         return
 
@@ -414,7 +414,7 @@ async def unmoot(unmot):
             )
 
 
-@register(incoming=True)
+@register(incoming=True, disable_errors=True)
 async def muter(moot):
     """ Used for deleting the messages of muted people """
     try:
@@ -437,10 +437,12 @@ async def muter(moot):
     if muted:
         for i in muted:
             if str(i.sender) == str(moot.sender_id):
-                await moot.delete()
-                await moot.client(
-                    EditBannedRequest(moot.chat_id, moot.sender_id, rights)
-                )
+                try:
+                    await moot.delete()
+                    await moot.client(
+                        EditBannedRequest(moot.chat_id, moot.sender_id, rights))
+                except (BadRequestError, UserAdminInvalidError, ChatAdminRequiredError, UserIdInvalidError):
+                    await moot.client.send_read_acknowledge(moot.chat_id, moot.id)
     for i in gmuted:
         if i.sender == str(moot.sender_id):
             await moot.delete()
@@ -723,7 +725,7 @@ async def pin(msg):
     to_unpin = msg.reply_to_msg_id
     options = (msg.pattern_match.group(1)).strip()
     if not to_unpin and options != "all":
-        await msg.edit("__Reply to a message to unpin it__ **or use** `.unpin all`")
+        await msg.edit("__Reply to a message to unpin it__ or use `.unpin all`")
         return
     if to_unpin and not options:
         try:
@@ -741,7 +743,7 @@ async def pin(msg):
             return await msg.edit(f"{str(e)}")
     else:
         return await msg.edit(
-            "__Reply to a message to unpin it.__ **or use** `.unpin all`"
+            "__Reply to a message to unpin it__ or use `.unpin all`"
         )
     await msg.edit("`Unpinned Successfully!`")
     user = await get_user_from_id(msg.sender_id, msg)
@@ -794,53 +796,48 @@ async def kick(usr):
             f"CHAT: {usr.chat.title}(`{usr.chat_id}`)\n",
         )
 
-
 @register(outgoing=True, pattern="^.users ?(.*)")
 async def get_users(show):
-    """ For .users command, list all of the users in a chat. """
+    """For .users command, list all of the users in a chat."""
     info = await show.client.get_entity(show.chat_id)
-    title = info.title or "this chat"
-    mentions = "Users in {}: \n".format(title)
+    title = info.title if info.title else "this chat"
+    mentions = 'Users in {}: \n'.format(title)
     try:
-        if show.pattern_match.group(1):
-            searchq = show.pattern_match.group(1)
-            async for user in show.client.iter_participants(
-                show.chat_id, search=f"{searchq}"
-            ):
+        if not show.pattern_match.group(1):
+            async for user in show.client.iter_participants(show.chat_id):
                 if not user.deleted:
-                    mentions += (
-                        f"\n[{user.first_name}](tg://user?id={user.id}) `{user.id}`"
-                    )
+                    mentions += f"\n[{user.first_name}](tg://user?id={user.id}) `{user.id}`"
                 else:
                     mentions += f"\nDeleted Account `{user.id}`"
         else:
-            async for user in show.client.iter_participants(show.chat_id):
-                if user.deleted:
-                    mentions += f"\nDeleted Account `{user.id}`"
+            searchq = show.pattern_match.group(1)
+            async for user in show.client.iter_participants(
+                    show.chat_id, search=f'{searchq}'):
+                if not user.deleted:
+                    mentions += f"\n[{user.first_name}](tg://user?id={user.id}) `{user.id}`"
                 else:
-                    mentions += (
-                        f"\n[{user.first_name}](tg://user?id={user.id}) `{user.id}`"
-                    )
+                    mentions += f"\nDeleted Account `{user.id}`"
     except ChatAdminRequiredError as err:
         mentions += " " + str(err) + "\n"
     try:
         await show.edit(mentions)
     except MessageTooLongError:
-        await show.edit("Damn, this is a huge group. Uploading users lists as file.")
+        await show.edit(
+            "Damn, this is a huge group. Uploading users lists as file.")
         with open("userslist.txt", "w+") as file:
             file.write(mentions)
         await show.client.send_file(
             show.chat_id,
             "userslist.txt",
-            caption="Users in {}".format(title),
+            caption='Users in {}'.format(title),
             reply_to=show.id,
         )
         remove("userslist.txt")
 
 
 async def get_user_from_event(event):
-    """ Get the user from argument or replied message. """
-    args = event.pattern_match.group(1).split(" ", 1)
+    """Get the user from argument or replied message."""
+    args = event.pattern_match.group(1).split(' ', 1)
     extra = None
     if event.reply_to_msg_id and len(args) != 2:
         previous_message = await event.get_reply_message()
@@ -861,7 +858,8 @@ async def get_user_from_event(event):
         if event.message.entities is not None:
             probable_user_mention_entity = event.message.entities[0]
 
-            if isinstance(probable_user_mention_entity, MessageEntityMentionName):
+            if isinstance(probable_user_mention_entity,
+                          MessageEntityMentionName):
                 user_id = probable_user_mention_entity.user_id
                 user_obj = await event.client.get_entity(user_id)
                 return user_obj
@@ -889,48 +887,41 @@ async def get_user_from_id(user, event):
 
 @register(outgoing=True, pattern="^.usersdel ?(.*)")
 async def get_usersdel(show):
-    """ For .usersdel command, list all of the deleted users in a chat. """
+    """For .usersdel command, list all of the deleted users in a chat."""
     info = await show.client.get_entity(show.chat_id)
-    title = info.title or "this chat"
-    mentions = "deletedUsers in {}: \n".format(title)
+    title = info.title if info.title else "this chat"
+    mentions = 'deletedUsers in {}: \n'.format(title)
     try:
         if not show.pattern_match.group(1):
             async for user in show.client.iter_participants(show.chat_id):
                 if not user.deleted:
-                    mentions += (
-                        f"\n[{user.first_name}](tg://user?id={user.id}) `{user.id}`"
-                    )
-        #       else:
-        #                mentions += f"\nDeleted Account `{user.id}`"
+                    mentions += f"\n[{user.first_name}](tg://user?id={user.id}) `{user.id}`"
+         #       else:
+    #                mentions += f"\nDeleted Account `{user.id}`"
         else:
             searchq = show.pattern_match.group(1)
             async for user in show.client.iter_participants(
-                show.chat_id, search=f"{searchq}"
-            ):
+                    show.chat_id, search=f'{searchq}'):
                 if not user.deleted:
-                    mentions += (
-                        f"\n[{user.first_name}](tg://user?id={user.id}) `{user.id}`"
-                    )
-        #       else:
-    #              mentions += f"\nDeleted Account `{user.id}`"
+                    mentions += f"\n[{user.first_name}](tg://user?id={user.id}) `{user.id}`"
+         #       else:
+      #              mentions += f"\nDeleted Account `{user.id}`"
     except ChatAdminRequiredError as err:
         mentions += " " + str(err) + "\n"
     try:
         await show.edit(mentions)
     except MessageTooLongError:
         await show.edit(
-            "Damn, this is a huge group. Uploading deletedusers lists as file."
-        )
-        with open("userslist.txt", "w+") as file:
+            "Damn, this is a huge group. Uploading deletedusers lists as file.")
+        with open("deleteduserslist.txt", "w+") as file:
             file.write(mentions)
         await show.client.send_file(
             show.chat_id,
             "deleteduserslist.txt",
-            caption="Users in {}".format(title),
+            caption='Users in {}'.format(title),
             reply_to=show.id,
         )
         remove("deleteduserslist.txt")
-
 
 async def get_userdel_from_event(event):
     """ Get the deleted user from argument or replied message. """
@@ -979,7 +970,6 @@ async def get_userdel_from_id(user, event):
         return None
 
     return user_obj
-
 
 @register(outgoing=True, pattern=r"^\.lock ?(.*)")
 async def locks(event):

@@ -21,7 +21,6 @@ from random import choice
 from re import findall, match
 from time import sleep
 from urllib.parse import quote_plus
-
 import asyncurban  # noqa
 import barcode
 import emoji
@@ -30,7 +29,8 @@ import requests
 from barcode.writer import ImageWriter
 from bs4 import BeautifulSoup
 from emoji import get_emoji_regexp
-from googletrans import LANGUAGES, Translator
+from google_trans_new import LANGUAGES
+from google_trans_new import google_translator as Translator
 from gtts import gTTS
 from gtts.lang import tts_langs
 from humanize import naturalsize
