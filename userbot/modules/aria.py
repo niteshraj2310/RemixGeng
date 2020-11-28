@@ -12,8 +12,7 @@ from userbot.utils import humanbytes
 
 
 def subprocess_run(cmd):
-    subproc = Popen(cmd, stdout=PIPE, stderr=PIPE,
-                    shell=True, universal_newlines=True)
+    subproc = Popen(cmd, stdout=PIPE, stderr=PIPE, shell=True, universal_newlines=True)
     talk = subproc.communicate()
     exitCode = subproc.returncode
     if exitCode != 0:
@@ -48,8 +47,7 @@ if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
     os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
 download_path = os.getcwd() + TEMP_DOWNLOAD_DIRECTORY.strip(".")
 
-aria2 = aria2p.API(aria2p.Client(
-    host="http://localhost", port=6800, secret=""))
+aria2 = aria2p.API(aria2p.Client(host="http://localhost", port=6800, secret=""))
 
 aria2.set_global_options({"dir": download_path})
 
@@ -195,8 +193,7 @@ async def check_progress_for_dl(gid, event, previous):
                 downloaded = percentage * int(file.total_length) / 100
                 prog_str = "`Downloading` | [{0}{1}] `{2}`".format(
                     "".join(["■" for i in range(math.floor(percentage / 10))]),
-                    "".join(
-                        ["▨" for i in range(10 - math.floor(percentage / 10))]),
+                    "".join(["▨" for i in range(10 - math.floor(percentage / 10))]),
                     file.progress_string(),
                 )
                 msg = (
