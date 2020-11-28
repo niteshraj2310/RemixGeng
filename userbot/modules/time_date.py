@@ -11,9 +11,7 @@ from pytz import country_names as c_n
 from pytz import country_timezones as c_tz
 from pytz import timezone as tz
 
-from userbot import CMD_HELP
-from userbot import COUNTRY
-from userbot import TZ_NUMBER
+from userbot import CMD_HELP, COUNTRY, TZ_NUMBER
 from userbot.events import register
 
 
@@ -95,13 +93,13 @@ async def time_func(tdata):
     dtnow = dt.now(tz(time_zone)).strftime(t_form)
 
     if c_name != COUNTRY:
-        await tdata.edit(
-            f"`It's`  **{dtnow}**  `in {c_name}({time_zone} timezone).`")
+        await tdata.edit(f"`It's`  **{dtnow}**  `in {c_name}({time_zone} timezone).`")
         return
 
     if COUNTRY:
-        await tdata.edit(f"`It's`  **{dtnow}**  `here, in {COUNTRY}"
-                         f"({time_zone} timezone).`")
+        await tdata.edit(
+            f"`It's`  **{dtnow}**  `here, in {COUNTRY}" f"({time_zone} timezone).`"
+        )
         return
 
 
@@ -158,20 +156,21 @@ async def date_func(dat):
     dtnow = dt.now(tz(time_zone)).strftime(d_form)
 
     if c_name != COUNTRY:
-        await dat.edit(
-            f"`It's`  **{dtnow}**  `in {c_name}({time_zone} timezone).`")
+        await dat.edit(f"`It's`  **{dtnow}**  `in {c_name}({time_zone} timezone).`")
         return
 
     if COUNTRY:
-        await dat.edit(f"`It's`  **{dtnow}**  `here, in {COUNTRY}"
-                       f"({time_zone} timezone).`")
+        await dat.edit(
+            f"`It's`  **{dtnow}**  `here, in {COUNTRY}" f"({time_zone} timezone).`"
+        )
         return
 
 
-CMD_HELP.update({
-    "timedate":
-    "`.time` <country name/code> <timezone number>\
+CMD_HELP.update(
+    {
+        "timedate": "`.time` <country name/code> <timezone number>\
 \nUsage: Usage: Get the time of a country. If a country has multiple timezones, it will list all of them and let you select one.\
 \n\n`.date` <country name/code> <timezone number>\
 \nUsage: Get the date of a country. If a country has multiple timezones, it will list all of them and let you select one."
-})
+    }
+)

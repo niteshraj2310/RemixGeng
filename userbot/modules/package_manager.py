@@ -44,8 +44,10 @@ async def universe_checker(msg):
             await msg.edit("`Uninstalling {}...`".format(modNames))
         else:
             await msg.edit(
-                "`{}` is not a valid Userspace module name! Process halted!".
-                format(modNames))
+                "`{}` is not a valid Userspace module name! Process halted!".format(
+                    modNames
+                )
+            )
             return
         os.remove(USER_MODULES_DIR + modNames)
         log.info(f"Modules '{modNames}' has been uninstalled from userspace")
@@ -61,8 +63,9 @@ async def universe_checker(msg):
     return
 
 
-CMD_HELP.update({
-    "package manager":
-    "`pkg uninstall` <py file name>: Remove user modules (modules loaded with the `.sideload` command)\
+CMD_HELP.update(
+    {
+        "package manager": "`pkg uninstall` <py file name>: Remove user modules (modules loaded with the `.sideload` command)\
 \n**All commands can be used with** `.`"
-})
+    }
+)

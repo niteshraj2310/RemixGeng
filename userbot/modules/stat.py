@@ -5,21 +5,20 @@ import time
 
 from telethon.events import NewMessage
 from telethon.tl.custom import Dialog
-from telethon.tl.types import Channel
-from telethon.tl.types import Chat
-from telethon.tl.types import User
+from telethon.tl.types import Channel, Chat, User
 
 from userbot.events import register
 
 logging.basicConfig(
-    format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s",
-    level=logging.WARNING)
+    format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s", level=logging.WARNING
+)
 logger = logging.getLogger(__name__)
 
 
 @register(outgoing=True, pattern=r"^.stats(?: |$)(.*)")
-async def stats(event: NewMessage.Event,
-                ) -> None:  # pylint: disable = R0912, R0914, R0915
+async def stats(
+    event: NewMessage.Event,
+) -> None:  # pylint: disable = R0912, R0914, R0915
     """Command to get stats about the account"""
     await event.edit("`Collecting stats, Wait Master`")
     start_time = time.time()

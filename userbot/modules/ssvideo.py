@@ -9,8 +9,7 @@ import time
 
 from telethon.tl.types import DocumentAttributeFilename
 
-from userbot import bot
-from userbot import CMD_HELP
+from userbot import CMD_HELP, bot
 from userbot.events import register
 from userbot.utils import progress
 
@@ -32,11 +31,15 @@ async def ssvideo(event):
         return await event.edit("`Please input number of frame!`")
     if reply_message.photo:
         return await event.edit("`Hey..this is an image!`")
-    if (DocumentAttributeFilename(file_name="AnimatedSticker.tgs") in
-            reply_message.media.document.attributes):
+    if (
+        DocumentAttributeFilename(file_name="AnimatedSticker.tgs")
+        in reply_message.media.document.attributes
+    ):
         return await event.edit("`Unsupported files..`")
-    if (DocumentAttributeFilename(file_name="sticker.webp") in
-            reply_message.media.document.attributes):
+    if (
+        DocumentAttributeFilename(file_name="sticker.webp")
+        in reply_message.media.document.attributes
+    ):
         return await event.edit("`Unsupported files..`")
     c_time = time.time()
     await event.edit("`Downloading media..`")
@@ -44,7 +47,8 @@ async def ssvideo(event):
         reply_message,
         "anu.mp4",
         progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-            progress(d, t, event, c_time, "[DOWNLOAD]")),
+            progress(d, t, event, c_time, "[DOWNLOAD]")
+        ),
     )
     try:
         await event.edit("`Processing..`")
@@ -63,5 +67,5 @@ async def ssvideo(event):
 
 
 CMD_HELP.update(
-    {"ssvideo": "`>.ssvideo <frame>`"
-     "\nUsage: to ss video frame per frame"})
+    {"ssvideo": "`>.ssvideo <frame>`" "\nUsage: to ss video frame per frame"}
+)
