@@ -555,12 +555,15 @@ async def apk(e):
         soup = bs4.BeautifulSoup(page.content, "lxml", from_encoding="utf-8")
         results = soup.findAll("div", "ZmHEEd")
         app_name = (
-            results[0].findNext("div", "Vpfmgd").findNext("div", "WsMG1c nnK0zc").text
+            results[0].findNext("div", "Vpfmgd").findNext(
+                "div", "WsMG1c nnK0zc").text
         )
-        app_dev = results[0].findNext("div", "Vpfmgd").findNext("div", "KoLSrc").text
+        app_dev = results[0].findNext(
+            "div", "Vpfmgd").findNext("div", "KoLSrc").text
         app_dev_link = (
             "https://play.google.com"
-            + results[0].findNext("div", "Vpfmgd").findNext("a", "mnKHRc")["href"]
+            + results[0].findNext("div",
+                                  "Vpfmgd").findNext("a", "mnKHRc")["href"]
         )
         app_rating = (
             results[0]
@@ -677,7 +680,8 @@ async def _(event):
         else:
             xkcd_search_url = "https://relevantxkcd.appspot.com/process?"
             queryresult = requests.get(
-                xkcd_search_url, params={"action": "xkcd", "query": quote(input_str)}
+                xkcd_search_url, params={
+                    "action": "xkcd", "query": quote(input_str)}
             ).text
             xkcd_id = queryresult.split(" ")[2].lstrip("\n")
     if xkcd_id is None:
@@ -1402,7 +1406,8 @@ async def cursive2(cursivebolded):
     string = "".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            cursiveboldcharacter = cursiveboldx[normiefont.index(normiecharacter)]
+            cursiveboldcharacter = cursiveboldx[normiefont.index(
+                normiecharacter)]
             string = string.replace(normiecharacter, cursiveboldcharacter)
     await cursivebolded.edit(string)
 
@@ -1515,7 +1520,8 @@ async def stylish_generator(event):
     string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            egyptfontcharacter = egyptfontfont[normiefont.index(normiecharacter)]
+            egyptfontcharacter = egyptfontfont[normiefont.index(
+                normiecharacter)]
             string = string.replace(normiecharacter, egyptfontcharacter)
     await event.edit(string)
 
@@ -1549,7 +1555,8 @@ async def stylish_generator(event):
     string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            subscriptcharacter = subscriptfont[normiefont.index(normiecharacter)]
+            subscriptcharacter = subscriptfont[normiefont.index(
+                normiecharacter)]
             string = string.replace(normiecharacter, subscriptcharacter)
     await event.edit(string)
 
@@ -1566,7 +1573,8 @@ async def stylish_generator(event):
     string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            superscriptcharacter = superscriptfont[normiefont.index(normiecharacter)]
+            superscriptcharacter = superscriptfont[normiefont.index(
+                normiecharacter)]
             string = string.replace(normiecharacter, superscriptcharacter)
     await event.edit(string)
 
@@ -1601,7 +1609,8 @@ async def stylish_generator(event):
     string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            hwcapitalcharacter = hwcapitalfont[normiefont.index(normiecharacter)]
+            hwcapitalcharacter = hwcapitalfont[normiefont.index(
+                normiecharacter)]
             string = string.replace(normiecharacter, hwcapitalcharacter)
     await event.edit(string)
 
@@ -1618,7 +1627,8 @@ async def stylish_generator(event):
     string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            doubletextcharacter = doubletextfont[normiefont.index(normiecharacter)]
+            doubletextcharacter = doubletextfont[normiefont.index(
+                normiecharacter)]
             string = string.replace(normiecharacter, doubletextcharacter)
     await event.edit(string)
 
@@ -1669,7 +1679,8 @@ async def stylish_generator(event):
     string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            smallcapscharacter = smallcapsfont[normiefont.index(normiecharacter)]
+            smallcapscharacter = smallcapsfont[normiefont.index(
+                normiecharacter)]
             string = string.replace(normiecharacter, smallcapscharacter)
     await event.edit(string)
 
@@ -1739,7 +1750,8 @@ async def stylish_generator(event):
     string = "  ".join(args).lower()
     for normiecharacter in string:
         if normiecharacter in normiefont:
-            smothtextcharacter = smothtextfont[normiefont.index(normiecharacter)]
+            smothtextcharacter = smothtextfont[normiefont.index(
+                normiecharacter)]
             string = string.replace(normiecharacter, smothtextcharacter)
     await event.edit(string)
 

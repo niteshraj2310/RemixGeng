@@ -150,13 +150,15 @@ async def generate_credentials(gdrive):
     flow = InstalledAppFlow.from_client_config(
         configs, SCOPES, redirect_uri=REDIRECT_URI
     )
-    auth_url, _ = flow.authorization_url(access_type="offline", prompt="consent")
+    auth_url, _ = flow.authorization_url(
+        access_type="offline", prompt="consent")
     msg = await gdrive.respond("`Go to your BOTLOG group to authenticate token...`")
     async with gdrive.client.conversation(BOTLOG_CHATID) as conv:
         url_msg = await conv.send_message(
             "Please go to this URL:\n" f"{auth_url}\nauthorize then reply the code"
         )
-        r = conv.wait_event(events.NewMessage(outgoing=True, chats=BOTLOG_CHATID))
+        r = conv.wait_event(events.NewMessage(
+            outgoing=True, chats=BOTLOG_CHATID))
         r = await r
         code = r.message.message.strip()
         flow.fetch_token(code=code)
@@ -184,7 +186,8 @@ async def create_app(gdrive):
             """ - Refresh credentials - """
             creds.refresh(Request())
             helper.save_credentials(
-                str(gdrive.sender_id), base64.b64encode(pickle.dumps(creds)).decode()
+                str(gdrive.sender_id), base64.b64encode(
+                    pickle.dumps(creds)).decode()
             )
         else:
             await gdrive.edit("`Credentials is empty, please generate it...`")
@@ -232,7 +235,8 @@ async def download(gdrive, service, uri=None):
             )
         else:
             uri = [uri]
-            downloads = aria2.add_uris(uri, options={"dir": full_path}, position=None)
+            downloads = aria2.add_uris(
+                uri, options={"dir": full_path}, position=None)
         gid = downloads.gid
         await check_progress_for_dl(gdrive, gid, previous=None)
         file = aria2.get_download(gid)
@@ -387,7 +391,8 @@ async def download_gdrive(gdrive, service, uri):
                         error = (
                             page.find("p", {"class": "uc-error-caption"}).text
                             + "\n"
-                            + page.find("p", {"class": "uc-error-subcaption"}).text
+                            + page.find("p",
+                                        {"class": "uc-error-subcaption"}).text
                         )
                     except Exception:
                         reply += (
@@ -438,8 +443,10 @@ async def download_gdrive(gdrive, service, uri):
                     speed = round(downloaded / diff, 2)
                     eta = round((file_size - downloaded) / speed)
                     prog_str = "`Downloading` | [{0}{1}] `{2}%`".format(
-                        "".join(["●" for i in range(math.floor(percentage / 10))]),
-                        "".join(["○" for i in range(10 - math.floor(percentage / 10))]),
+                        "".join(
+                            ["●" for i in range(math.floor(percentage / 10))]),
+                        "".join(
+                            ["○" for i in range(10 - math.floor(percentage / 10))]),
                         round(percentage, 2),
                     )
                     current_message = (
@@ -485,8 +492,10 @@ async def download_gdrive(gdrive, service, uri):
                     speed = round(downloaded / diff, 2)
                     eta = round((file_size - downloaded) / speed)
                     prog_str = "`Downloading` | [{0}{1}] `{2}%`".format(
-                        "".join(["●" for i in range(math.floor(percentage / 10))]),
-                        "".join(["○" for i in range(10 - math.floor(percentage / 10))]),
+                        "".join(
+                            ["●" for i in range(math.floor(percentage / 10))]),
+                        "".join(
+                            ["○" for i in range(10 - math.floor(percentage / 10))]),
                         round(percentage, 2),
                     )
                     current_message = (
@@ -515,7 +524,8 @@ async def download_gdrive(gdrive, service, uri):
     async with gdrive.client.conversation(BOTLOG_CHATID) as conv:
         ask = await conv.send_message("`Proceed with mirroring? [y/N]`")
         try:
-            r = conv.wait_event(events.NewMessage(outgoing=True, chats=BOTLOG_CHATID))
+            r = conv.wait_event(events.NewMessage(
+                outgoing=True, chats=BOTLOG_CHATID))
             r = await r
         except Exception:
             ans = "N"
@@ -1253,7 +1263,8 @@ async def check_progress_for_dl(gdrive, gid, previous):
                 downloaded = percentage * int(file.total_length) / 100
                 prog_str = "`Downloading` | [{0}{1}] `{2}`".format(
                     "".join(["●" for i in range(math.floor(percentage / 10))]),
-                    "".join(["○" for i in range(10 - math.floor(percentage / 10))]),
+                    "".join(
+                        ["○" for i in range(10 - math.floor(percentage / 10))]),
                     file.progress_string(),
                 )
                 msg = (
