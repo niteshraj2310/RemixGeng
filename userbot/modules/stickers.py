@@ -16,9 +16,12 @@ import requests
 from bs4 import BeautifulSoup as bs
 from PIL import Image
 from telethon.tl.functions.messages import GetStickerSetRequest
-from telethon.tl.types import (DocumentAttributeFilename,
-                               DocumentAttributeSticker, InputStickerSetID,
-                               MessageMediaPhoto)
+from telethon.tl.types import (
+    DocumentAttributeFilename,
+    DocumentAttributeSticker,
+    InputStickerSetID,
+    MessageMediaPhoto,
+)
 
 from userbot import CMD_HELP, bot
 from userbot.events import register
@@ -245,6 +248,7 @@ async def kang(args):
         await asyncio.sleep(5)
         await args.delete()
 
+
 async def resize_photo(photo):
     """ Resize the given photo to 512x512 """
     image = Image.open(photo)
@@ -350,14 +354,14 @@ async def cb_sticker(event):
     await event.edit("**Searching sticker packs...**")
     text = requests.get("https://combot.org/telegram/stickers?q=" + query).text
     soup = bs(text, "lxml")
-    results = soup.find_all("div", {'class': "sticker-pack__header"})
+    results = soup.find_all("div", {"class": "sticker-pack__header"})
     if not results:
         return await event.edit("**No results found.**")
     reply = f"**Search Query:**\n {query}\n\n**Results:**\n"
     for pack in results:
         if pack.button:
             packtitle = (pack.find("div", "sticker-pack__title")).get_text()
-            packlink = (pack.a).get('href')
+            packlink = (pack.a).get("href")
             reply += f"- [{packtitle}]({packlink})\n\n"
     await event.edit(reply)
 
@@ -379,4 +383,6 @@ CMD_HELP.update(
 \n\n`.cs <text>`\
 \nUsage: Type .cs text and generate rgb sticker.\
 \n\n`.stickers` <name of user or pack>\
-\nUsage: Searches for sticker packs."})
+\nUsage: Searches for sticker packs."
+    }
+)
