@@ -339,7 +339,7 @@ async def retard(event):
 @register(outgoing=True, pattern="^Oof$")
 async def Oof(woof):
     t = "Oof"
-    for j in range(15):
+    for _ in range(15):
         t = t[:-1] + "of"
         await woof.edit(t)
 

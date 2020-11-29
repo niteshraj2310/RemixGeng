@@ -631,16 +631,14 @@ class googleimagesdownload:
             item, item_name, end_content = self.get_next_tab(page)
             if item == "no_tabs":
                 break
-            else:
-                if len(item_name) > 100 or item_name == "background-color":
-                    break
-                else:
-                    # Append all the links in the list named 'Links'
-                    tabs[item_name] = item
-                    # Timer could be used to slow down the request for image
-                    # downloads
-                    time.sleep(0.1)
-                    page = page[end_content:]
+            if len(item_name) > 100 or item_name == "background-color":
+                break
+            # Append all the links in the list named 'Links'
+            tabs[item_name] = item
+            # Timer could be used to slow down the request for image
+            # downloads
+            time.sleep(0.1)
+            page = page[end_content:]
         return tabs
 
     # Format the object in readable format
