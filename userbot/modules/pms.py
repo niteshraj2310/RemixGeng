@@ -8,31 +8,31 @@ import asyncio
 
 from sqlalchemy.exc import IntegrityError
 from telethon import events
-from telethon.tl.functions.contacts import BlockRequest
-from telethon.tl.functions.contacts import UnblockRequest
+from telethon.tl.functions.contacts import BlockRequest, UnblockRequest
 from telethon.tl.functions.messages import ReportSpamRequest
 from telethon.tl.types import User
 
 import userbot.modules.sql_helper.pm_permit_sql as pm_permit_sql
-from userbot import bot
-from userbot import BOTLOG
-from userbot import BOTLOG_CHATID
-from userbot import CMD_HELP
-from userbot import COUNT_PM
-from userbot import LASTMSG
-from userbot import LOGS
-from userbot import NC_LOG_P_M_S
-from userbot import PM_AUTO_BAN
-from userbot import PM_LOGGR_BOT_API_ID
+from userbot import (
+    BOTLOG,
+    BOTLOG_CHATID,
+    CMD_HELP,
+    COUNT_PM,
+    LASTMSG,
+    LOGS,
+    NC_LOG_P_M_S,
+    PM_AUTO_BAN,
+    PM_LOGGR_BOT_API_ID,
+    bot,
+)
 from userbot.events import register
-from userbot.modules.sql_helper.mute_sql import is_muted
-from userbot.modules.sql_helper.mute_sql import mute
-from userbot.modules.sql_helper.mute_sql import unmute
+from userbot.modules.sql_helper.mute_sql import is_muted, mute, unmute
 
 # ========================= CONSTANTS ============================
 UNAPPROVED_MSG = (
     "Hey there! Unfortunately, I don't accept private messages from strangers.\n"
-    "Please contact me in a group, or wait for me to approve you.")
+    "Please contact me in a group, or wait for me to approve you."
+)
 # =================================================================
 
 NO_PM_LOG_USERS = []
@@ -45,9 +45,12 @@ async def permitpm(event):
     if not PM_AUTO_BAN:
         return
     self_user = await event.client.get_me()
-    if (event.is_private and event.chat_id != 777000
-            and event.chat_id != self_user.id
-            and not (await event.get_sender()).bot):
+    if (
+        event.is_private
+        and event.chat_id != 777000
+        and event.chat_id != self_user.id
+        and not (await event.get_sender()).bot
+    ):
         try:
             from userbot.modules.sql_helper.globals import gvarstatus
             from userbot.modules.sql_helper.pm_permit_sql import is_approved
@@ -66,8 +69,8 @@ async def permitpm(event):
                 # Send the Unapproved Message again
                 if event.text != prevmsg:
                     async for message in event.client.iter_messages(
-                            event.chat_id, from_user="me",
-                            search=UNAPPROVED_MSG):
+                        event.chat_id, from_user="me", search=UNAPPROVED_MSG
+                    ):
                         await message.delete()
                     await event.reply(UNAPPROVED_MSG)
             else:
@@ -83,7 +86,8 @@ async def permitpm(event):
             if COUNT_PM[event.chat_id] > 2:
                 await event.respond(
                     "`You were spamming my pm dude.`\n"
-                    "`You have been BLOCKED and reported as SPAM,.`")
+                    "`You have been BLOCKED and reported as SPAM,.`"
+                )
 
                 try:
                     del COUNT_PM[event.chat_id]
@@ -105,8 +109,12 @@ async def permitpm(event):
                     name0 = str(name.first_name)
                     await event.client.send_message(
                         BOTLOG_CHATID,
-                        "[" + name0 + "](tg://user?id=" + str(event.chat_id) +
-                        ")" + " was just another retarded nibba",
+                        "["
+                        + name0
+                        + "](tg://user?id="
+                        + str(event.chat_id)
+                        + ")"
+                        + " was just another retarded nibba",
                     )
 
 
@@ -116,12 +124,14 @@ async def auto_accept(event):
     if not PM_AUTO_BAN:
         return
     self_user = await event.client.get_me()
-    if (event.is_private and event.chat_id != 777000
-            and event.chat_id != self_user.id
-            and not (await event.get_sender()).bot):
+    if (
+        event.is_private
+        and event.chat_id != 777000
+        and event.chat_id != self_user.id
+        and not (await event.get_sender()).bot
+    ):
         try:
-            from userbot.modules.sql_helper.pm_permit_sql import (approve,
-                                                                  is_approved)
+            from userbot.modules.sql_helper.pm_permit_sql import approve, is_approved
         except AttributeError:
             return
 
@@ -129,11 +139,13 @@ async def auto_accept(event):
         if isinstance(chat, User):
             if is_approved(event.chat_id) or chat.bot:
                 return
-            async for message in event.client.iter_messages(event.chat_id,
-                                                            reverse=True,
-                                                            limit=1):
-                if (message.message is not UNAPPROVED_MSG
-                        and message.sender_id == self_user.id):
+            async for message in event.client.iter_messages(
+                event.chat_id, reverse=True, limit=1
+            ):
+                if (
+                    message.message is not UNAPPROVED_MSG
+                    and message.sender_id == self_user.id
+                ):
                     try:
                         approve(event.chat_id)
                     except IntegrityError:
@@ -142,8 +154,9 @@ async def auto_accept(event):
                 if is_approved(event.chat_id) and BOTLOG:
                     await event.client.send_message(
                         BOTLOG_CHATID,
-                        "#AUTO-APPROVED\n" + "User: " +
-                        f"[{chat.first_name}](tg://user?id={chat.id})",
+                        "#AUTO-APPROVED\n"
+                        + "User: "
+                        + f"[{chat.first_name}](tg://user?id={chat.id})",
                     )
 
 
@@ -200,9 +213,9 @@ async def approvepm(apprvpm):
 
     await apprvpm.edit(f"[{name0}](tg://user?id={uid}) `approved to PM!`")
 
-    async for message in apprvpm.client.iter_messages(apprvpm.chat_id,
-                                                      from_user="me",
-                                                      search=UNAPPROVED_MSG):
+    async for message in apprvpm.client.iter_messages(
+        apprvpm.chat_id, from_user="me", search=UNAPPROVED_MSG
+    ):
         await message.delete()
 
     if BOTLOG:
@@ -237,8 +250,7 @@ async def disapprovepm(disapprvpm):
     if BOTLOG:
         await disapprvpm.client.send_message(
             BOTLOG_CHATID,
-            f"[{name0}](tg://user?id={uid})"
-            " was disapproved to PM you.",
+            f"[{name0}](tg://user?id={uid})" " was disapproved to PM you.",
         )
 
 
@@ -287,8 +299,7 @@ async def unblockpm(unblock):
     if BOTLOG:
         await unblock.client.send_message(
             BOTLOG_CHATID,
-            f"[{name0}](tg://user?id={replied_user.id})"
-            " was unblocc'd!.",
+            f"[{name0}](tg://user?id={replied_user.id})" " was unblocc'd!.",
         )
 
 
@@ -301,7 +312,8 @@ async def monito_p_m_s(event):
             try:
                 e = await event.client.get_entity(int(PM_LOGGR_BOT_API_ID))
                 fwd_message = await event.client.forward_messages(
-                    e, event.message, silent=True)
+                    e, event.message, silent=True
+                )
             except Exception as e:
                 LOGS.warn(str(e))
 
@@ -357,8 +369,7 @@ async def startmute(event):
             )
         chat_id = event.chat_id
         chat = await event.get_chat()
-        if "admin_rights" in vars(
-                chat) and vars(chat)["admin_rights"] is not None:
+        if "admin_rights" in vars(chat) and vars(chat)["admin_rights"] is not None:
             if chat.admin_rights.delete_messages is not True:
                 return await event.edit(
                     "`You can't mute a person if you dont have delete messages permission. ಥ﹏ಥ`"
@@ -367,17 +378,18 @@ async def startmute(event):
             pass
         elif private is not True:
             return await event.edit(
-                "`You can't mute a person without admin rights niqq.` ಥ﹏ಥ  ")
+                "`You can't mute a person without admin rights niqq.` ಥ﹏ಥ  "
+            )
         if is_muted(userid, chat_id):
             return await event.edit(
-                "This user is already muted in this chat ~~lmfao sed rip~~")
+                "This user is already muted in this chat ~~lmfao sed rip~~"
+            )
         try:
             mute(userid, chat_id)
         except Exception as e:
             await event.edit("Error occured!\nError is " + str(e))
         else:
-            await event.edit(
-                "Successfully muted that person.\n**｀-´)⊃━☆ﾟ.*･｡ﾟ **")
+            await event.edit("Successfully muted that person.\n**｀-´)⊃━☆ﾟ.*･｡ﾟ **")
 
 
 @register(outgoing=True, pattern=r"^.punmute ?(\d+)?")
@@ -406,14 +418,14 @@ async def endmute(event):
         chat_id = event.chat_id
         if not is_muted(userid, chat_id):
             return await event.edit(
-                "__This user is not muted in this chat__\n（ ^_^）o自自o（^_^ ）")
+                "__This user is not muted in this chat__\n（ ^_^）o自自o（^_^ ）"
+            )
         try:
             unmute(userid, chat_id)
         except Exception as e:
             await event.edit("Error occured!\nError is " + str(e))
         else:
-            await event.edit(
-                "Successfully unmuted that person\n乁( ◔ ౪◔)「    ┑(￣Д ￣)┍")
+            await event.edit("Successfully unmuted that person\n乁( ◔ ౪◔)「    ┑(￣Д ￣)┍")
 
 
 @register(incoming=True)
@@ -439,9 +451,9 @@ async def hehehe(event):
         )
 
 
-CMD_HELP.update({
-    "pm":
-    "\
+CMD_HELP.update(
+    {
+        "pm": "\
 `.approve`\
 \nUsage: Approves the mentioned/replied person to PM.\
 \n\n`.disapprove`\
@@ -462,4 +474,5 @@ CMD_HELP.update({
 \nUsage: If you don't want chat logs than use `.nolog` , for opposite use `.log`. Default is .log enabled\nThis will now log chat msgs to your PM_LOGGR_BOT_API_ID.\
 \nnotice: now you can totally disable pm logs by adding heroku vars PM_LOGGR_BOT_API_ID by providing a valid group ID and NC_LOG_P_M_S True or False\
 \nwhere False means no pm logs at all..enjoy.. update and do add above mentioned vars."
-})
+    }
+)
