@@ -2,19 +2,21 @@
 #
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
-
 # custom cmds by @Nitesh_231 for personal use 👀
-
 """ Userbot module for having some fun with people. """
 import asyncio
 import html
 import os
-from random import choice, randint
+from random import choice
+from random import randint
 from re import sub
 
-from PIL import Image, ImageColor
+from PIL import Image
+from PIL import ImageColor
 
-from userbot import CMD_HELP, LOGS, bot
+from userbot import bot
+from userbot import CMD_HELP
+from userbot import LOGS
 from userbot.events import register
 
 # ================= CONSTANT =================

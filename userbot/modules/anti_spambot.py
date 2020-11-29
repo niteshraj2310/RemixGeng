@@ -3,15 +3,18 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-
 from asyncio import sleep
 
 from requests import get
 from telethon.events import ChatAction
-from telethon.tl.types import ChannelParticipantsAdmins, Message
+from telethon.tl.types import ChannelParticipantsAdmins
+from telethon.tl.types import Message
 
-from userbot import (ANTI_SPAMBOT, ANTI_SPAMBOT_SHOUT, BOTLOG, BOTLOG_CHATID,
-                     bot)
+from userbot import ANTI_SPAMBOT
+from userbot import ANTI_SPAMBOT_SHOUT
+from userbot import bot
+from userbot import BOTLOG
+from userbot import BOTLOG_CHATID
 
 
 @bot.on(ChatAction)

@@ -9,7 +9,9 @@ from getpass import getuser
 from os import remove
 from sys import executable
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
+from userbot import BOTLOG
+from userbot import BOTLOG_CHATID
+from userbot import CMD_HELP
 from userbot.events import register
 
 
