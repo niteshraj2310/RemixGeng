@@ -47,28 +47,25 @@ async def evaluate(query):
                     )
                     remove("output.txt")
                     return
-                await query.edit(
-                    "**Query: **\n`"
-                    f"{expression}"
-                    "`\n**Result: **\n`"
-                    f"{evaluation}"
-                    "`"
-                )
+                await query.edit("**Query: **\n`"
+                                 f"{expression}"
+                                 "`\n**Result: **\n`"
+                                 f"{evaluation}"
+                                 "`")
         else:
-            await query.edit(
-                "**Query: **\n`"
-                f"{expression}"
-                "`\n**Result: **\n`No Result Returned/False`"
-            )
+            await query.edit("**Query: **\n`"
+                             f"{expression}"
+                             "`\n**Result: **\n`No Result Returned/False`")
     except Exception as err:
-        await query.edit(
-            "**Query: **\n`" f"{expression}" "`\n**Exception: **\n" f"`{err}`"
-        )
+        await query.edit("**Query: **\n`"
+                         f"{expression}"
+                         "`\n**Exception: **\n"
+                         f"`{err}`")
 
     if BOTLOG:
         await query.client.send_message(
-            BOTLOG_CHATID, f"Eval query {expression} was executed successfully"
-        )
+            BOTLOG_CHATID,
+            f"Eval query {expression} was executed successfully")
 
 
 @register(outgoing=True, pattern=r"^.exec(?: |$)([\s\S]*)")
@@ -80,10 +77,8 @@ async def run(run_q):
         return
 
     if not code:
-        await run_q.edit(
-            "``` At least a variable is required to \
-execute. Use .help exec for an example.```"
-        )
+        await run_q.edit("``` At least a variable is required to \
+execute. Use .help exec for an example.```")
         return
 
     if code in ("userbot.session", "config.env", "env"):
@@ -94,9 +89,8 @@ execute. Use .help exec for an example.```"
         codepre = code
     else:
         clines = code.splitlines()
-        codepre = (
-            clines[0] + "\n" + clines[1] + "\n" + clines[2] + "\n" + clines[3] + "..."
-        )
+        codepre = (clines[0] + "\n" + clines[1] + "\n" + clines[2] + "\n" +
+                   clines[3] + "...")
 
     command = "".join(f"\n {l}" for l in code.split("\n.strip()"))
     process = await asyncio.create_subprocess_exec(
@@ -121,18 +115,20 @@ execute. Use .help exec for an example.```"
             )
             remove("output.txt")
             return
-        await run_q.edit(
-            "**Query: **\n`" f"{codepre}" "`\n**Result: **\n`" f"{result}" "`"
-        )
+        await run_q.edit("**Query: **\n`"
+                         f"{codepre}"
+                         "`\n**Result: **\n`"
+                         f"{result}"
+                         "`")
     else:
-        await run_q.edit(
-            "**Query: **\n`" f"{codepre}" "`\n**Result: **\n`No Result Returned/False`"
-        )
+        await run_q.edit("**Query: **\n`"
+                         f"{codepre}"
+                         "`\n**Result: **\n`No Result Returned/False`")
 
     if BOTLOG:
         await run_q.client.send_message(
-            BOTLOG_CHATID, "Exec query " + codepre + " was executed successfully"
-        )
+            BOTLOG_CHATID,
+            "Exec query " + codepre + " was executed successfully")
 
 
 @register(outgoing=True, pattern="^.term(?: |$)(.*)")
@@ -152,15 +148,16 @@ async def terminal_runner(term):
 
     if not command:
         return await term.edit(
-            "``` Give a command or use .help term for an example.```"
-        )
+            "``` Give a command or use .help term for an example.```")
 
     if command in ("userbot.session", "config.env", "env", "$", "$*", "echo"):
-        return await term.edit("`That's a dangerous operation! Not Permitted!`")
+        return await term.edit("`That's a dangerous operation! Not Permitted!`"
+                               )
 
     process = await asyncio.create_subprocess_shell(
-        command, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
-    )
+        command,
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE)
     stdout, stderr = await process.communicate()
     result = str(stdout.decode().strip()) + str(stderr.decode().strip())
 
@@ -188,13 +185,12 @@ async def terminal_runner(term):
         )
 
 
-CMD_HELP.update(
-    {
-        "hacker": "`.eval` 2+3\
+CMD_HELP.update({
+    "hacker":
+    "`.eval` 2+3\
 \nUsage: Evalute mini-expressions.\
 \n\n`.exec` print('hello')\
 \nusage: Execute small python scripts.\
 \n\n`.term` ls\
 \nUsage: Run bash commands and scripts on your server."
-    }
-)
+})
