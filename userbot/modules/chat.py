@@ -10,21 +10,18 @@ from math import sqrt
 
 from emoji import emojize
 from telethon import events, functions
-from telethon.errors import (
-    ChannelInvalidError,
-    ChannelPrivateError,
-    ChannelPublicGroupNaError,
-)
-from telethon.tl.functions.channels import GetFullChannelRequest, GetParticipantsRequest
-from telethon.tl.functions.messages import GetFullChatRequest, GetHistoryRequest
+from telethon.errors import (ChannelInvalidError, ChannelPrivateError,
+                             ChannelPublicGroupNaError)
+from telethon.tl.functions.channels import (GetFullChannelRequest,
+                                            GetParticipantsRequest)
+from telethon.tl.functions.messages import (GetFullChatRequest,
+                                            GetHistoryRequest)
 from telethon.tl.functions.users import GetFullUserRequest
-from telethon.tl.types import (
-    ChannelParticipantAdmin,
-    ChannelParticipantsAdmins,
-    ChannelParticipantsBots,
-    MessageActionChannelMigrateFrom,
-    MessageEntityMentionName,
-)
+from telethon.tl.types import (ChannelParticipantAdmin,
+                               ChannelParticipantsAdmins,
+                               ChannelParticipantsBots,
+                               MessageActionChannelMigrateFrom,
+                               MessageEntityMentionName)
 from telethon.utils import get_input_location, pack_bot_file_id
 
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot

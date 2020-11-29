@@ -43,31 +43,15 @@ from telethon.tl.types import DocumentAttributeAudio, MessageMediaPhoto
 from wikipedia import summary
 from wikipedia.exceptions import DisambiguationError, PageError
 from youtube_dl import YoutubeDL
-from youtube_dl.utils import (
-    ContentTooShortError,
-    DownloadError,
-    ExtractorError,
-    GeoRestrictedError,
-    MaxDownloadsReached,
-    PostProcessingError,
-    UnavailableVideoError,
-    XAttrMetadataError,
-)
+from youtube_dl.utils import (ContentTooShortError, DownloadError,
+                              ExtractorError, GeoRestrictedError,
+                              MaxDownloadsReached, PostProcessingError,
+                              UnavailableVideoError, XAttrMetadataError)
 from youtube_search import YoutubeSearch
 
-from userbot import (
-    BOTLOG,
-    BOTLOG_CHATID,
-    CHROME_DRIVER,
-    CMD_HELP,
-    GOOGLE_CHROME_BIN,
-    LOGS,
-    OCR_SPACE_API_KEY,
-    REM_BG_API_KEY,
-    TEMP_DOWNLOAD_DIRECTORY,
-    WOLFRAM_ID,
-    bot,
-)
+from userbot import (BOTLOG, BOTLOG_CHATID, CHROME_DRIVER, CMD_HELP,
+                     GOOGLE_CHROME_BIN, LOGS, OCR_SPACE_API_KEY,
+                     REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY, WOLFRAM_ID, bot)
 from userbot.events import register
 from userbot.utils import chrome, googleimagesdownload, options, progress
 

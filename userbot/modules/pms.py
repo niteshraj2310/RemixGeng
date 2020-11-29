@@ -14,18 +14,8 @@ from telethon.tl.functions.messages import ReportSpamRequest
 from telethon.tl.types import User
 
 import userbot.modules.sql_helper.pm_permit_sql as pm_permit_sql
-from userbot import (
-    BOTLOG,
-    BOTLOG_CHATID,
-    CMD_HELP,
-    COUNT_PM,
-    LASTMSG,
-    LOGS,
-    NC_LOG_P_M_S,
-    PM_AUTO_BAN,
-    PM_LOGGR_BOT_API_ID,
-    bot,
-)
+from userbot import (BOTLOG, BOTLOG_CHATID, CMD_HELP, COUNT_PM, LASTMSG, LOGS,
+                     NC_LOG_P_M_S, PM_AUTO_BAN, PM_LOGGR_BOT_API_ID, bot)
 from userbot.events import register
 from userbot.modules.sql_helper.mute_sql import is_muted, mute, unmute
 
@@ -132,7 +122,8 @@ async def auto_accept(event):
         and not (await event.get_sender()).bot
     ):
         try:
-            from userbot.modules.sql_helper.pm_permit_sql import approve, is_approved
+            from userbot.modules.sql_helper.pm_permit_sql import (approve,
+                                                                  is_approved)
         except AttributeError:
             return
 
