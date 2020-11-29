@@ -12,9 +12,7 @@ from telethon.tl import functions
 from telethon.tl.functions.account import UpdateProfileRequest, UpdateUsernameRequest
 from telethon.tl.functions.channels import GetAdminedPublicChannelsRequest
 from telethon.tl.functions.photos import DeletePhotosRequest, GetUserPhotosRequest
-from telethon.tl.functions.users import GetFullUserRequest
-from telethon.tl.types import Channel, Chat, InputPhoto, MessageEntityMentionName, User
-from telethon.utils import get_input_location
+from telethon.tl.types import Channel, Chat, InputPhoto, User
 
 from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
@@ -186,7 +184,9 @@ async def remove_profilepic(delpfp):
     await delpfp.client(DeletePhotosRequest(id=input_photos))
     await delpfp.edit(f"`Successfully deleted {len(input_photos)} profile picture(s).`")
 
-CMD_HELP.update({
+
+CMD_HELP.update(
+    {
         "profile": "`.username` <new_username>\
 \nUsage: Changes your Telegram username.\
 \n\n`.name` <firstname> or `.name` <firstname> <lastname>\
@@ -203,4 +203,5 @@ CMD_HELP.update({
 \nUsage: Counts your groups, chats, bots etc...\
 \n\n`.whois` <username> or reply to someones text with `.data`\
 \nUsage: Gets info of an user."
-    })
+    }
+)
