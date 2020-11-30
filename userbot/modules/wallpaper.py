@@ -1,13 +1,15 @@
 import asyncio
 import logging
 import os
-from random import choice, randint
+from random import choice
+from random import randint
 
 import requests
 from bs4 import BeautifulSoup as soup
 from PIL import Image
 
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+from userbot import CMD_HELP
+from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 logging.basicConfig(
