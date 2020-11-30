@@ -204,7 +204,8 @@ async def faces(siwis):
     elif textx:
         message = textx.text
     else:
-        await siwis.edit("` IwI no text given lamve,Gib Some text Motherfakaq! `")
+        await siwis.edit(
+            "` IwI no text given lamve,Gib Some text Motherfakaq! `")
         return
 
     reply_text = sub(r"(a|i|u|e|o)", "i", message)
@@ -266,17 +267,15 @@ async def emoji_penis(titit):
 @register(outgoing=True, pattern="^.gtfo$")
 async def gtfo(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit(
-            "`\n███████████████████████████████ `"
-            "`\n█▀▀▀▀▀▀▀█▀▀▀▀▀▀█▀▀▀▀▀▀▀█▀▀▀▀▀▀█ `"
-            "`\n█───────█──────█───────█──────█ `"
-            "`\n█──███──███──███──███▄▄█──██──█ `"
-            "`\n█──███▄▄███──███─────███──██──█ `"
-            "`\n█──██───███──███──██████──██──█ `"
-            "`\n█──▀▀▀──███──███──██████──────█ `"
-            "`\n█▄▄▄▄▄▄▄███▄▄███▄▄██████▄▄▄▄▄▄█ `"
-            "`\n███████████████████████████████ `"
-        )
+        await e.edit("`\n███████████████████████████████ `"
+                     "`\n█▀▀▀▀▀▀▀█▀▀▀▀▀▀█▀▀▀▀▀▀▀█▀▀▀▀▀▀█ `"
+                     "`\n█───────█──────█───────█──────█ `"
+                     "`\n█──███──███──███──███▄▄█──██──█ `"
+                     "`\n█──███▄▄███──███─────███──██──█ `"
+                     "`\n█──██───███──███──██████──██──█ `"
+                     "`\n█──▀▀▀──███──███──██████──────█ `"
+                     "`\n█▄▄▄▄▄▄▄███▄▄███▄▄██████▄▄▄▄▄▄█ `"
+                     "`\n███████████████████████████████ `")
 
 
 @register(outgoing=True, pattern=r"^.F")
@@ -324,7 +323,8 @@ async def pressf(f):
 
 @register(outgoing=True, pattern="^.paw$")
 async def paw(pawed):
-    if not pawed.text[0].isalpha() and pawed.text[0] not in ("/", "#", "@", "!"):
+    if not pawed.text[0].isalpha() and pawed.text[0] not in ("/", "#", "@",
+                                                             "!"):
         await pawed.edit("`(=ↀωↀ=)`")
 
 
@@ -332,7 +332,8 @@ async def paw(pawed):
 async def retard(event):
     replied = await event.get_reply_message()
     if not replied:
-        await event.edit("reply to someone so i can check how retarded they are!")
+        await event.edit(
+            "reply to someone so i can check how retarded they are!")
         return
     sender = replied.sender
     await event.edit(f"{sender.username} is {randint(0, 101)}% retarded!")
@@ -380,16 +381,16 @@ async def _(event):
             os.remove("remix.png")
             await event.delete()
     else:
-        await event.edit("Syntax: `.color <color_code>` example : `.color #ff0000`")
+        await event.edit(
+            "Syntax: `.color <color_code>` example : `.color #ff0000`")
 
 
-CMD_HELP.update(
-    {
-        "memesreborn": "`.fuk`\
+CMD_HELP.update({
+    "memesreborn":
+    "`.fuk`\
 \nUsage: Greet Evrii Nibba in da house.\
 \n\n`.iwi`\
 \nUsage: gib text and see magik.\
 \n\n`.rape .thanos .chu .abuse .abusehard`\
 \nUsage: See it yourself nibba🌚."
-    }
-)
+})
