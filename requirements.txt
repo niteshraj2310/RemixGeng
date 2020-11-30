@@ -17,7 +17,7 @@ gitpython
 asyncurban
 google-api-python-client
 google-auth-oauthlib
-googletrans
+google_trans_new
 google_images_download
 gTTS
 gTTS-token
