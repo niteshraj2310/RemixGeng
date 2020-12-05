@@ -29,7 +29,7 @@ import requests
 from barcode.writer import ImageWriter
 from bs4 import BeautifulSoup
 from emoji import get_emoji_regexp
-from google_trans_new import LANGUAGES, google_translator
+from googletrans import LANGUAGES, Translator
 from gtts import gTTS
 from gtts.lang import tts_langs
 from humanize import naturalsize
@@ -438,37 +438,40 @@ async def text_to_speech(query):
 
 
 @register(outgoing=True, pattern="^.tr(?: |$)(.*)")
-async def translateme(trans):
-    """ For .tr command, translate the given text using Google Translate. """
-
-    if trans.is_reply and not trans.pattern_match.group(1):
-        message = await trans.get_reply_message()
-        message = str(message.message)
+async def _(event):
+    if event.fwd_from:
+        return
+    if "trim" in event.raw_text:
+        # https://t.me/c/1220993104/192075
+        return
+    input_str = event.pattern_match.group(1)
+    if event.reply_to_msg_id:
+        previous_message = await event.get_reply_message()
+        text = previous_message.message
+        lan = input_str or "en"
+    elif "|" in input_str:
+        lan, text = input_str.split("|")
     else:
-        message = str(trans.pattern_match.group(1))
-
-    if not message:
-        return await trans.edit(
-            "**Give some text or reply to a message to translate!**"
-        )
-
-    await trans.edit("__Processing...__")
-    translator = google_translator()
+        await event.edit("`.tr LanguageCode` as reply to a message")
+        return
+    text = emoji.demojize(text.strip())
+    lan = lan.strip()
+    translator = Translator()
     try:
-        reply_text = translator.translate(deEmojify(message), lang_tgt=TRT_LANG)
-    except ValueError:
-        return await trans.edit(
-            "**Invalid language selected, use **`.lang tts <language code>`**.**"
+        translated = translator.translate(text, dest=lan)
+        after_tr_text = translated.text
+        mono_tr_text = (("`{}`").format(after_tr_text))
+        # TODO: emojify the :
+        # either here, or before translation
+        output_str = """**TRANSLATED** from {} to {}
+{}""".format(
+            translated.src,
+            lan,
+            mono_tr_text
         )
-
-    try:
-        source_lan = translator.detect(deEmojify(message))[1].title()
-    except BaseException:
-        source_lan = "(Google didn't provide this info)"
-
-    reply_text = f"From: **{source_lan}**\nTo: **{LANGUAGES.get(TRT_LANG).title()}**\n\n{reply_text}"
-
-    await trans.edit(reply_text)
+        await event.edit(output_str)
+    except Exception as exc:
+        await event.edit(str(exc))
 
 
 @register(pattern=".lang (tr|tts) (.*)", outgoing=True)
