@@ -330,11 +330,11 @@ async def paw(pawed):
 async def retard(event):
     replied = await event.get_reply_message()
     if not replied:
-        await event.edit("reply to someone so i can check how retarded they are!")
-        return
-    sender = replied.sender
-    await event.edit(f"{sender.username} is {randint(0, 101)}% retarded!")
-
+        return await event.edit("__Reply to someone so i can check how retarded they are!__")
+    user_id = replied_user.user.id
+    first_name = replied_user.user.first_name
+    reply = f"<a href='tg://user?id={user_id}'>{first_name}</a> __is {randint(0, 101)}% retarded!__"
+    await event.edit(reply, link_preview=False)
 
 @register(outgoing=True, pattern="^Oof$")
 async def Oof(woof):
