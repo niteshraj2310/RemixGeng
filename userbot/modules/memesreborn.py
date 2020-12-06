@@ -331,9 +331,6 @@ async def retard(event):
     replied = await event.get_reply_message()
     if not replied:
         return await event.edit("__Reply to someone so i can check how retarded they are!__")
-    replied_user = await get_user(event)
-    user_id = replied_user.user.id
-    first_name = replied_user.user.first_name
     reply = f"[{user.first_name}](tg://user?id={user.id}) __is {randint(0, 101)}% retarded!__"
     await event.edit(reply, link_preview=False)
 
