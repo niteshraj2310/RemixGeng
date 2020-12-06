@@ -7,7 +7,6 @@
 #
 """ Userbot module containing various scrapers. """
 import asyncio
-import emoji
 import io
 import json
 import os
@@ -25,6 +24,7 @@ from urllib.parse import quote_plus
 
 import asyncurban  # noqa
 import barcode
+import emoji
 import qrcode
 import requests
 from barcode.writer import ImageWriter
