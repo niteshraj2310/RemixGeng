@@ -27,7 +27,7 @@ from userbot import CMD_HELP, bot
 from userbot.events import register
 
 KANGING_STR = [
-    "Kangin'...",
+    "__Kangin...__",
 ]
 
 
@@ -74,7 +74,7 @@ async def kang(args):
         else:
             return await args.edit("`Unsupported file!`")
     else:
-        return await args.edit("`I can't kang that...`")
+        return await args.edit("__I can't kang that...__")
 
     if photo:
         splat = args.text.split()

@@ -7,6 +7,7 @@
 #
 """ Userbot module containing various scrapers. """
 import asyncio
+import emoji
 import io
 import json
 import os
@@ -34,7 +35,7 @@ from gtts import gTTS
 from gtts.lang import tts_langs
 from humanize import naturalsize
 from requests import get
-from search_engine_parser import YahooSearch as GoogleSearch
+from search_engine_parser import GoogleSearch
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from telethon.tl.types import DocumentAttributeAudio, MessageMediaPhoto
