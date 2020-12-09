@@ -20,17 +20,17 @@ from userbot.events import register
 # ================= CONSTANT =================
 
 RAPE_STRINGS = [
-    "`Rape Done Drink The Cum`",
-    "`EK baat yaad rkhio, Chut ka Chakkar matlab maut se takkar`",
-    "`The user has been successfully raped`",
-    "`Dekho Bhaiyya esa hai! Izzat bachailo apni warna Gaand maar lenge tumhari`",
-    "`Relax your Rear, ders nothing to fear,The Rape train is finally here`",
-    "`Rape coming... Raped! haha 😆`",
-    "`Kitni baar Rape krvyega mujhse?`",
-    "`Tu Randi hai Sabko pta hai😂`",
-    "`Don't rape too much bossdk, else problem....`",
-    "`Tu sasti rendi hai Sabko pta hai😂`",
-    "`Lodu Andha hai kya Yaha tera rape ho raha hai aur tu abhi tak yahi gaand mara raha hai lulz`",
+    "__Rape Done Drink The Cum__",
+    "__EK baat yaad rkhio, Chut ka Chakkar matlab maut se takkar__",
+    "__The user has been successfully raped__",
+    "__Dekho Bhaiyya esa hai! Izzat bachailo apni warna Gaand maar lenge tumhari__",
+    "__Relax your Rear, ders nothing to fear,The Rape train is finally here__",
+    "__Rape coming... Raped! haha 😆__",
+    "__Kitni baar Rape krvyega mujhse?__",
+    "__Tu Randi hai Sabko pta hai😂__",
+    "__Don't rape too much bossdk, else problem....__",
+    "__Tu sasti rendi hai Sabko pta hai😂__",
+    "__Lodu Andha hai kya Yaha tera rape ho raha hai aur tu abhi tak yahi gaand mara raha hai lulz__",
 ]
 
 ABUSE_STRINGS = [
@@ -334,7 +334,7 @@ async def retard(event):
             "__Reply to someone so i can check how retarded they are!__"
         )
     sender = replied.sender
-    reply = f"[{sender.first_name}](tg://user?id={sender.id}) __is {randint(0, 101)}% retarded!__"
+    reply = f"__[{sender.first_name}](tg://user?id={sender.id}) is {randint(0, 101)}% retarded!__"
     await event.edit(reply, link_preview=False)
 
 

@@ -72,7 +72,7 @@ async def kang(args):
             is_anim = True
             photo = 1
         else:
-            return await args.edit("`Unsupported file!`")
+            return await args.edit("__Unsupported file!__")
     else:
         return await args.edit("__I can't kang that...__")
 
@@ -173,9 +173,9 @@ async def kang(args):
                         # Ensure user doesn't get spamming notifications
                         await bot.send_read_acknowledge(conv.chat_id)
                         return await args.edit(
-                            "`Sticker added in a different pack!"
-                            "\nThis pack is newly created."
-                            f"\nYour pack can be found [here](t.me/addstickers/{packname})."
+                            "__Sticker added in a different pack!__"
+                            "\n__This pack is newly created.__"
+                            f"\n__Your pack can be found [here](t.me/addstickers/{packname}).__"
                         )
                 if is_anim:
                     await conv.send_file("AnimatedSticker.tgs")
@@ -186,7 +186,7 @@ async def kang(args):
                 rsp = await conv.get_response()
                 if "Sorry, the file type is invalid." in rsp.text:
                     return await args.edit(
-                        "`Failed to add sticker, use` @Stickers `bot to add the sticker manually.`"
+                        "__Failed to add sticker, use **@Stickers** bot to add the sticker manually.__"
                     )
                 await conv.send_message(emoji)
                 # Ensure user doesn't get spamming notifications
@@ -217,7 +217,7 @@ async def kang(args):
                 rsp = await conv.get_response()
                 if "Sorry, the file type is invalid." in rsp.text:
                     return await args.edit(
-                        "`Failed to add sticker, use` @Stickers `bot to add the sticker manually.`"
+                        "__Failed to add sticker, use **@Stickers** bot to add the sticker manually.__"
                     )
                 await conv.send_message(emoji)
                 # Ensure user doesn't get spamming notifications
@@ -245,7 +245,7 @@ async def kang(args):
             f"**Sticker** [Kanged](t.me/addstickers/{packname})!!",
             parse_mode="md",
         )
-        await asyncio.sleep(5)
+        await asyncio.sleep(25)
         await args.delete()
 
 
