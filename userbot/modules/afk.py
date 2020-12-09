@@ -5,22 +5,14 @@
 #
 """Userbot module which contains afk-related commands"""
 
-from datetime import datetime
 import time
+from datetime import datetime
 from random import choice, randint
 
 from telethon.events import StopPropagation
 
-from userbot import (
-    AFKREASON,
-    COUNT_MSG,
-    CMD_HELP,
-    ISAFK,
-    BOTLOG,
-    BOTLOG_CHATID,
-    USERS,
-    PM_AUTO_BAN)  # pylint: disable=unused-imports
-
+from userbot import PM_AUTO_BAN  # pylint: disable=unused-imports
+from userbot import AFKREASON, BOTLOG, BOTLOG_CHATID, CMD_HELP, COUNT_MSG, ISAFK, USERS
 from userbot.events import register
 
 # ========================= CONSTANTS ============================
@@ -74,8 +66,10 @@ async def set_afk(afk_e):
     afk_start = start_1.replace(microsecond=0)
     if string:
         AFKREASON = string
-        await afk_e.edit(f"Going AFK!\
-        \nReason: `{string}`")
+        await afk_e.edit(
+            f"Going AFK!\
+        \nReason: `{string}`"
+        )
     else:
         await afk_e.edit("Going AFK!")
     if BOTLOG:
@@ -106,8 +100,11 @@ async def type_afk_is_not_true(notafk):
         if BOTLOG:
             await notafk.client.send_message(
                 BOTLOG_CHATID,
-                "You've recieved " + str(COUNT_MSG) + " messages from " +
-                str(len(USERS)) + " chats while you were away",
+                "You've recieved "
+                + str(COUNT_MSG)
+                + " messages from "
+                + str(len(USERS))
+                + " chats while you were away",
             )
             for i in USERS:
                 if str(i).isnumeric():
@@ -115,14 +112,25 @@ async def type_afk_is_not_true(notafk):
                     name0 = str(name.first_name)
                     await notafk.client.send_message(
                         BOTLOG_CHATID,
-                        "[" + name0 + "](tg://user?id=" + str(i) + ")" +
-                        " sent you " + "`" + str(USERS[i]) + " message(s)`",
+                        "["
+                        + name0
+                        + "](tg://user?id="
+                        + str(i)
+                        + ")"
+                        + " sent you "
+                        + "`"
+                        + str(USERS[i])
+                        + " message(s)`",
                     )
                 else:  # anon admin
                     await notafk.client.send_message(
                         BOTLOG_CHATID,
-                        "Anonymous admin in `" + i + "` sent you " + "`" +
-                        str(USERS[i]) + " message(s)`",
+                        "Anonymous admin in `"
+                        + i
+                        + "` sent you "
+                        + "`"
+                        + str(USERS[i])
+                        + " message(s)`",
                     )
         COUNT_MSG = 0
         USERS = {}
@@ -157,13 +165,13 @@ async def mention_afk(mention):
             afk_since = "Yesterday"
         elif days > 1:
             if days > 6:
-                date = now + \
-                    datetime.timedelta(
-                        days=-days, hours=-hours, minutes=-minutes)
+                date = now + datetime.timedelta(
+                    days=-days, hours=-hours, minutes=-minutes
+                )
                 afk_since = date.strftime("%A, %Y %B %m, %H:%I")
             else:
                 wday = now + datetime.timedelta(days=-days)
-                afk_since = wday.strftime('%A')
+                afk_since = wday.strftime("%A")
         elif hours > 1:
             afk_since = f"`{int(hours)}h{int(minutes)}m` ago"
         elif minutes > 0:
@@ -172,17 +180,20 @@ async def mention_afk(mention):
             afk_since = f"`{int(seconds)}s` ago"
 
         is_bot = False
-        if (sender := await mention.get_sender()):
+        if (sender := await mention.get_sender()) :
             is_bot = sender.bot
-            if is_bot: return  # ignore bot
+            if is_bot:
+                return  # ignore bot
 
         chat_obj = await mention.client.get_entity(mention.chat_id)
         chat_title = chat_obj.title
 
         if mention.sender_id not in USERS or chat_title not in USERS:
             if AFKREASON:
-                await mention.reply(f"I'm AFK since {afk_since}.\
-                        \nReason: `{AFKREASON}`")
+                await mention.reply(
+                    f"I'm AFK since {afk_since}.\
+                        \nReason: `{AFKREASON}`"
+                )
             else:
                 await mention.reply(str(choice(AFKSTR)))
             if mention.sender_id is not None:
@@ -192,8 +203,10 @@ async def mention_afk(mention):
         else:
             if USERS[mention.sender_id] % randint(2, 4) == 0:
                 if AFKREASON:
-                    await mention.reply(f"I'm still AFK since {afk_since}.\
-                            \nReason: `{AFKREASON}`")
+                    await mention.reply(
+                        f"I'm still AFK since {afk_since}.\
+                            \nReason: `{AFKREASON}`"
+                    )
                 else:
                     await mention.reply(str(choice(AFKSTR)))
             if mention.sender_id is not None:
@@ -219,11 +232,15 @@ async def afk_on_pm(sender):
     back_alivee = datetime.now()
     afk_end = back_alivee.replace(microsecond=0)
     afk_since = "a while ago"
-    if sender.is_private and sender.sender_id != 777000 and not (
-            await sender.get_sender()).bot:
+    if (
+        sender.is_private
+        and sender.sender_id != 777000
+        and not (await sender.get_sender()).bot
+    ):
         if PM_AUTO_BAN:
             try:
                 from userbot.modules.sql_helper.pm_permit_sql import is_approved
+
                 apprv = is_approved(sender.sender_id)
             except AttributeError:
                 apprv = True
@@ -244,13 +261,13 @@ async def afk_on_pm(sender):
                 afk_since = "Yesterday"
             elif days > 1:
                 if days > 6:
-                    date = now + \
-                        datetime.timedelta(
-                            days=-days, hours=-hours, minutes=-minutes)
+                    date = now + datetime.timedelta(
+                        days=-days, hours=-hours, minutes=-minutes
+                    )
                     afk_since = date.strftime("%A, %Y %B %m, %H:%I")
                 else:
                     wday = now + datetime.timedelta(days=-days)
-                    afk_since = wday.strftime('%A')
+                    afk_since = wday.strftime("%A")
             elif hours > 1:
                 afk_since = f"`{int(hours)}h{int(minutes)}m` ago"
             elif minutes > 0:
@@ -259,8 +276,10 @@ async def afk_on_pm(sender):
                 afk_since = f"`{int(seconds)}s` ago"
             if sender.sender_id not in USERS:
                 if AFKREASON:
-                    await sender.reply(f"I'm AFK since {afk_since}.\
-                        \nReason: `{AFKREASON}`")
+                    await sender.reply(
+                        f"I'm AFK since {afk_since}.\
+                        \nReason: `{AFKREASON}`"
+                    )
                 else:
                     await sender.reply(str(choice(AFKSTR)))
                 USERS.update({sender.sender_id: 1})
@@ -268,17 +287,20 @@ async def afk_on_pm(sender):
             elif apprv:
                 if USERS[sender.sender_id] % randint(2, 4) == 0:
                     if AFKREASON:
-                        await sender.reply(f"I'm still AFK since {afk_since}.\
-                            \nReason: `{AFKREASON}`")
+                        await sender.reply(
+                            f"I'm still AFK since {afk_since}.\
+                            \nReason: `{AFKREASON}`"
+                        )
                     else:
                         await sender.reply(str(choice(AFKSTR)))
                 USERS[sender.sender_id] = USERS[sender.sender_id] + 1
                 COUNT_MSG = COUNT_MSG + 1
 
 
-CMD_HELP.update({
-    "afk":
-    "`.afk` [Optional Reason]"
-    "\nUsage: Sets you as afk.\nReplies to anyone who tags/PM's"
-    "you telling them that you are AFK(reason).\n\nSwitches off AFK when you type back anything, anywhere."
-})
+CMD_HELP.update(
+    {
+        "afk": "`.afk` [Optional Reason]"
+        "\nUsage: Sets you as afk.\nReplies to anyone who tags/PM's"
+        "you telling them that you are AFK(reason).\n\nSwitches off AFK when you type back anything, anywhere."
+    }
+)
