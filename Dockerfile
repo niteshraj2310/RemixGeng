@@ -4,7 +4,7 @@ FROM nitesh231/docker:latest
 #
 # Clone repo and prepare working directory
 #
-RUN git clone -b sql-extended https://github.com/niteshraj2310/RemixGeng /root/userbot
+RUN git clone -b sql-extended https://github.com/maxpayne7000/RemixGeng /root/userbot
 RUN mkdir /root/userbot/.bin
 WORKDIR /root/userbot
 
