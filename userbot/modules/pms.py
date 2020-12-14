@@ -26,7 +26,7 @@ from userbot.events import register
 
 # ========================= CONSTANTS ============================
 UNAPPROVED_MSG = (
-    "`heyy, you reached my inbox. Leave a message after this beep. \nbeeeeeeeeep......... \nI mean seriously, why did you text me without my permission?\n\n`")
+    "Hey there! Unfortunately, I don't accept private messages from strangers. Please contact me in a group, or talk to Paimon\n\n")
 # =================================================================
 
 NO_PM_LOG_USERS = []
@@ -79,7 +79,7 @@ async def permitpm(event):
                     await event.respond(
                         "`you didn't read my bio?,`\n"
                         "`you are now blocked😼.`"
-                        "`if you really wanna talk, then text me here`🦋✨. @aliciadarkbot."
+                        "`if you really wanna talk, then text [Paimon🦋✨](tg://user?id=1486647366)\n"
                     )
 
                     try:
