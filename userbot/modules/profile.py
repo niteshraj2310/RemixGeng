@@ -62,7 +62,7 @@ async def _(event):
     if event.fwd_from:
         return
     reply_message = await event.get_reply_message()
-    await event.edit("Downloading Profile Picture to my local ...")
+    await event.edit("Downloading Profile Picture to my database ...")
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):  # pylint:disable=E0602
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)  # pylint:disable=E0602
     photo = None
@@ -96,7 +96,7 @@ async def _(event):
             except Exception as e:  # pylint:disable=C0103,W0703
                 await event.edit(str(e))
             else:
-                await event.edit("My profile picture was succesfully changed")
+                await event.edit("profile picture was succesfully changed")
     try:
         os.remove(photo)
     except Exception as e:  # pylint:disable=C0103,W0703
