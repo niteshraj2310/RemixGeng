@@ -279,9 +279,8 @@ async def wiki(wiki_q):
         return
     result = summary(match)
     if len(result) >= 4096:
-        file = open("output.txt", "w+")
-        file.write(result)
-        file.close()
+        with open("output.txt", "w+") as file:
+            file.write(result)
         await wiki_q.client.send_file(
             wiki_q.chat_id,
             "output.txt",
@@ -682,12 +681,11 @@ async def ReTrieveFile(input_file_name):
     files = {
         "image_file": (input_file_name, open(input_file_name, "rb")),
     }
-    r = requests.post("https://api.remove.bg/v1.0/removebg",
+    return requests.post("https://api.remove.bg/v1.0/removebg",
                       headers=headers,
                       files=files,
                       allow_redirects=True,
                       stream=True)
-    return r
 
 
 async def ReTrieveURL(input_url):
@@ -695,12 +693,11 @@ async def ReTrieveURL(input_url):
         "X-API-Key": REM_BG_API_KEY,
     }
     data = {"image_url": input_url}
-    r = requests.post("https://api.remove.bg/v1.0/removebg",
+    return requests.post("https://api.remove.bg/v1.0/removebg",
                       headers=headers,
                       data=data,
                       allow_redirects=True,
-                      stream=True)
-    return r    
+                      stream=True)    
 
 @register(pattern=r".ocr (.*)", outgoing=True)
 async def ocr(event):
@@ -773,9 +770,7 @@ async def bq(event):
             m_list = None
             with open(downloaded_file_name, "rb") as fd:
                 m_list = fd.readlines()
-            message = ""
-            for m in m_list:
-                message += m.decode("UTF-8") + "\r\n"
+            message = "".join(m.decode("UTF-8") + "\r\n" for m in m_list)
             os.remove(downloaded_file_name)
         else:
             message = previous_message.message
@@ -814,9 +809,7 @@ async def make_qr(makeqr):
             m_list = None
             with open(downloaded_file_name, "rb") as file:
                 m_list = file.readlines()
-            message = ""
-            for media in m_list:
-                message += media.decode("UTF-8") + "\r\n"
+            message = "".join(media.decode("UTF-8") + "\r\n" for media in m_list)
             os.remove(downloaded_file_name)
         else:
             message = previous_message.message
@@ -1220,24 +1213,18 @@ async def imdb(e):
         else:
             mov_details = ''
         credits = soup.findAll('div', 'credit_summary_item')
+        director = credits[0].a.text
         if len(credits) == 1:
-            director = credits[0].a.text
             writer = 'Not available'
             stars = 'Not available'
         elif len(credits) > 2:
-            director = credits[0].a.text
             writer = credits[1].a.text
-            actors = []
-            for x in credits[2].findAll('a'):
-                actors.append(x.text)
+            actors = [x.text for x in credits[2].findAll('a')]
             actors.pop()
             stars = actors[0] + ',' + actors[1] + ',' + actors[2]
         else:
-            director = credits[0].a.text
             writer = 'Not available'
-            actors = []
-            for x in credits[1].findAll('a'):
-                actors.append(x.text)
+            actors = [x.text for x in credits[1].findAll('a')]
             actors.pop()
             stars = actors[0] + ',' + actors[1] + ',' + actors[2]
         if soup.find('div', "inline canwrap"):
