@@ -50,7 +50,8 @@ async def carbon_api(e):
     chrome_options.add_argument("--disable-gpu")
     prefs = {"download.default_directory": "/root/userbot/.bin"}
     chrome_options.add_experimental_option("prefs", prefs)
-    driver = webdriver.Chrome(executable_path=CHROME_DRIVER, options=chrome_options)
+    driver = webdriver.Chrome(executable_path=CHROME_DRIVER,
+                              options=chrome_options)
     driver.get(url)
     await e.edit("`Processing..\n50%`")
     download_path = "/root/userbot/.bin"
@@ -60,7 +61,10 @@ async def carbon_api(e):
     )
     params = {
         "cmd": "Page.setDownloadBehavior",
-        "params": {"behavior": "allow", "downloadPath": download_path},
+        "params": {
+            "behavior": "allow",
+            "downloadPath": download_path
+        },
     }
     driver.execute("send_command", params)
     driver.find_element_by_xpath("//button[contains(text(),'Export')]").click()
@@ -114,7 +118,8 @@ async def carbon_api(e):
     chrome_options.add_argument("--disable-gpu")
     prefs = {"download.default_directory": "/root/userbot/.bin"}
     chrome_options.add_experimental_option("prefs", prefs)
-    driver = webdriver.Chrome(executable_path=CHROME_DRIVER, options=chrome_options)
+    driver = webdriver.Chrome(executable_path=CHROME_DRIVER,
+                              options=chrome_options)
     driver.get(url)
     await e.edit("`Processing..\n50%`")
     download_path = "/root/userbot/.bin"
@@ -124,7 +129,10 @@ async def carbon_api(e):
     )
     params = {
         "cmd": "Page.setDownloadBehavior",
-        "params": {"behavior": "allow", "downloadPath": download_path},
+        "params": {
+            "behavior": "allow",
+            "downloadPath": download_path
+        },
     }
     driver.execute("send_command", params)
     driver.find_element_by_xpath("//button[contains(text(),'Export')]").click()
@@ -178,7 +186,8 @@ async def carbon_api(e):
     chrome_options.add_argument("--disable-gpu")
     prefs = {"download.default_directory": "/root/userbot/.bin"}
     chrome_options.add_experimental_option("prefs", prefs)
-    driver = webdriver.Chrome(executable_path=CHROME_DRIVER, options=chrome_options)
+    driver = webdriver.Chrome(executable_path=CHROME_DRIVER,
+                              options=chrome_options)
     driver.get(url)
     await e.edit("`Processing..\n50%`")
     download_path = "/root/userbot/.bin"
@@ -188,7 +197,10 @@ async def carbon_api(e):
     )
     params = {
         "cmd": "Page.setDownloadBehavior",
-        "params": {"behavior": "allow", "downloadPath": download_path},
+        "params": {
+            "behavior": "allow",
+            "downloadPath": download_path
+        },
     }
     driver.execute("send_command", params)
     driver.find_element_by_xpath("//button[contains(text(),'Export')]").click()
@@ -242,7 +254,8 @@ async def carbon_api(e):
     chrome_options.add_argument("--disable-gpu")
     prefs = {"download.default_directory": "/root/userbot/.bin"}
     chrome_options.add_experimental_option("prefs", prefs)
-    driver = webdriver.Chrome(executable_path=CHROME_DRIVER, options=chrome_options)
+    driver = webdriver.Chrome(executable_path=CHROME_DRIVER,
+                              options=chrome_options)
     driver.get(url)
     await e.edit("`Processing..\n50%`")
     download_path = "/root/userbot/.bin"
@@ -252,7 +265,10 @@ async def carbon_api(e):
     )
     params = {
         "cmd": "Page.setDownloadBehavior",
-        "params": {"behavior": "allow", "downloadPath": download_path},
+        "params": {
+            "behavior": "allow",
+            "downloadPath": download_path
+        },
     }
     driver.execute("send_command", params)
     driver.find_element_by_xpath("//button[contains(text(),'Export')]").click()
@@ -306,7 +322,8 @@ async def carbon_api(e):
     chrome_options.add_argument("--disable-gpu")
     prefs = {"download.default_directory": "/root/userbot/.bin"}
     chrome_options.add_experimental_option("prefs", prefs)
-    driver = webdriver.Chrome(executable_path=CHROME_DRIVER, options=chrome_options)
+    driver = webdriver.Chrome(executable_path=CHROME_DRIVER,
+                              options=chrome_options)
     driver.get(url)
     await e.edit("`Processing..\n50%`")
     download_path = "/root/userbot/.bin"
@@ -316,7 +333,10 @@ async def carbon_api(e):
     )
     params = {
         "cmd": "Page.setDownloadBehavior",
-        "params": {"behavior": "allow", "downloadPath": download_path},
+        "params": {
+            "behavior": "allow",
+            "downloadPath": download_path
+        },
     }
     driver.execute("send_command", params)
     driver.find_element_by_xpath("//button[contains(text(),'Export')]").click()
@@ -344,9 +364,8 @@ async def carbon_api(e):
     await e.delete()  # Deleting msg
 
 
-CMD_HELP.update(
-    {
-        "carbon": "`.carbon`value <values=1,2,3,4,5>\
+CMD_HELP.update({
+    "carbon":
+    "`.carbon`value <values=1,2,3,4,5>\
         \nUsage:reply or type .carbon1 or 2,3,4,5 value and beautify your text."
-    }
-)
+})
