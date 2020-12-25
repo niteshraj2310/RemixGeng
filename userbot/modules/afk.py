@@ -84,14 +84,12 @@ async def set_afk(afk_e):
     if user.last_name:
         await afk_e.client(
             UpdateProfileRequest(
-                first_name=user.first_name, last_name=user.last_name +
-                " [ OFFLINE ]"
+                first_name=user.first_name, last_name=user.last_name + " [ OFFLINE ]"
             )
         )
     else:
         await afk_e.client(
-            UpdateProfileRequest(first_name=user.first_name,
-                                 last_name=" [ OFFLINE ]")
+            UpdateProfileRequest(first_name=user.first_name, last_name=" [ OFFLINE ]")
         )
     if BOTLOG:
         await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\nYou went AFK!")
