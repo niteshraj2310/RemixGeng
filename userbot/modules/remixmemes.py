@@ -8,9 +8,7 @@ from collections import deque
 from telethon import events
 from telethon.errors.rpcerrorlist import MessageIdInvalidError
 
-from userbot import ALIVE_NAME
-from userbot import bot
-from userbot import CMD_HELP
+from userbot import ALIVE_NAME, CMD_HELP, bot
 from userbot.events import register
 
 # ================= CONSTANT =================
@@ -454,8 +452,7 @@ async def _(event):
 
 @register(outgoing=True, pattern="^.gangstar(?: |$)(.*)")
 async def _(event):
-    if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@",
-                                                             "!"):
+    if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
         await event.edit("EVERyBOdy")
         await asyncio.sleep(0.3)
         await event.edit("wAs")
@@ -950,19 +947,26 @@ async def _(message):
         inp = "🥞 🎂 🍫"
     u, t, g, o, s, n = inp.split(), "🗑", "<(^_^ <)", "(> ^_^)>", "⠀ ", "\n"
     h = [(u[0], u[1], u[2]), (u[0], u[1], ""), (u[0], "", "")]
-    for something in reversed([
-            y for y in ([
-                "".join(x) for x in (
-                    f + (s, g, s + s * f.count(""), t),
-                    f + (g, s * 2 + s * f.count(""), t),
-                    f[:i] + (o, f[i], s * 2 + s * f.count(""), t),
-                    f[:i] + (s + s * f.count(""), o, f[i], s, t),
-                    f[:i] + (s * 2 + s * f.count(""), o, f[i], t),
-                    f[:i] + (s * 3 + s * f.count(""), o, t),
-                    f[:i] + (s * 3 + s * f.count(""), g, t),
-                )
-            ] for i, f in enumerate(reversed(h)))
-    ]):
+    for something in reversed(
+        [
+            y
+            for y in (
+                [
+                    "".join(x)
+                    for x in (
+                        f + (s, g, s + s * f.count(""), t),
+                        f + (g, s * 2 + s * f.count(""), t),
+                        f[:i] + (o, f[i], s * 2 + s * f.count(""), t),
+                        f[:i] + (s + s * f.count(""), o, f[i], s, t),
+                        f[:i] + (s * 2 + s * f.count(""), o, f[i], t),
+                        f[:i] + (s * 3 + s * f.count(""), o, t),
+                        f[:i] + (s * 3 + s * f.count(""), g, t),
+                    )
+                ]
+                for i, f in enumerate(reversed(h))
+            )
+        ]
+    ):
         for something_else in something:
             await asyncio.sleep(0.3)
             try:
@@ -1349,8 +1353,7 @@ async def _(event):
 
     if x == 11:
 
-        await event.edit(
-            '`"A folder is for things that you don\'t want to fold."`')
+        await event.edit('`"A folder is for things that you don\'t want to fold."`')
 
     if x == 12:
 
@@ -1402,8 +1405,7 @@ async def _(event):
 
     if x == 20:
 
-        await event.edit(
-            '`"Technically, no one has ever been in an empty room."`')
+        await event.edit('`"Technically, no one has ever been in an empty room."`')
 
     if x == 21:
 
@@ -1549,8 +1551,7 @@ async def _(event):
 
     if x == 45:
 
-        await event.edit(
-            '`"If Greenland actually turns green, we\'re all screwed."`')
+        await event.edit('`"If Greenland actually turns green, we\'re all screwed."`')
 
     if x == 46:
 
@@ -1572,8 +1573,7 @@ async def _(event):
 
     if x == 49:
 
-        await event.edit(
-            '`"Ask yourself why the the brain ignores the second the."`')
+        await event.edit('`"Ask yourself why the the brain ignores the second the."`')
 
     if x == 50:
 
@@ -1641,8 +1641,7 @@ async def _(event):
 
     if x == 61:
 
-        await event.edit(
-            '`"6 to 6:30 feels more half-an-hour than 5:50 to 6:20"`')
+        await event.edit('`"6 to 6:30 feels more half-an-hour than 5:50 to 6:20"`')
 
     if x == 62:
 
@@ -1664,8 +1663,7 @@ async def _(event):
 
     if x == 65:
 
-        await event.edit(
-            '`"A ton of whales is really only like half a whale."`')
+        await event.edit('`"A ton of whales is really only like half a whale."`')
 
     if x == 66:
 
@@ -1705,8 +1703,7 @@ async def _(event):
 
     if x == 72:
 
-        await event.edit(
-            '`"The most effective alarm clock is a full bladder."`')
+        await event.edit('`"The most effective alarm clock is a full bladder."`')
 
     if x == 73:
 
@@ -1728,13 +1725,13 @@ async def _(event):
 
     if x == 76:
 
-        await event.edit(
-            '`"We put paper in a folder to keep it from folding."`')
+        await event.edit('`"We put paper in a folder to keep it from folding."`')
 
     if x == 77:
 
         await event.edit(
-            '`"Somewhere, two best friends are meeting for the first time."`')
+            '`"Somewhere, two best friends are meeting for the first time."`'
+        )
 
     if x == 78:
 
@@ -1830,13 +1827,11 @@ async def _(event):
 
     if x == 94:
 
-        await event.edit(
-            '`"A comma is a short pause, a coma is a long pause."`')
+        await event.edit('`"A comma is a short pause, a coma is a long pause."`')
 
     if x == 95:
 
-        await event.edit(
-            '`"Someday you will either not wake up or not go to sleep."`')
+        await event.edit('`"Someday you will either not wake up or not go to sleep."`')
 
     if x == 96:
 
@@ -1927,8 +1922,7 @@ async def _(event):
 
     if x == 4:
 
-        await event.edit('`"What scene from a TV show will you never forget?"`'
-                         )
+        await event.edit('`"What scene from a TV show will you never forget?"`')
 
     if x == 5:
 
@@ -1949,12 +1943,12 @@ async def _(event):
     if x == 8:
 
         await event.edit(
-            '`"Would you go out with me if I was the last person on earth?"`')
+            '`"Would you go out with me if I was the last person on earth?"`'
+        )
 
     if x == 9:
 
-        await event.edit(
-            '`"If you switched genders for the day, what would you do?"`')
+        await event.edit('`"If you switched genders for the day, what would you do?"`')
 
     if x == 10:
 
@@ -1982,13 +1976,13 @@ async def _(event):
 
     if x == 14:
 
-        await event.edit('`"How many kids do you want to have in the future?"`'
-                         )
+        await event.edit('`"How many kids do you want to have in the future?"`')
 
     if x == 15:
 
         await event.edit(
-            '`"Who in this group would be the worst person to date? Why?"`')
+            '`"Who in this group would be the worst person to date? Why?"`'
+        )
 
     if x == 16:
 
@@ -2044,8 +2038,7 @@ async def _(event):
 
     if x == 26:
 
-        await event.edit(
-            '`"Live-in relation or marriage, what do you prefer?"`')
+        await event.edit('`"Live-in relation or marriage, what do you prefer?"`')
 
     if x == 27:
 
@@ -2063,23 +2056,21 @@ async def _(event):
 
     if x == 30:
 
-        await event.edit(
-            '`"What are some goals you have failed to accomplish?"`')
+        await event.edit('`"What are some goals you have failed to accomplish?"`')
 
     if x == 31:
 
-        await event.edit(
-            '`"Will technology save the human race or destroy it?"`')
+        await event.edit('`"Will technology save the human race or destroy it?"`')
 
     if x == 32:
 
-        await event.edit(
-            '`"What was the best invention of the last 50 years?"`')
+        await event.edit('`"What was the best invention of the last 50 years?"`')
 
     if x == 33:
 
         await event.edit(
-            '`"Have you travelled to any different countries? Which ones?"`')
+            '`"Have you travelled to any different countries? Which ones?"`'
+        )
 
     if x == 34:
 
@@ -2089,8 +2080,7 @@ async def _(event):
 
     if x == 35:
 
-        await event.edit(
-            '`"What’s the most addictive mobile game you have played?"`')
+        await event.edit('`"What’s the most addictive mobile game you have played?"`')
 
     if x == 36:
 
@@ -2122,13 +2112,11 @@ async def _(event):
 
     if x == 42:
 
-        await event.edit(
-            '`"Suggest a new rule that should be added in this group!"`')
+        await event.edit('`"Suggest a new rule that should be added in this group!"`')
 
     if x == 43:
 
-        await event.edit(
-            '`"What app on your phone do you think I should get?"`')
+        await event.edit('`"What app on your phone do you think I should get?"`')
 
     if x == 44:
 
@@ -2138,13 +2126,11 @@ async def _(event):
 
     if x == 45:
 
-        await event.edit('`"What isn’t real but you desperately wish it was?"`'
-                         )
+        await event.edit('`"What isn’t real but you desperately wish it was?"`')
 
     if x == 46:
 
-        await event.edit(
-            '`"What thing do you really wish you could buy right now?"`')
+        await event.edit('`"What thing do you really wish you could buy right now?"`')
 
     if x == 47:
 
@@ -2175,7 +2161,8 @@ async def _(event):
     if x == 52:
 
         await event.edit(
-            '`"If you died today, what would your greatest achievement be?"`')
+            '`"If you died today, what would your greatest achievement be?"`'
+        )
 
     if x == 53:
 
@@ -2183,8 +2170,7 @@ async def _(event):
 
     if x == 54:
 
-        await event.edit(
-            '`"What’s the best news you\'ve heard in the last 24 hours?"`')
+        await event.edit('`"What’s the best news you\'ve heard in the last 24 hours?"`')
 
     if x == 55:
 
@@ -2427,9 +2413,7 @@ async def _(event):
 
         await event.edit(input_str)
 
-        animation_chars = [
-            "🐵", "🙉", "🙈", "🙊", "🖕‎🐵🖕", "**OPPA MONEKEYY Style....**"
-        ]
+        animation_chars = ["🐵", "🙉", "🙈", "🙊", "🖕‎🐵🖕", "**OPPA MONEKEYY Style....**"]
 
         animation_interval = 2
 
@@ -2831,8 +2815,7 @@ async def _(event):
     await asyncio.sleep(2)
     x = random.randrange(1, 40)
     if x == 1:
-        await event.edit(
-            '`"The man who passes the sentence should swing the sword."`')
+        await event.edit('`"The man who passes the sentence should swing the sword."`')
     if x == 2:
         await event.edit(
             '`"When the snows fall and the white winds blow, the lone wolf dies but the pack survives!"`'
@@ -2854,20 +2837,17 @@ async def _(event):
     if x == 7:
         await event.edit('`"If I look back I am lost."`')
     if x == 8:
-        await event.edit(
-            '`"When you play the game of thrones, you win or you die."`')
+        await event.edit('`"When you play the game of thrones, you win or you die."`')
     if x == 9:
         await event.edit(
             '`"I grew up with soldiers. I learned how to die a long time ago."`'
         )
     if x == 10:
-        await event.edit('`"What do we say to the Lord of Death?\nNot Today!"`'
-                         )
+        await event.edit('`"What do we say to the Lord of Death?\nNot Today!"`')
     if x == 11:
         await event.edit('`"Every flight begins with a fall."`')
     if x == 12:
-        await event.edit(
-            '`"Different roads sometimes lead to the same castle."`')
+        await event.edit('`"Different roads sometimes lead to the same castle."`')
     if x == 13:
         await event.edit(
             '`"Never forget what you are. The rest of the world will not. Wear it like armour, and it can never be used to hurt you."`'
@@ -2900,7 +2880,8 @@ async def _(event):
         )
     if x == 25:
         await event.edit(
-            '`"A lion does not concern himself with the opinion of sheep."`')
+            '`"A lion does not concern himself with the opinion of sheep."`'
+        )
     if x == 26:
         await event.edit('`"Chaos isn\'t a pit. Chaos is a ladder."`')
     if x == 27:
@@ -2916,11 +2897,9 @@ async def _(event):
             '`"If you ever call me sister again, I\'ll have you strangled in your sleep."`'
         )
     if x == 30:
-        await event.edit(
-            '`"A girl is Arya Stark of Winterfell. And I\'m going home."`')
+        await event.edit('`"A girl is Arya Stark of Winterfell. And I\'m going home."`')
     if x == 31:
-        await event.edit(
-            "`\"Any man who must say 'I am the King' is no true King.\"`")
+        await event.edit("`\"Any man who must say 'I am the King' is no true King.\"`")
     if x == 32:
         await event.edit('`"If I fall, don\'t bring me back."`')
     if x == 33:
@@ -3126,13 +3105,13 @@ async def _(event):
             '`"When you are backed against the wall, break the goddamn thing down."`'
         )
     if x == 4:
-        await event.edit(
-            '`"If they think you care, they’ll walk all over you."`')
+        await event.edit('`"If they think you care, they’ll walk all over you."`')
     if x == 5:
         await event.edit('`"I don’t have dreams, I have goals."`')
     if x == 6:
         await event.edit(
-            '`"It’s going to happen, because I am going to make it happen."`')
+            '`"It’s going to happen, because I am going to make it happen."`'
+        )
     if x == 7:
         await event.edit(
             '`"Ever loved someone so much, you would do anything for them? Yeah, well make that someone yourself and do whatever the hell you want."`'
@@ -3142,8 +3121,7 @@ async def _(event):
     if x == 9:
         await event.edit('`"Don’t raise your voice, improve your argument."`')
     if x == 10:
-        await event.edit(
-            '`"You want to change your life? Change the way you think."`')
+        await event.edit('`"You want to change your life? Change the way you think."`')
     if x == 11:
         await event.edit(
             '`"Have goals so big you get uncomfortable telling small minded people."`'
@@ -3160,7 +3138,8 @@ async def _(event):
         await event.edit('`"You always have a choice."`')
     if x == 17:
         await event.edit(
-            '`"Sorry, I can’t hear you over the sound of how awesome I am."`')
+            '`"Sorry, I can’t hear you over the sound of how awesome I am."`'
+        )
     if x == 18:
         await event.edit('`"Anyone can do my job, but no one can be me."`')
     if x == 19:
@@ -3171,7 +3150,8 @@ async def _(event):
         await event.edit('`"Win a no win situation by rewriting the rules."`')
     if x == 22:
         await event.edit(
-            '`"Let them hate, just make sure they spell your name right."`')
+            '`"Let them hate, just make sure they spell your name right."`'
+        )
     if x == 23:
         await event.edit(
             '`"That’s the difference between you and me. You wanna lose small, I wanna win big."`'
@@ -3209,11 +3189,9 @@ async def _(event):
             '`"Never destroy anyone in public when you can accomplish the same result in private."`'
         )
     if x == 34:
-        await event.edit('`"You don’t send a puppy to clean up its own mess."`'
-                         )
+        await event.edit('`"You don’t send a puppy to clean up its own mess."`')
     if x == 35:
-        await event.edit(
-            '`"Gloating is fine, you just not have to suck at it."`')
+        await event.edit('`"Gloating is fine, you just not have to suck at it."`')
     if x == 36:
         await event.edit("`\"It's not bragging if it's true.\"`")
     if x == 37:
@@ -3222,7 +3200,8 @@ async def _(event):
         )
     if x == 38:
         await event.edit(
-            '`"I don\'t pave the way for people,people pave the way for me."`')
+            '`"I don\'t pave the way for people,people pave the way for me."`'
+        )
     if x == 39:
         await event.edit("`\"My respect isn't demanded, it's earnt.\"`")
     if x == 40:
@@ -3248,9 +3227,9 @@ async def _(event):
         deq.rotate(1)
 
 
-CMD_HELP.update({
-    "remixmemes":
-    "`.eye`\
+CMD_HELP.update(
+    {
+        "remixmemes": "`.eye`\
 \nUsage: see it yourself.\
 \n\n`.earth`\
 \nusage: spins like earth 🌎🌎\
@@ -3313,4 +3292,5 @@ CMD_HELP.update({
 \n\n`.jio`\
 \nUsage: Your network slow?? Boost it using this 🤣🤣\
 \n\n\nWARNING⚠️⚠️: All this cmds will spam group recents.\nUse it in OT groups/Spam groups OR GET YOU A** KICKED😂😂."
-})
+    }
+)
