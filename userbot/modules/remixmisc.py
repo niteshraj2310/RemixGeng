@@ -16,18 +16,13 @@ from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl import functions
 from telethon.tl.functions.users import GetFullUserRequest
-from telethon.tl.types import (
-    ChatBannedRights,
-    MessageEntityMentionName,
-    UserStatusEmpty,
-    UserStatusLastMonth,
-    UserStatusLastWeek,
-    UserStatusOffline,
-    UserStatusOnline,
-    UserStatusRecently,
-)
+from telethon.tl.types import (ChatBannedRights, MessageEntityMentionName,
+                               UserStatusEmpty, UserStatusLastMonth,
+                               UserStatusLastWeek, UserStatusOffline,
+                               UserStatusOnline, UserStatusRecently)
 
-from userbot import ALIVE_NAME, CMD_HELP, DEFAULT_BIO, TEMP_DOWNLOAD_DIRECTORY, bot
+from userbot import (ALIVE_NAME, CMD_HELP, DEFAULT_BIO,
+                     TEMP_DOWNLOAD_DIRECTORY, bot)
 from userbot.events import register
 
 normiefont = [

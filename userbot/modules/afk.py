@@ -13,7 +13,8 @@ from random import choice, randint
 from telethon.events import StopPropagation
 from telethon.tl.functions.account import UpdateProfileRequest
 
-from userbot import AFKREASON, BOTLOG, BOTLOG_CHATID, CMD_HELP, PM_AUTO_BAN, bot
+from userbot import (AFKREASON, BOTLOG, BOTLOG_CHATID, CMD_HELP, PM_AUTO_BAN,
+                     bot)
 from userbot.events import register
 
 # ========================= CONSTANTS ============================
@@ -242,7 +243,8 @@ async def afk_on_pm(sender):
     ):
         if PM_AUTO_BAN:
             try:
-                from userbot.modules.sql_helper.pm_permit_sql import is_approved
+                from userbot.modules.sql_helper.pm_permit_sql import \
+                    is_approved
 
                 apprv = is_approved(sender.sender_id)
             except AttributeError:
