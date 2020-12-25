@@ -3,19 +3,19 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 # inline credit @keselekpermen69
-
 """Userbot module for managing events. One of the main components of the userbot."""
-
 import sys
 from asyncio import create_subprocess_shell as asyncsubshell
 from asyncio import subprocess as asyncsub
 from os import remove
-from time import gmtime, strftime
+from time import gmtime
+from time import strftime
 from traceback import format_exc
 
 from telethon import events
 
-from userbot import LOGSPAMMER, bot
+from userbot import bot
+from userbot import LOGSPAMMER
 
 
 def register(**args):

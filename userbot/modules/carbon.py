@@ -17,7 +17,8 @@ from bs4 import BeautifulSoup
 from emoji import get_emoji_regexp
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from googletrans import LANGUAGES, Translator
+from googletrans import LANGUAGES
+from googletrans import Translator
 from gtts import gTTS
 from gtts.lang import tts_langs
 from requests import get
@@ -29,18 +30,30 @@ from telethon import events
 from telethon.tl.types import DocumentAttributeAudio
 from urbandict import define
 from wikipedia import summary
-from wikipedia.exceptions import DisambiguationError, PageError
+from wikipedia.exceptions import DisambiguationError
+from wikipedia.exceptions import PageError
 from youtube_dl import YoutubeDL
-from youtube_dl.utils import (ContentTooShortError, DownloadError,
-                              ExtractorError, GeoRestrictedError,
-                              MaxDownloadsReached, PostProcessingError,
-                              UnavailableVideoError, XAttrMetadataError)
+from youtube_dl.utils import ContentTooShortError
+from youtube_dl.utils import DownloadError
+from youtube_dl.utils import ExtractorError
+from youtube_dl.utils import GeoRestrictedError
+from youtube_dl.utils import MaxDownloadsReached
+from youtube_dl.utils import PostProcessingError
+from youtube_dl.utils import UnavailableVideoError
+from youtube_dl.utils import XAttrMetadataError
 
-from userbot import (BOTLOG, BOTLOG_CHATID, CHROME_DRIVER, CMD_HELP,
-                     GOOGLE_CHROME_BIN, YOUTUBE_API_KEY, bot)
+from userbot import bot
+from userbot import BOTLOG
+from userbot import BOTLOG_CHATID
+from userbot import CHROME_DRIVER
+from userbot import CMD_HELP
+from userbot import GOOGLE_CHROME_BIN
+from userbot import YOUTUBE_API_KEY
 from userbot.events import register
-from userbot.utils import (googleimagesdownload, humanbytes, progress,
-                           time_formatter)
+from userbot.utils import googleimagesdownload
+from userbot.utils import humanbytes
+from userbot.utils import progress
+from userbot.utils import time_formatter
 
 CARBONLANG = "auto"
 TTS_LANG = "en"
