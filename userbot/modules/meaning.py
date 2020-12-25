@@ -20,11 +20,10 @@ async def _(event):
         await event.edit(f"Couldn't fetch meaning of {word}")
 
 
-CMD_HELP.update(
-    {
-        "dictionary": "**Plugin :** `dictionary`\
+CMD_HELP.update({
+    "dictionary":
+    "**Plugin :** `dictionary`\
     \n\n**Syntax : **`.mng query`\
     \n**Usage : **Fetches meaning of the given word\
     "
-    }
-)
+})
