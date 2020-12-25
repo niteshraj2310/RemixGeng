@@ -1,6 +1,7 @@
 import asyncio
-from userbot.events import register
+
 from userbot import PM_LOGGR_BOT_API_ID
+from userbot.events import register
 
 
 @register(outgoing=True, incoming=True, func=lambda e: e.mentioned)
