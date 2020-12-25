@@ -1,59 +1,13 @@
-import asyncio
 import os
-import random
-import re
-import shutil
-import subprocess
-import time
 from asyncio import sleep
-from datetime import datetime
-from html import unescape
-from re import findall
 from time import sleep
-from urllib.error import HTTPError
 from urllib.parse import quote_plus
 
-from bs4 import BeautifulSoup
-from emoji import get_emoji_regexp
-from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
-from googletrans import LANGUAGES
-from googletrans import Translator
-from gtts import gTTS
-from gtts.lang import tts_langs
-from requests import get
-from search_engine_parser import GoogleSearch
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import Select
-from telethon import events
-from telethon.tl.types import DocumentAttributeAudio
-from urbandict import define
-from wikipedia import summary
-from wikipedia.exceptions import DisambiguationError
-from wikipedia.exceptions import PageError
-from youtube_dl import YoutubeDL
-from youtube_dl.utils import ContentTooShortError
-from youtube_dl.utils import DownloadError
-from youtube_dl.utils import ExtractorError
-from youtube_dl.utils import GeoRestrictedError
-from youtube_dl.utils import MaxDownloadsReached
-from youtube_dl.utils import PostProcessingError
-from youtube_dl.utils import UnavailableVideoError
-from youtube_dl.utils import XAttrMetadataError
 
-from userbot import bot
-from userbot import BOTLOG
-from userbot import BOTLOG_CHATID
-from userbot import CHROME_DRIVER
-from userbot import CMD_HELP
-from userbot import GOOGLE_CHROME_BIN
-from userbot import YOUTUBE_API_KEY
+from userbot import CHROME_DRIVER, CMD_HELP, GOOGLE_CHROME_BIN
 from userbot.events import register
-from userbot.utils import googleimagesdownload
-from userbot.utils import humanbytes
-from userbot.utils import progress
-from userbot.utils import time_formatter
 
 CARBONLANG = "auto"
 TTS_LANG = "en"
@@ -94,8 +48,7 @@ async def carbon_api(e):
     chrome_options.add_argument("--disable-gpu")
     prefs = {"download.default_directory": "/root/userbot/.bin"}
     chrome_options.add_experimental_option("prefs", prefs)
-    driver = webdriver.Chrome(executable_path=CHROME_DRIVER,
-                              options=chrome_options)
+    driver = webdriver.Chrome(executable_path=CHROME_DRIVER, options=chrome_options)
     driver.get(url)
     await e.edit("`Processing..\n50%`")
     download_path = "/root/userbot/.bin"
@@ -105,12 +58,9 @@ async def carbon_api(e):
     )
     params = {
         "cmd": "Page.setDownloadBehavior",
-        "params": {
-            "behavior": "allow",
-            "downloadPath": download_path
-        },
+        "params": {"behavior": "allow", "downloadPath": download_path},
     }
-    command_result = driver.execute("send_command", params)
+    driver.execute("send_command", params)
     driver.find_element_by_xpath("//button[contains(text(),'Export')]").click()
     # driver.find_element_by_xpath("//button[contains(text(),'4x')]").click()
     # driver.find_element_by_xpath("//button[contains(text(),'PNG')]").click()
@@ -162,8 +112,7 @@ async def carbon_api(e):
     chrome_options.add_argument("--disable-gpu")
     prefs = {"download.default_directory": "/root/userbot/.bin"}
     chrome_options.add_experimental_option("prefs", prefs)
-    driver = webdriver.Chrome(executable_path=CHROME_DRIVER,
-                              options=chrome_options)
+    driver = webdriver.Chrome(executable_path=CHROME_DRIVER, options=chrome_options)
     driver.get(url)
     await e.edit("`Processing..\n50%`")
     download_path = "/root/userbot/.bin"
@@ -173,12 +122,9 @@ async def carbon_api(e):
     )
     params = {
         "cmd": "Page.setDownloadBehavior",
-        "params": {
-            "behavior": "allow",
-            "downloadPath": download_path
-        },
+        "params": {"behavior": "allow", "downloadPath": download_path},
     }
-    command_result = driver.execute("send_command", params)
+    driver.execute("send_command", params)
     driver.find_element_by_xpath("//button[contains(text(),'Export')]").click()
     # driver.find_element_by_xpath("//button[contains(text(),'4x')]").click()
     # driver.find_element_by_xpath("//button[contains(text(),'PNG')]").click()
@@ -230,8 +176,7 @@ async def carbon_api(e):
     chrome_options.add_argument("--disable-gpu")
     prefs = {"download.default_directory": "/root/userbot/.bin"}
     chrome_options.add_experimental_option("prefs", prefs)
-    driver = webdriver.Chrome(executable_path=CHROME_DRIVER,
-                              options=chrome_options)
+    driver = webdriver.Chrome(executable_path=CHROME_DRIVER, options=chrome_options)
     driver.get(url)
     await e.edit("`Processing..\n50%`")
     download_path = "/root/userbot/.bin"
@@ -241,12 +186,9 @@ async def carbon_api(e):
     )
     params = {
         "cmd": "Page.setDownloadBehavior",
-        "params": {
-            "behavior": "allow",
-            "downloadPath": download_path
-        },
+        "params": {"behavior": "allow", "downloadPath": download_path},
     }
-    command_result = driver.execute("send_command", params)
+    driver.execute("send_command", params)
     driver.find_element_by_xpath("//button[contains(text(),'Export')]").click()
     # driver.find_element_by_xpath("//button[contains(text(),'4x')]").click()
     # driver.find_element_by_xpath("//button[contains(text(),'PNG')]").click()
@@ -298,8 +240,7 @@ async def carbon_api(e):
     chrome_options.add_argument("--disable-gpu")
     prefs = {"download.default_directory": "/root/userbot/.bin"}
     chrome_options.add_experimental_option("prefs", prefs)
-    driver = webdriver.Chrome(executable_path=CHROME_DRIVER,
-                              options=chrome_options)
+    driver = webdriver.Chrome(executable_path=CHROME_DRIVER, options=chrome_options)
     driver.get(url)
     await e.edit("`Processing..\n50%`")
     download_path = "/root/userbot/.bin"
@@ -309,12 +250,9 @@ async def carbon_api(e):
     )
     params = {
         "cmd": "Page.setDownloadBehavior",
-        "params": {
-            "behavior": "allow",
-            "downloadPath": download_path
-        },
+        "params": {"behavior": "allow", "downloadPath": download_path},
     }
-    command_result = driver.execute("send_command", params)
+    driver.execute("send_command", params)
     driver.find_element_by_xpath("//button[contains(text(),'Export')]").click()
     # driver.find_element_by_xpath("//button[contains(text(),'4x')]").click()
     # driver.find_element_by_xpath("//button[contains(text(),'PNG')]").click()
@@ -366,8 +304,7 @@ async def carbon_api(e):
     chrome_options.add_argument("--disable-gpu")
     prefs = {"download.default_directory": "/root/userbot/.bin"}
     chrome_options.add_experimental_option("prefs", prefs)
-    driver = webdriver.Chrome(executable_path=CHROME_DRIVER,
-                              options=chrome_options)
+    driver = webdriver.Chrome(executable_path=CHROME_DRIVER, options=chrome_options)
     driver.get(url)
     await e.edit("`Processing..\n50%`")
     download_path = "/root/userbot/.bin"
@@ -377,12 +314,9 @@ async def carbon_api(e):
     )
     params = {
         "cmd": "Page.setDownloadBehavior",
-        "params": {
-            "behavior": "allow",
-            "downloadPath": download_path
-        },
+        "params": {"behavior": "allow", "downloadPath": download_path},
     }
-    command_result = driver.execute("send_command", params)
+    driver.execute("send_command", params)
     driver.find_element_by_xpath("//button[contains(text(),'Export')]").click()
     # driver.find_element_by_xpath("//button[contains(text(),'4x')]").click()
     # driver.find_element_by_xpath("//button[contains(text(),'PNG')]").click()
@@ -408,8 +342,9 @@ async def carbon_api(e):
     await e.delete()  # Deleting msg
 
 
-CMD_HELP.update({
-    "carbon":
-    "`.carbon`value <values=1,2,3,4,5>\
+CMD_HELP.update(
+    {
+        "carbon": "`.carbon`value <values=1,2,3,4,5>\
         \nUsage:reply or type .carbon1 or 2,3,4,5 value and beautify your text."
-})
+    }
+)
