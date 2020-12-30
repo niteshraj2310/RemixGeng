@@ -309,7 +309,7 @@ async def monito_p_m_s(event):
             if event.chat_id and NC_LOG_P_M_S:
                     await event.client.send_message(
                         PM_LOGGR_BOT_API_ID,
-                        "#Conversation\n" + "With " +
+                        "#" +
                         f"[{chat.first_name}](tg://user?id={chat.id})",
                     )
                 
