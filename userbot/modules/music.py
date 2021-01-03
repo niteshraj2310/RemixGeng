@@ -77,7 +77,7 @@ async def _(event):
     await catmusic(str(query), "128k", event)
     l = glob.glob("./temp/*.mp3")
     if l:
-        await event.edit("Downloading...Please wait")
+        await event.edit("Downloading...Please wait...")
     else:
         await event.edit(f"not found`{query}`")
         return
@@ -118,7 +118,7 @@ async def _(event):
     await catmusic(str(query), "320k", event)
     l = glob.glob("./temp/*.mp3")
     if l:
-        await event.edit("Downloading...Please wait")
+        await event.edit("Downloading...Please wait....")
     else:
         await event.edit(f"error, not found `{query}`")
         return
@@ -172,7 +172,7 @@ async def _(event):
         await event.edit("`searching for your video`")
     elif reply:
         query = str(reply.message)
-        await event.edit("`Downloading...Please wait`")
+        await event.edit("`Downloading...Please wait....`")
     else:
         await event.edit("`What I am Supposed to find?`")
         return
