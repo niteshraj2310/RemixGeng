@@ -37,7 +37,7 @@ async def catmusic(cat, QUALITY, hello):
     if not os.path.isdir("./temp/"):
         os.makedirs("./temp/")
     if not video_link:
-        await hello.edit(f"Sorry. I can't find that song `{search}`")
+        await hello.edit(f"song not found `{search}`")
         return
     try:
         command = (
@@ -73,13 +73,13 @@ async def _(event):
     else:
         event = await event.edit("`What I am Supposed to find `")
         return
-    event = await event.edit("`wi8..! I am finding your song....`")
+    event = await event.edit("`searching for your song....`")
     await catmusic(str(query), "128k", event)
     l = glob.glob("./temp/*.mp3")
     if l:
-        await event.edit("yeah..! i found something wi8..🥰")
+        await event.edit("Downloading...Please wait")
     else:
-        await event.edit(f"Sorry..! i can't find anything with `{query}`")
+        await event.edit(f"not found`{query}`")
         return
     thumbcat = glob.glob("./temp/*.jpg") + glob.glob("./temp/*.webp")
     catthumb = thumbcat[0] if thumbcat else None
@@ -114,13 +114,13 @@ async def _(event):
     else:
         event = await event.edit("`What I am Supposed to find `")
         return
-    event = await event.edit("`wi8..! I am finding your song....`")
+    event = await event.edit("`searching for your song....`")
     await catmusic(str(query), "320k", event)
     l = glob.glob("./temp/*.mp3")
     if l:
-        await event.edit("yeah..! i found something wi8..🥰")
+        await event.edit("Downloading...Please wait")
     else:
-        await event.edit(f"Sorry..! i can't find anything with `{query}`")
+        await event.edit(f"error, not found `{query}`")
         return
     thumbcat = glob.glob("./temp/*.jpg") + glob.glob("./temp/*.webp")
     catthumb = thumbcat[0] if thumbcat else None
@@ -169,19 +169,19 @@ async def _(event):
     reply = await event.get_reply_message()
     if event.pattern_match.group(1):
         query = event.pattern_match.group(1)
-        await event.edit("`Wait..! I am finding your videosong..`")
+        await event.edit("`searching for your video`")
     elif reply:
         query = str(reply.message)
-        await event.edit("`Wait..! I am finding your videosong..`")
+        await event.edit("`Downloading...Please wait`")
     else:
         await event.edit("`What I am Supposed to find?`")
         return
     await getmusicvideo(query)
     l = glob.glob(("*.mp4")) + glob.glob(("*.mkv")) + glob.glob(("*.webm"))
     if l:
-        await event.edit("`Yeah..! i found something..`")
+        await event.edit("`found, uploading to telegram....`")
     else:
-        await event.edit(f"`Sorry..! i can't find anything with` **{query}**")
+        await event.edit(f"`error await` **{query}**")
         return
     try:
         loa = l[0]
@@ -221,7 +221,7 @@ async def _(event):
                 progress(d, t, event, c_time, "[UPLOAD]", loa)
             ),
         )
-        await event.edit(f"**{query}** `Uploaded Successfully..!`")
+        await event.edit(f"**{query}** `Uploaded Successfully.`")
         os.remove(thumb_image)
         os.system("rm -rf *.mkv")
         os.system("rm -rf *.mp4")
