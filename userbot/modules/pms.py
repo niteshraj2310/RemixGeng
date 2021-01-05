@@ -26,7 +26,7 @@ from userbot.events import register
 
 # ========================= CONSTANTS ============================
 UNAPPROVED_MSG = (
-    "Hey there! Unfortunately, I don't accept private messages from strangers. Please contact me in a group, or talk to [Paimon](tg://user?id=1486647366)✨🦋. you will be blocked after 5 texts\n\n")
+    "Hey there! Unfortunately, I don't accept private messages from strangers. Please contact me in a group, or talk to [Paimon](tg://user?id=1486647366)✨🦋. you will be blocked after 3 texts\n\n")
 # =================================================================
 
 NO_PM_LOG_USERS = []
