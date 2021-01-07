@@ -9,19 +9,12 @@ import os
 
 from telethon.errors.rpcerrorlist import UsernameOccupiedError
 from telethon.tl import functions
-from telethon.tl.functions.account import UpdateProfileRequest
-from telethon.tl.functions.account import UpdateUsernameRequest
+from telethon.tl.functions.account import UpdateProfileRequest, UpdateUsernameRequest
 from telethon.tl.functions.channels import GetAdminedPublicChannelsRequest
-from telethon.tl.functions.photos import DeletePhotosRequest
-from telethon.tl.functions.photos import GetUserPhotosRequest
-from telethon.tl.types import Channel
-from telethon.tl.types import Chat
-from telethon.tl.types import InputPhoto
-from telethon.tl.types import User
+from telethon.tl.functions.photos import DeletePhotosRequest, GetUserPhotosRequest
+from telethon.tl.types import Channel, Chat, InputPhoto, User
 
-from userbot import bot
-from userbot import CMD_HELP
-from userbot import TEMP_DOWNLOAD_DIRECTORY
+from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
 
 # ====================== CONSTANT ===============================
@@ -42,8 +35,10 @@ USERNAME_TAKEN = "```This username is already taken.```"
 async def mine(event):
     """ For .reserved command, get a list of your reserved usernames. """
     result = await bot(GetAdminedPublicChannelsRequest())
-    output_str = "".join(f"{channel_obj.title}\n@{channel_obj.username}\n\n"
-                         for channel_obj in result.chats)
+    output_str = "".join(
+        f"{channel_obj.title}\n@{channel_obj.username}\n\n"
+        for channel_obj in result.chats
+    )
 
     await event.edit(output_str)
 
@@ -60,8 +55,7 @@ async def update_name(name):
         firstname = namesplit[0]
         lastname = namesplit[1]
 
-    await name.client(
-        UpdateProfileRequest(first_name=firstname, last_name=lastname))
+    await name.client(UpdateProfileRequest(first_name=firstname, last_name=lastname))
     await name.edit(NAME_OK)
 
 
@@ -76,8 +70,7 @@ async def _(event):
     photo = None
     try:
         photo = await bot.download_media(  # pylint:disable=E0602
-            reply_message,
-            TEMP_DOWNLOAD_DIRECTORY  # pylint:disable=E0602
+            reply_message, TEMP_DOWNLOAD_DIRECTORY  # pylint:disable=E0602
         )
     except Exception as e:  # pylint:disable=C0103,W0703
         await event.edit(str(e))
@@ -99,7 +92,9 @@ async def _(event):
             try:
                 await bot(
                     functions.photos.UploadProfilePhotoRequest(
-                        file=catpic, video=catvideo, video_start_ts=0.01))
+                        file=catpic, video=catvideo, video_start_ts=0.01
+                    )
+                )
             except Exception as e:  # pylint:disable=C0103,W0703
                 await event.edit(str(e))
             else:
@@ -178,25 +173,23 @@ async def remove_profilepic(delpfp):
         lim = 1
 
     pfplist = await delpfp.client(
-        GetUserPhotosRequest(user_id=delpfp.sender_id,
-                             offset=0,
-                             max_id=0,
-                             limit=lim))
+        GetUserPhotosRequest(user_id=delpfp.sender_id, offset=0, max_id=0, limit=lim)
+    )
     input_photos = [
         InputPhoto(
             id=sep.id,
             access_hash=sep.access_hash,
             file_reference=sep.file_reference,
-        ) for sep in pfplist.photos
+        )
+        for sep in pfplist.photos
     ]
     await delpfp.client(DeletePhotosRequest(id=input_photos))
-    await delpfp.edit(
-        f"`Successfully deleted {len(input_photos)} profile picture(s).`")
+    await delpfp.edit(f"`Successfully deleted {len(input_photos)} profile picture(s).`")
 
 
-CMD_HELP.update({
-    "profile":
-    "`.username` <new_username>\
+CMD_HELP.update(
+    {
+        "profile": "`.username` <new_username>\
 \nUsage: Changes your Telegram username.\
 \n\n`.name` <firstname> or `.name` <firstname> <lastname>\
 \nUsage: Changes your Telegram name.(First and last name will get split by the first space)\
@@ -212,4 +205,5 @@ CMD_HELP.update({
 \nUsage: Counts your groups, chats, bots etc...\
 \n\n`.whois` <username> or reply to someones text with `.data`\
 \nUsage: Gets info of an user."
-})
+    }
+)
