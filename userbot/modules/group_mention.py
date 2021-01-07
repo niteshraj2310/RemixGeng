@@ -1,11 +1,13 @@
 import asyncio
-from userbot.events import register
+
 from userbot import PM_LOGGR_BOT_API_ID
+from userbot.events import register
+
 
 @register(outgoing=True, incoming=True, func=lambda e: e.mentioned)
 async def log_tagged_messages(event):
     hmm = await event.get_chat()
-        
+
     if PM_LOGGR_BOT_API_ID:
         sender = await event.get_sender()
         await asyncio.sleep(5)
@@ -27,8 +29,4 @@ async def log_tagged_messages(event):
                 link_preview=True,
             )
         e = await event.client.get_entity(int(PM_LOGGR_BOT_API_ID))
-        fwd_message = await event.client.forward_messages(
-                    e,
-                    event.message,
-                    silent=True
-                )
+        fwd_message = await event.client.forward_messages(e, event.message, silent=True)
