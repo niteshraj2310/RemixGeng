@@ -2413,7 +2413,8 @@ async def _(event):
 
         await event.edit(input_str)
 
-        animation_chars = ["🐵", "🙉", "🙈", "🙊", "🖕‎🐵🖕", "**OPPA MONEKEYY Style....**"]
+        animation_chars = ["🐵", "🙉", "🙈", "🙊",
+                           "🖕‎🐵🖕", "**OPPA MONEKEYY Style....**"]
 
         animation_interval = 2
 
