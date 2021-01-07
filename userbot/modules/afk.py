@@ -3,18 +3,21 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 # All Credits to https://t.me/azrim89 for timestamp.
-
 """ Userbot module which contains afk-related commands """
-
 import time
 from datetime import datetime
-from random import choice, randint
+from random import choice
+from random import randint
 
 from telethon.events import StopPropagation
 from telethon.tl.functions.account import UpdateProfileRequest
 
-from userbot import (AFKREASON, BOTLOG, BOTLOG_CHATID, CMD_HELP, PM_AUTO_BAN,
-                     bot)
+from userbot import AFKREASON
+from userbot import bot
+from userbot import BOTLOG
+from userbot import BOTLOG_CHATID
+from userbot import CMD_HELP
+from userbot import PM_AUTO_BAN
 from userbot.events import register
 
 # ========================= CONSTANTS ============================

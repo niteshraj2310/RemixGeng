@@ -12,7 +12,9 @@ from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.types import DocumentAttributeVideo
 
-from userbot import CMD_HELP, GOOGLE_CHROME_BIN, bot
+from userbot import bot
+from userbot import CMD_HELP
+from userbot import GOOGLE_CHROME_BIN
 from userbot.events import register
 from userbot.utils import progress
 
