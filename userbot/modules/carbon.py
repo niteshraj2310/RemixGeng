@@ -45,11 +45,13 @@ TTS_LANG = "en"
 TRT_LANG = "en"
 TEMP_DOWNLOAD_DIRECTORY = "/root/userbot/.bin"
 
+
 @register(outgoing=True, pattern="^.crblang (.*)")
 async def setlang(prog):
     global CARBONLANG
     CARBONLANG = prog.pattern_match.group(1)
     await prog.edit(f"Language for carbon.now.sh set to {CARBONLANG}")
+
 
 @register(outgoing=True, pattern="^.carbon1")
 async def carbon_api(e):
@@ -115,7 +117,7 @@ async def carbon_api(e):
     driver.quit()
     # Removing carbon.png after uploading
     await e.delete()  # Deleting msg
-    
+
 
 @register(outgoing=True, pattern="^.carbon2")
 async def carbon_api(e):
@@ -181,7 +183,7 @@ async def carbon_api(e):
     driver.quit()
     # Removing carbon.png after uploading
     await e.delete()  # Deleting msg
-    
+
 
 @register(outgoing=True, pattern="^.carbon3")
 async def carbon_api(e):
@@ -247,8 +249,8 @@ async def carbon_api(e):
     driver.quit()
     # Removing carbon.png after uploading
     await e.delete()  # Deleting msg
-    
-    
+
+
 @register(outgoing=True, pattern="^.carbon4")
 async def carbon_api(e):
     """ A Wrapper for carbon.now.sh """
@@ -313,7 +315,7 @@ async def carbon_api(e):
     driver.quit()
     # Removing carbon.png after uploading
     await e.delete()  # Deleting msg
-    
+
 
 @register(outgoing=True, pattern="^.carbon5")
 async def carbon_api(e):
@@ -379,8 +381,8 @@ async def carbon_api(e):
     driver.quit()
     # Removing carbon.png after uploading
     await e.delete()  # Deleting msg
- 
-    
+
+
 CMD_HELP.update({
     "carbon":
     "`.carbon`value <values=1,2,3,4,5>\
