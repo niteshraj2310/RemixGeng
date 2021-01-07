@@ -1,6 +1,7 @@
-from userbot.events import register
-from userbot import CMD_HELP
 from PyDictionary import PyDictionary
+
+from userbot import CMD_HELP
+from userbot.events import register
 
 
 @register(outgoing=True, pattern=r"^\.mng(?: |$)(.*)")

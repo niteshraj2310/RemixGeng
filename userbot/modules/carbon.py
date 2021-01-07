@@ -1,58 +1,46 @@
+import asyncio
 import os
-import time
-import asyncio
 import random
-import asyncio
-import shutil
-from bs4 import BeautifulSoup
 import re
-from time import sleep
+import shutil
+import subprocess
+import time
+from asyncio import sleep
+from datetime import datetime
 from html import unescape
 from re import findall
-from selenium import webdriver
-from selenium.webdriver.support.ui import Select
-from selenium.webdriver.chrome.options import Options
-from urllib.parse import quote_plus
+from time import sleep
 from urllib.error import HTTPError
-from telethon import events
-from wikipedia import summary
-from wikipedia.exceptions import DisambiguationError, PageError
-from urbandict import define
-from requests import get
-from search_engine_parser import GoogleSearch
+from urllib.parse import quote_plus
+
+from bs4 import BeautifulSoup
+from emoji import get_emoji_regexp
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googletrans import LANGUAGES, Translator
 from gtts import gTTS
 from gtts.lang import tts_langs
-from emoji import get_emoji_regexp
-from youtube_dl import YoutubeDL
-from youtube_dl.utils import (
-    DownloadError,
-    ContentTooShortError,
-    ExtractorError,
-    GeoRestrictedError,
-    MaxDownloadsReached,
-    PostProcessingError,
-    UnavailableVideoError,
-    XAttrMetadataError,
-)
-from asyncio import sleep
-from userbot import (
-    CMD_HELP,
-    BOTLOG,
-    BOTLOG_CHATID,
-    YOUTUBE_API_KEY,
-    CHROME_DRIVER,
-    GOOGLE_CHROME_BIN,
-    bot,
-)
-from userbot.events import register
+from requests import get
+from search_engine_parser import GoogleSearch
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import Select
+from telethon import events
 from telethon.tl.types import DocumentAttributeAudio
-from userbot.utils import progress, humanbytes, time_formatter, googleimagesdownload
-import subprocess
-from datetime import datetime
+from urbandict import define
+from wikipedia import summary
+from wikipedia.exceptions import DisambiguationError, PageError
+from youtube_dl import YoutubeDL
+from youtube_dl.utils import (ContentTooShortError, DownloadError,
+                              ExtractorError, GeoRestrictedError,
+                              MaxDownloadsReached, PostProcessingError,
+                              UnavailableVideoError, XAttrMetadataError)
 
+from userbot import (BOTLOG, BOTLOG_CHATID, CHROME_DRIVER, CMD_HELP,
+                     GOOGLE_CHROME_BIN, YOUTUBE_API_KEY, bot)
+from userbot.events import register
+from userbot.utils import (googleimagesdownload, humanbytes, progress,
+                           time_formatter)
 
 CARBONLANG = "auto"
 TTS_LANG = "en"
