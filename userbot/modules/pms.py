@@ -31,8 +31,8 @@ from userbot.modules.sql_helper.mute_sql import is_muted, mute, unmute
 
 # ========================= CONSTANTS ============================
 UNAPPROVED_MSG = (
-    "Hey there! Unfortunately, I don't accept private messages from strangers.\n"
-    "Please contact me in a group, or wait for me to approve you."
+    "__Hey there! Unfortunately, I don't accept private messages from strangers.\n"
+    "Wait for me to approve you, Until don't spam my PM.__"
 )
 # =================================================================
 
@@ -84,7 +84,7 @@ async def permitpm(event):
             else:
                 COUNT_PM[event.chat_id] = COUNT_PM[event.chat_id] + 1
 
-            if COUNT_PM[event.chat_id] > 2:
+            if COUNT_PM[event.chat_id] > 5:
                 await event.respond(
                     "`You were spamming my pm dude.`\n"
                     "`You have been BLOCKED and reported as SPAM,.`"
