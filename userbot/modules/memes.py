@@ -7,11 +7,13 @@
 """ Userbot module for having some fun with people. """
 import asyncio
 import time
+import re
+from urllib import parse
+from bs4 import BeautifulSoup
 from asyncio import sleep
 from collections import deque
 from random import choice, getrandbits, randint
 from re import sub
-
 import requests
 from cowpy import cow
 
@@ -1315,6 +1317,43 @@ async def let_me_google_that_for_you(lmgtfy_q):
 #           await sleep(scam_time)
 # except BaseException:
 # return
+
+@register(outgoing=True, pattern=r"^\.gz(?: |$)(.*)")
+async def gizoogle(event):
+    """
+    Gizoogle dat shieet
+    Adapted from https://github.com/chafla/gizoogle-py
+    """
+    reply = await event.get_reply_message()
+    message = event.pattern_match.group(1)
+
+    if message:
+        pass
+    elif reply:
+        message = reply.text
+    else:
+        await event.edit("**I require suttin' ta chizzle it, dawg!**")
+        return
+
+    if message[0:4] == "link":
+        query = message[5:]
+        params = {"search": query}
+        url = (
+            f"http://www.gizoogle.net/tranzizzle.php?{parse.urlencode(params)}"
+            + "&se=Gizoogle+Dis+Shiznit"
+        )
+        await event.edit(f"**Here ya go, dawg:** [{query}]({url})")
+    else:
+        params = {"translatetext": message}
+        url = "http://www.gizoogle.net/textilizer.php"
+        resp = requests.post(url, data=params)
+        soup_input = re.sub(
+            "/name=translatetext[^>]*>/", 'name="translatetext" >', resp.text
+        )
+        soup = BeautifulSoup(soup_input, "lxml")
+        giz = soup.find_all(text=True)
+        result = giz[37].strip("\r\n")  # Hacky, but consistent.
+        await event.edit(result)
 
 
 @register(pattern=r".type(?: |$)(.*)", outgoing=True)
