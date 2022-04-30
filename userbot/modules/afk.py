@@ -11,11 +11,11 @@ from random import choice, randint
 
 from telethon.events import StopPropagation
 
+from userbot import CMD_HELP  # noqa
 from userbot import (
     AFKREASON,
     BOTLOG,
     BOTLOG_CHATID,
-    CMD_HELP,  # noqa
     COUNT_MSG,
     ISAFK,
     PM_AUTO_BAN,
@@ -188,7 +188,7 @@ async def mention_afk(mention):
             afk_since = f"`{int(seconds)}s` ago"
 
         is_bot = False
-        if (sender := await mention.get_sender()) :
+        if sender := await mention.get_sender():
             is_bot = sender.bot
             if is_bot:
                 return  # ignore bot

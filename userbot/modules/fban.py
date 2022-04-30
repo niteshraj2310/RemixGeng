@@ -18,7 +18,7 @@ async def fban(event):
     except IntegrityError:
         return await event.edit("**Running on Non-SQL mode!**")
 
-    if (reply_msg := await event.get_reply_message()) :
+    if reply_msg := await event.get_reply_message():
         fban_id = reply_msg.sender_id
         reason = event.pattern_match.group(1)
     else:
@@ -91,7 +91,7 @@ async def unfban(event):
     except IntegrityError:
         return await event.edit("**Running on Non-SQL mode!**")
 
-    if (reply_msg := await event.get_reply_message()) :
+    if reply_msg := await event.get_reply_message():
         unfban_id = reply_msg.sender_id
         reason = event.pattern_match.group(1)
     else:

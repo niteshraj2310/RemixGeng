@@ -14,7 +14,7 @@ from userbot.events import register
 
 @register(outgoing=True, pattern="^.create (b|g|c)(?: |$)(.*)")
 async def telegraphs(grop):
-    """ For .create command, Creating New Group & Channel """
+    """For .create command, Creating New Group & Channel"""
     if grop.text[0].isalpha() or grop.text[0] in ("/", "#", "@", "!"):
         return
     if grop.fwd_from:

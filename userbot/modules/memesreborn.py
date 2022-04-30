@@ -158,43 +158,43 @@ GAMBAR_TITIT = """
 
 @register(outgoing=True, pattern="^.rape$")
 async def raping(raped):
-    """ Dont Rape Too much -_-"""
+    """Dont Rape Too much -_-"""
     await raped.edit(choice(RAPE_STRINGS))
 
 
 @register(outgoing=True, pattern="^.fuk$")
 async def chutiya(fuks):
-    """ String for fhu only -_-"""
+    """String for fhu only -_-"""
     await fuks.edit(choice(FUK_STRINGS))
 
 
 @register(outgoing=True, pattern="^.chu$")
 async def chutiya(chus):
-    """ String for Chu only -_-"""
+    """String for Chu only -_-"""
     await chus.edit(choice(CHU_STRINGS))
 
 
 @register(outgoing=True, pattern="^.thanos$")
 async def thanos(thanos):
-    """ String for thanos only -_-"""
+    """String for thanos only -_-"""
     await thanos.edit(choice(THANOS_STRINGS))
 
 
 @register(outgoing=True, pattern="^.abusehard$")
 async def fuckedd(abusehard):
-    """ Dont Use this Too much bsdk -_-"""
+    """Dont Use this Too much bsdk -_-"""
     await abusehard.edit(choice(ABUSEHARD_STRINGS))
 
 
 @register(outgoing=True, pattern="^.abuse$")
 async def abusing(abused):
-    """ Dont Abuse Too much bsdk -_-"""
+    """Dont Abuse Too much bsdk -_-"""
     await abused.edit(choice(ABUSE_STRINGS))
 
 
 @register(outgoing=True, pattern="^.iwi(?: |$)(.*)")
 async def faces(siwis):
-    """ IwI """
+    """IwI"""
     textx = await siwis.get_reply_message()
     message = siwis.pattern_match.group(1)
     if message:

@@ -33,7 +33,7 @@ KANGING_STR = [
 
 @register(outgoing=True, pattern=r"^\.kang")
 async def kang(args):
-    """ For .kang command, kangs stickers or creates new ones. """
+    """For .kang command, kangs stickers or creates new ones."""
     user = await bot.get_me()
     if not user.username:
         user.username = user.first_name
@@ -250,7 +250,7 @@ async def kang(args):
 
 
 async def resize_photo(photo):
-    """ Resize the given photo to 512x512 """
+    """Resize the given photo to 512x512"""
     image = Image.open(photo)
     if (image.width and image.height) < 512:
         size1 = image.width

@@ -33,7 +33,7 @@ opener.addheaders = [("User-agent", useragent)]
 
 @register(outgoing=True, pattern="^.random")
 async def randomise(items):
-    """ For .random command, get a random item from the list of items. """
+    """For .random command, get a random item from the list of items."""
     itemo = (items.text[8:]).split()
     if len(itemo) < 2:
         await items.edit(
@@ -48,7 +48,7 @@ async def randomise(items):
 
 @register(outgoing=True, pattern="^.sleep ([0-9]+)$")
 async def sleepybot(time):
-    """ For .sleep command, let the userbot snooze for a few second. """
+    """For .sleep command, let the userbot snooze for a few second."""
     counter = int(time.pattern_match.group(1))
     await time.edit("`I am sulking and snoozing...`")
     if BOTLOG:
@@ -63,7 +63,7 @@ async def sleepybot(time):
 
 @register(outgoing=True, pattern="^.shutdown$")
 async def killdabot(event):
-    """ For .shutdown command, shut the bot down."""
+    """For .shutdown command, shut the bot down."""
     await event.edit("`Goodbye *Windows XP shutdown sound*....`")
     if BOTLOG:
         await event.client.send_message(BOTLOG_CHATID, "#SHUTDOWN \n" "Bot shut down")
@@ -84,7 +84,7 @@ async def killdabot(event):
 
 @register(outgoing=True, pattern="^.community$")
 async def bot_community(community):
-    """ For .community command, just returns OG Paperplane's group link. """
+    """For .community command, just returns OG Paperplane's group link."""
     await community.edit(
         "Join RaphielGang's awesome userbot community: @userbot_support"
         "\nDo note that Paperplane Extended is an unoficial fork of their "
@@ -94,7 +94,7 @@ async def bot_community(community):
 
 @register(outgoing=True, pattern="^.support$")
 async def bot_support(wannahelp):
-    """ For .support command, just returns the group link. """
+    """For .support command, just returns the group link."""
     await wannahelp.edit(
         "Join the OpenUserBot Channel: @PaperPlaneExtended_news \
         \nJoin the OpenUserBot Chat: @PPE_Support"
@@ -137,7 +137,7 @@ async def repeat(rep):
 
 @register(outgoing=True, pattern="^.repo$")
 async def repo_is_here(wannasee):
-    """ For .repo command, just returns the repo URL. """
+    """For .repo command, just returns the repo URL."""
     await wannasee.edit(
         "Click [here](https://github.com/sahyam2019/oub-remix) to open oub-remix's GitHub page."
     )
@@ -145,7 +145,7 @@ async def repo_is_here(wannasee):
 
 @register(outgoing=True, pattern="^.myrepo$")
 async def myrepo_is_here(wannaseeme):
-    """ For .myrepo command, just returns the repo URL. """
+    """For .myrepo command, just returns the repo URL."""
     await wannaseeme.edit(
         f"Click [here](https://github.com/{GIT_REPO_NAME}/tree/sql-extended/) to open {DEFAULTUSER}`s GitHub page"
     )
@@ -177,7 +177,7 @@ async def raw(event):
 
 @register(outgoing=True, pattern=r"^.reverse(?: |$)(\d*)")
 async def okgoogle(img):
-    """ For .reverse command, Google search images and stickers. """
+    """For .reverse command, Google search images and stickers."""
     if os.path.isfile("okgoogle.png"):
         os.remove("okgoogle.png")
 

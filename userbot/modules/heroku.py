@@ -204,7 +204,7 @@ async def dyno_usage(dyno):
     ),
 )
 async def dyno_manage(dyno):
-    """ - Restart/Kill dyno - """
+    """- Restart/Kill dyno -"""
     await dyno.edit("`Sending information...`")
     app = heroku.app(HEROKU_APP_NAME)
     exe = dyno.pattern_match.group(1)
@@ -235,7 +235,7 @@ async def dyno_manage(dyno):
             return await dyno.edit(f"⬢**{HEROKU_APP_NAME}** `already on...`")
     if exe == "restart":
         try:
-            """ - Catch error if dyno not on - """
+            """- Catch error if dyno not on -"""
             Dyno = app.dynos()[0]
         except IndexError:
             return await dyno.respond(f"⬢**{HEROKU_APP_NAME}** `is not on...`")
@@ -260,7 +260,7 @@ async def dyno_manage(dyno):
                 await dyno.respond(f"⬢**{HEROKU_APP_NAME}** `crashed...`")
             return await dyno.delete()
     elif exe == "off":
-        """ - Complete shutdown - """
+        """- Complete shutdown -"""
         app.scale_formation_process("worker", 0)
         text = f"`Shutdown` ⬢**{HEROKU_APP_NAME}**"
         sleep = 1
@@ -273,7 +273,7 @@ async def dyno_manage(dyno):
         await dyno.respond(f"⬢**{HEROKU_APP_NAME}** `turned off...`")
         return await dyno.delete()
     elif exe == "usage":
-        """ - Get your account Dyno Usage - """
+        """- Get your account Dyno Usage -"""
         await dyno.edit("`Getting information...`")
         headers = {
             "User-Agent": useragent,
@@ -315,7 +315,7 @@ async def dyno_manage(dyno):
             try:
                 Apps[0]
             except IndexError:
-                """ - If all apps usage are zero - """
+                """- If all apps usage are zero -"""
                 for App in apps:
                     msg += (
                         f" -> `Dyno usage for`  **{App.name}**:\n"
@@ -354,7 +354,7 @@ async def dyno_manage(dyno):
             return await dyno.edit(msg)
         return
     elif exe in ["cancel deploy", "cancel build"]:
-        """ - Only cancel 1 recent builds from activity - """
+        """- Only cancel 1 recent builds from activity -"""
         build_id = dyno.pattern_match.group(2)
         if build_id is None:
             build = app.builds(order_by="created_at", sort="desc")[0]

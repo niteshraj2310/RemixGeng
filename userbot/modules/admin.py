@@ -86,7 +86,7 @@ UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 
 @register(outgoing=True, pattern="^.setgpic$")
 async def set_group_photo(gpic):
-    """ For .setgpic command, changes the picture of a group """
+    """For .setgpic command, changes the picture of a group"""
     if not gpic.is_group:
         await gpic.edit("`I don't think this is a group.`")
         return
@@ -123,7 +123,7 @@ async def set_group_photo(gpic):
 
 @register(outgoing=True, pattern="^.promote(?: |$)(.*)")
 async def promote(promt):
-    """ For .promote command, promotes the replied/tagged person """
+    """For .promote command, promotes the replied/tagged person"""
     # Get targeted chat
     chat = await promt.get_chat()
     # Grab admin status or creator in a chat
@@ -174,7 +174,7 @@ async def promote(promt):
 
 @register(outgoing=True, pattern="^.demote(?: |$)(.*)")
 async def demote(dmod):
-    """ For .demote command, demotes the replied/tagged person """
+    """For .demote command, demotes the replied/tagged person"""
     # Admin right check
     chat = await dmod.get_chat()
     admin = chat.admin_rights
@@ -224,7 +224,7 @@ async def demote(dmod):
 
 @register(outgoing=True, pattern="^.ban(?: |$)(.*)")
 async def ban(bon):
-    """ For .ban command, bans the replied/tagged person """
+    """For .ban command, bans the replied/tagged person"""
     # Here laying the sanity check
     chat = await bon.get_chat()
     admin = chat.admin_rights
@@ -275,7 +275,7 @@ async def ban(bon):
 
 @register(outgoing=True, pattern="^.unban(?: |$)(.*)")
 async def nothanos(unbon):
-    """ For .unban command, unbans the replied/tagged person """
+    """For .unban command, unbans the replied/tagged person"""
     # Here laying the sanity check
     chat = await unbon.get_chat()
     admin = chat.admin_rights
@@ -368,7 +368,7 @@ async def spider(spdr):
 
 @register(outgoing=True, pattern="^.unmute(?: |$)(.*)")
 async def unmoot(unmot):
-    """ For .unmute command, unmute the replied/tagged person """
+    """For .unmute command, unmute the replied/tagged person"""
     # Admin or creator check
     chat = await unmot.get_chat()
     admin = chat.admin_rights
@@ -414,7 +414,7 @@ async def unmoot(unmot):
 
 @register(incoming=True, disable_errors=True)
 async def muter(moot):
-    """ Used for deleting the messages of muted people """
+    """Used for deleting the messages of muted people"""
     try:
         from userbot.modules.sql_helper.gmute_sql import is_gmuted
         from userbot.modules.sql_helper.spam_mute_sql import is_muted
@@ -454,7 +454,7 @@ async def muter(moot):
 
 @register(outgoing=True, pattern="^.ungmute(?: |$)(.*)")
 async def ungmoot(un_gmute):
-    """ For .ungmute command, ungmutes the target in the userbot """
+    """For .ungmute command, ungmutes the target in the userbot"""
     # Admin or creator check
     chat = await un_gmute.get_chat()
     admin = chat.admin_rights
@@ -497,7 +497,7 @@ async def ungmoot(un_gmute):
 
 @register(outgoing=True, pattern="^.gmute(?: |$)(.*)")
 async def gspider(gspdr):
-    """ For .gmute command, globally mutes the replied/tagged person """
+    """For .gmute command, globally mutes the replied/tagged person"""
     # Admin or creator check
     chat = await gspdr.get_chat()
     admin = chat.admin_rights
@@ -540,7 +540,7 @@ async def gspider(gspdr):
 
 @register(outgoing=True, pattern="^.zombies(?: |$)(.*)", groups_only=False)
 async def rm_deletedacc(show):
-    """ For .zombies command, list all the ghost/deleted/zombie accounts in a chat. """
+    """For .zombies command, list all the ghost/deleted/zombie accounts in a chat."""
 
     con = show.pattern_match.group(1).lower()
     del_u = 0
@@ -760,7 +760,7 @@ async def pin(msg):
 
 @register(outgoing=True, pattern="^.kick(?: |$)(.*)")
 async def kick(usr):
-    """ For .kick command, kicks the replied/tagged person from the group. """
+    """For .kick command, kicks the replied/tagged person from the group."""
     # Admin or creator check
     chat = await usr.get_chat()
     admin = chat.admin_rights
@@ -937,7 +937,7 @@ async def get_usersdel(show):
 
 
 async def get_userdel_from_event(event):
-    """ Get the deleted user from argument or replied message. """
+    """Get the deleted user from argument or replied message."""
     args = event.pattern_match.group(1).split(" ", 1)
     extra = None
     if event.reply_to_msg_id and len(args) != 2:
