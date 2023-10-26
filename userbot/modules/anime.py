@@ -66,9 +66,9 @@ def getBannerLink(mal, kitsu_search=True):
     }
     """
     data = {"query": query, "variables": {"idMal": int(mal)}}
-    if image := requests.post("https://graphql.anilist.co", json=data).json()[
-        "data"
-    ]["Media"]["bannerImage"]:
+    if image := requests.post("https://graphql.anilist.co", json=data).json()["data"][
+        "Media"
+    ]["bannerImage"]:
         return image
     return getPosterLink(mal)
 
@@ -478,8 +478,8 @@ async def get_anime(message):
         telegraph_poster = main_poster
 
     genress_md = "".join(f"{i['name']} " for i in genres_list)
-    producer_md = "".join(f"[{i['name']}]({i['url']}) " for i in producer_list)
-    studio_md = "".join(f"[{i['name']}]({i['url']}) " for i in studios_list)
+    "".join(f"[{i['name']}]({i['url']}) " for i in producer_list)
+    "".join(f"[{i['name']}]({i['url']}) " for i in studios_list)
     # Build synopsis telegraph post
     html_enc = ""
     html_enc += f"<img src = '{telegraph_poster}' title = {anime_title}/>"

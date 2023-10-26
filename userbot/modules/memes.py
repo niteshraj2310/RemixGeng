@@ -1598,8 +1598,7 @@ async def shout(args):
     text = " ".join(messagestr)
     result = [" ".join(list(text))]
     result.extend(
-        f"{symbol} " + "  " * pos + symbol
-        for pos, symbol in enumerate(text[1:])
+        f"{symbol} " + "  " * pos + symbol for pos, symbol in enumerate(text[1:])
     )
     result = list("\n".join(result))
     result[0] = text[0]
