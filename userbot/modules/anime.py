@@ -66,10 +66,9 @@ def getBannerLink(mal, kitsu_search=True):
     }
     """
     data = {"query": query, "variables": {"idMal": int(mal)}}
-    image = requests.post("https://graphql.anilist.co", json=data).json()["data"][
-        "Media"
-    ]["bannerImage"]
-    if image:
+    if image := requests.post("https://graphql.anilist.co", json=data).json()[
+        "data"
+    ]["Media"]["bannerImage"]:
         return image
     return getPosterLink(mal)
 
@@ -78,8 +77,7 @@ def get_anime_manga(mal_id, search_type, _user_id):
     jikan = jikanpy.jikan.Jikan()
     if search_type == "anime_anime":
         result = jikan.anime(mal_id)
-        trailer = result["trailer_url"]
-        if trailer:
+        if trailer := result["trailer_url"]:
             LOL = f"<a href='{trailer}'>Trailer</a>"
         else:
             LOL = "<code>No Trailer Available</code>"
@@ -222,20 +220,15 @@ async def anime(event):
         score = anime.get("score")
         rating = anime.get("rating")
         genre_lst = anime.get("genres")
-        genres = ""
-        for genre in genre_lst:
-            genres += genre.get("name") + ", "
+        genres = "".join(genre.get("name") + ", " for genre in genre_lst)
         genres = genres[:-2]
-        studios = ""
         studio_lst = anime.get("studios")
-        for studio in studio_lst:
-            studios += studio.get("name") + ", "
+        studios = "".join(studio.get("name") + ", " for studio in studio_lst)
         studios = studios[:-2]
         duration = anime.get("duration")
         premiered = anime.get("premiered")
         image_url = anime.get("image_url")
-        trailer = anime.get("trailer_url")
-        if trailer:
+        if trailer := anime.get("trailer_url"):
             bru = f"<a href='{trailer}'>Trailer</a>"
         url = anime.get("url")
     else:
@@ -286,9 +279,7 @@ async def manga(event):
         volumes = manga.get("volumes")
         chapters = manga.get("chapters")
         genre_lst = manga.get("genres")
-        genres = ""
-        for genre in genre_lst:
-            genres += genre.get("name") + ", "
+        genres = "".join(genre.get("name") + ", " for genre in genre_lst)
         genres = genres[:-2]
         synopsis = manga.get("synopsis")
         image = manga.get("image_url")
@@ -323,9 +314,7 @@ async def site_search(event):
         search_url = f"https://animekaizoku.com/?s={search_query}"
         html_text = requests.get(search_url).text
         soup = bs4.BeautifulSoup(html_text, "html.parser")
-        search_result = soup.find_all("h2", {"class": "post-title"})
-
-        if search_result:
+        if search_result := soup.find_all("h2", {"class": "post-title"}):
             result = f"<a href='{search_url}'>Click Here For More Results</a> <b>of</b> <code>{html.escape(search_query)}</code> <b>on</b> <code>AnimeKaizoku</code>: \n\n"
             for entry in search_result:
                 post_link = entry.a["href"]
@@ -488,16 +477,9 @@ async def get_anime(message):
     if not telegraph_poster:
         telegraph_poster = main_poster
 
-    genress_md = ""
-    producer_md = ""
-    studio_md = ""
-    for i in genres_list:
-        genress_md += f"{i['name']} "
-    for i in producer_list:
-        producer_md += f"[{i['name']}]({i['url']}) "
-    for i in studios_list:
-        studio_md += f"[{i['name']}]({i['url']}) "
-
+    genress_md = "".join(f"{i['name']} " for i in genres_list)
+    producer_md = "".join(f"[{i['name']}]({i['url']}) " for i in producer_list)
+    studio_md = "".join(f"[{i['name']}]({i['url']}) " for i in studios_list)
     # Build synopsis telegraph post
     html_enc = ""
     html_enc += f"<img src = '{telegraph_poster}' title = {anime_title}/>"
