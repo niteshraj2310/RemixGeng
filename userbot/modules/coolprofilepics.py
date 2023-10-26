@@ -47,7 +47,6 @@ COLLECTION_STRING = [
 
 
 async def animepp():
-
     os.system("rm -rf donot.jpg")
 
     rnd = random.randint(0, len(COLLECTION_STRING) - 1)
@@ -65,7 +64,6 @@ async def animepp():
     print(fy)
 
     if not os.path.exists("f.ttf"):
-
         urllib.request.urlretrieve(
             "https://github.com/rebel6969/mym/raw/master/Rebel-robot-Regular.ttf",
             "f.ttf",
@@ -76,11 +74,9 @@ async def animepp():
 
 @register(outgoing=True, pattern="^.randompp(?: |$)(.*)")
 async def main(event):
-
     await event.edit("`changing your Profile Pic...`\n\n`Check Your DP in 10 seconds.`")
 
     while True:
-
         await animepp()
 
         file = await event.client.upload_file("donottouch.jpg")

@@ -20,7 +20,6 @@ from userbot.events import register
 
 @register(pattern=r"\.whois(?: |$)(.*)", outgoing=True)
 async def who(event):
-
     await event.edit(
         "__Sit tight while I steal some data from Global Network Zone...__"
     )
