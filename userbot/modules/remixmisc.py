@@ -1199,7 +1199,6 @@ async def _(event):
 
 @register(outgoing=True, pattern="^.weeb(?: |$)(.*)")
 async def weebify(event):
-
     args = event.pattern_match.group(1)
     if not args:
         get = await event.get_reply_message()
@@ -1247,7 +1246,6 @@ boldfont = [
 
 @register(outgoing=True, pattern="^.bold(?: |$)(.*)")
 async def thicc(bolded):
-
     args = bolded.pattern_match.group(1)
     if not args:
         get = await bolded.get_reply_message()
@@ -1295,7 +1293,6 @@ medievalbold = [
 
 @register(outgoing=True, pattern="^.medibold(?: |$)(.*)")
 async def mediv(medievalx):
-
     args = medievalx.pattern_match.group(1)
     if not args:
         get = await medievalx.get_reply_message()
@@ -1343,7 +1340,6 @@ doublestruckt = [
 
 @register(outgoing=True, pattern="^.doublestruck(?: |$)(.*)")
 async def doublex(doublestrucktx):
-
     args = doublestrucktx.pattern_match.group(1)
     if not args:
         get = await doublestrucktx.get_reply_message()
@@ -1391,7 +1387,6 @@ cursiveboldx = [
 
 @register(outgoing=True, pattern="^.curbold(?: |$)(.*)")
 async def cursive2(cursivebolded):
-
     args = cursivebolded.pattern_match.group(1)
     if not args:
         get = await cursivebolded.get_reply_message()
@@ -1439,7 +1434,6 @@ medival2 = [
 
 @register(outgoing=True, pattern="^.medi(?: |$)(.*)")
 async def medival22(medivallite):
-
     args = medivallite.pattern_match.group(1)
     if not args:
         get = await medivallite.get_reply_message()
@@ -1487,7 +1481,6 @@ cursive = [
 
 @register(outgoing=True, pattern="^.cur(?: |$)(.*)")
 async def xcursive(cursivelite):
-
     args = cursivelite.pattern_match.group(1)
     if not args:
         get = await cursivelite.get_reply_message()
@@ -1573,7 +1566,6 @@ async def stylish_generator(event):
 
 @register(outgoing=True, pattern="^.circlify(?: |$)(.*)")
 async def circly(event):
-
     args = event.pattern_match.group(1)
     if not args:
         get = await event.get_reply_message()
@@ -1746,7 +1738,6 @@ async def stylish_generator(event):
 
 @register(outgoing=True, pattern="^.oldeng(?: |$)(.*)")
 async def oldy(event):
-
     args = event.pattern_match.group(1)
     if not args:
         get = await event.get_reply_message()
