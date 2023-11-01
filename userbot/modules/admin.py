@@ -549,7 +549,6 @@ async def rm_deletedacc(show):
     if con != "clean":
         await show.edit("`Searching for ghost/deleted/zombie accounts...`")
         async for user in show.client.iter_participants(show.chat_id):
-
             if user.deleted:
                 del_u += 1
                 await sleep(1)

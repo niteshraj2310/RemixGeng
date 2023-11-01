@@ -268,7 +268,6 @@ async def ParseSauce(googleurl):
 
 
 async def scam(results, lim):
-
     single = opener.open(results["similar_images"]).read()
     decoded = single.decode("utf-8")
 
