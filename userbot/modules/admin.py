@@ -643,7 +643,7 @@ async def getadmin(event):
     to_write_chat = await event.get_input_chat()
     chat = None
     if input_str:
-        mentions_heading = "Admins in {} : \n".format(input_str)
+        mentions_heading = f"Admins in {input_str} : \n"
         mentions = mentions_heading
         try:
             chat = await event.client.get_entity(input_str)
@@ -657,22 +657,17 @@ async def getadmin(event):
             chat, filter=ChannelParticipantsAdmins
         ):
             if not x.deleted and isinstance(x.participant, ChannelParticipantCreator):
-                mentions += "\n [{}](tg://user?id={}) `{}`".format(
-                    x.first_name, x.id, x.id
-                )
+                mentions += f"\n [{x.first_name}](tg://user?id={x.id}) `{x.id}`"
         mentions += "\n"
         async for x in event.client.iter_participants(
             chat, filter=ChannelParticipantsAdmins
         ):
             if x.deleted:
-                mentions += "\n `{}`".format(x.id)
-            else:
-                if isinstance(x.participant, ChannelParticipantAdmin):
-                    mentions += "\n [{}](tg://user?id={}) `{}`".format(
-                        x.first_name, x.id, x.id
-                    )
+                mentions += f"\n `{x.id}`"
+            elif isinstance(x.participant, ChannelParticipantAdmin):
+                mentions += f"\n [{x.first_name}](tg://user?id={x.id}) `{x.id}`"
     except Exception as e:
-        mentions += " " + str(e) + "\n"
+        mentions += f" {str(e)}" + "\n"
     if should_mention_admins:
         if reply_message:
             await reply_message.reply(mentions)
@@ -695,9 +690,7 @@ async def pin(msg):
     if not to_pin:
         return await msg.edit("`Reply to a message to pin it.`")
     options = msg.pattern_match.group(1)
-    is_silent = False
-    if options == "loud":
-        is_silent = True
+    is_silent = options == "loud"
     try:
         await msg.client.pin_message(msg.chat_id, to_pin, notify=is_silent)
     except BadRequestError:
@@ -779,7 +772,7 @@ async def kick(usr):
         await usr.client.kick_participant(usr.chat_id, user.id)
         await sleep(0.5)
     except Exception as e:
-        await usr.edit(NO_PERM + f"\n{str(e)}")
+        await usr.edit(f"{NO_PERM}\n{str(e)}")
         return
 
     if reason:
@@ -803,7 +796,7 @@ async def get_users(show):
     """For .users command, list all of the users in a chat."""
     info = await show.client.get_entity(show.chat_id)
     title = info.title or "this chat"
-    mentions = "Users in {}: \n".format(title)
+    mentions = f"Users in {title}: \n"
     try:
         if show.pattern_match.group(1):
             searchq = show.pattern_match.group(1)
@@ -825,7 +818,7 @@ async def get_users(show):
                         f"\n[{user.first_name}](tg://user?id={user.id}) `{user.id}`"
                     )
     except ChatAdminRequiredError as err:
-        mentions += " " + str(err) + "\n"
+        mentions += f" {str(err)}" + "\n"
     try:
         await show.edit(mentions)
     except MessageTooLongError:
@@ -835,7 +828,7 @@ async def get_users(show):
         await show.client.send_file(
             show.chat_id,
             "userslist.txt",
-            caption="Users in {}".format(title),
+            caption=f"Users in {title}",
             reply_to=show.id,
         )
         remove("userslist.txt")
@@ -866,8 +859,7 @@ async def get_user_from_event(event):
 
             if isinstance(probable_user_mention_entity, MessageEntityMentionName):
                 user_id = probable_user_mention_entity.user_id
-                user_obj = await event.client.get_entity(user_id)
-                return user_obj
+                return await event.client.get_entity(user_id)
         try:
             user_obj = await event.client.get_entity(user)
         except (TypeError, ValueError) as err:
@@ -895,7 +887,7 @@ async def get_usersdel(show):
     """For .usersdel command, list all of the deleted users in a chat."""
     info = await show.client.get_entity(show.chat_id)
     title = info.title or "this chat"
-    mentions = "deletedUsers in {}: \n".format(title)
+    mentions = f"deletedUsers in {title}: \n"
     try:
         if not show.pattern_match.group(1):
             async for user in show.client.iter_participants(show.chat_id):
@@ -915,9 +907,8 @@ async def get_usersdel(show):
                         f"\n[{user.first_name}](tg://user?id={user.id}) `{user.id}`"
                     )
         #       else:
-    #              mentions += f"\nDeleted Account `{user.id}`"
     except ChatAdminRequiredError as err:
-        mentions += " " + str(err) + "\n"
+        mentions += f" {str(err)}" + "\n"
     try:
         await show.edit(mentions)
     except MessageTooLongError:
@@ -929,7 +920,7 @@ async def get_usersdel(show):
         await show.client.send_file(
             show.chat_id,
             "deleteduserslist.txt",
-            caption="Users in {}".format(title),
+            caption=f"Users in {title}",
             reply_to=show.id,
         )
         remove("deleteduserslist.txt")
@@ -960,8 +951,7 @@ async def get_userdel_from_event(event):
 
             if isinstance(probable_user_mention_entity, MessageEntityMentionName):
                 user_id = probable_user_mention_entity.user_id
-                user_obj = await event.client.get_entity(user_id)
-                return user_obj
+                return await event.client.get_entity(user_id)
         try:
             user_obj = await event.client.get_entity(user)
         except (TypeError, ValueError) as err:
@@ -1185,23 +1175,17 @@ async def _(event):
             chat, reply_message.sender_id, until_date=None, view_messages=False
         )
         if soft_warn:
-            reply = "{} warnings, <u><a href='tg://user?id={}'>user</a></u> has been kicked!".format(
-                limit, reply_message.sender_id
-            )
+            reply = f"{limit} warnings, <u><a href='tg://user?id={reply_message.sender_id}'>user</a></u> has been kicked!"
             await event.client.kick_participant(event.chat_id, reply_message.sender_id)
         else:
             await event.client.edit_permissions(
                 chat, reply_message.sender_id, until_date=None, view_messages=False
             )
-            reply = "{} warnings, <u><a href='tg://user?id={}'>user</a></u> has been banned!".format(
-                limit, reply_message.sender_id
-            )
+            reply = f"{limit} warnings, <u><a href='tg://user?id={reply_message.sender_id}'>user</a></u> has been banned!"
     else:
-        reply = "<u><a href='tg://user?id={}'>user</a></u> has {}/{} warnings... watch out!".format(
-            reply_message.sender_id, num_warns, limit
-        )
+        reply = f"<u><a href='tg://user?id={reply_message.sender_id}'>user</a></u> has {num_warns}/{limit} warnings... watch out!"
         if warn_reason:
-            reply += "\nReason for last warn:\n{}".format(html.escape(warn_reason))
+            reply += f"\nReason for last warn:\n{html.escape(warn_reason)}"
     #
     await event.edit(reply, parse_mode="html")
 
@@ -1216,17 +1200,13 @@ async def _(event):
         num_warns, reasons = result
         limit, soft_warn = sql.get_warn_setting(event.chat_id)
         if reasons:
-            text = "This user has {}/{} warnings, for the following reasons:".format(
-                num_warns, limit
-            )
+            text = f"This user has {num_warns}/{limit} warnings, for the following reasons:"
             text += "\r\n"
             text += reasons
             await event.edit(text)
         else:
             await event.edit(
-                "This user has {} / {} warning, but no reasons for any of them.".format(
-                    num_warns, limit
-                )
+                f"This user has {num_warns} / {limit} warning, but no reasons for any of them."
             )
     else:
         await event.edit("This user hasn't got any warnings!")
@@ -1281,12 +1261,12 @@ async def set_warn_limit(event):
             await event.edit("`The minimum warn limit is 3!`")
         else:
             sql.set_warn_limit(event.chat_id, int(input_str))
-            await event.edit("`Updated the warn limit to` {}".format(input_str))
+            await event.edit(f"`Updated the warn limit to` {input_str}")
             return
 
     else:
         limit, soft_warn = sql.get_warn_setting(event.chat_id)
-        await event.edit("`The current warn limit is {}`".format(limit))
+        await event.edit(f"`The current warn limit is {limit}`")
     return ""
 
 
