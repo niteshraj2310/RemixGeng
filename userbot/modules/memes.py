@@ -819,7 +819,7 @@ async def kek(keks):
     uio = ["/", "\\"]
     for i in range(1, 15):
         time.sleep(0.3)
-        await keks.edit(":" + uio[i % 2])
+        await keks.edit(f":{uio[i % 2]}")
 
 
 @register(outgoing=True, pattern=r"^.coinflip (.*)")
@@ -871,10 +871,8 @@ async def slap(replied_user, event):
     """Construct a funny slap sentence !!"""
     user_id = replied_user.id
     first_name = replied_user.first_name
-    username = replied_user.username
-
-    if username:
-        slapped = "@{}".format(username)
+    if username := replied_user.username:
+        slapped = f"@{username}"
     else:
         slapped = f"[{first_name}](tg://user?id={user_id})"
 
@@ -884,9 +882,7 @@ async def slap(replied_user, event):
     throw = choice(THROW)
     where = choice(WHERE)
 
-    return "..." + temp.format(
-        victim=slapped, item=item, hits=hit, throws=throw, where=where
-    )
+    return f"...{temp.format(victim=slapped, item=item, hits=hit, throws=throw, where=where)}"
 
 
 @register(outgoing=True, pattern="^-_-$", ignore_unsafe=True)
@@ -894,7 +890,7 @@ async def lol(lel):
     """Ok..."""
     okay = "-_-"
     for _ in range(10):
-        okay = okay[:-1] + "_-"
+        okay = f"{okay[:-1]}_-"
         await lel.edit(okay)
 
 
@@ -916,7 +912,7 @@ async def decide(event):
 async def fun(e):
     t = ";_;"
     for _ in range(10):
-        t = t[:-1] + "_;"
+        t = f"{t[:-1]}_;"
         await e.edit(t)
 
 
@@ -1114,9 +1110,9 @@ async def faces(owo):
     reply_text = sub(r"(R|L)", "W", reply_text)
     reply_text = sub(r"n([aeiou])", r"ny\1", reply_text)
     reply_text = sub(r"N([aeiouAEIOU])", r"Ny\1", reply_text)
-    reply_text = sub(r"\!+", " " + choice(UWUS), reply_text)
+    reply_text = sub(r"\!+", f" {choice(UWUS)}", reply_text)
     reply_text = reply_text.replace("ove", "uv")
-    reply_text += " " + choice(UWUS)
+    reply_text += f" {choice(UWUS)}"
     await owo.edit(reply_text)
 
 
@@ -1154,7 +1150,7 @@ async def metoo(hahayes):
 async def Oof(e):
     t = "Oof"
     for _ in range(16):
-        t = t[:-1] + "of"
+        t = f"{t[:-1]}of"
         await e.edit(t)
 
 
@@ -1162,7 +1158,7 @@ async def Oof(e):
 async def Oem(e):
     t = "Oem"
     for _ in range(16):
-        t = t[:-1] + "em"
+        t = f"{t[:-1]}em"
         await e.edit(t)
 
 
@@ -1250,28 +1246,14 @@ async def bluetext(bt_e):
 @register(outgoing=True, pattern=r"^.f (.*)")
 async def payf(event):
     paytext = event.pattern_match.group(1)
-    pay = "{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}".format(
-        paytext * 8,
-        paytext * 8,
-        paytext * 2,
-        paytext * 2,
-        paytext * 2,
-        paytext * 6,
-        paytext * 6,
-        paytext * 2,
-        paytext * 2,
-        paytext * 2,
-        paytext * 2,
-        paytext * 2,
-    )
+    pay = f"{paytext * 8}\n{paytext * 8}\n{paytext * 2}\n{paytext * 2}\n{paytext * 2}\n{paytext * 6}\n{paytext * 6}\n{paytext * 2}\n{paytext * 2}\n{paytext * 2}\n{paytext * 2}\n{paytext * 2}"
     await event.edit(pay)
 
 
 @register(outgoing=True, pattern="^.gi (.*)")
 async def let_me_google_that_for_you(lmgtfy_q):
     textx = await lmgtfy_q.get_reply_message()
-    qry = lmgtfy_q.pattern_match.group(1)
-    if qry:
+    if qry := lmgtfy_q.pattern_match.group(1):
         query = str(qry)
     elif textx:
         query = textx
@@ -1337,7 +1319,7 @@ async def gizoogle(event):
         await event.edit("**I require suttin' ta chizzle it, dawg!**")
         return
 
-    if message[0:4] == "link":
+    if message[:4] == "link":
         query = message[5:]
         params = {"search": query}
         url = (
@@ -1376,8 +1358,8 @@ async def typewriter(typew):
     await typew.edit(typing_symbol)
     await sleep(sleep_time)
     for character in message:
-        old_text = old_text + "" + character
-        typing_text = old_text + "" + typing_symbol
+        old_text = f"{old_text}{character}"
+        typing_text = f"{old_text}{typing_symbol}"
         await typew.edit(typing_text)
         await sleep(sleep_time)
         await typew.edit(old_text)
@@ -1615,13 +1597,15 @@ async def shout(args):
     messagestr = messagestr[7:]
     text = " ".join(messagestr)
     result = [" ".join(list(text))]
-    for pos, symbol in enumerate(text[1:]):
-        result.append(symbol + " " + "  " * pos + symbol)
+    result.extend(
+        f"{symbol} " + "  " * pos + symbol
+        for pos, symbol in enumerate(text[1:])
+    )
     result = list("\n".join(result))
     result[0] = text[0]
     result = "".join(result)
     msg = "\n" + result
-    await args.edit("`" + msg + "`")
+    await args.edit(f"`{msg}`")
 
 
 @register(outgoing=True, pattern="^.bigoof$")

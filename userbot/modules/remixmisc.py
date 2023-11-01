@@ -535,11 +535,10 @@ oldengfont = [
 
 logger = logging.getLogger(__name__)
 
-thumb_image_path = TEMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
+thumb_image_path = f"{TEMP_DOWNLOAD_DIRECTORY}/thumb_image.jpg"
 
-if 1 == 1:
-    name = "Profile Photos"
-    client = bot
+name = "Profile Photos"
+client = bot
 
 
 @register(outgoing=True, pattern="^.app(?: |$)(.*)")
@@ -549,7 +548,7 @@ async def apk(e):
         remove_space = app_name.split(" ")
         final_name = "+".join(remove_space)
         page = requests.get(
-            "https://play.google.com/store/search?q=" + final_name + "&c=apps"
+            f"https://play.google.com/store/search?q={final_name}&c=apps"
         )
         str(page.status_code)
         soup = bs4.BeautifulSoup(page.content, "lxml", from_encoding="utf-8")
@@ -581,8 +580,8 @@ async def apk(e):
             .findNext("div", "uzcko")
             .img["data-src"]
         )
-        app_details = "<a href='" + app_icon + "'>📲&#8203;</a>"
-        app_details += " <b>" + app_name + "</b>"
+        app_details = f"<a href='{app_icon}'>📲&#8203;</a>"
+        app_details += f" <b>{app_name}</b>"
         app_details += (
             "\n\n<code>Developer :</code> <a href='"
             + app_dev_link
@@ -607,7 +606,7 @@ async def apk(e):
     except IndexError:
         await e.edit("No result found in search. Please enter **Valid app name**")
     except Exception as err:
-        await e.edit("Exception Occured:- " + str(err))
+        await e.edit(f"Exception Occured:- {str(err)}")
 
 
 @register(outgoing=True, pattern="^.undlt(?: |$)(.*)")
@@ -634,7 +633,7 @@ async def _(event):
     if event.fwd_from:
         return
     input = event.pattern_match.group(1)  # get input
-    exp = "Given expression is " + input  # report back input
+    exp = f"Given expression is {input}"
     # lazy workaround to add support for two digits
     final_input = tuple(input)
     term1part1 = final_input[0]
@@ -683,14 +682,14 @@ async def _(event):
     if xkcd_id is None:
         xkcd_url = "https://xkcd.com/info.0.json"
     else:
-        xkcd_url = "https://xkcd.com/{}/info.0.json".format(xkcd_id)
+        xkcd_url = f"https://xkcd.com/{xkcd_id}/info.0.json"
     r = requests.get(xkcd_url)
     if r.ok:
         data = r.json()
         year = data.get("year")
         month = data["month"].zfill(2)
         day = data["day"].zfill(2)
-        xkcd_link = "https://xkcd.com/{}".format(data.get("num"))
+        xkcd_link = f'https://xkcd.com/{data.get("num")}'
         safe_title = data.get("safe_title")
         data.get("transcript")
         alt = data.get("alt")
@@ -707,7 +706,7 @@ Year: {}""".format(
         )
         await event.edit(output_str, link_preview=True)
     else:
-        await event.edit("xkcd n.{} not found!".format(xkcd_id))
+        await event.edit(f"xkcd n.{xkcd_id} not found!")
 
 
 @register(outgoing=True, pattern="^.remove(?: |$)(.*)")
@@ -863,9 +862,7 @@ async def ban_user(chat_id, i, rights):
 async def _(event):
     if event.fwd_from:
         return
-    thumb = None
-    if os.path.exists(thumb_image_path):
-        thumb = thumb_image_path
+    thumb = thumb_image_path if os.path.exists(thumb_image_path) else None
     await event.edit(
         "`Rename & Upload in process 🙄🙇‍♂️🙇‍♂️🙇‍♀️ It might take some time if file size is big`"
     )
@@ -899,12 +896,10 @@ async def _(event):
             os.remove(downloaded_file_name)
             ms_two = (end_two - end).seconds
             await event.edit(
-                "Downloaded in {} seconds. Uploaded in {} seconds.".format(
-                    ms_one, ms_two
-                )
+                f"Downloaded in {ms_one} seconds. Uploaded in {ms_two} seconds."
             )
         else:
-            await event.edit("File Not Found {}".format(input_str))
+            await event.edit(f"File Not Found {input_str}")
     else:
         await event.edit(
             "Syntax // .rnupload filename.extension as reply to a Telegram media"
@@ -921,7 +916,7 @@ async def potocmd(event):
         photos = await event.client.get_profile_photos(user.sender)
     else:
         photos = await event.client.get_profile_photos(chat)
-    if id.strip() == "":
+    if not id.strip():
         try:
             await event.client.send_file(event.chat_id, photos)
         except a:
@@ -936,7 +931,7 @@ async def potocmd(event):
         except BaseException:
             await event.edit("`lol wtf`")
             return
-        if int(id) <= (len(photos)):
+        if id <= (len(photos)):
             send_photos = await event.client.download_media(photos[id - 1])
             await bot.send_file(event.chat_id, send_photos)
         else:
@@ -1078,7 +1073,6 @@ async def get_full_user(event):
 
 
 def get_stream_data(query):
-    stream_data = {}
     # Compatibility for Current Userge Users
     try:
         country = WATCH_COUNTRY
@@ -1088,12 +1082,12 @@ def get_stream_data(query):
     just_watch = JustWatch(country=country)
     results = just_watch.search_for_item(query=query)
     movie = results["items"][0]
-    stream_data["title"] = movie["title"]
-    stream_data["movie_thumb"] = (
-        "https://images.justwatch.com"
+    stream_data = {
+        "title": movie["title"],
+        "movie_thumb": "https://images.justwatch.com"
         + movie["poster"].replace("{profile}", "")
-        + "s592"
-    )
+        + "s592",
+    }
     stream_data["release_year"] = movie["original_release_year"]
     try:
         print(movie["cinema_release_date"])
@@ -1170,9 +1164,9 @@ async def _(event):
 
     output_ = f"**Movie:**\n`{title}`\n**Release Date:**\n`{release_date}`"
     if imdb_score:
-        output_ = output_ + f"\n**IMDB: **{imdb_score}"
+        output_ = f"{output_}\n**IMDB: **{imdb_score}"
     if tmdb_score:
-        output_ = output_ + f"\n**TMDB: **{tmdb_score}"
+        output_ = f"{output_}\n**TMDB: **{tmdb_score}"
 
     output_ = output_ + "\n\n**Available on:**\n"
     for provider, link in stream_providers.items():
