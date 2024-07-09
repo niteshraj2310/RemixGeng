@@ -41,8 +41,12 @@ async def corona(event):
             f"`😟New Deaths  : {format_integer(country_data['new_deaths'])}`\n\n"
         )
         output_text += f"`⚰️Deaths      : {format_integer(country_data['deaths'])}`\n"
-        output_text += f"`😔New Cases   : {format_integer(country_data['new_cases'])}`\n"
-        output_text += f"`😇Recovered   : {format_integer(country_data['recovered'])}`\n"
+        output_text += (
+            f"`😔New Cases   : {format_integer(country_data['new_cases'])}`\n"
+        )
+        output_text += (
+            f"`😇Recovered   : {format_integer(country_data['recovered'])}`\n"
+        )
         output_text += (
             f"`🧪Total tests : {format_integer(country_data['total_tests'])}`\n\n"
         )
@@ -67,8 +71,12 @@ async def corona(event):
             f"`😟New Deaths  : {format_integer(country_data['new_deaths'])}`\n\n"
         )
         output_text += f"`⚰️Deaths      : {format_integer(country_data['deaths'])}`\n"
-        output_text += f"`😔New Cases   : {format_integer(country_data['new_cases'])}`\n"
-        output_text += f"`😇Recovered   : {format_integer(country_data['recovered'])}`\n"
+        output_text += (
+            f"`😔New Cases   : {format_integer(country_data['new_cases'])}`\n"
+        )
+        output_text += (
+            f"`😇Recovered   : {format_integer(country_data['recovered'])}`\n"
+        )
         output_text += "`🧪Total tests : N/A`\n\n"
         output_text += f"Data provided by [Worldometer](https://www.worldometers.info/coronavirus/country/{country})"
     else:
