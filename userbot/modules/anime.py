@@ -326,14 +326,16 @@ async def site_search(event):
         search_result = soup.find_all("h2", {"class": "post-title"})
 
         if search_result:
-            result = f"<a href='{search_url}'>Click Here For More Results</a> <b>of</b> <code>{html.escape(search_query)}</code> <b>on</b> <code>AnimeKaizoku</code>: \n\n"
+            result = f"<a href='{search_url}'>Click Here For More Results</a> <b>of</b> <code>{
+                html.escape(search_query)}</code> <b>on</b> <code>AnimeKaizoku</code>: \n\n"
             for entry in search_result:
                 post_link = entry.a["href"]
                 post_name = html.escape(entry.text.strip())
                 result += f"• <a href='{post_link}'>{post_name}</a>\n"
                 await event.edit(result, parse_mode="HTML")
         else:
-            result = f"<b>No result found for</b> <code>{html.escape(search_query)}</code> <b>on</b> <code>AnimeKaizoku</code>"
+            result = f"<b>No result found for</b> <code>{
+                html.escape(search_query)}</code> <b>on</b> <code>AnimeKaizoku</code>"
             await event.edit(result, parse_mode="HTML")
 
     elif site == "kayo":
@@ -342,11 +344,13 @@ async def site_search(event):
         soup = bs4.BeautifulSoup(html_text, "html.parser")
         search_result = soup.find_all("h2", {"class": "title"})
 
-        result = f"<a href='{search_url}'>Click Here For More Results</a> <b>of</b> <code>{html.escape(search_query)}</code> <b>on</b> <code>AnimeKayo</code>: \n\n"
+        result = f"<a href='{search_url}'>Click Here For More Results</a> <b>of</b> <code>{
+            html.escape(search_query)}</code> <b>on</b> <code>AnimeKayo</code>: \n\n"
         for entry in search_result:
 
             if entry.text.strip() == "Nothing Found":
-                result = f"<b>No result found for</b> <code>{html.escape(search_query)}</code> <b>on</b> <code>AnimeKayo</code>"
+                result = f"<b>No result found for</b> <code>{
+                    html.escape(search_query)}</code> <b>on</b> <code>AnimeKayo</code>"
                 break
 
             post_link = entry.a["href"]

@@ -2,7 +2,7 @@
 #
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
-""" Userbot module containing userid, chatid and log commands"""
+"""Userbot module containing userid, chatid and log commands"""
 
 from asyncio import sleep
 from datetime import datetime
@@ -457,9 +457,13 @@ async def fetch_info(chat, event):
             f'Creator: <a href="tg://user?id={creator_id}">{creator_firstname}</a>\n'
         )
     if created is not None:
-        caption += f"Created: <code>{created.date().strftime('%b %d, %Y')} - {created.time()}</code>\n"
+        caption += f"Created: <code>{
+            created.date().strftime('%b %d, %Y')} - {
+            created.time()}</code>\n"
     else:
-        caption += f"Created: <code>{chat_obj_info.date.date().strftime('%b %d, %Y')} - {chat_obj_info.date.time()}</code> {warn_emoji}\n"
+        caption += f"Created: <code>{
+            chat_obj_info.date.date().strftime('%b %d, %Y')} - {
+            chat_obj_info.date.time()}</code> {warn_emoji}\n"
     caption += f"Data Centre ID: {dc_id}\n"
     if exp_count is not None:
         chat_level = int((1 + sqrt(1 + 7 * exp_count / 14)) / 2)
@@ -483,7 +487,8 @@ async def fetch_info(chat, event):
     if banned_users is not None:
         caption += f"Banned users: <code>{banned_users}</code>\n"
     if group_stickers is not None:
-        caption += f'{chat_type} stickers: <a href="t.me/addstickers/{chat.full_chat.stickerset.short_name}">{group_stickers}</a>\n'
+        caption += f'{chat_type} stickers: <a href="t.me/addstickers/{
+            chat.full_chat.stickerset.short_name}">{group_stickers}</a>\n'
     caption += "\n"
     if not broadcast:
         caption += f"Slow mode: {slowmode}"
@@ -498,9 +503,12 @@ async def fetch_info(chat, event):
     if hasattr(chat_obj_info, "restricted"):
         caption += f"Restricted: {restricted}\n"
         if chat_obj_info.restricted:
-            caption += f"> Platform: {chat_obj_info.restriction_reason[0].platform}\n"
-            caption += f"> Reason: {chat_obj_info.restriction_reason[0].reason}\n"
-            caption += f"> Text: {chat_obj_info.restriction_reason[0].text}\n\n"
+            caption += f"> Platform: {
+                chat_obj_info.restriction_reason[0].platform}\n"
+            caption += f"> Reason: {
+                chat_obj_info.restriction_reason[0].reason}\n"
+            caption += f"> Text: {
+                chat_obj_info.restriction_reason[0].text}\n\n"
         else:
             caption += "\n"
     if hasattr(chat_obj_info, "scam") and chat_obj_info.scam:

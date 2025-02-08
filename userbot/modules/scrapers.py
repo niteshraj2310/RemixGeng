@@ -5,7 +5,7 @@
 #
 # thanks to the owner of X-tra-Telegram for tts fix
 #
-""" Userbot module containing various scrapers. """
+"""Userbot module containing various scrapers."""
 import asyncio
 import io
 import json

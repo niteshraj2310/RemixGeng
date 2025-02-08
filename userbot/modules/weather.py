@@ -3,7 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-""" Userbot module for getting the weather of a city. """
+"""Userbot module for getting the weather of a city."""
 import io
 import json
 from datetime import datetime

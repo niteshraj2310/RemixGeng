@@ -12,7 +12,7 @@
 # Copyright (c) 2017 Ovyerus
 #
 # Ported from Xtra-telegram by @heyworld
-""" Userbot module for frying stuff. ported by @NeoMatrix90 """
+"""Userbot module for frying stuff. ported by @NeoMatrix90"""
 
 import io
 import os

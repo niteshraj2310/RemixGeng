@@ -5,7 +5,7 @@
 #
 # The entire source code is OSSRPL except 'sed' which is GPLv3
 # License: GPLv3 and OSSRPL
-""" Userbot command for sed. """
+"""Userbot command for sed."""
 
 import re
 from sre_constants import error as sre_err

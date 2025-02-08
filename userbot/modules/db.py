@@ -3,7 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-""" Userbot module for getting information about the server. """
+"""Userbot module for getting information about the server."""
 from platform import uname
 
 from userbot import ALIVE_NAME, BOT_VER, is_mongo_alive, is_redis_alive

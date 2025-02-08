@@ -3,8 +3,8 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-""" Userbot module for getting the date
-    and time of any country or the userbot server.  """
+"""Userbot module for getting the date
+and time of any country or the userbot server."""
 
 from datetime import datetime as dt
 
@@ -82,7 +82,7 @@ async def time_func(tdata):
             return_str = f"`{c_name} has multiple timezones:`\n\n"
 
             for i, item in enumerate(timezones):
-                return_str += f"`{i+1}. {item}`\n"
+                return_str += f"`{i + 1}. {item}`\n"
 
             return_str += "\n`Choose one by typing the number "
             return_str += "in the command.`\n"
@@ -145,7 +145,7 @@ async def date_func(dat):
             return_str = f"`{c_name} has multiple timezones:`\n"
 
             for i, item in enumerate(timezones):
-                return_str += f"`{i+1}. {item}`\n"
+                return_str += f"`{i + 1}. {item}`\n"
 
             return_str += "\n`Choose one by typing the number "
             return_str += "in the command.`\n"
