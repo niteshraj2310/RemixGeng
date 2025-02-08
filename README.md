@@ -1,11 +1,9 @@
 [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/niteshraj2310/RemixGeng)
-[![Build Status](https://travis-ci.com/niteshraj2310/RemixGeng.svg?branch=sql-extended)](https://travis-ci.com/niteshraj2310/RemixGeng)
 [![code style: black](https://img.shields.io/static/v1?label=code%20style&message=black&color=black&style=flat-square)](https://github.com/psf/black)
 <a href="https://github.com/niteshraj2310/RemixGeng/watchers"><img src="https://img.shields.io/github/watchers/niteshraj2310/RemixGeng?label=Watch&style=flat-square&logo=github&color=violet" alt="Watch" /></a>
 <a href="https://github.com/niteshraj2310/RemixGeng/commits/sql-extended"><img src="https://img.shields.io/github/last-commit/niteshraj2310/RemixGeng/sql-extended?label=Last%20Commit&style=flat-square&logo=github&color=Green" alt="Commit" /></a>
 <a href="https://github.com/niteshraj2310/RemixGeng/graphs/contributors"><img src="https://img.shields.io/github/contributors-anon/niteshraj2310/RemixGeng?label=Contributors&style=flat-square&logo=github&color=Orange" alt="Contributors" /></a>
-<a href="https://t.me/Nitesh_231"><img src="https://img.shields.io/badge/-Contekt Here%20-grey.svg?logo=Telegram"> </a>
-[![Requirements Status](https://requires.io/github/niteshraj2310/RemixGeng/requirements.svg?branch=sql-extended)](https://requires.io/github/niteshraj2310/RemixGeng/requirements/?branch=sql-extended)
+<a href="https://t.me/Nitesh_231"><img :src="https://img.shields.io/badge/-Contekt Here%20-grey.svg?logo=Telegram"> </a>
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a85304953a4c470390ec777f6931e55d)](https://app.codacy.com/manual/niteshraj2310/RemixGeng?utm_source=github.com&utm_medium=referral&utm_content=niteshraj2310/RemixGeng&utm_campaign=Badge_Grade_Dashboard)
 [![codebeat badge](https://codebeat.co/badges/049f1ac3-dfc2-4ee6-93a3-e40c1569313f)](https://codebeat.co/projects/github-com-niteshraj2310-remixgeng-sql-extended)
 [![Build status](https://ci.appveyor.com/api/projects/status/9h1i5ng3bjqgq11j?svg=true)](https://ci.appveyor.com/project/niteshraj2310/remixgeng-w0cvp)
