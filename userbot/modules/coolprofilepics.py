@@ -53,13 +53,13 @@ async def animepp():
 
     pack = COLLECTION_STRING[rnd]
 
-    pc = requests.get("http://getwallpapers.com/collection/" + pack).text
+    pc = requests.get(f"http://getwallpapers.com/collection/{pack}").text
 
     f = re.compile(r"/\w+/full.+.jpg")
 
     f = f.findall(pc)
 
-    fy = "http://getwallpapers.com" + random.choice(f)
+    fy = f"http://getwallpapers.com{random.choice(f)}"
 
     print(fy)
 

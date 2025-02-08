@@ -86,8 +86,7 @@ async def get_user(event):
 
             if isinstance(probable_user_mention_entity, MessageEntityMentionName):
                 user_id = probable_user_mention_entity.user_id
-                replied_user = await event.client(GetFullUserRequest(user_id))
-                return replied_user
+                return await event.client(GetFullUserRequest(user_id))
         try:
             user_object = await event.client.get_entity(user)
             replied_user = await event.client(GetFullUserRequest(user_object.id))
@@ -136,7 +135,7 @@ async def fetch_info(replied_user, event):
     last_name = (
         last_name.replace("\u2060", "") if last_name else ("This User has no Last Name")
     )
-    username = "@{}".format(username) if username else ("This User has no Username")
+    username = f"@{username}" if username else "This User has no Username"
     user_bio = "This User has no About" if not user_bio else user_bio
 
     caption = "<b>USER INFO:</b>\n\n"
@@ -151,7 +150,7 @@ async def fetch_info(replied_user, event):
     caption += f"ID: <code>{user_id}</code>\n\n"
     caption += f"Bio: \n<code>{user_bio}</code>\n\n"
     caption += f"Common Chats with this user: {common_chat}\n"
-    caption += f"Permanent Link To Profile: "
+    caption += "Permanent Link To Profile: "
     caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
 
     return photo, caption
