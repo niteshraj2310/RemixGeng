@@ -1,10 +1,15 @@
 name: pylint
 on: [push, pull_request]
+
 jobs:
   PEP8:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
@@ -14,9 +19,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install autopep8 autoflake isort black
+
       - name: Check for showstoppers
         run: |
           autopep8 --verbose --in-place --recursive --aggressive --aggressive ./*.py
+
       - name: Remove unused imports and variables
         run: |
           autoflake --in-place --recursive --remove-all-unused-imports --remove-unused-variables --ignore-init-module-imports .
@@ -25,17 +32,19 @@ jobs:
         run: |
           isort userbot/modules/*.py
           black userbot/modules/*.py
+
       - name: Import GPG key
         id: import_gpg
-        uses: crazy-max/ghaction-import-gpg@v2
+        uses: crazy-max/ghaction-import-gpg@v3
         with:
-            git_user_signingkey: true
-            git_commit_gpgsign: true
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
         env:
-          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
           PASSPHRASE: ${{ secrets.PASSPHRASE }}
-      # commit changes
-      - uses: stefanzweifel/git-auto-commit-action@v5
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: 'pylint: auto fixes'
           commit_options: '--no-verify --signoff'
