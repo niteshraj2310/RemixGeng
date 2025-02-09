@@ -33,16 +33,25 @@ jobs:
           isort userbot/modules/*.py
           black userbot/modules/*.py
 
+      - name: Setup GPG
+        if: github.event_name == 'push'
+        run: |
+          mkdir -p ~/.gnupg/
+          chmod 700 ~/.gnupg/
+          echo "allow-loopback-pinentry" > ~/.gnupg/gpg-agent.conf
+          echo "pinentry-mode loopback" > ~/.gnupg/gpg.conf
+
       - name: Import GPG key
         if: github.event_name == 'push'
         run: |
-          echo "${{ secrets.GPG_PRIVATE_KEY }}" | base64 --decode | gpg --batch --yes --import
-        continue-on-error: false
+          echo "${{ secrets.GPG_PRIVATE_KEY }}" | base64 -d | gpg --batch --yes --import
+        continue-on-error: true
 
       - name: Verify GPG key
         if: github.event_name == 'push'
         run: |
           gpg --list-secret-keys --keyid-format LONG
+        continue-on-error: true
 
       - name: Configure Git
         if: github.event_name == 'push'
@@ -54,6 +63,8 @@ jobs:
 
       - name: Commit and push changes
         if: github.event_name == 'push'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [[ -n $(git status -s) ]]; then
             git add .
@@ -61,3 +72,4 @@ jobs:
             git push origin HEAD:${{ github.ref }}
           else
             echo "No changes to commit"
+          fi
