@@ -51,7 +51,8 @@ async def detect_(message):
     percentage = r_json["nsfw_score"] * 100
     detections = r_json["detections"]
     link = f"https://api.deepai.org/job-view-file/{pic_id}/inputs/image.jpg"
-    result = f"<b><u>Detected Nudity</u> :</b>\n<a href='{link}'>>>></a> <code>{percentage:.3f}%</code>\n\n"
+    result = f"<b><u>Detected Nudity</u> :</b>\n<a href='{link}'>>>></a> <code>{
+        percentage:.3f}%</code>\n\n"
 
     if detections:
         for parts in detections:

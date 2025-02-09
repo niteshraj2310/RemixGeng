@@ -1,5 +1,6 @@
 """Count the Number of Dialogs you have in your Telegram Account
 Syntax: .stats"""
+
 import logging
 import time
 
@@ -82,12 +83,13 @@ async def stats(
     response += f"**Channels:** {broadcast_channels} \n"
     response += f"**Admin in Groups:** {admin_in_groups} \n"
     response += f"   • `Creator: {creator_in_groups}` \n"
-    response += f"   • `Admin Rights: {admin_in_groups - creator_in_groups}` \n"
+    response += f"   • `Admin Rights: {admin_in_groups -
+                                       creator_in_groups}` \n"
     response += f"**Admin in Channels:** {admin_in_broadcast_channels} \n"
     response += f"   • `Creator: {creator_in_channels}` \n"
-    response += (
-        f"   • `Admin Rights: {admin_in_broadcast_channels - creator_in_channels}` \n"
-    )
+    response += f"   • `Admin Rights: {
+            admin_in_broadcast_channels -
+            creator_in_channels}` \n"
     response += f"**Unread:** {unread} \n"
     response += f"**Unread Mentions:** {unread_mentions} \n\n"
     response += f"__It Took:__ {stop_time:.02f}s \n"

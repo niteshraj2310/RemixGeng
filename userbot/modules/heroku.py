@@ -5,7 +5,7 @@
 # you may not use this file except in compliance with the License.
 #
 """
-   Heroku manager for your userbot
+Heroku manager for your userbot
 """
 import asyncio
 import codecs

@@ -3,7 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-""" Userbot module for executing code and terminal commands from Telegram. """
+"""Userbot module for executing code and terminal commands from Telegram."""
 import asyncio
 from getpass import getuser
 from os import remove

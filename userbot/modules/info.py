@@ -1,4 +1,5 @@
 """MEDIA INFO"""
+
 # Suggested by - @d0n0t (https://github.com/code-rgb/USERGE-X/issues/9)
 # Copyright (C) 2020 BY - GitHub.com/code-rgb [TG - @deleteduser420]
 # All rights reserved.
