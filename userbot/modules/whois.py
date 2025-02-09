@@ -5,7 +5,7 @@
 #
 # The entire source code is OSSRPL except 'whois' which is MPL
 # License: MPL and OSSRPL
-""" Userbot module for getting info about any user on Telegram(including you!). """
+"""Userbot module for getting info about any user on Telegram(including you!)."""
 
 import os
 

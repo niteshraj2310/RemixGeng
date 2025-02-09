@@ -5,7 +5,7 @@
 
 # custom cmds by @Nitesh_231 for personal use 👀
 
-""" Userbot module for having some fun with people. """
+"""Userbot module for having some fun with people."""
 import asyncio
 import html
 import os
@@ -334,7 +334,11 @@ async def retard(event):
             "__Reply to someone so i can check how retarded they are!__"
         )
     sender = replied.sender
-    reply = f"__[{sender.first_name}](tg://user?id={sender.id}) is {randint(0, 101)}% retarded!__"
+    reply = f"__[{
+        sender.first_name}](tg://user?id={
+        sender.id}) is {
+            randint(
+                0, 101)}% retarded!__"
     await event.edit(reply, link_preview=False)
 
 

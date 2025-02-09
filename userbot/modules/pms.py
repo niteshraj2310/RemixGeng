@@ -3,7 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-""" Userbot module for keeping control who PM's you, Logging pm and muting users in pm """
+"""Userbot module for keeping control who PM's you, Logging pm and muting users in pm"""
 
 import asyncio
 
@@ -426,7 +426,9 @@ async def endmute(event):
         except Exception as e:
             await event.edit("Error occured!\nError is " + str(e))
         else:
-            await event.edit("Successfully unmuted that person\n乁( ◔ ౪◔)「    ┑(￣Д ￣)┍")
+            await event.edit(
+                "Successfully unmuted that person\n乁( ◔ ౪◔)「    ┑(￣Д ￣)┍"
+            )
 
 
 @register(incoming=True)

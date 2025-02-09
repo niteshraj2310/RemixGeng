@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 #
 # Port from UniBorg to Userbot by yincen17
-""" `UNZIPPER`  Coded by @By_Azade code rewritten my SnapDragon7410 """
+"""`UNZIPPER`  Coded by @By_Azade code rewritten my SnapDragon7410"""
 import asyncio
 import os
 import time

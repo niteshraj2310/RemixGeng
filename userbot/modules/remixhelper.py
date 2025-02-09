@@ -1,4 +1,5 @@
-""" Userbot module for other small commands. """
+"""Userbot module for other small commands."""
+
 from userbot import ALIVE_NAME, CMD_HELP
 from userbot.events import register
 

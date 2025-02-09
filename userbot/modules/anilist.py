@@ -249,11 +249,15 @@ async def anilist(event):
     response = requests.post(
         url, json={"query": airing_query, "variables": variables}
     ).json()["data"]["Media"]
-    ms_g = f"**Name**: **{response['title']['romaji']}**(`{response['title']['native']}`)\n**ID**: `{response['id']}`"
+    ms_g = f"**Name**: **{
+        response['title']['romaji']}**(`{
+        response['title']['native']}`)\n**ID**: `{
+            response['id']}`"
     if response["nextAiringEpisode"]:
         airing_time = response["nextAiringEpisode"]["timeUntilAiring"] * 1000
         airing_time_final = time_formatter(airing_time)
-        ms_g += f"\n**Episode**: `{response['nextAiringEpisode']['episode']}`\n**Airing In**: `{airing_time_final}`"
+        ms_g += f"\n**Episode**: `{
+            response['nextAiringEpisode']['episode']}`\n**Airing In**: `{airing_time_final}`"
     else:
         ms_g += f"\n**Episode**:{response['episodes']}\n**Status**: `N/A`"
     await event.edit(ms_g)

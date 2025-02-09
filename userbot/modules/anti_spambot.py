@@ -73,15 +73,23 @@ async def ANTI_SPAMBOTS(welcm):
                     check_user = await welcm.client.get_entity(user_id)
 
                     # DEBUGGING. LEAVING IT HERE FOR SOME TIME ###
-                    print(f"User Joined: {check_user.first_name} [ID: {check_user.id}]")
+                    print(
+                        f"User Joined: {
+                            check_user.first_name} [ID: {
+                            check_user.id}]"
+                    )
                     print(f"Chat: {welcm.chat.title}")
                     print(f"Time: {join_time}")
-                    print(f"Message Sent: {message.text}\n\n[Time: {message_date}]")
+                    print(
+                        f"Message Sent: {
+                            message.text}\n\n[Time: {message_date}]"
+                    )
                     ##############################################
 
                     try:
                         # https://t.me/combotnews/283
-                        cas_url = f"https://api.cas.chat/check?user_id={check_user.id}"
+                        cas_url = f"https://api.cas.chat/check?user_id={
+                            check_user.id}"
                         r = get(cas_url, timeout=3)
                         data = r.json()
                     except BaseException:
@@ -91,7 +99,8 @@ async def ANTI_SPAMBOTS(welcm):
                         data = None
 
                     if data and data["ok"]:
-                        reason = f"[Banned by Combot Anti Spam](https://combot.org/cas/query?u={check_user.id})"
+                        reason = f"[Banned by Combot Anti Spam](https://combot.org/cas/query?u={
+                            check_user.id})"
                         spambot = True
                     elif "t.cn/" in message.text:
                         reason = "Match on `t.cn` URLs"
