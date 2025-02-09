@@ -33,6 +33,10 @@ jobs:
           isort userbot/modules/*.py
           black userbot/modules/*.py
 
+      - name: Configure Git for Signoff
+        run: |
+          git config --global commit.signOff true
+
       - name: Import GPG key
         id: import_gpg
         uses: crazy-max/ghaction-import-gpg@v5
@@ -44,11 +48,8 @@ jobs:
           PASSPHRASE: ${{ secrets.PASSPHRASE }}
 
       - name: Commit and push changes
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: EndBug/add-and-commit@v9
         with:
-          commit_message: 'pylint: auto fixes'
-          commit_options: '--no-verify --signoff'
-          repository: .
-          commit_user_name: Nitesh
-          commit_user_email: niteshraj231@outlook.com
-          commit_author: Nitesh <niteshraj231@outlook.com>
+          message: 'pylint: auto fixes'
+          author_name: Nitesh
+          author_email: niteshraj231@outlook.com
